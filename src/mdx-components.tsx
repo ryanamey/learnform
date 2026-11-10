@@ -4,6 +4,7 @@ import { MotifPlayer } from "@/components/audio/motif-player";
 import { ExampleList } from "@/components/audio/example-list";
 import { GroupingDemo } from "@/components/audio/grouping-demo";
 import { SentenceDemo } from "@/components/audio/sentence-demo";
+import { Mermaid } from "@/components/content/mermaid";
 import { Aside, EPTask, Exercise, KeyIdea, ListenFor, Source } from "@/components/content/blocks";
 
 const components: MDXComponents = {
@@ -17,6 +18,7 @@ const components: MDXComponents = {
   Exercise,
   EPTask,
   Aside,
+  Mermaid,
 };
 
 export function useMDXComponents(): MDXComponents {

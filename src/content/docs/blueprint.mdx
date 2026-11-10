@@ -1,0 +1,182 @@
+<Aside>
+
+**Blueprint v3, 10 Nov 2026.** v3 adds the **listener layer** and Module 5, *The listener*, from the second search (see *Listener psychology sources*). v2 rebuilt the plan from the verified source search (see *Master source list*). v1 was the ChatGPT curriculum, re-ordered by hand. Every module below traces back to named sources. When a source is read in full, the *Coverage* page and the affected concept pages change, and the change is logged in the *Decision log*.
+
+</Aside>
+
+## What this app has to do
+
+Help the band design **unconventional but strong song forms**, carried by our own textures and material, at the level of construction we hear in Tool. Success means:
+
+1. Every EP track is a deliberate formal experiment we can explain: what returns, where the climax is, what carries the energy.
+2. The drummer and Ali can **design a form before the material exists** and hand it to the band as a plan.
+3. By the main project, we have our own formal principles, written down, that don't come from any one band.
+
+## What the research changed
+
+The search found that no book explains Tool's architecture. Only three academic texts analyze Tool at all, and none covers *Schism*, *The Grudge* or *The Patient*. What the literature does theorize well are the levers that show up in Tool's music. With the band's own account of how it writes, that gives **one process and three structural levers**:
+
+- **Process.** Jam, record everything, name and count each riff on a riff board, assemble the form, and write vocals last, over a settled structure.
+- **Lever 1: frame vs. cycle.** Riffs of odd lengths rotate inside a steady metric frame. *The frame is the form, and the misalignment is the content.*
+- **Lever 2: climax placement.** The climax arrives late, once, built up by texture rather than harmony: terminal and cumulative forms.
+- **Lever 3: metric dissonance as a section marker.** Tool's choruses are often *less* metrically stable than its verses, the reverse of the rock norm.
+
+Underneath everything is **memory**. Forms that don't return lose the listener unless motive, groove or timbre gives them something to hold. That's why Module 1 (material and identity) stays first.
+
+<KeyIdea>No book explains Tool. Their process plus three well-theorized levers does. Our own transcriptions fill the rest.</KeyIdea>
+
+## The listener layer (v3)
+
+Form happens twice: once on the page, and once in the listener's memory, expectation and body. Every structural decision is also a decision about attention, tension and felt time. So psychology isn't a separate subject. It runs through every module in two ways:
+
+1. **Every concept page gets a "Why it works on the listener" section.** It's graded by evidence: strong, moderate, weak or speculative.
+2. **Module 5, *The listener*, gathers it.** It covers attention and repetition, tension curves, groove and entrainment, chills and anticipation, trance and absorption, persona and catharsis. Its tool is a **listening-test kit**: demos played to 3–5 people who don't know the material, asking where attention drifted, where they started counting, and where they dropped in.
+
+Five findings change how we design:
+
+- **Listeners barely hear large-scale proportions and key plans** (Cook; Lalitte & Bigand). Fibonacci and golden sections are scaffolding for us. Audible landmarks (motif, timbre, density) have to carry the form.
+- **Tension follows loudness, register, density and tempo more than harmony** (Farbood). Builds are written as curves of those four.
+- **Odd meters are learned through exposure** (Hannon & Trehub). State them plainly, repeat them, then displace them. Keep one anchor layer (Vuust & Witek).
+- **Anticipation is rewarding in itself** (Salimpoor). Give each climax 15 seconds or more of audible approach.
+- **Trance is invited, not caused** (Rouget, Fachner). A long ostinato fades into the background (Hove), and slow audible change on top holds the mind (Reich). Alternate driving, overloaded sections with still, sparse ones (Rouget's trance vs. ecstasy).
+
+Hypnosis ideas from Erickson and Elman (pacing and leading, fractionation, confusion followed by resolution) are kept as **craft analogies, clearly labeled as such, and tested** with the listening kit. They are never presented as evidence.
+
+The biggest open gap: **no study uses prog or metal, odd-meter groove, or music longer than about 6 minutes.** Our listening tests and the Tool lab are how we close it for ourselves.
+
+## Level 1: Context
+
+Who and what the app sits between.
+
+<Mermaid
+  caption="Level 1: the system in its context"
+  chart={`flowchart LR
+  subgraph People
+    ALI["Ali<br/><small>vocals, guitar · form design</small>"]
+    DR["Drummer<br/><small>rhythm & meter · form design</small>"]
+    GT["Guitarist<br/><small>guitar synth, effects</small>"]
+    BS["Bassist"]
+  end
+  APP(["Learn Form app<br/><small>concepts · sound · tools · docs</small>"])
+  SRC[("Sources<br/><small>owned books · open-access articles · interviews</small>")]
+  REF[("Reference music<br/><small>Tool first · KC · Meshuggah · SOAD · Pantera</small>")]
+  OUT["Our music<br/><small>EP (4 tracks) → main project</small>"]
+  SRC --> APP
+  REF -->|our transcriptions| APP
+  ALI --> APP
+  DR --> APP
+  APP -->|form plans, principles| OUT
+  GT -->|material| OUT
+  BS -->|material| OUT
+  ALI --> OUT
+  DR --> OUT`}
+/>
+
+## Level 2: Containers
+
+The parts of the app and how they feed each other. The **modules** teach. The **tools** turn what's taught into working files. The **Tool lab** runs alongside everything.
+
+<Mermaid
+  caption="Level 2: modules, lab and tools"
+  chart={`flowchart TB
+  subgraph Learn["Modules"]
+    M0["0 · Process & the riff board"]
+    M1["1 · Material & identity ✓ live"]
+    M2["2 · Cycles, meter & time feel"]
+    M3["3 · Energy, texture & climax"]
+    M4["4 · Large-scale architecture & time"]
+    M5["5 · The listener"]
+    M6["6 · Voice, words & persona"]
+    M7["7 · The record as form"]
+  end
+  LAB["Tool lab<br/><small>our transcriptions + maps</small>"]
+  subgraph Tools
+    MB["Motif bank ✓"]
+    J["Journal ✓"]
+    RB["Riff board"]
+    ML["Meter lab"]
+    EC["Energy-curve editor"]
+    FP["Form planner"]
+    EP["EP / album planner"]
+    LT["Listening-test kit"]
+  end
+  M0 --> RB
+  M1 --> MB
+  M2 --> ML
+  M3 --> EC
+  M4 --> FP
+  M5 --> LT
+  M6 --> FP
+  M7 --> EP
+  LT -.->|tests| FP
+  LAB -.-> M2
+  LAB -.-> M3
+  LAB -.-> M4
+  RB --> FP
+  MB --> RB
+  EC --> FP
+  FP --> EP`}
+/>
+
+## Level 3: Components (concepts per module)
+
+Module 1 is built. The others are planned, and each concept lists the sources it will be written from. Rank codes (T1, P1, X1 and so on) refer to the *Master source list*.
+
+| Module | Concepts | Built from |
+|---|---|---|
+| **0 · Process & the riff board** | Jam → record → name and count; the riff board; handing over a form plan; vocals last | Tool interviews T4–T7; tools K1–K3 |
+| **1 · Material & identity** ✓ | Motive; degrees of similarity; developing variation; phrase and memory; sentence and liquidation; the vocal line | Belkin ch. 1–3; Schoenberg ch. I–V, VIII; Snyder ch. 1, 3 |
+| **2 · Cycles, meter & time feel** | Frame vs. cycle (rotation); grouping vs. displacement dissonance; dissonance as a section marker; time feel and re-orchestrating one riff; tihai-style cadences; entrainment limits | Biamonte (T1), Lucas (P1), Pieslak (P4), Garza (P3), Capuzzo (P9), Krebs (M2), Cohn, London, Clayton (M1), Toussaint (M3); drummer: D1–D4 |
+| **3 · Energy, texture & climax** | Textural layers and the novelty layer; the sound-box; build devices; climax strategies; terminal climax; anti-telos and groove switch; heaviness vs. clarity | Moore (X4, X12), Lavengood (X3), Dockwray & Moore (X6), Summach (R5), Schwitzgebel (X1), Peres (X5), Spicer (R1), Osborn (T3), Nobile (R2), Cobb (R3), Mynett (X7), Belkin, LaRue, Huron |
+| **4 · Large-scale architecture & time** | The return × climax design space; through-composed types; metal's normal form as the baseline; formal functions; moment form and proportion; memory limits | Osborn (T2, P2, P8), Hudson (P5), Easley (P10), Caplin (functions only), Kramer (C1), Lendvai (C2, contested), Snyder, Holm-Hudson (P6), Tamm (P7) |
+| **5 · The listener** | Repetition and attention; tension curves; learned meter and the anchor layer; groove's inverted U; anticipation and chills; trance vs. ecstasy, absorption and decoupling; catharsis and heaviness; hypnosis analogies (labeled) | Margulis, Cook / Lalitte & Bigand, Farbood, Pearce, Hannon & Trehub, Vuust & Witek, Witek, Janata, Salimpoor, Rouget, Fachner, Hove, Herbert, Becker, Reich, Sharman & Dingle, Erickson and Elman as craft |
+| **6 · Voice, words & persona** | Vocal-timbre palette; persona and the band's stance toward the singer; prosody and lyric form; the vocal entry as a structural event | Heidemann (X2), Moore (X4), Pattison (X9, X14), Griffiths (X15), Belkin ch. 3 |
+| **7 · The record as form** | The EP or album as one macro-form; motifs across tracks; sequencing; a concept without a plot | Letts (X10), Moore, Spicer; Almén later |
+| **Tool lab** (ongoing) | Our own maps of *Schism*, *The Grudge*, *The Patient*, *Pushit*, *10,000 Days*, then every track | Our transcriptions; Sonic Visualiser; Biamonte and Osborn as checks |
+
+## The design space we compose in
+
+Each section of a form answers two questions: **does material return?** and **where is the climax?** The four EP tracks should each sit somewhere different in this space.
+
+<Mermaid
+  caption="Return × climax placement: Osborn, Nobile, Spicer, Cobb"
+  chart={`quadrantChart
+  title Return vs. climax placement
+  x-axis Climax early or repeated --> Climax late, once
+  y-axis Little return --> Strong return
+  quadrant-1 Rotations that end-load
+  quadrant-2 Telos chorus forms
+  quadrant-3 Moment / mosaic forms
+  quadrant-4 Terminal climax / through-composed
+  Verse-chorus pop: [0.2, 0.85]
+  Cumulative build: [0.78, 0.7]
+  Groove-switch ending: [0.7, 0.55]
+  Terminally climactic: [0.85, 0.3]
+  Moment form: [0.3, 0.15]`}
+/>
+
+## Build sequence
+
+<Mermaid
+  caption="Order of work. The EP window comes first."
+  chart={`flowchart LR
+  A["Now · EP window<br/>~2 months"] --> B["Main project"]
+  subgraph EPW[" "]
+    direction TB
+    a1["M0 Process"] --> a2["M1 Material ✓"] --> a3["M2 core: frame vs. cycle, time feel"] --> a4["M3 core: climax strategy per track"] --> a5["M6 core: vocal-timbre plan"] --> a6["M5: listening test on demos"]
+  end
+  subgraph MP[" "]
+    direction TB
+    b1["M4 Architecture & time (Kramer)"] --> b2["M2/M3/M5 in depth"] --> b3["M7 The record as form"]
+  end
+  A --- EPW
+  B --- MP`}
+/>
+
+Study order: each form reading is paired with its listener-side partner. See the paired ten-step order in *Listener psychology sources*. It extends the order in the *Master source list*, and its steps 1–6 cover the EP window, ending with the listening test.
+
+## How this blueprint changes
+
+- **When a source is read in full:** update *Coverage*, revise the concept pages it feeds, log the change.
+- **When the Tool lab finishes a song map:** add it as evidence to the relevant concepts. That's how the unfilled gaps get filled.
+- **When the EP teaches us something:** it goes in the journal first, then into "our form principles" here.

@@ -49,6 +49,13 @@ export default async function ConceptPage({ params }: PageProps<"/learn/[slug]">
           Module 0{concept.module} · {concept.order} of {list.length}
         </div>
         <h1 className="font-serif text-4xl tracking-tight md:text-5xl">{concept.title}</h1>
+        {concept.draft && (
+          <p className="mt-2 text-xs text-muted-foreground">
+            <span className="mr-1.5 rounded border px-1.5 py-0.5 font-mono uppercase">Draft</span>
+            Built from selected chapters. It will be revised as each source is read in full —{" "}
+            <Link href="/docs/coverage" className="underline underline-offset-4">see coverage</Link>.
+          </p>
+        )}
         <p className="mt-3 text-lg text-muted-foreground">{concept.summary}</p>
         <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
@@ -66,6 +73,8 @@ export default async function ConceptPage({ params }: PageProps<"/learn/[slug]">
                 <span className="font-medium">{bookById[s.book]?.author}</span>
                 <span className="text-muted-foreground">, {bookById[s.book]?.title}</span>
                 <span className="text-muted-foreground"> — {s.where}</span>
+                {s.read === "partial" && <span className="ml-2 text-xs text-signal">read in part</span>}
+                {s.read === "unread" && <span className="ml-2 text-xs text-destructive">not yet read</span>}
               </li>
             ))}
           </ul>

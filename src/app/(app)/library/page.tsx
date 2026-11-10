@@ -12,13 +12,19 @@ const GROUPS: { verdict: BookVerdict; title: string; note: string }[] = [
   { verdict: "selective", title: "Selective", note: "Specific chapters, when the module calls for them." },
   { verdict: "reference", title: "Reference", note: "Look things up; don't read cover to cover." },
   { verdict: "later", title: "Later / optional", note: "Low priority, or you don't have the full text yet." },
+  { verdict: "drop", title: "Dropped", note: "Not worth the time for this goal." },
 ];
 
 export default function LibraryPage() {
   return (
     <PageBody>
       <PageHeader eyebrow="Library" title="Your books, in reading order">
-        What each one is for, what you actually have, and which concept pages draw on it.
+        The books you own, re-ranked after the source search: what each is for, what you have, and which pages use it.
+        New sources to add are in the{" "}
+        <Link href="/docs/sources" className="text-signal underline underline-offset-4">
+          master source list
+        </Link>
+        .
       </PageHeader>
       <div className="space-y-10">
         {GROUPS.map((g) => (

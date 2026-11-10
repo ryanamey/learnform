@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, GraduationCap, Home, LogOut, Map, Moon, NotebookPen, Sun, Waypoints } from "lucide-react";
+import { BookOpen, FileText, GraduationCap, Home, LogOut, Map, Moon, NotebookPen, Sun, Waypoints } from "lucide-react";
 import { useSyncExternalStore } from "react";
 
 import { signOut } from "@/lib/auth-client";
@@ -15,6 +15,7 @@ const items = [
   { href: "/journal", label: "Journal", icon: NotebookPen },
   { href: "/library", label: "Library", icon: BookOpen },
   { href: "/roadmap", label: "Roadmap", icon: Map },
+  { href: "/docs", label: "Docs", icon: FileText },
 ];
 
 const themeListeners = new Set<() => void>();

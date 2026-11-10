@@ -915,7 +915,7 @@ export const modules: Module[] = [
     number: 2,
     title: "Cycles, meter & time feel",
     weeks: "Core",
-    focus: "Frame vs. cycle, metric dissonance as section marker, time feel and re-orchestration, tihai cadences",
+    focus: "Frame vs. cycle, metric dissonance as section marker, time feel and re-orchestration, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
     tool: "Meter lab",
     available: true,
   },
@@ -931,7 +931,7 @@ export const modules: Module[] = [
     number: 4,
     title: "Large-scale architecture & time",
     weeks: "Core · large scale",
-    focus: "Punctuation, contrast and transition, beginnings, exploring, riff cycles as variations, returning and ending, the whole design",
+    focus: "Punctuation, contrast and transition, beginnings, exploring, riff cycles as variations, returning and ending, how a form is remembered, kinds of musical time, gestural time, moment form and strata, time and proportion, the whole design",
     tool: "Form plan check",
     available: true,
   },
@@ -958,6 +958,69 @@ export const modules: Module[] = [
     focus: "The album as one macro-form, motifs across tracks, sequencing",
     tool: "Album planner",
     available: false,
+  },
+];
+
+/**
+ * Ideas met while reading a source that the app doesn't teach yet.
+ * Rule: every source read ends with a sweep of its ideas; anything new lands here
+ * with where it came from and where it will go. Remove an entry when its page or section is built.
+ */
+export type FoundIdea = {
+  idea: string;
+  source: string;
+  module: number;
+  note?: string;
+};
+
+export const foundInReading: FoundIdea[] = [
+  {
+    idea: "Meter as a goal: an opening with no clear meter, where the first unmistakable downbeats arrive later as an event",
+    source: "Kramer ch. 7",
+    module: 2,
+  },
+  {
+    idea: "Closure when two grouping systems that have run out of step finally end together",
+    source: "Kramer ch. 7; ch. 4",
+    module: 2,
+    note: "Partly covered by the overlap case in Accent and hypermeter",
+  },
+  {
+    idea: "A problem stated at the start (fragments, odd groupings, a gesture in the wrong place) that the whole piece works to resolve",
+    source: "Kramer ch. 5",
+    module: 4,
+  },
+  {
+    idea: "Felt time stretches as a goal gets closer: the last bars of a build feel longer than they are",
+    source: "Kramer ch. 11 (Meade)",
+    module: 3,
+  },
+  {
+    idea: "Accents or dynamics that cut across the grouping add information and make a passage feel longer; ones that support it add little",
+    source: "Kramer ch. 11 (Deutsch)",
+    module: 5,
+  },
+  {
+    idea: "Expandable moments: a section grows until it reaches a limit, then leaps to another (maqam improvisation, Kpelle epics)",
+    source: "Kramer ch. 12",
+    module: 4,
+  },
+  {
+    idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",
+    source: "Kramer ch. 3",
+    module: 7,
+  },
+  {
+    idea: "Layers and the sound-box; Belkin's 'enriching' planes",
+    source: "Belkin ch. 20; Moore, Lavengood (to read)",
+    module: 3,
+    note: "Waits for the Moore and Lavengood reading",
+  },
+  {
+    idea: "Recitative vs. aria as two vocal modes; text first, with the melody exaggerating the spoken contour but never contradicting it; open vowels on the peak notes",
+    source: "Belkin ch. 3",
+    module: 6,
+    note: "Partly in The vocal line; the rest goes to Module 6",
   },
 ];
 

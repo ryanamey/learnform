@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { modules, rules, weeklyLoop } from "@/content/curriculum";
+import { foundInReading, modules, rules, weeklyLoop } from "@/content/curriculum";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Badge } from "@/components/ui/badge";
 
@@ -45,6 +45,28 @@ export default function RoadmapPage() {
           </li>
         ))}
       </ol>
+
+      <section className="mt-12">
+        <h2 className="mb-1 font-serif text-2xl">Found in the reading, not built yet</h2>
+        <p className="mb-4 text-sm text-muted-foreground">
+          Every source read ends with a sweep for ideas the app doesn&apos;t teach yet. They wait here, with where they came
+          from and where they&apos;ll go, until a page or section covers them.
+        </p>
+        <ul className="space-y-2">
+          {foundInReading.map((f) => (
+            <li key={f.idea} className="rounded-lg border p-3 text-sm">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="min-w-0 flex-1">{f.idea}</span>
+                <span className="shrink-0 font-mono text-xs text-muted-foreground">Module {f.module}</span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {f.source}
+                {f.note ? ` · ${f.note}` : ""}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className="mt-12">
         <h2 className="mb-4 font-serif text-2xl">Every week</h2>

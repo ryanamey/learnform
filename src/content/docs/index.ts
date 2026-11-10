@@ -38,6 +38,13 @@ export const docs: DocMeta[] = [
     updated: "2026-11-10",
   },
   {
+    slug: "kramer-guide",
+    title: "Kramer chapter guide",
+    summary: "The Time of Music, read in full — linear, multiply-directed, moment and vertical time; accent and hypermeter; duration and proportion; and where the app uses each chapter.",
+    group: "Sources",
+    updated: "2026-11-10",
+  },
+  {
     slug: "sources",
     title: "Master source list",
     summary: "Every verified source, ranked by area and priority, with access and who it's for.",
@@ -65,6 +72,7 @@ export const docPages: Record<string, () => Promise<{ default: ComponentType }>>
   coverage: () => import("./coverage.mdx"),
   decisions: () => import("./decisions.mdx"),
   "belkin-guide": () => import("./belkin-guide.mdx"),
+  "kramer-guide": () => import("./kramer-guide.mdx"),
   sources: () => import("./sources.mdx"),
   "psychology-sources": () => import("./psychology-sources.mdx"),
   "band-brief": () => import("./band-brief.mdx"),

@@ -231,9 +231,10 @@ export const books: Book[] = [
     author: "Jonathan D. Kramer",
     kind: "book",
     verdict: "core",
-    copy: "Full book",
-    why: "Moment form, multiply-directed and vertical time, proportion. Read alongside Cook: listeners hear proportions far less than composers think.",
-    modules: [4],
+    copy: "Full book — read in full (Nov 2026; long analytic chapters skimmed for method)",
+    why: "Linear vs nonlinear time; goal-directed, nondirected, multiply-directed, moment and vertical time; gestural time; accent and hypermeter; how duration and proportion are perceived.",
+    readFirst: "Ch. 2, 6, 8, 11, then 4, 10, 12",
+    modules: [2, 4, 5],
   },
   {
     id: "krebs",
@@ -654,6 +655,15 @@ export const concepts: Concept[] = [
     sources: [{ book: "garza", where: "whole article", read: "summary" }],
   },
   {
+    slug: "accent-and-hypermeter",
+    module: 2,
+    order: 5,
+    title: "Accent and hypermeter",
+    summary: "Stress, rhythmic and metric accent; hypermeasures that stretch, shrink and overlap; humans vs. sequencers.",
+    minutes: 35,
+    sources: [{ book: "kramer", where: "Ch. 3.5, 4", read: "read" }],
+  },
+  {
     slug: "building-tension",
     module: 3,
     order: 1,
@@ -761,9 +771,48 @@ export const concepts: Concept[] = [
     sources: [{ book: "snyder", where: "Ch. 13 Form", read: "read" }],
   },
   {
-    slug: "form-design",
+    slug: "kinds-of-time",
     module: 4,
     order: 8,
+    title: "Kinds of musical time",
+    summary: "Linear vs. nonlinear, and five kinds of time: goal-directed, nondirected, multiply-directed, moment and vertical — on different levels of one piece.",
+    minutes: 35,
+    sources: [{ book: "kramer", where: "Ch. 1–2, 6, 8, 12", read: "read" }],
+  },
+  {
+    slug: "gestural-time",
+    module: 4,
+    order: 9,
+    title: "Gestural time: endings in the wrong place",
+    summary: "Ending as process vs. profile, starting with an ending, three endings and a climax prepared from elsewhere.",
+    minutes: 30,
+    sources: [{ book: "kramer", where: "Ch. 5–6", read: "read" }],
+  },
+  {
+    slug: "moment-form",
+    module: 4,
+    order: 10,
+    title: "Moment form and strata",
+    summary: "Self-contained blocks, start/stop instead of begin/end, unprepared returns, proportions — and stratification, interlock, synthesis.",
+    minutes: 40,
+    sources: [{ book: "kramer", where: "Ch. 2.10, 8, 9", read: "read" }],
+  },
+  {
+    slug: "time-and-proportion",
+    module: 4,
+    order: 11,
+    title: "How long it feels: time, information, proportion",
+    summary: "Information, meter and tempo as three clocks; why repeats shrink and goals stretch time; what golden sections can and can't do.",
+    minutes: 35,
+    sources: [
+      { book: "kramer", where: "Ch. 10–11", read: "read" },
+      { book: "snyder", where: "Ch. 13, Duration", read: "read" },
+    ],
+  },
+  {
+    slug: "form-design",
+    module: 4,
+    order: 12,
     title: "Designing the whole",
     summary: "Return × climax as a design space, through-composed types, the coordination principle, a sketching method — and a plan checker.",
     minutes: 45,
@@ -773,7 +822,7 @@ export const concepts: Concept[] = [
       { book: "osborn13", where: "terminal climax", read: "summary" },
       { book: "belkin", where: "Conclusion; Appendix A Sketching", read: "read" },
       { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
-      { book: "kramer", where: "moment form, proportion (not yet read)", read: "unread" },
+      { book: "kramer", where: "Ch. 2, 8, 10 (moment form, proportion)", read: "read" },
     ],
   },
   {
@@ -787,6 +836,7 @@ export const concepts: Concept[] = [
     sources: [
       { book: "lalitte", where: "experiments; Cook 1987", read: "summary" },
       { book: "snyder", where: "Ch. 1 levels of memory; Ch. 13 remembered duration", read: "read" },
+      { book: "kramer", where: "Ch. 10.11, 11", read: "read" },
     ],
   },
   {
@@ -801,6 +851,7 @@ export const concepts: Concept[] = [
       { book: "margulis", where: "via Albrecht's review", read: "summary" },
       { book: "reich", where: "“Music as a Gradual Process” (1968)", read: "read" },
       { book: "hove", where: "abstract and methods", read: "summary" },
+      { book: "kramer", where: "Ch. 12.7 (Les Moutons)", read: "read" },
     ],
   },
   {
@@ -827,6 +878,7 @@ export const concepts: Concept[] = [
     sources: [
       { book: "rouget", where: "Part One, trance vs. ecstasy", read: "unread" },
       { book: "erickson", where: "craft analogies only", read: "unread" },
+      { book: "kramer", where: "Ch. 2.12, 12 (vertical time)", read: "read" },
     ],
   },
 ];

@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 /* ------------------------------------------------------------------ */
 
 /** Place a notated figure at `at` beats, optionally transposed and scaled in loudness. */
-function place(src: string, at: number, transpose = 0, vel = 0.8): NoteEvent[] {
+export function place(src: string, at: number, transpose = 0, vel = 0.8): NoteEvent[] {
   return parseNotation(src).events
     .filter((e) => e.midi.length)
     .map((e) => ({
@@ -29,13 +29,13 @@ function place(src: string, at: number, transpose = 0, vel = 0.8): NoteEvent[] {
 }
 
 /** One bar of a drum fill: 16th snares rising in loudness. */
-function fill(at: number, from = 0, vel = 0.9): NoteEvent[] {
+export function fill(at: number, from = 0, vel = 0.9): NoteEvent[] {
   const out: NoteEvent[] = [];
   for (let i = from; i < 16; i++) out.push(note(at + i * S, S, [SNARE], vel * (0.45 + (0.55 * i) / 15)));
   return out;
 }
 
-function hit(at: number, vel = 1): NoteEvent[] {
+export function hit(at: number, vel = 1): NoteEvent[] {
   return [note(at, S, [CRASH], vel), note(at, S, [KICK], vel)];
 }
 
@@ -62,7 +62,7 @@ function dedupeStart(events: NoteEvent[]): NoteEvent[] {
   return [...m.values()];
 }
 
-function layers(parts: { events: NoteEvent[]; voice: Layer["voice"]; gain?: number }[]): Layer[] {
+export function layers(parts: { events: NoteEvent[]; voice: Layer["voice"]; gain?: number }[]): Layer[] {
   return parts
     .filter((p) => p.events.length)
     .map((p) => ({ ...p, events: finalize(p.voice === "kit" ? dedupeKit(p.events) : p.voice === "bass" ? dedupeStart(p.events) : p.events) }));
@@ -726,7 +726,7 @@ type Section = {
   punct: number;
 };
 
-type Plan = { title: string; ending: "climax" | "fade" | "rounding"; sections: Section[] };
+type Plan = { title: string; ending: "climax" | "fade" | "rounding" | "stop"; sections: Section[] };
 
 const STORAGE_KEY = "learnform.formplan.v1";
 
@@ -781,13 +781,15 @@ export function checkPlan(plan: Plan): Finding[] {
     if (!letters.has(baseLetter(last.material)))
       out.push({ level: "warn", text: "A rounding-off ending needs familiar material, but the last section's material hasn't been heard before.", source: "Belkin ch. 17–18" });
   }
+  if (plan.ending === "stop")
+    out.push({ level: "info", text: "Stop (moment form): the piece breaks off rather than ends, so the usual ending checks don't apply. Balance comes from section lengths: check that related sections relate in length, and that returns aren't prepared by a build.", source: "Kramer ch. 8" });
   // 2. final punctuation strongest
   const maxMidPunct = Math.max(...s.slice(0, -1).map((x) => x.punct));
-  if (last.punct <= maxMidPunct)
+  if (plan.ending !== "stop" && last.punct <= maxMidPunct)
     out.push({ level: "warn", text: `The final punctuation (${last.punct}) should be stronger than every internal one (strongest so far: ${maxMidPunct}).`, source: "Belkin ch. 5, 18" });
   // 3. heavy internal punctuation
   const heavy = s.slice(0, -1).filter((x) => x.punct >= 7);
-  if (heavy.length)
+  if (heavy.length && plan.ending !== "stop")
     out.push({ level: "warn", text: `Strong stops inside the piece (${heavy.map((x) => x.name || "?").join(", ")}) cost momentum. Consider “yes, but…” endings — let one dimension keep going.`, source: "Belkin ch. 5, 18" });
   // 4. equal peaks
   const peaks = s.filter((x, i) => (i === 0 || x.energy > s[i - 1].energy) && (i === s.length - 1 || x.energy >= s[i + 1].energy) && x.energy >= 6);
@@ -900,9 +902,9 @@ export function FormPlanner() {
           className="h-8 max-w-xs"
         />
         <span className="text-xs text-muted-foreground">Ending:</span>
-        {(["climax", "fade", "rounding"] as const).map((k) => (
+        {(["climax", "fade", "rounding", "stop"] as const).map((k) => (
           <Chip key={k} on={plan.ending === k} onClick={() => setPlan((p) => ({ ...p, ending: k }))}>
-            {k === "climax" ? "Climactic" : k === "fade" ? "Fade-out" : "Rounding-off"}
+            {k === "climax" ? "Climactic" : k === "fade" ? "Fade-out" : k === "rounding" ? "Rounding-off" : "Stop (moment form)"}
           </Chip>
         ))}
       </div>

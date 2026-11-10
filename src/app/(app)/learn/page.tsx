@@ -18,7 +18,7 @@ export default async function LearnPage() {
     <PageBody>
       <PageHeader eyebrow="Learn" title="Concepts">
         Organized by idea, not by book. Each page draws on the relevant chapters of several books, with sound you can
-        play and an exercise for your EP.
+        play and practice tasks.
       </PageHeader>
 
       <div className="space-y-10">

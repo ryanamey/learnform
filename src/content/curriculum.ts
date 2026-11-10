@@ -556,7 +556,7 @@ export const concepts: Concept[] = [
     summary: "Why phrases are the size they are: the 3–5 second window, chunking, and the forces that draw boundaries.",
     minutes: 40,
     sources: [
-      { book: "snyder", where: "Ch. 3 Grouping (read to “Similarity”); Ch. 4 Short-term memory (not yet read)", read: "partial" },
+      { book: "snyder", where: "Ch. 3 Grouping; Ch. 4 Short-term and working memory", read: "read" },
       { book: "belkin", where: "Ch. 2, Structure of the phrase", read: "read" },
       { book: "schoenberg", where: "Ch. II, The Phrase" },
     ],
@@ -604,7 +604,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "tool-interviews", where: "whiteboard of riff names and beat counts", read: "read" },
-      { book: "snyder", where: "Ch. 1, 3 — chunking and naming", read: "partial" },
+      { book: "snyder", where: "Ch. 1, 3–4 — chunking and recall cues", read: "read" },
     ],
   },
   {
@@ -752,9 +752,18 @@ export const concepts: Concept[] = [
     ],
   },
   {
-    slug: "form-design",
+    slug: "form-in-memory",
     module: 4,
     order: 7,
+    title: "How a form is remembered",
+    summary: "Sections as multiparametric change, primary vs. secondary parameters, remembered time, hierarchy vs. lists, and music that defeats memory on purpose.",
+    minutes: 40,
+    sources: [{ book: "snyder", where: "Ch. 13 Form", read: "read" }],
+  },
+  {
+    slug: "form-design",
+    module: 4,
+    order: 8,
     title: "Designing the whole",
     summary: "Return × climax as a design space, through-composed types, the coordination principle, a sketching method — and a plan checker.",
     minutes: 45,
@@ -763,7 +772,7 @@ export const concepts: Concept[] = [
       { book: "osborn11", where: "four through-composed types", read: "summary" },
       { book: "osborn13", where: "terminal climax", read: "summary" },
       { book: "belkin", where: "Conclusion; Appendix A Sketching", read: "read" },
-      { book: "snyder", where: "Ch. 1 levels of memory; Ch. 5 Closure", read: "read" },
+      { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
       { book: "kramer", where: "moment form, proportion (not yet read)", read: "unread" },
     ],
   },
@@ -777,7 +786,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "lalitte", where: "experiments; Cook 1987", read: "summary" },
-      { book: "snyder", where: "Ch. 1, levels of memory", read: "read" },
+      { book: "snyder", where: "Ch. 1 levels of memory; Ch. 13 remembered duration", read: "read" },
     ],
   },
   {
@@ -837,7 +846,7 @@ export const modules: Module[] = [
   {
     number: 0,
     title: "Process & the riff board",
-    weeks: "EP window · ongoing",
+    weeks: "Foundation · ongoing",
     focus: "Jam, record, name and count riffs, assemble, vocals last; handing a form plan to the band",
     tool: "Riff board",
     available: true,
@@ -845,7 +854,7 @@ export const modules: Module[] = [
   {
     number: 1,
     title: "Material & identity",
-    weeks: "EP window",
+    weeks: "Foundation",
     focus: "Motive, variation, phrase, memory, the sentence, the vocal line",
     tool: "Motif bank & family tree",
     available: true,
@@ -853,7 +862,7 @@ export const modules: Module[] = [
   {
     number: 2,
     title: "Cycles, meter & time feel",
-    weeks: "EP window (core) → main project",
+    weeks: "Core",
     focus: "Frame vs. cycle, metric dissonance as section marker, time feel and re-orchestration, tihai cadences",
     tool: "Meter lab",
     available: true,
@@ -861,7 +870,7 @@ export const modules: Module[] = [
   {
     number: 3,
     title: "Energy, texture & climax",
-    weeks: "EP window (core) → main project",
+    weeks: "Core",
     focus: "Textural layers, sound-box, build devices, climax strategies, terminal and cumulative forms",
     tool: "Energy-curve editor",
     available: true,
@@ -869,7 +878,7 @@ export const modules: Module[] = [
   {
     number: 4,
     title: "Large-scale architecture & time",
-    weeks: "Main project",
+    weeks: "Core · large scale",
     focus: "Punctuation, contrast and transition, beginnings, exploring, riff cycles as variations, returning and ending, the whole design",
     tool: "Form plan check",
     available: true,
@@ -877,7 +886,7 @@ export const modules: Module[] = [
   {
     number: 5,
     title: "The listener",
-    weeks: "EP window (core) → main project",
+    weeks: "Core",
     focus: "Attention and repetition, tension curves, groove and entrainment, chills and anticipation, trance and absorption, persona and catharsis",
     tool: "Listening-test kit",
     available: true,
@@ -885,7 +894,7 @@ export const modules: Module[] = [
   {
     number: 6,
     title: "Voice, words & persona",
-    weeks: "EP window (core) → main project",
+    weeks: "Advanced",
     focus: "Vocal-timbre palette, persona, prosody and lyric form, the vocal entry as structure",
     tool: "Form planner (vocal lane)",
     available: false,
@@ -893,9 +902,9 @@ export const modules: Module[] = [
   {
     number: 7,
     title: "The record as form",
-    weeks: "Main project",
-    focus: "EP/album as one macro-form, motifs across tracks, sequencing",
-    tool: "EP / album planner",
+    weeks: "Advanced",
+    focus: "The album as one macro-form, motifs across tracks, sequencing",
+    tool: "Album planner",
     available: false,
   },
 ];
@@ -910,6 +919,6 @@ export const weeklyLoop = [
 export const rules = [
   "Steal the principle, never the surface.",
   "The piece you analyze this week is never the style you write this week.",
-  "Every concept gets tested on a real EP track.",
+  "Every concept gets tested on a real song: analyze one, then write one.",
   "Once a month, write one page of 'my form principles'.",
 ];

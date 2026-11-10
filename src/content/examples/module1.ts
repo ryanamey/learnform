@@ -167,7 +167,7 @@ export const developingChain: ExampleSet = {
       label: "D2 → D4: its rhythm alone, as a low pedal",
       notation: n(D4),
       voice: "drive",
-      how: "A second branch. D3 and D4 could be two different songs on the same EP — siblings, not copies.",
+      how: "A second branch. D3 and D4 could be two different songs on the same record — siblings, not copies.",
     },
   ],
 };

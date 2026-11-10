@@ -23,6 +23,7 @@ export const conceptPages: Record<string, () => Promise<{ default: ComponentType
   "exploring-and-anomalies": () => import("./exploring-and-anomalies.mdx"),
   "riff-cycles-as-variations": () => import("./riff-cycles-as-variations.mdx"),
   "returning-and-ending": () => import("./returning-and-ending.mdx"),
+  "form-in-memory": () => import("./form-in-memory.mdx"),
   "form-design": () => import("./form-design.mdx"),
   "what-listeners-hear": () => import("./what-listeners-hear.mdx"),
   "repetition-and-process": () => import("./repetition-and-process.mdx"),

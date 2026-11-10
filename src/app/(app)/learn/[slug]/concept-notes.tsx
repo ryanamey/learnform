@@ -32,7 +32,7 @@ export function ConceptNotes({ slug, initial }: { slug: string; initial: string 
       <Textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Exercise answers, ratings you disagreed with, ideas for the EP…"
+        placeholder="Exercise answers, ratings you disagreed with, ideas to try…"
         className="min-h-40 font-mono text-sm"
         aria-label="Your notes for this concept"
       />

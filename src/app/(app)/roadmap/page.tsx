@@ -23,7 +23,7 @@ export default function RoadmapPage() {
   return (
     <PageBody>
       <PageHeader eyebrow="Roadmap" title="Twelve months, writing every week">
-        Concepts first, then a tool that uses them. The EP runs alongside the whole way.
+        Concepts first, then a tool that uses them.
       </PageHeader>
 
       <ol className="relative space-y-4 border-l pl-6">

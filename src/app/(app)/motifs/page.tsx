@@ -14,7 +14,7 @@ export default async function MotifsPage() {
     <PageBody wide>
       <PageHeader eyebrow="Motif bank" title="Riffs, hooks and cells — as a family tree">
         Every sketch goes here. Link a variant to its parent and rate how far it travelled (1–5). Over time the tree
-        shows how your material grows — and which ideas the EP is really made of.
+        shows how your material grows — and which ideas your music is really made of.
       </PageHeader>
       <MotifBank
         motifs={motifs.map((m) => ({

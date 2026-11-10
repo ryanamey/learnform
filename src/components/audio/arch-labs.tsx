@@ -613,7 +613,107 @@ export function EndingLab() {
 }
 
 /* ------------------------------------------------------------------ */
-/* 5. Form plan check — rules from Belkin, Osborn, Snyder               */
+/* 5. Section or articulation? — Snyder ch. 13                          */
+/* ------------------------------------------------------------------ */
+
+type Param = "register" | "drums" | "timbre" | "loudness" | "pattern";
+const PARAMS: { id: Param; label: string; kind: "primary" | "secondary" }[] = [
+  { id: "pattern", label: "Riff pattern", kind: "primary" },
+  { id: "register", label: "Register", kind: "secondary" },
+  { id: "timbre", label: "Guitar sound", kind: "secondary" },
+  { id: "drums", label: "Drum feel", kind: "secondary" },
+  { id: "loudness", label: "Loudness", kind: "secondary" },
+];
+const RIFF_A = "E2/8! x/16 E2/16 G2/8 E2/8 A2/8 G2/8 E2/8 D2/8";
+const RIFF_B = "E2/4! x/8 F2/8 x/8 F2/8 E2/8. x/16";
+
+export function buildSection(on: Param[], brief: boolean): Layer[] {
+  const clean: NoteEvent[] = [];
+  const drive: NoteEvent[] = [];
+  const bass: NoteEvent[] = [];
+  const kit: NoteEvent[] = [];
+  const has = (p: Param) => on.includes(p);
+  const total = 12;
+  const changedBars = brief ? [4] : [4, 5, 6, 7, 8, 9, 10, 11];
+  for (let bar = 0; bar < total; bar++) {
+    const at = bar * 4;
+    const ch = changedBars.includes(bar);
+    const vel = ch && has("loudness") ? 1 : 0.6;
+    const tr = ch && has("register") ? 12 : 0;
+    const fig = ch && has("pattern") ? RIFF_B : RIFF_A;
+    const g = place(fig, at, tr, vel);
+    (ch && has("timbre") ? drive : clean).push(...g);
+    bass.push(...place(ch && has("pattern") ? "E1/2 F1/2" : "E1/2 A1/4 D1/4", at, 0, vel));
+    kit.push(...groove(1, ch && has("drums") ? "double" : "half", ch && has("drums") ? "crash4" : "hat8", at, vel));
+  }
+  return layers([
+    { events: kit, voice: "kit" },
+    { events: bass, voice: "bass" },
+    { events: clean, voice: "guitar" },
+    { events: drive, voice: "drive", gain: -3 },
+  ]);
+}
+
+export function SectionLab() {
+  const [on, setOn] = useState<Param[]>(["register"]);
+  const [brief, setBrief] = useState(false);
+  const { playing, active, toggle } = usePlayer();
+  const lys = useMemo(() => buildSection(on, brief), [on, brief]);
+  const key = `sec-${on.slice().sort().join("-")}-${brief}`;
+  const kitIdx = active[0];
+  const curBar = playing === key && kitIdx !== undefined ? Math.floor((lys[0].events[kitIdx]?.start ?? 0) / 4) : null;
+  const n = on.length;
+  const verdict = brief
+    ? "The change lasts one bar and then everything returns. However many parameters change, it's heard as an interruption inside one section, not a new section."
+    : n === 0
+      ? "Nothing changes: one section."
+      : n === 1
+        ? on[0] === "pattern"
+          ? "Only the riff changes. A new pattern in a primary parameter is the strongest single change, but with everything else constant it can still sound like a variation inside the section."
+          : "One secondary parameter changes. Snyder's rule of thumb: that's an articulation within a section, not a new one."
+        : n === 2
+          ? "Two parameters: it depends on which ones and how much. Listen for whether it feels like a new place or the same place, intensified."
+          : "Three or more parameters change at once and stay changed: almost certainly a new section.";
+  const toggleP = (p: Param) => setOn((o) => (o.includes(p) ? o.filter((x) => x !== p) : [...o, p]));
+  return (
+    <div className="not-prose my-8 rounded-xl border bg-card p-4">
+      <div className="mb-1 font-serif text-lg">New section, or the same one?</div>
+      <p className="mb-4 text-sm text-muted-foreground">
+        Four bars of a riff, then a change. Choose what changes and decide, before reading the verdict, whether you hear a
+        new section.
+      </p>
+      <div className="mb-2 flex flex-wrap gap-1">
+        {PARAMS.map((p) => (
+          <Chip key={p.id} on={on.includes(p.id)} onClick={() => toggleP(p.id)}>
+            {p.label}
+            <span className="ml-1 text-[10px] opacity-60">{p.kind === "primary" ? "primary" : "secondary"}</span>
+          </Chip>
+        ))}
+      </div>
+      <div className="mb-3 flex flex-wrap gap-1">
+        <Chip on={!brief} onClick={() => setBrief(false)}>
+          Change stays (8 bars)
+        </Chip>
+        <Chip on={brief} onClick={() => setBrief(true)}>
+          Change lasts 1 bar, then back
+        </Chip>
+      </div>
+      <div className="mb-3 flex gap-0.5" aria-hidden>
+        {Array.from({ length: 12 }, (_, i) => i).map((b) => {
+          const ch = brief ? b === 4 : b >= 4;
+          return <div key={b} className={cn("h-2 flex-1 rounded-sm", curBar === b ? "bg-foreground" : ch && n ? "bg-signal/70" : "bg-muted")} />;
+        })}
+      </div>
+      <p className="mb-4 text-sm">
+        <span className="font-medium">{n} parameter{n === 1 ? "" : "s"} changed.</span> {verdict}
+      </p>
+      <PlayButton playing={playing === key} label="Play" onClick={() => toggle(key, lys, { bpm: 104 })} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. Form plan check — rules from Belkin, Osborn, Snyder               */
 /* ------------------------------------------------------------------ */
 
 type Section = {
@@ -722,7 +822,11 @@ export function checkPlan(plan: Plan): Finding[] {
   if (returns === 0)
     out.push({ level: "info", text: "No material returns after contrast: this plan is through-composed. It needs another unifier — shared motive, groove, timbre or key — and usually its most memorable material at the end.", source: "Osborn 2011" });
   else out.push({ level: "ok", text: `${returns} return${returns > 1 ? "s" : ""} of earlier material after contrast.`, source: "Belkin ch. 17" });
-  // 8. memory
+  // 8. short sections
+  const brief = s.slice(1, -1).filter((x) => x.seconds > 0 && x.seconds < 10);
+  if (brief.length)
+    out.push({ level: "info", text: `Very short sections (${brief.map((x) => x.name).join(", ")}): a change that lasts less than short-term memory and then goes back is heard as an interruption, not a section. Fine if that's the intent.`, source: "Snyder ch. 13" });
+  // 9. memory
   const long = s.filter((x) => x.seconds > 90);
   if (long.length)
     out.push({ level: "info", text: `Long sections (${long.map((x) => x.name).join(", ")}) are remembered by their landmarks, not their detail. Make sure something salient happens inside them.`, source: "Snyder" });

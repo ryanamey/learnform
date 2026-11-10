@@ -105,7 +105,7 @@ export function MotifBank({ motifs }: { motifs: MotifRow[] }) {
           </Button>
           {tracks.length > 0 && (
             <div className="flex flex-wrap items-center gap-1 text-sm">
-              <span className="ml-2 text-muted-foreground">EP track:</span>
+              <span className="ml-2 text-muted-foreground">Song:</span>
               <Button size="sm" variant={filter === "" ? "secondary" : "ghost"} onClick={() => setFilter("")}>
                 All
               </Button>
@@ -281,7 +281,7 @@ function MotifForm({ draft, motifs, onDone }: { draft: Draft; motifs: MotifRow[]
         </>
       )}
       <div className="space-y-1.5">
-        <Label htmlFor="epTrack">EP track</Label>
+        <Label htmlFor="epTrack">Song (optional)</Label>
         <Input id="epTrack" name="epTrack" defaultValue={draft.epTrack ?? ""} placeholder="optional" />
       </div>
       <div className="space-y-1.5">

@@ -85,13 +85,13 @@ export function Exercise({ title, children }: { title: string; children: ReactNo
   );
 }
 
-/** Apply it to the EP. */
-export function EPTask({ children, className }: { children: ReactNode; className?: string }) {
+/** A practice task on any song: a reference track or the reader's own material. */
+export function ApplyIt({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div className={cn("not-prose my-6 rounded-xl bg-primary p-5 text-primary-foreground", className)}>
       <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
         <Disc3 className="size-4" />
-        On your EP this week
+        Your turn
       </div>
       <div className="text-sm leading-6 opacity-90 [&_li]:my-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-5">
         {children}
@@ -144,3 +144,6 @@ export function Steps({ title, children }: { title?: string; children: ReactNode
     </div>
   );
 }
+
+/** @deprecated kept so older content still renders; use ApplyIt. */
+export const EPTask = ApplyIt;

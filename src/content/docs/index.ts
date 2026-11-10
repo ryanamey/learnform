@@ -31,6 +31,13 @@ export const docs: DocMeta[] = [
     updated: "2026-11-10",
   },
   {
+    slug: "belkin-guide",
+    title: "Belkin chapter guide",
+    summary: "Musical Composition: Craft and Art, read in full — every chapter's ideas, what they mean for a riff-based band, and where the app uses them.",
+    group: "Sources",
+    updated: "2026-11-10",
+  },
+  {
     slug: "sources",
     title: "Master source list",
     summary: "Every verified source, ranked by area and priority, with access and who it's for.",
@@ -57,6 +64,7 @@ export const docPages: Record<string, () => Promise<{ default: ComponentType }>>
   blueprint: () => import("./blueprint.mdx"),
   coverage: () => import("./coverage.mdx"),
   decisions: () => import("./decisions.mdx"),
+  "belkin-guide": () => import("./belkin-guide.mdx"),
   sources: () => import("./sources.mdx"),
   "psychology-sources": () => import("./psychology-sources.mdx"),
   "band-brief": () => import("./band-brief.mdx"),

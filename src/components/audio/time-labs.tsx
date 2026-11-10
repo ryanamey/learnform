@@ -479,3 +479,84 @@ export function HypermeterLab() {
     </div>
   );
 }
+
+/* 6. Meter as a goal; two groupings ending together ------------------ */
+
+// Nebulous opening: accents on shifting positions, irregular gaps, no kit. 16 beats.
+const NEBULOUS =
+  "E2/8.! G2/16 r/8 E2/4 r/16 A2/16! G2/8 E2/4. r/8 D2/8! E2/8 r/16 G2/16 A2/4. r/8 E2/16! G2/16 r/4 D2/8. E2/16! r/8 G2/4 A2/8 r/16 E2/16! r/4";
+const CELL3 = "E2/8! G2/8 A2/8"; // a three-eighth cell against 4/4
+
+type MGMode = "given" | "goal" | "converge";
+const MGMODES: { id: MGMode; label: string; text: string }[] = [
+  {
+    id: "given",
+    label: "Meter given at the start",
+    text: "Kit and riff lock into 4/4 from bar 1. The meter is an assumption: you know where 1 is immediately, so it isn't news later.",
+  },
+  {
+    id: "goal",
+    label: "Meter as a goal",
+    text: "Sixteen beats of guitar alone, with accents in shifting places and uneven gaps: you can't find bar 1. Then the kit enters on an unmistakable downbeat and the same riff locks into 4/4. The first clear downbeat is an event, not a given.",
+  },
+  {
+    id: "converge",
+    label: "Two groupings end together",
+    text: "The guitar repeats a three-eighth cell over the kit's 4/4. They agree only every three bars, and pass each other in between. After six bars both land together on the final downbeat: closure from two cycles finally ending at the same moment.",
+  },
+];
+
+export function buildMeterGoal(m: MGMode): Layer[] {
+  const p = empty();
+  if (m === "given") {
+    for (let i = 0; i < 8; i++) {
+      bar(p, i * 4, { vel: i % 4 === 0 ? 0.85 : 0.75 });
+      if (i % 4 === 0) p.kit.push(note(i * 4, S, [CRASH], 0.9));
+    }
+    p.drive.push(note(32, 3, [28, 35, 40], 0.9));
+    p.kit.push(...hit(32, 0.9));
+  } else if (m === "goal") {
+    p.drive.push(...place(NEBULOUS, 0, 0, 0.75));
+    for (let i = 0; i < 4; i++) {
+      const at = 16 + i * 4;
+      bar(p, at, { vel: i === 0 ? 0.95 : 0.8 });
+      if (i === 0) p.kit.push(note(at, S, [CRASH], 1));
+      if (i === 3) p.kit.push(...fill(at, 12, 0.75));
+    }
+    p.drive.push(note(32, 3, [28, 35, 40], 0.9));
+    p.kit.push(...hit(32, 0.9));
+  } else {
+    for (let i = 0; i < 16; i++) p.drive.push(...place(CELL3, i * 1.5, 0, 0.8)); // 24 beats = 6 bars
+    for (let b = 0; b < 6; b++) {
+      p.kit.push(...groove(1, "normal", "hat8", b * 4, 0.75));
+      p.bass.push(note(b * 4, 2, [16], 0.8), note(b * 4 + 2, 2, [b % 3 === 2 ? 21 : 16], 0.7));
+    }
+    p.drive.push(note(24, 3, [28, 35, 40], 1));
+    p.bass.push(note(24, 3, [16], 1));
+    p.kit.push(...hit(24, 1));
+  }
+  return toLayers(p);
+}
+
+export function MeterGoalLab() {
+  const [m, setM] = useState<MGMode>("goal");
+  const { playing, toggle } = usePlayer();
+  const lys = useMemo(() => buildMeterGoal(m), [m]);
+  const info = MGMODES.find((x) => x.id === m)!;
+  const key = `mg-${m}`;
+  return (
+    <div className="not-prose my-8 rounded-xl border bg-card p-4">
+      <div className="mb-1 font-serif text-lg">When does the meter arrive?</div>
+      <p className="mb-4 text-sm text-muted-foreground">Three ways to treat the meter: as a starting assumption, as a goal, or as two cycles that only meet at the end.</p>
+      <div className="mb-3 flex flex-wrap gap-1">
+        {MGMODES.map((x) => (
+          <Chip key={x.id} on={m === x.id} onClick={() => setM(x.id)}>
+            {x.label}
+          </Chip>
+        ))}
+      </div>
+      <p className="mb-4 text-sm">{info.text}</p>
+      <PlayButton playing={playing === key} label="Play" onClick={() => toggle(key, lys, { bpm: 112 })} />
+    </div>
+  );
+}

@@ -10,6 +10,8 @@ export type Book = {
   order: number;
   title: string;
   author: string;
+  /** label for source chips when the last word of `author` won't do */
+  short?: string;
   kind: "book" | "article" | "excerpt";
   verdict: BookVerdict;
   /** what you actually have */
@@ -396,6 +398,31 @@ export const books: Book[] = [
     url: "https://www.mtosmt.org/issues/mto.11.17.3/mto.11.17.3.osborn.php",
   },
   {
+    id: "moore03",
+    order: 43,
+    title: "Analyzing Popular Music (ed. Allan F. Moore, Cambridge University Press, 2003)",
+    author: "Allan F. Moore (ed.); Walser, Griffiths, Stilwell, Hawkins, Bowman, Krims, Moore, Covach, Kennett, Stokes",
+    short: "Moore (ed.)",
+    kind: "book",
+    verdict: "selective",
+    copy: "Full book — read in full (Nov 2026)",
+    why: "Ten essays on analysing recorded popular music. For form: Bowman's song-length additive build (Otis Redding), Hawkins on long-form repetition in house, Moore on Jethro Tull's devices, Covach on rock form types and musical worlding, Griffiths on lyrics and verbal space.",
+    readFirst: "Ch. 6 (Bowman), 8 (Moore), 9 (Covach), 5 (Hawkins), 3 (Griffiths)",
+    modules: [3, 4, 5, 6, 7],
+  },
+  {
+    id: "moore12",
+    order: 42,
+    title: "Song Means: Analysing and Interpreting Recorded Popular Song",
+    author: "Allan F. Moore",
+    kind: "book",
+    verdict: "core",
+    copy: "Preview only (front matter, ch. 1, ch. 2 to p. 25); full book being sourced",
+    why: "Texture as four functional layers, the sound-box, timbre; form, delivery, persona and friction in recorded song; a bank of analysis questions for any track.",
+    readFirst: "Ch. 2 Shape, 3 Form, 7 Persona, 11 Questions",
+    modules: [0, 3, 6, 7],
+  },
+  {
     id: "schwitzgebel",
     order: 33,
     title: "“Cueing” Your Playlist: Texture and Teleology in Post-Millennial Pop (MTO 31.1, 2025)",
@@ -659,9 +686,12 @@ export const concepts: Concept[] = [
     module: 2,
     order: 5,
     title: "Accent and hypermeter",
-    summary: "Stress, rhythmic and metric accent; hypermeasures that stretch, shrink and overlap; humans vs. sequencers.",
-    minutes: 35,
-    sources: [{ book: "kramer", where: "Ch. 3.5, 4", read: "read" }],
+    summary: "Stress, rhythmic and metric accent; hypermeasures that stretch, shrink and overlap; meter as a goal; cycles that end together; humans vs. sequencers.",
+    minutes: 40,
+    sources: [
+      { book: "kramer", where: "Ch. 3.5, 4", read: "read" },
+      { book: "kramer", where: "Ch. 7 (Schoenberg, Webern)", read: "partial" },
+    ],
   },
   {
     slug: "building-tension",
@@ -675,6 +705,7 @@ export const concepts: Concept[] = [
       { book: "farbood", where: "model and experiments", read: "summary" },
       { book: "summach", where: "prechorus devices; pregnant pause", read: "summary" },
       { book: "belkin", where: "Ch. 13 Progressing; Ch. 4 (holding back)", read: "read" },
+      { book: "kramer", where: "Ch. 11 (time near a goal)", read: "read" },
     ],
   },
   {
@@ -692,10 +723,11 @@ export const concepts: Concept[] = [
     module: 3,
     order: 3,
     title: "Where the climax goes",
-    summary: "Telos chorus, stairstepper, release, terminal climax, cumulative build — choosing the shape of a song's energy.",
+    summary: "Telos chorus, stairstepper, release, terminal climax, cumulative build, a song-length additive build — choosing the shape of a song's energy.",
     minutes: 35,
     draft: true,
     sources: [
+      { book: "moore03", where: "Ch. 6 (Bowman): additive build", read: "read" },
       { book: "osborn13", where: "terminally climactic forms; “Pushit”", read: "summary" },
       { book: "schwitzgebel", where: "climax strategies", read: "summary" },
       { book: "belkin", where: "Ch. 18 Ending", read: "read" },
@@ -718,9 +750,10 @@ export const concepts: Concept[] = [
     module: 4,
     order: 2,
     title: "Contrast and transition",
-    summary: "Rate a contrast 1–10 by how many dimensions change, how much and how fast — then choose the route: cut, ladder, turning point or cross-cut.",
+    summary: "Rate a contrast 1–10 by how many dimensions change, how much and how fast — then choose the route: cut, ladder, turning point or cross-cut. Plus same words in two settings, and the formal parenthesis.",
     minutes: 40,
-    sources: [{ book: "belkin", where: "Ch. 11 Contrasting; Ch. 12 Connecting", read: "read" }],
+    sources: [
+      { book: "moore03", where: "Ch. 8 (Moore), Ch. 9 (Covach)", read: "read" },{ book: "belkin", where: "Ch. 11 Contrasting; Ch. 12 Connecting", read: "read" }],
   },
   {
     slug: "beginnings",
@@ -745,9 +778,10 @@ export const concepts: Concept[] = [
     module: 4,
     order: 5,
     title: "Riff cycles as variations",
-    summary: "A repeated riff is a theme with variations: group the cycles, move the peak, and let the last group break the pattern.",
+    summary: "A repeated riff is a theme with variations: group the cycles, move the peak, displace or exchange gestures, and let the last group break the pattern.",
     minutes: 30,
-    sources: [{ book: "belkin", where: "Ch. 10 Variation; Ch. 7 One-part forms", read: "read" }],
+    sources: [
+      { book: "moore03", where: "Ch. 8 (Moore): Jethro Tull", read: "read" },{ book: "belkin", where: "Ch. 10 Variation; Ch. 7 One-part forms", read: "read" }],
   },
   {
     slug: "returning-and-ending",
@@ -757,6 +791,7 @@ export const concepts: Concept[] = [
     summary: "Returns that are never the same, the thwarted return, and the three endings: climactic, fade-out, rounding-off.",
     minutes: 35,
     sources: [
+      { book: "moore03", where: "Ch. 9 (Covach)", read: "read" },
       { book: "belkin", where: "Ch. 17 Returning; Ch. 18 Ending; Ch. 14 Rondo", read: "read" },
       { book: "snyder", where: "Ch. 5 Closure (repetition)", read: "read" },
     ],
@@ -784,7 +819,7 @@ export const concepts: Concept[] = [
     module: 4,
     order: 9,
     title: "Gestural time: endings in the wrong place",
-    summary: "Ending as process vs. profile, starting with an ending, three endings and a climax prepared from elsewhere.",
+    summary: "Ending as process vs. profile, starting with an ending, three endings and a climax prepared from elsewhere, a problem stated at the start.",
     minutes: 30,
     sources: [{ book: "kramer", where: "Ch. 5–6", read: "read" }],
   },
@@ -793,9 +828,10 @@ export const concepts: Concept[] = [
     module: 4,
     order: 10,
     title: "Moment form and strata",
-    summary: "Self-contained blocks, start/stop instead of begin/end, unprepared returns, proportions — and stratification, interlock, synthesis.",
+    summary: "Self-contained blocks, start/stop instead of begin/end, unprepared returns, proportions, expandable moments — and stratification, interlock, synthesis.",
     minutes: 40,
-    sources: [{ book: "kramer", where: "Ch. 2.10, 8, 9", read: "read" }],
+    sources: [
+      { book: "moore03", where: "Ch. 8 (Moore): surface vs context", read: "read" },{ book: "kramer", where: "Ch. 2.10, 8, 9, 12.7", read: "read" }],
   },
   {
     slug: "time-and-proportion",
@@ -834,6 +870,7 @@ export const concepts: Concept[] = [
     minutes: 25,
     draft: true,
     sources: [
+      { book: "moore03", where: "Ch. 9 (Covach), Ch. 10 (Kennett)", read: "read" },
       { book: "lalitte", where: "experiments; Cook 1987", read: "summary" },
       { book: "snyder", where: "Ch. 1 levels of memory; Ch. 13 remembered duration", read: "read" },
       { book: "kramer", where: "Ch. 10.11, 11", read: "read" },
@@ -844,10 +881,11 @@ export const concepts: Concept[] = [
     module: 5,
     order: 2,
     title: "Repetition, process and absorption",
-    summary: "Why repetition deepens listening, how a carrier ostinato fades from attention, and how audible gradual change holds the mind.",
+    summary: "Why repetition deepens listening, how a carrier ostinato fades from attention, how audible gradual change holds the mind, and how dance tracks sustain one groove for ten minutes.",
     minutes: 30,
     draft: true,
     sources: [
+      { book: "moore03", where: "Ch. 5 (Hawkins), Ch. 10 (Kennett)", read: "read" },
       { book: "margulis", where: "via Albrecht's review", read: "summary" },
       { book: "reich", where: "“Music as a Gradual Process” (1968)", read: "read" },
       { book: "hove", where: "abstract and methods", read: "summary" },
@@ -975,35 +1013,67 @@ export type FoundIdea = {
 
 export const foundInReading: FoundIdea[] = [
   {
-    idea: "Meter as a goal: an opening with no clear meter, where the first unmistakable downbeats arrive later as an event",
-    source: "Kramer ch. 7",
-    module: 2,
+    idea: "Verbal space: the musical phrase gives each lyric line a fixed span; lines can be full or empty, words placed early or late, density doubled for a middle section, filled gradually across a song",
+    source: "Analyzing Popular Music ch. 3 (Griffiths)",
+    module: 6,
   },
   {
-    idea: "Closure when two grouping systems that have run out of step finally end together",
-    source: "Kramer ch. 7; ch. 4",
-    module: 2,
-    note: "Partly covered by the overlap case in Accent and hypermeter",
+    idea: "Lyric vs anti-lyric: rhyme-led, poem-like lines vs prose-like statement with striking words; full, near and deliberately missing rhymes; rhymes across parts of speech push the thought forward",
+    source: "Analyzing Popular Music ch. 3 (Griffiths)",
+    module: 6,
   },
   {
-    idea: "A problem stated at the start (fragments, odd groupings, a gesture in the wrong place) that the whole piece works to resolve",
-    source: "Kramer ch. 5",
-    module: 4,
+    idea: "Vocal performance as form: a palette of timbres (head, throat, nasal, rasp), rasp applied additively across a song, straight tone then late vibrato, rests inserted mid-phrase as halting speech, words giving way to vocables at the climax",
+    source: "Analyzing Popular Music ch. 6 (Bowman)",
+    module: 6,
   },
   {
-    idea: "Felt time stretches as a goal gets closer: the last bars of a build feel longer than they are",
-    source: "Kramer ch. 11 (Meade)",
+    idea: "Heaviness from incommensurable layers: loops that agree on the meter but clash in harmony and are detuned against each other by about a quarter tone",
+    source: "Analyzing Popular Music ch. 7 (Krims)",
+    module: 3,
+    note: "For Layers and the sound-box",
+  },
+  {
+    idea: "Timbre as a recurring marker (one distinctive sound tied to one idea and brought further forward each time); a continuum from sound design to music: ambient, atmospheric, minimalist",
+    source: "Analyzing Popular Music ch. 4 (Stilwell)",
     module: 3,
   },
   {
-    idea: "Accents or dynamics that cut across the grouping add information and make a passage feel longer; ones that support it add little",
-    source: "Kramer ch. 11 (Deutsch)",
+    idea: "Same material, opposite meaning by setting (one quoted prayer in a gentle country song and in a Metallica nightmare); quotation of other records inside a track",
+    source: "Analyzing Popular Music ch. 2 (Walser), ch. 8 (Moore)",
+    module: 7,
+  },
+  {
+    idea: "Idiolect vs style: a band can cross styles and keep one identity; history reworked in a living present (songs re-arranged over decades)",
+    source: "Analyzing Popular Music ch. 8 (Moore)",
+    module: 0,
+  },
+  {
+    idea: "How bands talk while writing: rehearsing 'the hard bit' (the change between riffs), counting repeats before a change, cueing it with a fill, the limits of 'drum talk'",
+    source: "Analyzing Popular Music ch. 11 (Stokes, after Cohen)",
+    module: 0,
+  },
+  {
+    idea: "A listening-situation profile for the listening test: when, who, how attentively, where, on what system, and for what task",
+    source: "Analyzing Popular Music ch. 10 (Kennett)",
     module: 5,
   },
   {
-    idea: "Expandable moments: a section grows until it reaches a limit, then leaps to another (maqam improvisation, Kpelle epics)",
-    source: "Kramer ch. 12",
-    module: 4,
+    idea: "Four functional layers: explicit beat, functional bass, melody (primary and secondary), harmonic filler. Defined by function, not instrument; one instrument can switch layers mid-track; much metal drops the filler layer",
+    source: "Moore ch. 2 (read in the preview)",
+    module: 3,
+    note: "Goes into Layers and the sound-box when the full book arrives",
+  },
+  {
+    idea: "Song, performance and track: what all versions share vs. what one recording adds (instrumentation, speed, tone, production)",
+    source: "Moore ch. 1",
+    module: 7,
+  },
+  {
+    idea: "A bank of analysis questions, general first, discarding what doesn't apply: a checklist for every track you analyze",
+    source: "Moore ch. 11 (not in the preview)",
+    module: 0,
+    note: "For the Tool lab and the weekly Analyze step",
   },
   {
     idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",

@@ -45,6 +45,13 @@ export const docs: DocMeta[] = [
     updated: "2026-11-10",
   },
   {
+    slug: "apm-guide",
+    title: "Analyzing Popular Music guide",
+    summary: "Moore (ed.), Analyzing Popular Music (2003), read in full — each essay's ideas, what they mean for a band writing long songs, and where the app uses them.",
+    group: "Sources",
+    updated: "2026-11-10",
+  },
+  {
     slug: "sources",
     title: "Master source list",
     summary: "Every verified source, ranked by area and priority, with access and who it's for.",
@@ -73,6 +80,7 @@ export const docPages: Record<string, () => Promise<{ default: ComponentType }>>
   decisions: () => import("./decisions.mdx"),
   "belkin-guide": () => import("./belkin-guide.mdx"),
   "kramer-guide": () => import("./kramer-guide.mdx"),
+  "apm-guide": () => import("./apm-guide.mdx"),
   sources: () => import("./sources.mdx"),
   "psychology-sources": () => import("./psychology-sources.mdx"),
   "band-brief": () => import("./band-brief.mdx"),

@@ -10,7 +10,7 @@ export function Source({ book, where }: { book: string; where?: string }) {
   return (
     <span className="not-prose inline-flex items-center gap-1 rounded-md border bg-muted/50 px-1.5 py-0.5 align-baseline text-xs text-muted-foreground">
       <BookOpen className="size-3" />
-      <span className="font-medium text-foreground">{b ? b.author.split(" ").slice(-1)[0] : book}</span>
+      <span className="font-medium text-foreground">{b ? (b.short ?? b.author.split(" ").slice(-1)[0]) : book}</span>
       {where && <span>· {where}</span>}
     </span>
   );

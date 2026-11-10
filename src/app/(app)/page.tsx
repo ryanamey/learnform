@@ -17,9 +17,14 @@ export default async function StudioPage() {
     getJournal(user.id),
   ]);
 
-  const m1 = concepts.filter((c) => c.module === 1);
+  const order = [1, 0, 2, 3, 5, 6, 4, 7];
+  const openModules = order.filter((n) => modules.find((m) => m.number === n)?.available);
+  const currentModule =
+    openModules.find((n) => concepts.some((c) => c.module === n && progress[c.slug] !== "done")) ?? openModules[0];
+  const m1 = concepts.filter((c) => c.module === currentModule);
   const done = m1.filter((c) => progress[c.slug] === "done").length;
   const next = m1.find((c) => progress[c.slug] !== "done");
+  const currentTitle = modules.find((m) => m.number === currentModule)?.title ?? "";
   const firstName = (user.name || "").split(" ")[0];
   const lastEntry = journal[0];
 
@@ -32,14 +37,16 @@ export default async function StudioPage() {
       <div className="grid gap-5 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardDescription>Module 1 · Material & identity</CardDescription>
+            <CardDescription>
+              Module {currentModule} · {currentTitle}
+            </CardDescription>
             <CardTitle className="font-serif text-2xl font-normal">
-              {next ? next.title : "Module 1 complete"}
+              {next ? next.title : `Module ${currentModule} complete`}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              {next ? next.summary : "Every concept is marked done. Write the month's 'form principles' page in your journal before moving on."}
+              {next ? next.summary : "Every concept here is marked done. Write a page of your own form principles in the journal before moving on."}
             </p>
             <div className="flex items-center gap-3">
               <Progress value={(done / m1.length) * 100} className="max-w-xs" />

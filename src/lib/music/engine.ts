@@ -135,13 +135,17 @@ function makeInstrument(Tone: ToneNS, voice: VoiceName, out: import("tone").Tone
   }
 
   if (voice === "kit") {
-    // pitch decides the drum: <= 40 kick, 41–55 snare, otherwise hat
+    // pitch decides the drum: <= 40 kick, 41–55 snare, 56–60 crash, otherwise hat
     const kick = keep(new Tone.MembraneSynth({ octaves: 6, pitchDecay: 0.04 })).connect(out);
     const snFilter = keep(new Tone.Filter(1800, "bandpass")).connect(out);
     const snare = keep(
       new Tone.NoiseSynth({ noise: { type: "white" }, envelope: { attack: 0.001, decay: 0.14, sustain: 0 } })
     ).connect(snFilter);
     const hatFilter = keep(new Tone.Filter(7000, "highpass")).connect(out);
+    const crashFilter = keep(new Tone.Filter(4500, "highpass")).connect(out);
+    const crash = keep(
+      new Tone.NoiseSynth({ noise: { type: "white" }, envelope: { attack: 0.002, decay: 0.9, sustain: 0 } })
+    ).connect(crashFilter);
     const hat = keep(
       new Tone.NoiseSynth({ noise: { type: "white" }, envelope: { attack: 0.001, decay: 0.035, sustain: 0 } })
     ).connect(hatFilter);
@@ -150,6 +154,7 @@ function makeInstrument(Tone: ToneNS, voice: VoiceName, out: import("tone").Tone
         for (const m of midi) {
           if (m !== -1 && m <= 40) kick.triggerAttackRelease("C1", 0.2, time, velocity);
           else if (m !== -1 && m <= 55) snare.triggerAttackRelease(0.12, time, velocity);
+          else if (m >= 56 && m <= 60) crash.triggerAttackRelease(0.9, time, velocity * 0.8);
           else hat.triggerAttackRelease(0.03, time, velocity * 0.7);
         }
       },
@@ -223,7 +228,7 @@ export async function play(layers: Layer[], opts: PlayOptions): Promise<() => vo
       layer.events.forEach((e, ei) => {
         const time = loopOffset + e.start * spb;
         if (e.midi.length > 0) {
-          instruments[li].inst.play(e.midi, e.dur * spb, time, e.accent ? 1 : 0.62);
+          instruments[li].inst.play(e.midi, e.dur * spb, time, e.velocity ?? (e.accent ? 1 : 0.62));
         }
         if (opts.onEvent) {
           draw.schedule(() => {

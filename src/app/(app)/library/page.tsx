@@ -44,6 +44,11 @@ export default function LibraryPage() {
                         <span className="font-mono text-xs text-muted-foreground">{String(b.order).padStart(2, "0")}</span>
                         <span className="font-medium">{b.title}</span>
                         <span className="text-sm text-muted-foreground">{b.author}</span>
+                        {b.url && (
+                          <a href={b.url} target="_blank" rel="noreferrer" className="text-xs text-signal underline underline-offset-4">
+                            open
+                          </a>
+                        )}
                       </div>
                       <p className="mt-2 text-sm">{b.why}</p>
                       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">

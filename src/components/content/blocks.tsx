@@ -103,3 +103,44 @@ export function EPTask({ children, className }: { children: ReactNode; className
 export function Aside({ children }: { children: ReactNode }) {
   return <aside className="not-prose my-6 text-sm text-muted-foreground [&_p]:my-2">{children}</aside>;
 }
+
+const GRADE: Record<string, string> = {
+  strong: "bg-note-b/20 text-note-b",
+  moderate: "bg-signal/20 text-signal",
+  weak: "bg-muted text-muted-foreground",
+  speculative: "bg-note-c/20 text-note-c",
+  analogy: "bg-note-c/20 text-note-c",
+};
+
+/** "Why it works on the listener" — every claim carries an evidence grade. */
+export function ListenerSide({
+  grade,
+  children,
+}: {
+  grade: "strong" | "moderate" | "weak" | "speculative" | "analogy";
+  children: ReactNode;
+}) {
+  return (
+    <div className="not-prose my-6 rounded-xl border bg-card p-5">
+      <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
+        Why it works on the listener
+        <span className={cn("rounded px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider", GRADE[grade])}>
+          evidence: {grade}
+        </span>
+      </div>
+      <div className="text-sm leading-6 text-foreground/85 [&_li]:my-1 [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-5">{children}</div>
+    </div>
+  );
+}
+
+/** A compact "do this" checklist. */
+export function Steps({ title, children }: { title?: string; children: ReactNode }) {
+  return (
+    <div className="not-prose my-6 rounded-xl border-l-4 border-note-b bg-card px-5 py-4">
+      {title && <div className="mb-2 text-sm font-semibold">{title}</div>}
+      <div className="text-sm leading-6 text-foreground/85 [&_li]:my-1.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-5">
+        {children}
+      </div>
+    </div>
+  );
+}

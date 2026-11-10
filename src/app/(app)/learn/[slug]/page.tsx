@@ -74,6 +74,7 @@ export default async function ConceptPage({ params }: PageProps<"/learn/[slug]">
                 <span className="text-muted-foreground">, {bookById[s.book]?.title}</span>
                 <span className="text-muted-foreground"> — {s.where}</span>
                 {s.read === "partial" && <span className="ml-2 text-xs text-signal">read in part</span>}
+                {s.read === "summary" && <span className="ml-2 text-xs text-note-b">read via detailed summary</span>}
                 {s.read === "unread" && <span className="ml-2 text-xs text-destructive">not yet read</span>}
               </li>
             ))}

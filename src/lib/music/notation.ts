@@ -25,6 +25,8 @@ export type NoteEvent = {
   /** MIDI numbers; empty array = rest; [-1] = unpitched hit */
   midi: number[];
   accent: boolean;
+  /** optional explicit velocity 0–1 (overrides accent) */
+  velocity?: number;
   lyric?: string;
   /** index of the token in the source string (for highlighting) */
   index: number;

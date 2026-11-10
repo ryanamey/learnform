@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Learn Form
 
-## Getting Started
+A private study app for musical form: concept pages built from your books, playable sound examples, and tools for your own writing (motif bank, journal). Built module by module alongside the EP.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · shadcn/ui · Tailwind v4 · Drizzle ORM · Neon Postgres · Better Auth · Tone.js · MDX · Vercel
+
+> Keep this repository **private**. The concept pages are detailed study notes on copyrighted books. They're fine for personal study but not for publishing. Never commit the PDFs.
+
+## What's in Module 1
+
+| Concept | Interactive |
+|---|---|
+| What makes a motive | Motif M, Beethoven 5 cell, M as a palm-mute rhythm |
+| Degrees of similarity | 12-variant lab with A/B and ear-training mode |
+| Developing variation | Variation chain, double-motive reorderings |
+| Phrase, grouping and memory | Grouping lab (6 scenarios), chunking/memory test |
+| The sentence and liquidation | 8-bar riff sentence with drums, each stage playable |
+| The vocal line | Same lyric set with and against speech stress |
+
+Tools: **Motif bank** (text notation → playback, parent/child family tree, 1–5 distance ratings, EP-track filter), **Journal** (the weekly five lines), **progress + notes** on every concept page.
+
+## Setup
 
 ```bash
+npm install
+cp .env.example .env          # fill in DATABASE_URL and BETTER_AUTH_SECRET
+npm run db:migrate            # creates the tables in Neon
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Creating your account
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Sign-up is **closed by default**. To create your account:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Set `ALLOW_SIGNUP="true"` (locally in `.env`, or in Vercel → Settings → Environment Variables, then redeploy).
+2. Open `/login`, choose "Create your account".
+3. Set `ALLOW_SIGNUP` back to `"false"` (and redeploy).
 
-## Learn More
+### Vercel environment variables
 
-To learn more about Next.js, take a look at the following resources:
+| Key | Value |
+|---|---|
+| `DATABASE_URL` | Neon **pooled** connection string |
+| `BETTER_AUTH_SECRET` | `openssl rand -base64 32` |
+| `BETTER_AUTH_URL` | your production URL, e.g. `https://learnform.vercel.app` |
+| `ALLOW_SIGNUP` | `false` (temporarily `true` to create your account) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Concept page:** add `src/content/concepts/<slug>.mdx`, register it in `src/content/concepts/index.ts`, and add its entry to `concepts` in `src/content/curriculum.ts`.
+- **Sound examples:** write them in the text notation (see `src/lib/music/notation.ts`) or generate them with the transformations in `src/lib/music/transform.ts`. Shared example sets live in `src/content/examples/`.
+- **Components available in MDX** (no imports needed): `MotifPlayer`, `ExampleList`, `GroupingDemo`, `SentenceDemo`, `Source`, `KeyIdea`, `ListenFor`, `Exercise`, `EPTask`, `Aside`.
 
-## Deploy on Vercel
+## Notation (quick reference)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+E3/8      eighth note           A3/4.    dotted quarter      G3/8t   triplet eighth
+E2/8!     accented              r/8      rest                x/16    muted hit
+[E2,B2,E3]/4   power chord      |        bar line            E4/8"love"  lyric syllable
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Guitar low E = `E2`, open high E = `E4`.
+
+## Database
+
+```bash
+npm run db:generate   # after editing src/db/schema.ts
+npm run db:migrate
+npm run db:studio     # browse your data
+```

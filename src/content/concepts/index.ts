@@ -17,6 +17,7 @@ export const conceptPages: Record<string, () => Promise<{ default: ComponentType
   "building-tension": () => import("./building-tension.mdx"),
   "cues-and-arrivals": () => import("./cues-and-arrivals.mdx"),
   "climax-placement": () => import("./climax-placement.mdx"),
+  "layers-and-sound-box": () => import("./layers-and-sound-box.mdx"),
   "punctuation-degrees": () => import("./punctuation-degrees.mdx"),
   "contrast-and-transition": () => import("./contrast-and-transition.mdx"),
   "beginnings": () => import("./beginnings.mdx"),

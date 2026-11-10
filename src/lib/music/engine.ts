@@ -6,7 +6,7 @@
  */
 import type { NoteEvent } from "./notation";
 
-export type VoiceName = "guitar" | "drive" | "voice" | "bass" | "click" | "kit";
+export type VoiceName = "guitar" | "drive" | "voice" | "bass" | "click" | "kit" | "pad" | "bell";
 
 export type Layer = {
   events: NoteEvent[];
@@ -134,6 +134,45 @@ function makeInstrument(Tone: ToneNS, voice: VoiceName, out: import("tone").Tone
     };
   }
 
+  if (voice === "pad") {
+    // blended filler: full, harmonic, soft attack
+    const lp = keep(new Tone.Filter(1800, "lowpass")).connect(out);
+    const synth = keep(
+      new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: "fatsawtooth", count: 3, spread: 18 },
+        envelope: { attack: 0.25, decay: 0.3, sustain: 0.8, release: 0.6 },
+      })
+    ).connect(lp);
+    return {
+      play(midi, durSec, time, velocity) {
+        if (midi[0] === -1) return hit(time, velocity);
+        synth.triggerAttackRelease(midi.map(freq), durSec, time, velocity);
+      },
+      dispose,
+    };
+  }
+
+  if (voice === "bell") {
+    // novelty: inharmonic, sparse, percussive attack (non-integer FM ratio)
+    const synth = keep(
+      new Tone.PolySynth(Tone.FMSynth, {
+        harmonicity: 3.47,
+        modulationIndex: 9,
+        oscillator: { type: "sine" },
+        modulation: { type: "sine" },
+        envelope: { attack: 0.002, decay: 1.2, sustain: 0, release: 0.8 },
+        modulationEnvelope: { attack: 0.002, decay: 0.5, sustain: 0.1, release: 0.5 },
+      })
+    ).connect(out);
+    return {
+      play(midi, durSec, time, velocity) {
+        if (midi[0] === -1) return hit(time, velocity);
+        synth.triggerAttackRelease(midi.map(freq), Math.max(0.3, durSec), time, velocity);
+      },
+      dispose,
+    };
+  }
+
   if (voice === "kit") {
     // pitch decides the drum: <= 40 kick, 41–55 snare, 56–60 crash, otherwise hat
     const kick = keep(new Tone.MembraneSynth({ octaves: 6, pitchDecay: 0.04 })).connect(out);
@@ -182,6 +221,8 @@ const VOICE_GAIN: Record<VoiceName, number> = {
   bass: -6,
   click: -12,
   kit: -6,
+  pad: -16,
+  bell: -12,
 };
 
 export async function play(layers: Layer[], opts: PlayOptions): Promise<() => void> {

@@ -8,6 +8,7 @@ export const conceptPages: Record<string, () => Promise<{ default: ComponentType
   "phrase-and-memory": () => import("./phrase-and-memory.mdx"),
   "sentence-and-liquidation": () => import("./sentence-and-liquidation.mdx"),
   "words-as-motive": () => import("./words-as-motive.mdx"),
+  "vocal-timbre": () => import("./vocal-timbre.mdx"),
   "how-tool-writes": () => import("./how-tool-writes.mdx"),
   "riff-board": () => import("./riff-board.mdx"),
   "metric-dissonance": () => import("./metric-dissonance.mdx"),

@@ -14,6 +14,10 @@ export type Layer = {
   /** dB offset */
   gain?: number;
   muted?: boolean;
+  /** stereo position, -1 (left) to 1 (right) */
+  pan?: number;
+  /** reverb send 0–1: more = further back in the mix */
+  space?: number;
 };
 
 export type PlayOptions = {
@@ -235,8 +239,24 @@ export async function play(layers: Layer[], opts: PlayOptions): Promise<() => vo
   const limiter = new Tone.Limiter(-1).toDestination();
   master.connect(limiter);
 
+  const needsVerb = layers.some((l) => (l.space ?? 0) > 0);
+  const verb = needsVerb ? new Tone.Freeverb({ roomSize: 0.82, dampening: 2600, wet: 1 }).connect(master) : null;
+  const extras: { dispose: () => unknown }[] = verb ? [verb] : [];
+
   const instruments = layers.map((layer) => {
-    const vol = new Tone.Volume((layer.gain ?? 0) + VOICE_GAIN[layer.voice]).connect(master);
+    const vol = new Tone.Volume((layer.gain ?? 0) + VOICE_GAIN[layer.voice]);
+    if (layer.pan !== undefined || verb) {
+      const panner = new Tone.Panner(layer.pan ?? 0).connect(master);
+      vol.connect(panner);
+      extras.push(panner);
+      if (verb && (layer.space ?? 0) > 0) {
+        const send = new Tone.Gain(layer.space).connect(verb);
+        panner.connect(send);
+        extras.push(send);
+      }
+    } else {
+      vol.connect(master);
+    }
     const inst = makeInstrument(Tone, layer.voice, vol);
     return { inst, vol };
   });
@@ -288,6 +308,7 @@ export async function play(layers: Layer[], opts: PlayOptions): Promise<() => vo
     });
     clickInst.dispose();
     clickVol.dispose();
+    extras.forEach((n) => n.dispose());
     master.dispose();
     limiter.dispose();
   };

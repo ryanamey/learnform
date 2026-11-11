@@ -62,7 +62,9 @@ function dedupeStart(events: NoteEvent[]): NoteEvent[] {
   return [...m.values()];
 }
 
-export function layers(parts: { events: NoteEvent[]; voice: Layer["voice"]; gain?: number }[]): Layer[] {
+export function layers(
+  parts: { events: NoteEvent[]; voice: Layer["voice"]; gain?: number; pan?: number; space?: number }[]
+): Layer[] {
   return parts
     .filter((p) => p.events.length)
     .map((p) => ({ ...p, events: finalize(p.voice === "kit" ? dedupeKit(p.events) : p.voice === "bass" ? dedupeStart(p.events) : p.events) }));

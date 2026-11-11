@@ -145,3 +145,201 @@ export function LayersLab() {
     </div>
   );
 }
+
+/* The sound-box: width, depth, height (Moore ch. 2) --------------------- */
+
+export type MixId = "diagonal" | "cluster" | "triangular" | "oneside";
+export type DepthId = "forward" | "back";
+export type BandId = "full" | "top" | "bottom";
+export type EntryId = "together" | "staggered";
+
+type Spot = { pan: number; space: number };
+type Parts = "drums" | "hats" | "bass" | "filler" | "melody" | "novelty";
+
+const MIXES: Record<MixId, { label: string; what: string; spots: Record<Parts, Spot> }> = {
+  diagonal: {
+    label: "Diagonal (the norm)",
+    what: "Voice, snare and bass in the centre on a slight diagonal; hats, filler and novelty spread to the sides and further back. Normal since the early 1970s.",
+    spots: {
+      drums: { pan: 0.08, space: 0.18 },
+      hats: { pan: 0.4, space: 0.2 },
+      bass: { pan: -0.05, space: 0.05 },
+      filler: { pan: -0.55, space: 0.55 },
+      melody: { pan: 0, space: 0.12 },
+      novelty: { pan: 0.65, space: 0.35 },
+    },
+  },
+  cluster: {
+    label: "Cluster",
+    what: "Everything bunched together just left of centre, as in some early stereo records. Clear enough, but no width.",
+    spots: {
+      drums: { pan: -0.3, space: 0.18 },
+      hats: { pan: -0.3, space: 0.2 },
+      bass: { pan: -0.35, space: 0.05 },
+      filler: { pan: -0.3, space: 0.4 },
+      melody: { pan: -0.25, space: 0.12 },
+      novelty: { pan: -0.4, space: 0.3 },
+    },
+  },
+  triangular: {
+    label: "Triangular",
+    what: "Voice in the centre, bass hard on one side, drums hard on the other: the three anchors in three places.",
+    spots: {
+      drums: { pan: 0.85, space: 0.15 },
+      hats: { pan: 0.85, space: 0.15 },
+      bass: { pan: -0.85, space: 0.05 },
+      filler: { pan: 0, space: 0.5 },
+      melody: { pan: 0, space: 0.12 },
+      novelty: { pan: -0.4, space: 0.3 },
+    },
+  },
+  oneside: {
+    label: "All on one side",
+    what: "The whole band in the left speaker. Disorienting, which is the point when a record does it on purpose: it makes you listen.",
+    spots: {
+      drums: { pan: -0.9, space: 0.15 },
+      hats: { pan: -0.9, space: 0.15 },
+      bass: { pan: -0.9, space: 0.05 },
+      filler: { pan: -0.9, space: 0.4 },
+      melody: { pan: -0.9, space: 0.12 },
+      novelty: { pan: -0.9, space: 0.3 },
+    },
+  },
+};
+
+const isHat = (e: NoteEvent) => e.midi.length > 0 && e.midi[0] > 60;
+
+export function buildSoundBox(mix: MixId, depth: DepthId, band: BandId, entries: EntryId): Layer[] {
+  const bars = entries === "staggered" ? 12 : 8;
+  // entry bar per part
+  const enter: Record<Parts, number> =
+    entries === "staggered"
+      ? { filler: 0, bass: 2, drums: 4, hats: 4, melody: 6, novelty: 6 }
+      : { filler: 0, bass: 0, drums: 0, hats: 0, melody: 0, novelty: 0 };
+  const use: Record<Parts, boolean> = {
+    drums: band !== "top",
+    hats: band !== "bottom",
+    bass: band !== "top",
+    filler: true,
+    melody: true,
+    novelty: band !== "bottom",
+  };
+  const melShift = band === "bottom" ? -12 : band === "top" ? 12 : 0;
+  const fillShift = band === "bottom" ? -12 : band === "top" ? 12 : 0;
+
+  const drums: NoteEvent[] = [];
+  const hats: NoteEvent[] = [];
+  const bass: NoteEvent[] = [];
+  const pad: NoteEvent[] = [];
+  const mel: NoteEvent[] = [];
+  const nov: NoteEvent[] = [];
+  for (let b = 0; b < bars; b++) {
+    const at = b * 4;
+    const i = b % 4;
+    if (b >= enter.drums) {
+      const g = groove(1, "normal", "hat8", at, 0.75);
+      if (use.drums) drums.push(...g.filter((e) => !isHat(e)));
+      if (use.hats) hats.push(...g.filter(isHat));
+    }
+    if (use.bass && b >= enter.bass)
+      bass.push(note(at, 1.5, [ROOTS[i]], 0.8), note(at + 1.5, 0.5, [ROOTS[i]], 0.6), note(at + 2, 2, [ROOTS[i]], 0.75));
+    if (b >= enter.filler) pad.push(note(at, 4, CHORDS[i].map((m) => m + fillShift), 0.6));
+    if (b >= enter.melody) mel.push(...place(MELODY[i], at, melShift, 0.8));
+    if (use.novelty && b >= enter.novelty) nov.push(...place(ANSWER[i], at, 0, 0.75));
+  }
+  const end = bars * 4;
+  if (use.drums) drums.push(...hit(end, 0.9).filter((e) => !isHat(e)));
+  if (use.bass) bass.push(note(end, 2, [ROOTS[0]], 0.85));
+  pad.push(note(end, 2, CHORDS[0].map((m) => m + fillShift), 0.6));
+
+  const s = MIXES[mix].spots;
+  const voiceGain = depth === "forward" ? 1 : -6;
+  const voiceSpace = depth === "forward" ? 0.06 : 0.6;
+  return layers([
+    { events: drums, voice: "kit", ...s.drums },
+    { events: hats, voice: "kit", gain: -2, ...s.hats },
+    { events: bass, voice: "bass", ...s.bass },
+    { events: pad, voice: "pad", ...s.filler },
+    { events: mel, voice: "voice", gain: voiceGain, pan: s.melody.pan, space: voiceSpace },
+    { events: nov, voice: "bell", ...s.novelty },
+  ]);
+}
+
+const BANDS: { id: BandId; label: string; what: string }[] = [
+  { id: "full", label: "Full range", what: "Low, middle and high all occupied." },
+  {
+    id: "top",
+    label: "Top only",
+    what: "Bass and kick gone, filler and melody an octave up: weightless, the effect Moore hears in Yes's high, drumless passages.",
+  },
+  {
+    id: "bottom",
+    label: "Bottom heavy",
+    what: "Hats and the bell gone, melody and filler an octave down: dark and pressing, the register profile he hears in Trivium.",
+  },
+];
+
+export function SoundBoxLab() {
+  const [mix, setMix] = useState<MixId>("diagonal");
+  const [depth, setDepth] = useState<DepthId>("forward");
+  const [band, setBand] = useState<BandId>("full");
+  const [entries, setEntries] = useState<EntryId>("together");
+  const { playing, toggle } = usePlayer();
+  const lys = useMemo(() => buildSoundBox(mix, depth, band, entries), [mix, depth, band, entries]);
+  const key = `sb-${mix}-${depth}-${band}-${entries}`;
+  return (
+    <div className="not-prose my-8 rounded-xl border bg-card p-4">
+      <div className="mb-1 font-serif text-lg">The sound-box</div>
+      <p className="mb-4 text-sm text-muted-foreground">
+        The same passage placed in different spaces. Use headphones: width and depth are much easier to hear.
+      </p>
+      <div className="mb-2 flex flex-wrap items-center gap-1 text-sm">
+        <span className="mr-1 w-16 text-muted-foreground">Width:</span>
+        {(Object.keys(MIXES) as MixId[]).map((m) => (
+          <Chip key={m} on={mix === m} onClick={() => setMix(m)}>
+            {MIXES[m].label}
+          </Chip>
+        ))}
+      </div>
+      <div className="mb-2 flex flex-wrap items-center gap-1 text-sm">
+        <span className="mr-1 w-16 text-muted-foreground">Depth:</span>
+        <Chip on={depth === "forward"} onClick={() => setDepth("forward")}>
+          Voice in front
+        </Chip>
+        <Chip on={depth === "back"} onClick={() => setDepth("back")}>
+          Voice pushed back
+        </Chip>
+      </div>
+      <div className="mb-2 flex flex-wrap items-center gap-1 text-sm">
+        <span className="mr-1 w-16 text-muted-foreground">Height:</span>
+        {BANDS.map((x) => (
+          <Chip key={x.id} on={band === x.id} onClick={() => setBand(x.id)}>
+            {x.label}
+          </Chip>
+        ))}
+      </div>
+      <div className="mb-3 flex flex-wrap items-center gap-1 text-sm">
+        <span className="mr-1 w-16 text-muted-foreground">Time:</span>
+        <Chip on={entries === "together"} onClick={() => setEntries("together")}>
+          All at once
+        </Chip>
+        <Chip on={entries === "staggered"} onClick={() => setEntries("staggered")}>
+          Build the space part by part
+        </Chip>
+      </div>
+      <ul className="mb-3 space-y-1 text-sm text-muted-foreground">
+        <li>{MIXES[mix].what}</li>
+        <li>
+          {depth === "forward"
+            ? "The voice is loud and dry, so it sounds close: the listener feels addressed."
+            : "The voice is quieter and wetter, so it sounds far away: one member of the band rather than its front."}
+        </li>
+        <li>{BANDS.find((x) => x.id === band)!.what}</li>
+        {entries === "staggered" && (
+          <li>Filler first, then bass, then drums, then the voice, each in its own place: filling the space is the intro.</li>
+        )}
+      </ul>
+      <PlayButton playing={playing === key} label="Play" onClick={() => toggle(key, lys, { bpm: 96 })} />
+    </div>
+  );
+}

@@ -429,7 +429,7 @@ export const books: Book[] = [
     author: "Allan F. Moore",
     kind: "book",
     verdict: "core",
-    copy: "Preview only (front matter, ch. 1, ch. 2 to p. 25); full book being sourced",
+    copy: "Read in the Google Books preview: ch. 1–3 except hidden pages (26–27, 33–34, 40–41, 47–50, 55–56, 62–63, 69–70, 76–77, 83–84), ch. 6 pp. 174–176, ch. 11 pp. 331–334. Full book being sourced",
     why: "Texture as four functional layers, the sound-box, timbre; form, delivery, persona and friction in recorded song; a bank of analysis questions for any track.",
     readFirst: "Ch. 2 Shape, 3 Form, 7 Persona, 11 Questions",
     modules: [0, 3, 6, 7],
@@ -599,6 +599,7 @@ export const concepts: Concept[] = [
       { book: "snyder", where: "Ch. 3 Grouping; Ch. 4 Short-term and working memory", read: "read" },
       { book: "belkin", where: "Ch. 2, Structure of the phrase", read: "read" },
       { book: "schoenberg", where: "Ch. II, The Phrase" },
+      { book: "moore12", where: "Ch. 3, pp. 57–60", read: "partial" },
     ],
   },
   {
@@ -620,9 +621,13 @@ export const concepts: Concept[] = [
     module: 1,
     order: 6,
     title: "The vocal line: words shape the motive",
-    summary: "For singers: stress, speech contour and vowels decide your melody before you do.",
+    summary: "For singers: stress, speech contour and vowels decide your melody before you do; verbal space and where the words sit.",
     minutes: 30,
-    sources: [{ book: "belkin", where: "Ch. 3 Singing", read: "read" }],
+    sources: [
+      { book: "belkin", where: "Ch. 3 Singing", read: "read" },
+      { book: "moore03", where: "Ch. 3 (Griffiths): verbal space", read: "read" },
+      { book: "moore12", where: "Ch. 3, pp. 64–66", read: "partial" },
+    ],
   },
   {
     slug: "how-tool-writes",
@@ -652,12 +657,13 @@ export const concepts: Concept[] = [
     module: 2,
     order: 1,
     title: "Grouping and displacement",
-    summary: "The two ways layers of pulse can disagree — the vocabulary behind every odd-meter riff over a steady beat.",
+    summary: "The two ways layers of pulse can disagree, and the rock precedents for superimposed meters: the vocabulary behind every odd-meter riff over a steady beat.",
     minutes: 35,
     draft: true,
     sources: [
       { book: "krebs", where: "Ch. 2, Metrical consonance and dissonance", read: "partial" },
       { book: "biamonte", where: "§1–2, layers and dissonance types", read: "summary" },
+      { book: "moore12", where: "Ch. 3, pp. 66–68", read: "partial" },
     ],
   },
   {
@@ -688,10 +694,13 @@ export const concepts: Concept[] = [
     module: 2,
     order: 4,
     title: "Time feel and re-orchestration",
-    summary: "Half, normal, double, quarter time; cymbals and riff types that clarify or contradict — new sections without new notes.",
+    summary: "Half, normal, double, quarter time; cymbals and riff types that clarify or contradict; re-grooving. New sections without new notes.",
     minutes: 30,
     draft: true,
-    sources: [{ book: "garza", where: "whole article", read: "summary" }],
+    sources: [
+      { book: "garza", where: "whole article", read: "summary" },
+      { book: "moore12", where: "Ch. 3, pp. 52, 66–67", read: "partial" },
+    ],
   },
   {
     slug: "accent-and-hypermeter",
@@ -703,6 +712,7 @@ export const concepts: Concept[] = [
     sources: [
       { book: "kramer", where: "Ch. 3.5, 4", read: "read" },
       { book: "kramer", where: "Ch. 7 (Schoenberg, Webern)", read: "partial" },
+      { book: "moore12", where: "Ch. 3, pp. 60–67, 82", read: "partial" },
     ],
   },
   {
@@ -743,6 +753,7 @@ export const concepts: Concept[] = [
       { book: "osborn13", where: "terminally climactic forms; “Pushit”", read: "summary" },
       { book: "schwitzgebel", where: "climax strategies", read: "summary" },
       { book: "belkin", where: "Ch. 18 Ending", read: "read" },
+      { book: "moore12", where: "Ch. 3 p. 85; Ch. 6 pp. 175–176", read: "partial" },
     ],
   },
   {
@@ -750,11 +761,12 @@ export const concepts: Concept[] = [
     module: 3,
     order: 4,
     title: "Layers and the sound-box",
-    summary: "Texture as five jobs (beat, bass, melody, filler, novelty), sounds that blend vs. stand out, role changes as form, and a timbre checklist. Sound-box still to come.",
+    summary: "Texture as five jobs (beat, bass, melody, filler, novelty), sounds that blend vs. stand out, role changes as form, the mix as a space (the sound-box) with a lab, and a timbre checklist.",
     minutes: 40,
     draft: true,
     sources: [
-      { book: "moore12", where: "Ch. 2 Shape, pp. 19–25 (preview)", read: "partial" },
+      { book: "moore12", where: "Ch. 2 Shape, pp. 19–46 (Google Books preview; some pages hidden)", read: "partial" },
+      { book: "moore12", where: "Ch. 11 Questions, ch. 2 list", read: "partial" },
       { book: "lavengood20", where: "full article", read: "read" },
       { book: "belkin", where: "Ch. 20 Refinements (enriching)", read: "read" },
       { book: "moore03", where: "Ch. 7 (Krims): layering", read: "read" },
@@ -765,11 +777,12 @@ export const concepts: Concept[] = [
     module: 4,
     order: 1,
     title: "Degrees of punctuation",
-    summary: "A 1–10 scale for how strongly a phrase or section ends — and why most of your seams should say “yes, but…”.",
+    summary: "A 1–10 scale for how strongly a phrase or section ends, why most seams should say “yes, but…”, and how loops and question-and-answer periods close.",
     minutes: 30,
     sources: [
       { book: "belkin", where: "Ch. 5 Punctuating; Ch. 18 Ending", read: "read" },
       { book: "snyder", where: "Ch. 5 Closure", read: "read" },
+      { book: "moore12", where: "Ch. 3, pp. 85–89; Ch. 11", read: "partial" },
     ],
   },
   {
@@ -877,7 +890,7 @@ export const concepts: Concept[] = [
     module: 4,
     order: 12,
     title: "Designing the whole",
-    summary: "Return × climax as a design space, through-composed types, the coordination principle, a sketching method — and a plan checker.",
+    summary: "Return × climax as a design space, through-composed types, forms for a song about change (arch, bolero, medley), the coordination principle, a sketching method and a plan checker.",
     minutes: 45,
     draft: true,
     sources: [
@@ -886,6 +899,7 @@ export const concepts: Concept[] = [
       { book: "belkin", where: "Conclusion; Appendix A Sketching", read: "read" },
       { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
       { book: "kramer", where: "Ch. 2, 8, 10 (moment form, proportion)", read: "read" },
+      { book: "moore12", where: "Ch. 6, pp. 174–176", read: "partial" },
     ],
   },
   {
@@ -1040,9 +1054,29 @@ export type FoundIdea = {
 
 export const foundInReading: FoundIdea[] = [
   {
-    idea: "Verbal space: the musical phrase gives each lyric line a fixed span; lines can be full or empty, words placed early or late, density doubled for a middle section, filled gradually across a song",
-    source: "Analyzing Popular Music ch. 3 (Griffiths)",
+    idea: "Finding the tonic of a riff or loop: persistence (longest), laterality (starts or ends the pattern), emphasis (accent, timbre, density); two tonics in one song, one per section, with a moment of ambiguity as they swap",
+    source: "Moore, Song Means ch. 3",
+    module: 2,
+  },
+  {
+    idea: "Enriching a known chord pattern by interpolating chords (each chord preceded by its own fifth); melody-driven vs chord-driven harmony; a pattern withheld, approached by near-versions, then arriving as a goal",
+    source: "Moore, Song Means ch. 3 (Jethro Tull, PJ Harvey)",
+    module: 2,
+  },
+  {
+    idea: "Bass character as a style choice: regular vs varied rhythm, static vs mobile pitch; a bass that ignores the harmony (pedal under moving guitar)",
+    source: "Moore, Song Means ch. 3",
+    module: 3,
+  },
+  {
+    idea: "Loose verse, tight chorus: verse melodies with unresolved dissonant pitches against the harmony, chorus melodies that agree with it",
+    source: "Moore ch. 3 (after Temperley 2007)",
     module: 6,
+  },
+  {
+    idea: "A song that offers two endings for its story (a negative, then a positive outcome hinging on one decision)",
+    source: "Moore ch. 6 (The Streets, 'Empty Cans')",
+    module: 7,
   },
   {
     idea: "Lyric vs anti-lyric: rhyme-led, poem-like lines vs prose-like statement with striking words; full, near and deliberately missing rhymes; rhymes across parts of speech push the thought forward",
@@ -1086,7 +1120,7 @@ export const foundInReading: FoundIdea[] = [
   },
   {
     idea: "A bank of analysis questions, general first, discarding what doesn't apply: a checklist for every track you analyze",
-    source: "Moore ch. 11 (not in the preview)",
+    source: "Moore ch. 11 (questions for ch. 1–7 read; ch. 8–10 hidden in the preview)",
     module: 0,
     note: "For the Tool lab and the weekly Analyze step",
   },
@@ -1094,12 +1128,6 @@ export const foundInReading: FoundIdea[] = [
     idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",
     source: "Kramer ch. 3",
     module: 7,
-  },
-  {
-    idea: "The sound-box: the mix as a space (width, depth, height, time) with a normal 'diagonal' layout to deviate from on purpose",
-    source: "Moore, Song Means ch. 2; Dockwray & Moore 2010",
-    module: 3,
-    note: "Waits for the full book; goes into Layers and the sound-box",
   },
   {
     idea: "Recitative vs. aria as two vocal modes; text first, with the melody exaggerating the spoken contour but never contradicting it; open vowels on the peak notes",

@@ -44,9 +44,9 @@ export const books: Book[] = [
     kind: "book",
     verdict: "core",
     copy: "Full book (scanned)",
-    why: "Where 'motive', 'developing variation', 'the sentence' and 'liquidation' come from. Read the first eight chapters; skip the Classical forms.",
-    readFirst: "Ch. I–V and VIII",
-    modules: [1],
+    why: "Where 'motive', 'developing variation', 'the sentence' and 'liquidation' come from. The later chapters (accompaniment, melody vs. theme, self-criticism, irregular phrases, transitions, elaboration, codas) are just as useful for long forms.",
+    readFirst: "Ch. I–V and VIII, then IX, XI, XII, XIV, XVI, XVIII",
+    modules: [1, 3, 4],
   },
   {
     id: "snyder",
@@ -550,47 +550,43 @@ export const concepts: Concept[] = [
   {
     slug: "motive",
     module: 1,
-    draft: true,
     order: 1,
     title: "What makes a motive",
     summary: "The smallest memorable unit — and why internal contrast is what makes it memorable.",
     minutes: 25,
     sources: [
       { book: "belkin", where: "Ch. 1, opening sections", read: "read" },
-      { book: "schoenberg", where: "Ch. III, The Motive" },
+      { book: "schoenberg", where: "Ch. III The Motive; IX The Accompaniment; X Character and Mood", read: "read" },
       { book: "snyder", where: "Ch. 1, memory levels", read: "read" },
     ],
   },
   {
     slug: "similarity-scale",
     module: 1,
-    draft: true,
     order: 2,
     title: "Degrees of similarity",
     summary: "A 1–5 scale for how far a variant travels from its source — and where in a song each degree belongs.",
     minutes: 35,
     sources: [
       { book: "belkin", where: "Ch. 1, Motivic Variants; Degrees of Similarity", read: "read" },
-      { book: "schoenberg", where: "Ch. III, Treatment of the motive" },
+      { book: "schoenberg", where: "Ch. III; V, VIII (variety and tempo); XIII, XV (rhythm and recognition)", read: "read" },
     ],
   },
   {
     slug: "developing-variation",
     module: 1,
-    draft: true,
     order: 3,
     title: "Developing variation",
     summary: "Variants that grow out of variants: how a whole piece can descend from one cell without repeating it.",
     minutes: 35,
     sources: [
-      { book: "schoenberg", where: "Ch. III–IV" },
+      { book: "schoenberg", where: "Ch. III–V; XI Melody and Theme; XVI, XX (elaboration)", read: "read" },
       { book: "belkin", where: "Ch. 1, Double motives; Motivic wandering; Ornamentation", read: "read" },
     ],
   },
   {
     slug: "phrase-and-memory",
     module: 1,
-    draft: true,
     order: 4,
     title: "Phrase, grouping and memory",
     summary: "Why phrases are the size they are: the 3–5 second window, chunking, and the forces that draw boundaries.",
@@ -598,20 +594,19 @@ export const concepts: Concept[] = [
     sources: [
       { book: "snyder", where: "Ch. 3 Grouping; Ch. 4 Short-term and working memory", read: "read" },
       { book: "belkin", where: "Ch. 2, Structure of the phrase", read: "read" },
-      { book: "schoenberg", where: "Ch. II, The Phrase" },
+      { book: "schoenberg", where: "Ch. II, IV, V, XI, XII; XIV Irregular construction", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 57–60", read: "partial" },
     ],
   },
   {
     slug: "sentence-and-liquidation",
     module: 1,
-    draft: true,
     order: 5,
     title: "The sentence and liquidation",
     summary: "Present, repeat, compress, dissolve, arrive — the most useful small-scale form for riff-based music.",
     minutes: 40,
     sources: [
-      { book: "schoenberg", where: "Ch. V and VIII" },
+      { book: "schoenberg", where: "Ch. V, VIII; XII Self-criticism; XVI (sequence and liquidation); XVIII", read: "read" },
       { book: "belkin", where: "Ch. 1, Neutral lines", read: "read" },
       { book: "caplin", where: "Ch. 2 The Sentence; Ch. 3 The Period", read: "read" },
     ],
@@ -627,6 +622,7 @@ export const concepts: Concept[] = [
       { book: "belkin", where: "Ch. 3 Singing", read: "read" },
       { book: "moore03", where: "Ch. 3 (Griffiths): verbal space", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 64–66", read: "partial" },
+      { book: "schoenberg", where: "Ch. XI (voice registers, singable melody)", read: "read" },
     ],
   },
   {
@@ -803,7 +799,8 @@ export const concepts: Concept[] = [
     summary: "Rate a contrast 1–10 by how many dimensions change, how much and how fast — then choose the route: cut, ladder, turning point or cross-cut. Plus same words in two settings, and the formal parenthesis.",
     minutes: 40,
     sources: [
-      { book: "moore03", where: "Ch. 8 (Moore), Ch. 9 (Covach)", read: "read" },{ book: "belkin", where: "Ch. 11 Contrasting; Ch. 12 Connecting", read: "read" }],
+      { book: "moore03", where: "Ch. 8 (Moore), Ch. 9 (Covach)", read: "read" },{ book: "belkin", where: "Ch. 11 Contrasting; Ch. 12 Connecting", read: "read" },
+      { book: "schoenberg", where: "Ch. XIII (contrasting middle); XVIII (transition)", read: "read" }],
   },
   {
     slug: "tight-and-loose",
@@ -812,7 +809,7 @@ export const concepts: Concept[] = [
     title: "Tight-knit and loose",
     summary: "Seven criteria for how stable a section feels, how transitions, later themes and development sections loosen, and the deceptive, evaded and abandoned landing that makes an arrival hard-won.",
     minutes: 40,
-    sources: [{ book: "caplin", where: "Ch. 5, 7, 9, 11–14", read: "read" }],
+    sources: [{ book: "caplin", where: "Ch. 5, 7, 9, 11–14", read: "read" }, { book: "schoenberg", where: "Ch. XVIII, XX (subordinate themes, elaboration)", read: "read" }],
   },
   {
     slug: "beginnings",
@@ -857,6 +854,7 @@ export const concepts: Concept[] = [
       { book: "belkin", where: "Ch. 17 Returning; Ch. 18 Ending; Ch. 14 Rondo", read: "read" },
       { book: "snyder", where: "Ch. 5 Closure (repetition)", read: "read" },
       { book: "caplin", where: "Ch. 7, 14, 15 (recapitulation, coda)", read: "read" },
+      { book: "schoenberg", where: "Ch. XVIII–XX (coda, recapitulation)", read: "read" },
     ],
   },
   {
@@ -1009,7 +1007,7 @@ export const modules: Module[] = [
     number: 1,
     title: "Material & identity",
     weeks: "Foundation",
-    focus: "Motive, variation, phrase, memory, the sentence, the vocal line",
+    focus: "Motive and the groove as motive, variation and how much a passage can take, melody vs. theme, the tendency of the smallest notes, phrase and memory, odd lengths, the sentence and liquidation, the vocal line",
     tool: "Motif bank & family tree",
     available: true,
   },
@@ -1076,6 +1074,36 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "Character as a design starting point: the accompaniment pattern sets the character before the melody; character pairs for contrasting sections (lyrical–rhythmic, melodious–étude-like, grazioso–energico, melancholy–gay); a story, poem or film as the stimulus for a piece",
+    source: "Schoenberg ch. X, XV",
+    module: 3,
+  },
+  {
+    idea: "A variation set built from a skeleton: strip the riff to its main notes, derive one 'motive of variation' per variation and keep it consistent; variations in different keys, tempos and characters; a set that builds to a series of climaxes",
+    source: "Schoenberg ch. XVII",
+    module: 4,
+  },
+  {
+    idea: "A modulating middle section from one pattern: pattern-and-sequence options from one opening (motive-forms reordered abac, abcc, aaab), an episode that settles somewhere distant, a 'return in the wrong key', dwelling on the wrong dominant",
+    source: "Schoenberg ch. XVI",
+    module: 4,
+  },
+  {
+    idea: "A retransition that forecasts the return: the main motive augmented or rhythmically changed until it turns out to be the theme's first notes; a long dominant pedal as the climax of the whole piece",
+    source: "Schoenberg ch. XVIII",
+    module: 4,
+  },
+  {
+    idea: "Combining a motive with itself instead of varying it (canon, inversion, two forms at once) as a second way to develop; imitation between instruments inside a development section",
+    source: "Schoenberg ch. IX, XV",
+    module: 3,
+  },
+  {
+    idea: "After the return: episodes that neither modulate nor cadence, codettas that get shorter, a written-out slow-down, and an ending deliberately left open so the track runs into the next one",
+    source: "Schoenberg ch. XVI",
+    module: 7,
+  },
   {
     idea: "Hybrid phrase types between sentence and period (antecedent + continuation, compound basic idea + continuation...) as a design spectrum for riff phrases: drive vs. repose",
     source: "Caplin ch. 4",

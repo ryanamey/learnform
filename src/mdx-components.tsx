@@ -8,6 +8,7 @@ import { Mermaid } from "@/components/content/mermaid";
 import { Aside, ApplyIt, Exercise, KeyIdea, ListenFor, ListenerSide, Source, Steps } from "@/components/content/blocks";
 import { FrameCycleLab, MeterLab, TimeFeelLab } from "@/components/audio/meter-labs";
 import { LayersLab, SoundBoxLab } from "@/components/audio/layer-labs";
+import { ApproachLab, FunctionLab } from "@/components/audio/function-labs";
 import { DurationLab, GesturalLab, HypermeterLab, MeterGoalLab, StrataLab, TimeModesLab } from "@/components/audio/time-labs";
 import { EndingLab, FormPlanner, PunctuationLab, SectionLab, TransitionLab, VariationGroupsLab } from "@/components/audio/arch-labs";
 import { ClimaxShapes, CueLab, GrooveLab, ProcessLab, TensionLab } from "@/components/audio/energy-labs";
@@ -48,6 +49,8 @@ const components: MDXComponents = {
   MeterGoalLab,
   LayersLab,
   SoundBoxLab,
+  FunctionLab,
+  ApproachLab,
 };
 
 export function useMDXComponents(): MDXComponents {

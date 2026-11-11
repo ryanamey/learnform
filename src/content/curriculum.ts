@@ -166,10 +166,10 @@ export const books: Book[] = [
     title: "Analyzing Classical Form",
     author: "William E. Caplin",
     kind: "book",
-    verdict: "reference",
-    copy: "Full textbook (759 pp.)",
-    why: "Read only the formal-function chapters (beginning, middle, ending, before-the-beginning, after-the-end).",
-    modules: [3],
+    verdict: "core",
+    copy: "Full textbook (759 pp.); read: all theory sections; score-example lists and composition exercises skimmed",
+    why: "The theory of formal functions: what makes music sound like a beginning, middle or end; tight-knit vs. loose; how cadences fail and succeed; introductions, codas and returns.",
+    modules: [1, 4],
   },
   {
     id: "gttm",
@@ -613,7 +613,7 @@ export const concepts: Concept[] = [
     sources: [
       { book: "schoenberg", where: "Ch. V and VIII" },
       { book: "belkin", where: "Ch. 1, Neutral lines", read: "read" },
-      { book: "caplin", where: "Sentence; presentation / continuation (terms only — not yet read)", read: "unread" },
+      { book: "caplin", where: "Ch. 2 The Sentence; Ch. 3 The Period", read: "read" },
     ],
   },
   {
@@ -773,9 +773,18 @@ export const concepts: Concept[] = [
     ],
   },
   {
-    slug: "punctuation-degrees",
+    slug: "formal-functions",
     module: 4,
     order: 1,
+    title: "Formal functions: beginning, middle, end",
+    summary: "Every passage has a job in time: before-the-beginning, beginning, middle, end, after-the-end. Type vs. function, starting in the middle, hearing a passage differently afterwards, and analysing songs that fit no type.",
+    minutes: 40,
+    sources: [{ book: "caplin", where: "Ch. 2–5, 10, 12, 14–15", read: "read" }],
+  },
+  {
+    slug: "punctuation-degrees",
+    module: 4,
+    order: 2,
     title: "Degrees of punctuation",
     summary: "A 1–10 scale for how strongly a phrase or section ends, why most seams should say “yes, but…”, and how loops and question-and-answer periods close.",
     minutes: 30,
@@ -783,12 +792,13 @@ export const concepts: Concept[] = [
       { book: "belkin", where: "Ch. 5 Punctuating; Ch. 18 Ending", read: "read" },
       { book: "snyder", where: "Ch. 5 Closure", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 85–89; Ch. 11", read: "partial" },
+      { book: "caplin", where: "Ch. 3, 5, 11 (end vs. stop, cadence vs. codetta)", read: "read" },
     ],
   },
   {
     slug: "contrast-and-transition",
     module: 4,
-    order: 2,
+    order: 3,
     title: "Contrast and transition",
     summary: "Rate a contrast 1–10 by how many dimensions change, how much and how fast — then choose the route: cut, ladder, turning point or cross-cut. Plus same words in two settings, and the formal parenthesis.",
     minutes: 40,
@@ -796,18 +806,30 @@ export const concepts: Concept[] = [
       { book: "moore03", where: "Ch. 8 (Moore), Ch. 9 (Covach)", read: "read" },{ book: "belkin", where: "Ch. 11 Contrasting; Ch. 12 Connecting", read: "read" }],
   },
   {
+    slug: "tight-and-loose",
+    module: 4,
+    order: 4,
+    title: "Tight-knit and loose",
+    summary: "Seven criteria for how stable a section feels, how transitions, later themes and development sections loosen, and the deceptive, evaded and abandoned landing that makes an arrival hard-won.",
+    minutes: 40,
+    sources: [{ book: "caplin", where: "Ch. 5, 7, 9, 11–14", read: "read" }],
+  },
+  {
     slug: "beginnings",
     module: 4,
-    order: 3,
+    order: 5,
     title: "Beginnings and introductions",
     summary: "Grab attention, state a character, leave a question open. What an intro must promise and what it must not do.",
     minutes: 25,
-    sources: [{ book: "belkin", where: "Ch. 15 Beginning", read: "read" }],
+    sources: [
+      { book: "belkin", where: "Ch. 15 Beginning", read: "read" },
+      { book: "caplin", where: "Ch. 5, 10, 16 (introductions)", read: "read" },
+    ],
   },
   {
     slug: "exploring-and-anomalies",
     module: 4,
-    order: 4,
+    order: 6,
     title: "Exploring: instability, interruption, anomaly",
     summary: "How known material is developed: unstable phrasing, interruptions, alternation — and the planted anomaly that pays off minutes later.",
     minutes: 35,
@@ -816,7 +838,7 @@ export const concepts: Concept[] = [
   {
     slug: "riff-cycles-as-variations",
     module: 4,
-    order: 5,
+    order: 7,
     title: "Riff cycles as variations",
     summary: "A repeated riff is a theme with variations: group the cycles, move the peak, displace or exchange gestures, and let the last group break the pattern.",
     minutes: 30,
@@ -826,7 +848,7 @@ export const concepts: Concept[] = [
   {
     slug: "returning-and-ending",
     module: 4,
-    order: 6,
+    order: 8,
     title: "Returning and ending",
     summary: "Returns that are never the same, the thwarted return, and the three endings: climactic, fade-out, rounding-off.",
     minutes: 35,
@@ -834,12 +856,13 @@ export const concepts: Concept[] = [
       { book: "moore03", where: "Ch. 9 (Covach)", read: "read" },
       { book: "belkin", where: "Ch. 17 Returning; Ch. 18 Ending; Ch. 14 Rondo", read: "read" },
       { book: "snyder", where: "Ch. 5 Closure (repetition)", read: "read" },
+      { book: "caplin", where: "Ch. 7, 14, 15 (recapitulation, coda)", read: "read" },
     ],
   },
   {
     slug: "form-in-memory",
     module: 4,
-    order: 7,
+    order: 9,
     title: "How a form is remembered",
     summary: "Sections as multiparametric change, primary vs. secondary parameters, remembered time, hierarchy vs. lists, and music that defeats memory on purpose.",
     minutes: 40,
@@ -848,7 +871,7 @@ export const concepts: Concept[] = [
   {
     slug: "kinds-of-time",
     module: 4,
-    order: 8,
+    order: 10,
     title: "Kinds of musical time",
     summary: "Linear vs. nonlinear, and five kinds of time: goal-directed, nondirected, multiply-directed, moment and vertical — on different levels of one piece.",
     minutes: 35,
@@ -857,7 +880,7 @@ export const concepts: Concept[] = [
   {
     slug: "gestural-time",
     module: 4,
-    order: 9,
+    order: 11,
     title: "Gestural time: endings in the wrong place",
     summary: "Ending as process vs. profile, starting with an ending, three endings and a climax prepared from elsewhere, a problem stated at the start.",
     minutes: 30,
@@ -866,7 +889,7 @@ export const concepts: Concept[] = [
   {
     slug: "moment-form",
     module: 4,
-    order: 10,
+    order: 12,
     title: "Moment form and strata",
     summary: "Self-contained blocks, start/stop instead of begin/end, unprepared returns, proportions, expandable moments — and stratification, interlock, synthesis.",
     minutes: 40,
@@ -876,7 +899,7 @@ export const concepts: Concept[] = [
   {
     slug: "time-and-proportion",
     module: 4,
-    order: 11,
+    order: 13,
     title: "How long it feels: time, information, proportion",
     summary: "Information, meter and tempo as three clocks; why repeats shrink and goals stretch time; what golden sections can and can't do.",
     minutes: 35,
@@ -888,7 +911,7 @@ export const concepts: Concept[] = [
   {
     slug: "form-design",
     module: 4,
-    order: 12,
+    order: 14,
     title: "Designing the whole",
     summary: "Return × climax as a design space, through-composed types, forms for a song about change (arch, bolero, medley), the coordination principle, a sketching method and a plan checker.",
     minutes: 45,
@@ -1010,7 +1033,7 @@ export const modules: Module[] = [
     number: 4,
     title: "Large-scale architecture & time",
     weeks: "Core · large scale",
-    focus: "Punctuation, contrast and transition, beginnings, exploring, riff cycles as variations, returning and ending, how a form is remembered, kinds of musical time, gestural time, moment form and strata, time and proportion, the whole design",
+    focus: "Formal functions, punctuation, contrast and transition, tight-knit and loose, beginnings, exploring, riff cycles as variations, returning and ending, how a form is remembered, kinds of musical time, gestural time, moment form and strata, time and proportion, the whole design",
     tool: "Form plan check",
     available: true,
   },
@@ -1053,6 +1076,31 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "Hybrid phrase types between sentence and period (antecedent + continuation, compound basic idea + continuation...) as a design spectrum for riff phrases: drive vs. repose",
+    source: "Caplin ch. 4",
+    module: 1,
+  },
+  {
+    idea: "Two-part form without a return vs. a rounded form with one: why a riff that recurs across a long song is better framed in units that don't restate it themselves",
+    source: "Caplin ch. 8, 17 (small binary, variation themes)",
+    module: 4,
+  },
+  {
+    idea: "A long song as a variation set on one riff: ornament, then keep only the harmony, a mode shift, a slow variation, a fast final one; complexity rising across the set",
+    source: "Caplin ch. 17",
+    module: 4,
+  },
+  {
+    idea: "Band roles borrowed from the concerto: who frames the piece, who carries the key changes, who gets the solo cadenza; the soloist gets ideas the band never played",
+    source: "Caplin ch. 20",
+    module: 3,
+  },
+  {
+    idea: "Position in the album decides the form: forward-driving openers, lighter closers, simpler slow tracks, a track that ends on the dominant and runs into the next",
+    source: "Caplin ch. 10, 17",
+    module: 7,
+  },
   {
     idea: "Finding the tonic of a riff or loop: persistence (longest), laterality (starts or ends the pattern), emphasis (accent, timbre, density); two tonics in one song, one per section, with a moment of ambiguity as they swap",
     source: "Moore, Song Means ch. 3",

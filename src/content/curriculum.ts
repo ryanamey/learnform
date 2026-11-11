@@ -67,9 +67,9 @@ export const books: Book[] = [
     author: "Ken Stephenson",
     kind: "book",
     verdict: "core",
-    copy: "Full book",
-    why: "The norms of rock phrase, harmony and form — you need them precisely in order to break them on purpose.",
-    modules: [2, 4],
+    copy: "Full book; PDF in your resources folder",
+    why: "The statistical norms of rock: where vocal phrases sit in the four-bar unit, open and misplaced cadences, why rock songs don't close (and why the fade-out fits), the cues that mark sections, and the four standard forms including compound binary. Read: ch. 1, 3, 6 in full; ch. 2, 4, 5, 7 for their main arguments.",
+    modules: [1, 4],
   },
   {
     id: "biamonte",
@@ -630,13 +630,14 @@ export const concepts: Concept[] = [
     module: 1,
     order: 6,
     title: "The vocal line: words shape the motive",
-    summary: "For singers: stress, speech contour and vowels decide your melody before you do; verbal space and where the words sit.",
+    summary: "For singers: stress, speech contour and vowels decide your melody before you do; verbal space and where the words sit; where the phrase lands in the four-bar unit.",
     minutes: 30,
     sources: [
       { book: "belkin", where: "Ch. 3 Singing", read: "read" },
       { book: "moore03", where: "Ch. 3 (Griffiths): verbal space", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 64–66", read: "partial" },
       { book: "schoenberg", where: "Ch. XI (voice registers, singable melody)", read: "read" },
+      { book: "stephenson", where: "Ch. 1 Phrase rhythm (five models)", read: "read" },
     ],
   },
   {
@@ -823,6 +824,7 @@ export const concepts: Concept[] = [
       { book: "snyder", where: "Ch. 5 Closure", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 85–89; Ch. 11", read: "partial" },
       { book: "caplin", where: "Ch. 3, 5, 11 (end vs. stop, cadence vs. codetta)", read: "read" },
+      { book: "stephenson", where: "Ch. 3 Cadences; Ch. 1, 5", read: "read" },
     ],
   },
   {
@@ -855,6 +857,8 @@ export const concepts: Concept[] = [
     sources: [
       { book: "belkin", where: "Ch. 15 Beginning", read: "read" },
       { book: "caplin", where: "Ch. 5, 10, 16 (introductions)", read: "read" },
+      { book: "stephenson", where: "Ch. 6 (cues for section boundaries)", read: "read" },
+      { book: "stephenson", where: "Ch. 6 (ambiguous intros)", read: "read" },
     ],
   },
   {
@@ -889,6 +893,7 @@ export const concepts: Concept[] = [
       { book: "snyder", where: "Ch. 5 Closure (repetition)", read: "read" },
       { book: "caplin", where: "Ch. 7, 14, 15 (recapitulation, coda)", read: "read" },
       { book: "schoenberg", where: "Ch. XVIII–XX (coda, recapitulation)", read: "read" },
+      { book: "stephenson", where: "Ch. 1, 3 (fade-out); Ch. 7 (\"Eclipse\")", read: "read" },
     ],
   },
   {
@@ -907,7 +912,10 @@ export const concepts: Concept[] = [
     title: "Kinds of musical time",
     summary: "Linear vs. nonlinear, and five kinds of time: goal-directed, nondirected, multiply-directed, moment and vertical — on different levels of one piece.",
     minutes: 35,
-    sources: [{ book: "kramer", where: "Ch. 1–2, 6, 8, 12", read: "read" }],
+    sources: [
+      { book: "kramer", where: "Ch. 1–2, 6, 8, 12", read: "read" },
+      { book: "stephenson", where: "Ch. 1, 3 (cyclic phrase rhythm)", read: "read" },
+    ],
   },
   {
     slug: "gestural-time",
@@ -955,6 +963,7 @@ export const concepts: Concept[] = [
       { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
       { book: "kramer", where: "Ch. 2, 8, 10 (moment form, proportion)", read: "read" },
       { book: "moore12", where: "Ch. 6, pp. 174–176", read: "partial" },
+      { book: "stephenson", where: "Ch. 6 (standard forms); Ch. 7 (ELP)", read: "read" },
     ],
   },
   {
@@ -1108,6 +1117,22 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "A section-boundary checker: tick which cues change at each seam (title line, voices added, guitar rhythm, stop time, first chord) to see whether a boundary is obvious, subtle or ambiguous",
+    source: "Stephenson ch. 6",
+    module: 4,
+  },
+  {
+    idea: "The harmonic palettes of rock (major/Mixolydian, natural minor, chromatic minor) and changing palette by section, for the riff board's chord side",
+    source: "Stephenson ch. 4",
+    module: 1,
+  },
+  {
+    idea: "Key by the persistently initiating chord: in rock the chord that starts each unit is heard as home, even without cadences or a leading tone",
+    source: "Stephenson ch. 2",
+    module: 1,
+  },
+
   {
     idea: "A riff-notation tool: entering riffs as attack-point intervals plus pitches, and finding matching interval strings across sections (the Riff board could do this)",
     source: "Pieslak pp. 226–235 (after Yeston)",

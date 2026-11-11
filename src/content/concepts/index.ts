@@ -11,6 +11,7 @@ export const conceptPages: Record<string, () => Promise<{ default: ComponentType
   "how-tool-writes": () => import("./how-tool-writes.mdx"),
   "riff-board": () => import("./riff-board.mdx"),
   "metric-dissonance": () => import("./metric-dissonance.mdx"),
+  "odd-meters": () => import("./odd-meters.mdx"),
   "frame-and-cycle": () => import("./frame-and-cycle.mdx"),
   "dissonance-as-form": () => import("./dissonance-as-form.mdx"),
   "metric-processes": () => import("./metric-processes.mdx"),

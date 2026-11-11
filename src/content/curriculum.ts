@@ -79,7 +79,7 @@ export const books: Book[] = [
     kind: "article",
     verdict: "core",
     copy: "Article (Music Theory Online, 2014)",
-    why: "The only corpus study that includes Tool (39 songs): Tool is the most metrically dissonant band studied, and its choruses are often less stable than its verses. Read first.",
+    why: "The only corpus study that includes Tool (39 songs): Tool is the most metrically dissonant band studied, 16 of its songs are dissonant throughout, and its choruses are more often less stable than its verses. Also the clearest map of what metric dissonance does at the start, joins and ends of sections. Read in full; the example charts are on the journal's website.",
     modules: [2],
   },
   {
@@ -658,7 +658,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "krebs", where: "Ch. 2, Metrical consonance and dissonance", read: "partial" },
-      { book: "biamonte", where: "§1–2, layers and dissonance types", read: "summary" },
+      { book: "biamonte", where: "§1–2 levels and types; §7.10 Free Will; §8.8 which layers carry it", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 66–68", read: "partial" },
     ],
   },
@@ -680,21 +680,21 @@ export const concepts: Concept[] = [
     module: 2,
     order: 3,
     title: "Metric dissonance as a section marker",
-    summary: "Initiating fake-outs, linking bars, cadential hemiolas, loose sections vs. tight ones — and Tool's unusual loose choruses.",
-    minutes: 30,
-    draft: true,
-    sources: [{ book: "biamonte", where: "§3–4, formal functions and corpus (incl. 39 Tool songs)", read: "summary" }],
+    summary: "Initiating fake-outs, linking bars, cadential hemiolas, loose sections vs. tight ones, the bridge as development — and Tool's corpus profile: dissonance as the norm, loose choruses.",
+    minutes: 35,
+    sources: [{ book: "biamonte", where: "§7 formal functions; §8 corpus studies, Ex. 21 (39 Tool songs)", read: "read" }],
   },
   {
     slug: "time-feel",
     module: 2,
     order: 4,
     title: "Time feel and re-orchestration",
-    summary: "Half, normal, double, quarter time; cymbals and riff types that clarify or contradict; re-grooving. New sections without new notes.",
+    summary: "Half, normal, double, quarter time; cymbals and riff types that clarify or contradict; the backbeat as consonance and where the snare leans; the clave family; re-grooving.",
     minutes: 30,
     draft: true,
     sources: [
       { book: "garza", where: "whole article", read: "summary" },
+      { book: "biamonte", where: "§6 the backbeat, clave rhythms", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 52, 66–67", read: "partial" },
     ],
   },
@@ -1015,7 +1015,7 @@ export const modules: Module[] = [
     number: 2,
     title: "Cycles, meter & time feel",
     weeks: "Core",
-    focus: "Frame vs. cycle, metric dissonance as section marker, time feel and re-orchestration, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
+    focus: "Grouping and displacement, rhythm vs. meter vs. hypermeter, making changing meters legible, frame vs. cycle, metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
     tool: "Meter lab",
     available: true,
   },
@@ -1074,6 +1074,21 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "A metric profile of your own songs: tabulate each finished track by dissonance type and place (initiating, link, hemiola, dissonant middle, throughout; tight or loose chorus) and compare it with Tool's chart",
+    source: "Biamonte §8",
+    module: 2,
+  },
+  {
+    idea: "Metric modulation through a cadential hemiola: regroup the beat into threes before a section end so that the new beat becomes the next section's tempo (a built-in slow-down or speed-up)",
+    source: "Biamonte §7.5",
+    module: 2,
+  },
+  {
+    idea: "Hypermetric dissonance as its own tool: three-bar phrases against an irregular intro, a bridge shortened to eleven bars by an elision, and the binary default that makes them noticeable",
+    source: "Biamonte §5",
+    module: 2,
+  },
   {
     idea: "Character as a design starting point: the accompaniment pattern sets the character before the melody; character pairs for contrasting sections (lyrical–rhythmic, melodious–étude-like, grazioso–energico, melancholy–gay); a story, poem or film as the stimulus for a piece",
     source: "Schoenberg ch. X, XV",

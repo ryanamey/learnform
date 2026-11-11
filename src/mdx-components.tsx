@@ -10,6 +10,7 @@ import { FrameCycleLab, MeterLab, TimeFeelLab } from "@/components/audio/meter-l
 import { LayersLab, SoundBoxLab } from "@/components/audio/layer-labs";
 import { ApproachLab, FunctionLab } from "@/components/audio/function-labs";
 import { AccompanimentMotiveLab, SmallestNotesLab } from "@/components/audio/motive-labs";
+import { BackbeatLab, LegibleMeterLab } from "@/components/audio/backbeat-labs";
 import { DurationLab, GesturalLab, HypermeterLab, MeterGoalLab, StrataLab, TimeModesLab } from "@/components/audio/time-labs";
 import { EndingLab, FormPlanner, PunctuationLab, SectionLab, TransitionLab, VariationGroupsLab } from "@/components/audio/arch-labs";
 import { ClimaxShapes, CueLab, GrooveLab, ProcessLab, TensionLab } from "@/components/audio/energy-labs";
@@ -54,6 +55,8 @@ const components: MDXComponents = {
   ApproachLab,
   SmallestNotesLab,
   AccompanimentMotiveLab,
+  BackbeatLab,
+  LegibleMeterLab,
 };
 
 export function useMDXComponents(): MDXComponents {

@@ -388,20 +388,32 @@ export const books: Book[] = [
     url: "https://www.mtosmt.org/issues/mto.21.27.1/mto.21.27.1.garza.pdf",
   },
   {
-    id: "osborn13",
+    id: "osborn10",
     order: 33,
+    title: "Beyond Verse and Chorus: Experimental Formal Structures in Post-Millennial Rock Music (PhD diss., University of Washington, 2010)",
+    author: "Brad Osborn",
+    kind: "book",
+    verdict: "core",
+    copy: "PDF and nine audio examples in your resources folder",
+    why: "The fuller theory behind the 2013 article: main vs. connective sections, the retrospective prechorus, section groups, four ending types, the detailed “Pushit” and “Hooker with a Penis” charts, and interviews with two bands about why they end with new material. Read: ch. 2, the Tool and other analyses of ch. 3, and the interviews; ch. 1 and 4 not yet.",
+    modules: [3, 4],
+    url: "https://digital.lib.washington.edu/researchworks/handle/1773/15910",
+  },
+  {
+    id: "osborn13",
+    order: 34,
     title: "Subverting the Verse/Chorus Paradigm: Terminally Climactic Forms in Recent Rock Music (Music Theory Spectrum 35/1, 2013)",
     author: "Brad Osborn",
     kind: "article",
     verdict: "core",
-    copy: "Free author PDF",
-    why: "Forms whose peak is a single new section at the end — with Tool's “Pushit” as the extended example.",
+    copy: "Author's PDF in your resources folder",
+    why: "Forms whose peak is a single new section at the end, the climactic ladder, sectional vs. moment climax, four ways to end a song — with Tool's “Pushit” as the extended example. Read in full.",
     modules: [3, 4],
     url: "https://kuscholarworks.ku.edu/bitstream/handle/1808/19147/OSBORN_paradigm2013_AFD.pdf",
   },
   {
     id: "osborn11",
-    order: 42,
+    order: 35,
     title: "Understanding Through-Composition in Post-Rock, Math-Metal, and other Post-Millennial Rock Genres (Music Theory Online 17/3, 2011)",
     author: "Brad Osborn",
     kind: "article",
@@ -413,7 +425,7 @@ export const books: Book[] = [
   },
   {
     id: "lavengood20",
-    order: 45,
+    order: 36,
     title: "The Cultural Significance of Timbre Analysis: A Case Study in 1980s Pop Music, Texture, and Narrative (Music Theory Online 26/3, 2020)",
     author: "Megan L. Lavengood",
     kind: "article",
@@ -425,7 +437,7 @@ export const books: Book[] = [
   },
   {
     id: "moore03",
-    order: 44,
+    order: 37,
     title: "Analyzing Popular Music (ed. Allan F. Moore, Cambridge University Press, 2003)",
     author: "Allan F. Moore (ed.); Walser, Griffiths, Stilwell, Hawkins, Bowman, Krims, Moore, Covach, Kennett, Stokes",
     short: "Moore (ed.)",
@@ -438,7 +450,7 @@ export const books: Book[] = [
   },
   {
     id: "moore12",
-    order: 43,
+    order: 38,
     title: "Song Means: Analysing and Interpreting Recorded Popular Song",
     author: "Allan F. Moore",
     kind: "book",
@@ -450,7 +462,7 @@ export const books: Book[] = [
   },
   {
     id: "schwitzgebel",
-    order: 34,
+    order: 39,
     title: "“Cueing” Your Playlist: Texture and Teleology in Post-Millennial Pop (MTO 31.1, 2025)",
     author: "Emily Schwitzgebel",
     kind: "article",
@@ -462,7 +474,7 @@ export const books: Book[] = [
   },
   {
     id: "summach",
-    order: 35,
+    order: 40,
     title: "The Structure, Function, and Genesis of the Prechorus (MTO 17.3, 2011)",
     author: "Jay Summach",
     kind: "article",
@@ -474,7 +486,7 @@ export const books: Book[] = [
   },
   {
     id: "farbood",
-    order: 36,
+    order: 41,
     title: "A Parametric, Temporal Model of Musical Tension (Music Perception 29/4, 2012)",
     author: "Morwaread Farbood",
     kind: "article",
@@ -486,7 +498,7 @@ export const books: Book[] = [
   },
   {
     id: "margulis",
-    order: 37,
+    order: 42,
     title: "On Repeat: How Music Plays the Mind (OUP 2014) — via Albrecht's review, MTO 20.4",
     author: "Elizabeth Hellmuth Margulis",
     kind: "book",
@@ -498,7 +510,7 @@ export const books: Book[] = [
   },
   {
     id: "lalitte",
-    order: 38,
+    order: 43,
     title: "Music in the Moment? Revisiting the Effect of Large-Scale Structures (Lalitte & Bigand 2006; with Cook 1987)",
     author: "Philippe Lalitte & Emmanuel Bigand",
     kind: "article",
@@ -510,7 +522,7 @@ export const books: Book[] = [
   },
   {
     id: "hove",
-    order: 39,
+    order: 44,
     title: "Brain Network Reconfiguration and Perceptual Decoupling During an Absorptive State of Consciousness (Cerebral Cortex 26/7, 2016)",
     author: "Michael J. Hove et al.",
     kind: "article",
@@ -522,7 +534,7 @@ export const books: Book[] = [
   },
   {
     id: "salimpoor",
-    order: 40,
+    order: 45,
     title: "Anatomically Distinct Dopamine Release During Anticipation and Experience of Peak Emotion to Music (Nature Neuroscience 14, 2011)",
     author: "Valorie Salimpoor et al.",
     kind: "article",
@@ -534,7 +546,7 @@ export const books: Book[] = [
   },
   {
     id: "vuust-witek",
-    order: 41,
+    order: 46,
     title: "Rhythmic Complexity and Predictive Coding (Frontiers in Psychology 5, 2014)",
     author: "Peter Vuust & Maria Witek",
     kind: "article",
@@ -648,7 +660,10 @@ export const concepts: Concept[] = [
     summary: "Jam, record everything, keep the jewels, name and count the riffs, simplify then rebuild, vocals last.",
     minutes: 20,
     draft: true,
-    sources: [{ book: "tool-interviews", where: "Louder/Prog 2023; Blabbermouth 2024; Guitar World 2024 & 2025", read: "read" }],
+    sources: [
+      { book: "tool-interviews", where: "Louder/Prog 2023; Blabbermouth 2024; Guitar World 2024 & 2025", read: "read" },
+      { book: "osborn10", where: "Ch. 3 notes on Carey, Chancellor, Jones", read: "read" },
+    ],
   },
   {
     slug: "riff-board",
@@ -781,7 +796,8 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "moore03", where: "Ch. 6 (Bowman): additive build", read: "read" },
-      { book: "osborn13", where: "terminally climactic forms; “Pushit”", read: "summary" },
+      { book: "osborn13", where: "whole article: terminally climactic forms, ladder, “Pushit”", read: "read" },
+      { book: "osborn10", where: "Ch. 2–3 (ladder, “Pushit”, “Hooker with a Penis”); App. D interviews", read: "read" },
       { book: "schwitzgebel", where: "climax strategies", read: "summary" },
       { book: "belkin", where: "Ch. 18 Ending", read: "read" },
       { book: "moore12", where: "Ch. 3 p. 85; Ch. 6 pp. 175–176", read: "partial" },
@@ -810,7 +826,10 @@ export const concepts: Concept[] = [
     title: "Formal functions: beginning, middle, end",
     summary: "Every passage has a job in time: before-the-beginning, beginning, middle, end, after-the-end. Type vs. function, starting in the middle, hearing a passage differently afterwards, and analysing songs that fit no type.",
     minutes: 40,
-    sources: [{ book: "caplin", where: "Ch. 2–5, 10, 12, 14–15", read: "read" }],
+    sources: [
+      { book: "caplin", where: "Ch. 2–5, 10, 12, 14–15", read: "read" },
+      { book: "osborn10", where: "Ch. 2 (retrospective prechorus, independent sections)", read: "read" },
+    ],
   },
   {
     slug: "punctuation-degrees",
@@ -894,6 +913,7 @@ export const concepts: Concept[] = [
       { book: "caplin", where: "Ch. 7, 14, 15 (recapitulation, coda)", read: "read" },
       { book: "schoenberg", where: "Ch. XVIII–XX (coda, recapitulation)", read: "read" },
       { book: "stephenson", where: "Ch. 1, 3 (fade-out); Ch. 7 (\"Eclipse\")", read: "read" },
+      { book: "osborn13", where: "Ex. 1 (four ending types)", read: "read" },
     ],
   },
   {
@@ -958,7 +978,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "osborn11", where: "four through-composed types", read: "summary" },
-      { book: "osborn13", where: "terminal climax", read: "summary" },
+      { book: "osborn13", where: "terminal climax", read: "read" },
       { book: "belkin", where: "Conclusion; Appendix A Sketching", read: "read" },
       { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
       { book: "kramer", where: "Ch. 2, 8, 10 (moment form, proportion)", read: "read" },
@@ -1117,6 +1137,22 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "A ladder planner: for each section, set hook repetitions, highest note, guitar technique and cymbal, and check that each parameter climbs to the intended peak",
+    source: "Osborn 2013 pp. 9–16; 2010 Ch. 2",
+    module: 3,
+  },
+  {
+    idea: "The retrospective prechorus as a writing exercise: a false chorus in one mode of a collection, the real chorus saved for the plainest mode",
+    source: "Osborn 2010 Ch. 2",
+    module: 4,
+  },
+  {
+    idea: "Bass reharmonisation under a fixed riff as a bridge device (Chancellor) — a lab that keeps the guitar riff and lets the bass move",
+    source: "Osborn 2013 n. 70; 2010 Ch. 3",
+    module: 4,
+  },
+
   {
     idea: "A section-boundary checker: tick which cues change at each seam (title line, voices added, guitar rhythm, stop time, first chord) to see whether a boundary is obvious, subtle or ambiguous",
     source: "Stephenson ch. 6",

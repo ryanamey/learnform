@@ -13,6 +13,7 @@ export const conceptPages: Record<string, () => Promise<{ default: ComponentType
   "metric-dissonance": () => import("./metric-dissonance.mdx"),
   "frame-and-cycle": () => import("./frame-and-cycle.mdx"),
   "dissonance-as-form": () => import("./dissonance-as-form.mdx"),
+  "metric-processes": () => import("./metric-processes.mdx"),
   "time-feel": () => import("./time-feel.mdx"),
   "building-tension": () => import("./building-tension.mdx"),
   "cues-and-arrivals": () => import("./cues-and-arrivals.mdx"),

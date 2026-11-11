@@ -244,9 +244,10 @@ export const books: Book[] = [
     title: "Fantasy Pieces: Metrical Dissonance in the Music of Robert Schumann",
     author: "Harald Krebs",
     kind: "book",
-    verdict: "selective",
+    verdict: "core",
     copy: "Full book",
-    why: "The grouping vs. displacement dissonance vocabulary Biamonte uses for rock — how to contradict the meter without undermining it.",
+    why: "The grouping vs. displacement dissonance vocabulary Biamonte adapts for rock, plus what to do with it over a whole piece: preparing, tightening, submerging and resolving a dissonance, and tying it to form. Ch. 2, 4, 6 and 7 are the theory; the rest is Schumann analysis.",
+    readFirst: "Ch. 2, 4, 6, 7 and the glossary",
     modules: [2],
   },
   {
@@ -653,11 +654,10 @@ export const concepts: Concept[] = [
     module: 2,
     order: 1,
     title: "Grouping and displacement",
-    summary: "The two ways layers of pulse can disagree, and the rock precedents for superimposed meters: the vocabulary behind every odd-meter riff over a steady beat.",
-    minutes: 35,
-    draft: true,
+    summary: "The two ways layers of pulse can disagree, how strong a dissonance is, subliminal and indirect dissonance, odd meters as consonant, making changing meters legible, and the rock precedents for superimposed meters.",
+    minutes: 45,
     sources: [
-      { book: "krebs", where: "Ch. 2, Metrical consonance and dissonance", read: "partial" },
+      { book: "krebs", where: "Ch. 2 Metrical consonance and dissonance (definitions and taxonomy)", read: "read" },
       { book: "biamonte", where: "§1–2 levels and types; §7.10 Free Will; §8.8 which layers carry it", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 66–68", read: "partial" },
     ],
@@ -685,9 +685,18 @@ export const concepts: Concept[] = [
     sources: [{ book: "biamonte", where: "§7 formal functions; §8 corpus studies, Ex. 21 (39 Tool songs)", read: "read" }],
   },
   {
-    slug: "time-feel",
+    slug: "metric-processes",
     module: 2,
     order: 4,
+    title: "Metrical processes: the meter has a plot",
+    summary: "Metrical progressions and maps, C–D–C narratives, preparing a dissonance, tightening and loosening, augmentation, submerging, corrective accents and gradual resolution; meter tied to form and text; playing it as a band.",
+    minutes: 45,
+    sources: [{ book: "krebs", where: "Ch. 4 Progressions and processes; Ch. 5 Revisions; Ch. 6 Form, pitch and text; Ch. 7 Performing", read: "read" }],
+  },
+  {
+    slug: "time-feel",
+    module: 2,
+    order: 5,
     title: "Time feel and re-orchestration",
     summary: "Half, normal, double, quarter time; cymbals and riff types that clarify or contradict; the backbeat as consonance and where the snare leans; the clave family; re-grooving.",
     minutes: 30,
@@ -701,7 +710,7 @@ export const concepts: Concept[] = [
   {
     slug: "accent-and-hypermeter",
     module: 2,
-    order: 5,
+    order: 6,
     title: "Accent and hypermeter",
     summary: "Stress, rhythmic and metric accent; hypermeasures that stretch, shrink and overlap; meter as a goal; cycles that end together; humans vs. sequencers.",
     minutes: 40,
@@ -1015,7 +1024,7 @@ export const modules: Module[] = [
     number: 2,
     title: "Cycles, meter & time feel",
     weeks: "Core",
-    focus: "Grouping and displacement, rhythm vs. meter vs. hypermeter, making changing meters legible, frame vs. cycle, metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
+    focus: "Grouping and displacement, rhythm vs. meter vs. hypermeter, subliminal dissonance, making changing meters legible, metrical processes and narratives, frame vs. cycle, metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
     tool: "Meter lab",
     available: true,
   },
@@ -1074,6 +1083,16 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "Metrical maps as a standard analysis view: dissonances listed down the side, solid/dotted lines over a bar grid, compared across songs (an editable map tool in the app)",
+    source: "Krebs ch. 4",
+    module: 2,
+  },
+  {
+    idea: "Two or three layers of meter in one player: split-hand technique translated to the kit (one limb group per layer), and assigning layers across the band so each part carries only one",
+    source: "Krebs ch. 7",
+    module: 2,
+  },
   {
     idea: "A metric profile of your own songs: tabulate each finished track by dissonance type and place (initiating, link, hemiola, dissonant middle, throughout; tight or loose chorus) and compare it with Tool's chart",
     source: "Biamonte §8",

@@ -13,6 +13,7 @@ import { AccompanimentMotiveLab, SmallestNotesLab } from "@/components/audio/mot
 import { BackbeatLab, LegibleMeterLab } from "@/components/audio/backbeat-labs";
 import { MetricProcessLab } from "@/components/audio/process-labs";
 import { NiMeterLab } from "@/components/audio/odd-meter-labs";
+import { TailLab } from "@/components/audio/tail-labs";
 import { FeelContradictionLab } from "@/components/audio/feel-labs";
 import { DurationLab, GesturalLab, HypermeterLab, MeterGoalLab, StrataLab, TimeModesLab } from "@/components/audio/time-labs";
 import { EndingLab, FormPlanner, PunctuationLab, SectionLab, TransitionLab, VariationGroupsLab } from "@/components/audio/arch-labs";
@@ -62,6 +63,7 @@ const components: MDXComponents = {
   LegibleMeterLab,
   MetricProcessLab,
   NiMeterLab,
+  TailLab,
   FeelContradictionLab,
 };
 

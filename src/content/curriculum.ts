@@ -364,8 +364,20 @@ export const books: Book[] = [
     url: "https://mtosmt.org/ojs/index.php/mto/article/view/231/20",
   },
   {
-    id: "garza",
+    id: "pieslak",
     order: 31,
+    title: "Re-casting Metal: Rhythm and Meter in the Music of Meshuggah (Music Theory Spectrum 29/2, 2007)",
+    author: "Jonathan Pieslak",
+    kind: "article",
+    verdict: "core",
+    copy: "PDF in your resources folder",
+    why: "Odd-meter riffs fitted to a square 4-bar hypermeter by lengthening or shortening one statement (tails), and why that isn't true metric dissonance; for riffs that stop looping, attack-point intervals, pattern recurrence and textural accents; transitions sized to finish a cycle; a two-part vs. three-part 'dissonant' large form. Read in full.",
+    modules: [2, 5],
+    url: "https://doi.org/10.1525/mts.2007.29.2.219",
+  },
+  {
+    id: "garza",
+    order: 32,
     title: "Transcending Time (Feels): Riff Types, Timekeeping Cymbals, and Time Feels in Contemporary Metal (MTO 27.1, 2021)",
     author: "Jose M. Garza Jr.",
     kind: "article",
@@ -377,7 +389,7 @@ export const books: Book[] = [
   },
   {
     id: "osborn13",
-    order: 32,
+    order: 33,
     title: "Subverting the Verse/Chorus Paradigm: Terminally Climactic Forms in Recent Rock Music (Music Theory Spectrum 35/1, 2013)",
     author: "Brad Osborn",
     kind: "article",
@@ -389,7 +401,7 @@ export const books: Book[] = [
   },
   {
     id: "osborn11",
-    order: 41,
+    order: 42,
     title: "Understanding Through-Composition in Post-Rock, Math-Metal, and other Post-Millennial Rock Genres (Music Theory Online 17/3, 2011)",
     author: "Brad Osborn",
     kind: "article",
@@ -401,7 +413,7 @@ export const books: Book[] = [
   },
   {
     id: "lavengood20",
-    order: 44,
+    order: 45,
     title: "The Cultural Significance of Timbre Analysis: A Case Study in 1980s Pop Music, Texture, and Narrative (Music Theory Online 26/3, 2020)",
     author: "Megan L. Lavengood",
     kind: "article",
@@ -413,7 +425,7 @@ export const books: Book[] = [
   },
   {
     id: "moore03",
-    order: 43,
+    order: 44,
     title: "Analyzing Popular Music (ed. Allan F. Moore, Cambridge University Press, 2003)",
     author: "Allan F. Moore (ed.); Walser, Griffiths, Stilwell, Hawkins, Bowman, Krims, Moore, Covach, Kennett, Stokes",
     short: "Moore (ed.)",
@@ -426,7 +438,7 @@ export const books: Book[] = [
   },
   {
     id: "moore12",
-    order: 42,
+    order: 43,
     title: "Song Means: Analysing and Interpreting Recorded Popular Song",
     author: "Allan F. Moore",
     kind: "book",
@@ -438,7 +450,7 @@ export const books: Book[] = [
   },
   {
     id: "schwitzgebel",
-    order: 33,
+    order: 34,
     title: "“Cueing” Your Playlist: Texture and Teleology in Post-Millennial Pop (MTO 31.1, 2025)",
     author: "Emily Schwitzgebel",
     kind: "article",
@@ -450,7 +462,7 @@ export const books: Book[] = [
   },
   {
     id: "summach",
-    order: 34,
+    order: 35,
     title: "The Structure, Function, and Genesis of the Prechorus (MTO 17.3, 2011)",
     author: "Jay Summach",
     kind: "article",
@@ -462,7 +474,7 @@ export const books: Book[] = [
   },
   {
     id: "farbood",
-    order: 35,
+    order: 36,
     title: "A Parametric, Temporal Model of Musical Tension (Music Perception 29/4, 2012)",
     author: "Morwaread Farbood",
     kind: "article",
@@ -474,7 +486,7 @@ export const books: Book[] = [
   },
   {
     id: "margulis",
-    order: 36,
+    order: 37,
     title: "On Repeat: How Music Plays the Mind (OUP 2014) — via Albrecht's review, MTO 20.4",
     author: "Elizabeth Hellmuth Margulis",
     kind: "book",
@@ -486,7 +498,7 @@ export const books: Book[] = [
   },
   {
     id: "lalitte",
-    order: 37,
+    order: 38,
     title: "Music in the Moment? Revisiting the Effect of Large-Scale Structures (Lalitte & Bigand 2006; with Cook 1987)",
     author: "Philippe Lalitte & Emmanuel Bigand",
     kind: "article",
@@ -498,7 +510,7 @@ export const books: Book[] = [
   },
   {
     id: "hove",
-    order: 38,
+    order: 39,
     title: "Brain Network Reconfiguration and Perceptual Decoupling During an Absorptive State of Consciousness (Cerebral Cortex 26/7, 2016)",
     author: "Michael J. Hove et al.",
     kind: "article",
@@ -510,7 +522,7 @@ export const books: Book[] = [
   },
   {
     id: "salimpoor",
-    order: 39,
+    order: 40,
     title: "Anatomically Distinct Dopamine Release During Anticipation and Experience of Peak Emotion to Music (Nature Neuroscience 14, 2011)",
     author: "Valorie Salimpoor et al.",
     kind: "article",
@@ -522,7 +534,7 @@ export const books: Book[] = [
   },
   {
     id: "vuust-witek",
-    order: 40,
+    order: 41,
     title: "Rhythmic Complexity and Predictive Coding (Frontiers in Psychology 5, 2014)",
     author: "Peter Vuust & Maria Witek",
     kind: "article",
@@ -661,6 +673,7 @@ export const concepts: Concept[] = [
       { book: "krebs", where: "Ch. 2 Metrical consonance and dissonance (definitions and taxonomy)", read: "read" },
       { book: "biamonte", where: "§1–2 levels and types; §7.10 Free Will; §8.8 which layers carry it", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 66–68", read: "partial" },
+      { book: "pieslak", where: "pp. 222–225 (fitted mixed meter vs. dissonance)", read: "read" },
     ],
   },
   {
@@ -681,6 +694,7 @@ export const concepts: Concept[] = [
     minutes: 35,
     sources: [
       { book: "lucas", where: "whole article, notes and examples (Meshuggah, obZen)", read: "read" },
+      { book: "pieslak", where: "whole article (Meshuggah to 2002; I)", read: "read" },
       { book: "tool-interviews", where: "Chancellor on putting four beats behind an odd riff", read: "read" },
     ],
   },
@@ -691,7 +705,10 @@ export const concepts: Concept[] = [
     title: "Metric dissonance as a section marker",
     summary: "Initiating fake-outs, linking bars, cadential hemiolas, loose sections vs. tight ones, the bridge as development — and Tool's corpus profile: dissonance as the norm, loose choruses.",
     minutes: 35,
-    sources: [{ book: "biamonte", where: "§7 formal functions; §8 corpus studies, Ex. 21 (39 Tool songs)", read: "read" }],
+    sources: [
+      { book: "biamonte", where: "§7 formal functions; §8 corpus studies, Ex. 21 (39 Tool songs)", read: "read" },
+      { book: "pieslak", where: "pp. 240–241 (two- vs. three-part form in I)", read: "read" },
+    ],
   },
   {
     slug: "metric-processes",
@@ -1032,7 +1049,7 @@ export const modules: Module[] = [
     number: 2,
     title: "Cycles, meter & time feel",
     weeks: "Core",
-    focus: "Grouping and displacement, odd meters as beats of 2 and 3 and the timing window, rhythm vs. meter vs. hypermeter, subliminal dissonance, making changing meters legible, metrical processes and narratives, frame vs. cycle, metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
+    focus: "Grouping and displacement, odd meters as beats of 2 and 3 and the timing window, rhythm vs. meter vs. hypermeter, subliminal dissonance, making changing meters legible, metrical processes and narratives, frame vs. cycle (cut-offs, tails and drift; riffs as attack-point streams), metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), tihai cadences",
     tool: "Meter lab",
     available: true,
   },
@@ -1092,9 +1109,30 @@ export type FoundIdea = {
 
 export const foundInReading: FoundIdea[] = [
   {
-    idea: "Tails: altering a riff's last repetition so it realigns with the frame, as an alternative to cutting it off or letting it spill over the segment edge",
-    source: "Lucas notes 5–6 (Pieslak, Capuzzo)",
+    idea: "A riff-notation tool: entering riffs as attack-point intervals plus pitches, and finding matching interval strings across sections (the Riff board could do this)",
+    source: "Pieslak pp. 226–235 (after Yeston)",
+    module: 0,
+  },
+  {
+    idea: "Hypermeter marked by other layers when the riff stops: a lead melody in long notes, a pitch change, the voice entering — a lab where the drums drop the frame and another layer picks it up",
+    source: "Pieslak pp. 228–235 (after Lester)",
     module: 2,
+  },
+  {
+    idea: "Transitions sized by arithmetic: a fill or dive whose length lets a misaligned layer finish its last statement",
+    source: "Pieslak pp. 235–240",
+    module: 4,
+  },
+  {
+    idea: "Formal dissonance: planning a long piece so one set of landmarks divides it in three and another in two",
+    source: "Pieslak pp. 240–241",
+    module: 4,
+    note: "A short note is on the Metric dissonance as a section marker page; Designing the whole could take it up as a planning option.",
+  },
+  {
+    idea: "Quotation as an opening: another band's riff stated once, then dissolved into your own language",
+    source: "Pieslak p. 241 (Anthrax, \"Time\")",
+    module: 4,
   },
   {
     idea: "Spectrograms as an analysis tool: reading kick-drum clusters and gaps to find where a riff really begins",

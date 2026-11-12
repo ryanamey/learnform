@@ -1,29 +1,48 @@
 ## What listeners actually track
 
-Morwaread Farbood built a model of how listeners feel musical tension moment to moment, tested with over 2,600 online participants and a lab group moving sliders in real time <Source book="farbood" />. The parameters were weighted by how strongly they drove tension:
+Morwaread Farbood ran two studies of felt tension <Source book="farbood" />. In the first, 2,661 people online heard short made-up examples, each changing one or two things, and picked a curve for how the tension moved. In the second, 35 listeners moved a slider in real time through ten excerpts (up to a minute long, from Bach to Schoenberg). She then built a model that predicts the slider curves well. Her model weights the levers like this:
 
-| Lever | Weight | In your band |
+| Lever | Weight in the model | In your band |
 |---|---|---|
-| **Loudness** | strongest | dynamics, gain, number of players |
-| **Pitch height** (melody) | strongest | vocal register, guitar register |
-| **Tempo** | next | actual tempo, or felt tempo via time feel |
-| **Onset density** | next | notes per second: subdivisions, cymbal rate, riff busyness |
-| Harmony; bass and inner-voice register | weakest | chord tension, low-end register |
+| **Loudness** | 3 | dynamics, gain, number of players |
+| **Pitch height** of the melody | 3 | vocal register, lead guitar register |
+| **Tempo** | 2 | actual tempo, or felt tempo via time feel |
+| **Onset density** | 2 | notes per second: subdivisions, cymbal rate, riff busyness |
+| Harmony; bass and inner-voice register | 1 | chord tension, low-end register |
 
-Two more findings matter for composing:
+What the studies found that matters for composing:
 
-- **Trends create momentum.** The model works on *direction of change*. When a parameter keeps moving the same way, listeners expect it to continue, so a steady build pulls forward on its own.
-- **Parallel beats conflicting.** When several levers rise together, tension clearly rises. When they move against each other, responses become ambiguous.
+- **Rhythmic irregularity, syncopation and meter shifts did not move tension on their own.** Stimuli that drifted from steady pulses into irregular ones, or moved accents to imply a new meter, got "no change" or "changes a lot" answers, not "rising." The small effects she did find probably came from onset density. For a band that writes in odd meters this is the key warning: **a meter change is a colour change, not a build**. If you want it to raise tension, pair it with a lever from the table.
+- **Register has a ceiling.** A melody falling by a third changed the answers clearly; falling by a fifth or a ninth changed them hardly more. Past a point, a bigger leap doesn't add tension.
+- **Drums show tempo and density changes best.** Speed-ups and slow-downs were heard more clearly on unpitched percussion than on piano or strings, where a melody stuck on one pitch made people answer "no change."
+- **A crescendo beats everything else.** In one example, harmony, melody and tempo all relaxed while the music got louder, and listeners heard tension *rising*. Farbood links this to how strongly we react to approaching sounds. Getting quieter while other levers rise gives a weaker result.
+- **Parallel levers reinforce; opposed levers blur.** With harmony, register and loudness all rising, 80% of listeners chose "increasing." With levers in conflict, the answers scattered.
+- **Trends build momentum.** The model sums each lever's slope over a 3-second window and multiplies it when the previous 3 seconds moved the same way (the best fit was five times). Without that memory window the model failed. Listeners latch on to a clear direction and expect it to continue.
+- **Sound after silence counts as a rise.** Every slider curve started with an upward sweep at the first note.
+- **Musicians and non-musicians differ on harmony.** Trained listeners followed harmony more; untrained listeners followed the melody's register.
 
-The limits: excerpts were short, mostly synthesized, and the model looks at roughly 3-second windows. Harmony mattered more to trained musicians, pitch height more to non-musicians.
+Farbood also cites Rozin's finding that people *remember* a piece's intensity mainly by its ending and its clear slopes, not by adding up every moment. That's a reason to make the shape of a build obvious.
 
-<KeyIdea>Write builds as curves of loudness, register, density and tempo moving together. Harmony alone won't carry a build.</KeyIdea>
+The limits: the stimuli were classical or synthesized, rendered from MIDI, and at most a minute long, and the weights were set by hand from the first study. Nobody has tested them on distorted guitars or a ten-minute build.
+
+<KeyIdea>Build with loudness, register, density and tempo moving together in a clear direction. Harmony alone won't carry a build, and neither will a meter change.</KeyIdea>
 
 <TensionLab />
 
+## Where the prechorus came from
+
+Jay Summach traced the prechorus through 700 songs from the Billboard year-end Top 20, 1955 to 1989 <Source book="summach" />. His story connects to the sentence (the page *The sentence and liquidation*):
+
+- In the early 1960s many verses were **sentences**: two short statements, then a longer "departure" that breaks into fragments and drives to a conclusion. Summach finds this pattern in fewer than a third of 1959's songs and in 60% by 1964.
+- Songwriters stretched the departure until it **split off** as its own section. In "Runaway" (1961) the whole 40-bar strophe is one huge sentence. In "Downtown" the departure first loses momentum and then rebuilds it. In "Last Train to Clarksville" the conclusion is held back until the end of the *next* strophe, so incomplete and complete versions alternate.
+- That split-off departure became the prechorus. Its share of verse-chorus songs went from about a third in the late 1960s to 60% by the late 1980s. It didn't make songs longer: median song length grew from about 150 to 250 seconds whether or not songs had one.
+- It dipped twice: around 1970, when funk and relaxed singer-songwriter styles avoided builds, and around 1980, when disco favoured even energy. Chic's "Good Times" stays level, while the Bee Gees' "Tragedy" uses every device below, including a pregnant pause.
+
+Two points for composers. First, the prechorus's job is to **make the chorus a destination**, so a chorus with no prechorus has to arrive by other means. Second, it's the sentence's departure in a bigger body: the sentence's short-short-long proportions and its liquidation are the same tools at a larger scale.
+
 ## Build devices: the prechorus toolkit
 
-Jay Summach's study of the prechorus, the section whose whole job is building toward the chorus, gives a checklist that works in any genre <Source book="summach" />:
+Summach's checklist works in any genre:
 
 <Steps>
 
@@ -31,12 +50,14 @@ Jay Summach's study of the prechorus, the section whose whole job is building to
 - **Shorter units:** phrases shrink, so new things arrive faster (Schoenberg's fragmentation again).
 - **Rising melody and register:** the vocal climbs, sometimes into a higher or falsetto range.
 - **Added layers:** backing vocals, a fuller kit, a new instrument entering.
-- **Busier texture:** steady streams of 8ths or 16ths replace sparse accompaniment.
+- **Busier texture:** steady streams of 8ths or 16ths replace sparse accompaniment. In "Talking in Your Sleep" the kick pattern shortens from four beats to two.
 - **Fragmented lyrics, fewer rests, enjambment:** lines break into one- or two-bar units and run on into the next section.
 - **Crescendo.**
 - **The pregnant pause:** a held breath before the arrival. It can also be used to *withhold* the arrival, which creates uncertainty.
 
 </Steps>
+
+Compare the two lists: most of Summach's devices are Farbood's levers (register, density, loudness), and the ones that aren't, like shorter units and faster chord changes, work by raising density.
 
 ## The last bars of a build feel longer
 
@@ -44,9 +65,10 @@ Perceived duration expands as a goal gets closer (Meade's studies, which Kramer 
 
 ## How to use it
 
-1. For every build in a form plan, write which levers rise and over how many bars. Aim for **at least three levers in parallel**.
+1. For every build in a form plan, write which levers rise and over how many bars. Aim for **at least three levers in parallel**, and keep them moving the same way for more than a few seconds.
 2. Save at least one lever for the arrival: if register peaks during the build, the arrival needs something else, such as a feel change, a new layer or a drop.
 3. To make an arrival *ambiguous* on purpose, move one lever against the others.
+4. If a section changes meter, decide which lever carries the tension; the meter change won't do it alone.
 
 ## A composer's rules for progressions
 
@@ -59,7 +81,7 @@ Belkin's chapter on progressions <Source book="belkin" where="Ch. 13 Progressing
 
 <ListenerSide grade="moderate">
 
-The lever weights come from controlled experiments, with strong evidence for short excerpts. Whether they hold over a 10-minute prog build is untested; your listening tests (Module 5) are where you find out.
+The lever weights come from controlled experiments, with strong evidence for excerpts up to a minute long. Whether they hold over a 10-minute prog build is untested; your listening tests (Module 5) are where you find out.
 
 </ListenerSide>
 

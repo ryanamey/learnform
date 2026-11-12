@@ -124,8 +124,8 @@ export const books: Book[] = [
     author: "David Huron",
     kind: "excerpt",
     verdict: "selective",
-    copy: "Partial (68 pages)",
-    why: "Expectation theory behind telos, anti-telos and surprise. Your copy is partial — buy a full one.",
+    copy: "Partial (68 pages: preface, ch. 1–2, start of ch. 3)",
+    why: "Expectation theory behind telos, anti-telos and surprise: ITPRA, contrastive valence, and frisson, laughter and awe. Your copy is partial and has been read; the composition chapters (13–15: predictability, surprise, tension) need a full copy.",
     modules: [3],
   },
   {
@@ -395,7 +395,7 @@ export const books: Book[] = [
     kind: "book",
     verdict: "core",
     copy: "PDF and nine audio examples in your resources folder",
-    why: "The fuller theory behind the 2013 article: main vs. connective sections, the retrospective prechorus, section groups, four ending types, the detailed “Pushit” and “Hooker with a Penis” charts, and interviews with two bands about why they end with new material. Read: ch. 2, the Tool and other analyses of ch. 3, the end of ch. 4, the conclusions and the interviews; ch. 1 and most of ch. 4 (which the 2011 article condenses) not read.",
+    why: "The fuller theory behind the 2013 article: main vs. connective sections, the retrospective prechorus, section groups, four ending types, the detailed “Pushit” and “Hooker with a Penis” charts, and interviews with two bands about why they end with new material. Read: ch. 1 (all but its last few pages, skimmed), ch. 2, the Tool and other analyses of ch. 3, the end of ch. 4, the conclusions and the interviews; most of ch. 4 (which the 2011 article condenses) not read.",
     modules: [3, 4],
     url: "https://digital.lib.washington.edu/researchworks/handle/1773/15910",
   },
@@ -492,8 +492,8 @@ export const books: Book[] = [
     kind: "article",
     verdict: "selective",
     copy: "Free online",
-    why: "A checklist of build devices: faster harmonic rhythm, shorter units, rising register, added layers, the pregnant pause.",
-    modules: [3],
+    why: "700 hit songs, 1955–89: the prechorus grew out of the sentence's continuation. A checklist of build devices: faster harmonic rhythm, shorter units, rising register, added layers, the pregnant pause.",
+    modules: [1, 3],
     url: "https://mtosmt.org/issues/mto.11.17.3/mto.11.17.3.summach.html",
   },
   {
@@ -504,7 +504,7 @@ export const books: Book[] = [
     kind: "article",
     verdict: "core",
     copy: "Free author PDF",
-    why: "Felt tension follows loudness and pitch height most, then tempo and onset density; harmony least. Trends create momentum.",
+    why: "Felt tension follows loudness and pitch height most, then tempo and onset density; harmony least. Meter and syncopation alone barely move it. Trends create momentum.",
     modules: [3, 5],
     url: "https://bpb-us-e1.wpmucdn.com/wp.nyu.edu/dist/f/11865/files/2020/08/Farbood_2012_Musical_Tension.pdf",
   },
@@ -540,7 +540,7 @@ export const books: Book[] = [
     kind: "article",
     verdict: "core",
     copy: "Free (PMC)",
-    why: "In drumming-induced trance, the repetitive drum signal is decoupled and attention turns inward (n = 15 practitioners).",
+    why: "In drumming-induced trance, the repetitive drum signal is decoupled and attention turns inward; no brainwave driving; a rhythm change ends the trance (n = 15 practitioners).",
     modules: [5],
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4898667",
   },
@@ -552,7 +552,7 @@ export const books: Book[] = [
     kind: "article",
     verdict: "selective",
     copy: "Free author PDF",
-    why: "Anticipation (≈15 s before a chill) and the peak itself involve distinct reward regions. Tiny, selected sample.",
+    why: "Dopamine during music: the run-up to a chill and the chill itself involve distinct reward regions. Eight screened listeners.",
     modules: [5],
     url: "https://www.zlab.mcgill.ca/publications/docs/salimpoor_2011_nn.pdf",
   },
@@ -564,7 +564,7 @@ export const books: Book[] = [
     kind: "article",
     verdict: "core",
     copy: "Free online",
-    why: "Meter as the brain's prediction model; syncopation works when it contradicts the meter without undermining it; the groove inverted U.",
+    why: "Meter as the brain's prediction model; syncopation works when it contradicts the meter without undermining it; holding a counter-meter costs effort; the groove inverted U.",
     modules: [2, 5],
     url: "https://frontiersin.org/articles/10.3389/fpsyg.2014.01111/full",
   },
@@ -647,6 +647,7 @@ export const concepts: Concept[] = [
       { book: "schoenberg", where: "Ch. V, VIII; XII Self-criticism; XVI (sequence and liquidation); XVIII", read: "read" },
       { book: "belkin", where: "Ch. 1, Neutral lines", read: "read" },
       { book: "caplin", where: "Ch. 2 The Sentence; Ch. 3 The Period", read: "read" },
+      { book: "summach", where: "sentence origins of the prechorus", read: "read" },
     ],
   },
   {
@@ -724,6 +725,7 @@ export const concepts: Concept[] = [
       { book: "lucas", where: "whole article, notes and examples (Meshuggah, obZen)", read: "read" },
       { book: "pieslak", where: "whole article (Meshuggah to 2002; I)", read: "read" },
       { book: "tool-interviews", where: "Chancellor on putting four beats behind an odd riff", read: "read" },
+      { book: "osborn10", where: "Ch. 1, n. 81", read: "read" },
     ],
   },
   {
@@ -782,8 +784,8 @@ export const concepts: Concept[] = [
     minutes: 30,
     draft: true,
     sources: [
-      { book: "farbood", where: "model and experiments", read: "summary" },
-      { book: "summach", where: "prechorus devices; pregnant pause", read: "summary" },
+      { book: "farbood", where: "both experiments, model and discussion", read: "read" },
+      { book: "summach", where: "whole article: corpus, origins in the sentence, devices", read: "read" },
       { book: "belkin", where: "Ch. 13 Progressing; Ch. 4 (holding back)", read: "read" },
       { book: "kramer", where: "Ch. 11 (time near a goal)", read: "read" },
     ],
@@ -999,7 +1001,7 @@ export const concepts: Concept[] = [
     minutes: 45,
     sources: [
       { book: "osborn11", where: "whole article: four through-composed types", read: "read" },
-      { book: "osborn10", where: "Ch. 4 (Hopesfall); Conclusions (in-between types)", read: "read" },
+      { book: "osborn10", where: "Ch. 1 (Mars Volta, Godspeed, Yes); Ch. 4 (Hopesfall); Conclusions", read: "read" },
       { book: "osborn13", where: "terminal climax", read: "read" },
       { book: "belkin", where: "Conclusion; Appendix A Sketching", read: "read" },
       { book: "snyder", where: "Ch. 1, 4, 5, 13", read: "read" },
@@ -1018,7 +1020,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "moore03", where: "Ch. 9 (Covach), Ch. 10 (Kennett)", read: "read" },
-      { book: "lalitte", where: "experiments; Cook 1987", read: "summary" },
+      { book: "lalitte", where: "whole article: experiment, review of earlier studies", read: "read" },
       { book: "snyder", where: "Ch. 1 levels of memory; Ch. 13 remembered duration", read: "read" },
       { book: "kramer", where: "Ch. 10.11, 11", read: "read" },
     ],
@@ -1035,7 +1037,7 @@ export const concepts: Concept[] = [
       { book: "moore03", where: "Ch. 5 (Hawkins), Ch. 10 (Kennett)", read: "read" },
       { book: "margulis", where: "via Albrecht's review", read: "summary" },
       { book: "reich", where: "“Music as a Gradual Process” (1968)", read: "read" },
-      { book: "hove", where: "abstract and methods", read: "summary" },
+      { book: "hove", where: "whole article (not the supplement)", read: "read" },
       { book: "kramer", where: "Ch. 12.7 (Les Moutons)", read: "read" },
     ],
   },
@@ -1048,8 +1050,9 @@ export const concepts: Concept[] = [
     minutes: 30,
     draft: true,
     sources: [
-      { book: "salimpoor", where: "anticipation vs. peak", read: "summary" },
-      { book: "vuust-witek", where: "predictive coding; syncopation; 3:4 bistability", read: "summary" },
+      { book: "salimpoor", where: "whole article and online methods", read: "read" },
+      { book: "vuust-witek", where: "whole article", read: "read" },
+      { book: "huron", where: "Ch. 1–2 (ITPRA, contrastive valence, frisson/laughter/awe)", read: "read" },
     ],
   },
   {
@@ -1062,6 +1065,7 @@ export const concepts: Concept[] = [
     draft: true,
     sources: [
       { book: "rouget", where: "Part One, trance vs. ecstasy", read: "unread" },
+      { book: "hove", where: "EEG result", read: "read" },
       { book: "erickson", where: "craft analogies only", read: "unread" },
       { book: "kramer", where: "Ch. 2.12, 12 (vertical time)", read: "read" },
     ],
@@ -1159,6 +1163,31 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "A tension planner in the form planner: one lane per lever (loudness, register, density, tempo, harmony) weighted 3-3-2-2-1, a warning when levers oppose, and a flag on any build whose only change is a meter change",
+    source: "Farbood 2012 [Exp. 1; model]",
+    module: 3,
+  },
+  {
+    idea: "A scramble test: cut a demo into 6-second chunks, reorder them with smooth joins, and see whether bandmates or friends notice, and which joins give it away",
+    source: "Lalitte & Bigand 2006",
+    module: 5,
+  },
+  {
+    idea: "Counter-meter spans on the riff board: mark where a counter-meter starts, how long it runs and where it realigns with the main meter (the \"Lazarus Heart\" model)",
+    source: "Vuust & Witek 2014 [polyrhythm]",
+    module: 2,
+  },
+  {
+    idea: "A callback gesture for leaving a trance section: a distinct rhythm change that ends the steady carrier and pulls attention back outward",
+    source: "Hove et al. 2016 [discussion]",
+    module: 5,
+  },
+  {
+    idea: "Sentence-to-prechorus exercise: write a verse as a sentence, then stretch its continuation until it splits off as a prechorus",
+    source: "Summach 2011 [4]",
+    module: 1,
+  },
   {
     idea: "A vocal-timbre lane in the form planner, scored per section on Heidemann's scales (breathy–clear, regular–rough, constricted–open, face–chest, relaxed–anchored)",
     source: "Heidemann [4.7]",

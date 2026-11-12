@@ -213,7 +213,7 @@ export const books: Book[] = [
     kind: "book",
     verdict: "core",
     copy: "Full book",
-    why: "The trance vs. ecstasy typology and the critique of 'drumming causes trance'. The theory that keeps everything else about trance honest.",
+    why: "Music socializes trance more than it triggers it: learned signals (the musical motto), maintenance by rhythm, the trance vs. ecstasy typology, and the case against 'drumming causes trance'.",
     modules: [5, 7],
   },
   {
@@ -303,7 +303,7 @@ export const books: Book[] = [
     kind: "book",
     verdict: "later",
     copy: "Full book",
-    why: "Craft reading only: pacing and leading, confusion, utilization as structural analogies. No evidence links them to composition.",
+    why: "Craft reading only: utilization, the confusion technique and matching-then-leading as structural analogies. No evidence links them to composition.",
     modules: [5],
   },
   {
@@ -1060,13 +1060,12 @@ export const concepts: Concept[] = [
     module: 5,
     order: 4,
     title: "Trance, ecstasy and the listening test",
-    summary: "Rouget's polarity as a form tool, hypnosis ideas as labelled analogies — and how to test it all on real listeners.",
-    minutes: 30,
-    draft: true,
+    summary: "What music does and doesn't do in trance (Rouget), the trance–stillness axis, hypnosis ideas as labelled analogies, and how to test it all on real listeners.",
+    minutes: 35,
     sources: [
-      { book: "rouget", where: "Part One, trance vs. ecstasy", read: "unread" },
+      { book: "rouget", where: "introduction; ch. 1 (to the signs of trance); ch. 2, rhythm and dynamics; ch. 4 (drums, Neher); end of ch. 7; ch. 8 (first half)", read: "partial" },
       { book: "hove", where: "EEG result", read: "read" },
-      { book: "erickson", where: "craft analogies only", read: "unread" },
+      { book: "erickson", where: "papers 7, 8 (opening), 10 (rationale and method), 16", read: "partial" },
       { book: "kramer", where: "Ch. 2.12, 12 (vertical time)", read: "read" },
     ],
   },
@@ -1163,6 +1162,21 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "A musical motto for trance sections: a short sound or riff taught early in a song or set that later signals \"sink in here\", tracked on the riff board",
+    source: "Rouget [ch. 2, 7]",
+    module: 5,
+  },
+  {
+    idea: "A crescendo-by-proximity option for live sets: bring a sound physically closer (stage position, monitor or panning) instead of only louder",
+    source: "Rouget [ch. 2]",
+    module: 5,
+  },
+  {
+    idea: "Confusion-then-arrival exercise: interrupt three expected downbeats or cadences with material coherent in itself, keep the flow, then give one unmistakable pulse, and test it on a listener",
+    source: "Erickson [paper 10]",
+    module: 5,
+  },
   {
     idea: "A tension planner in the form planner: one lane per lever (loudness, register, density, tempo, harmony) weighted 3-3-2-2-1, a warning when levers oppose, and a flag on any build whose only change is a meter change",
     source: "Farbood 2012 [Exp. 1; model]",

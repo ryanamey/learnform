@@ -568,6 +568,29 @@ export const books: Book[] = [
     modules: [2, 5],
     url: "https://frontiersin.org/articles/10.3389/fpsyg.2014.01111/full",
   },
+  {
+    id: "conroy",
+    order: 48,
+    title: "Analysing the Structure of “Progressive” Rock 1973 and Beyond: The Who, Pink Floyd, Yes and Genesis (PhD thesis, Durham, 2024)",
+    author: "Isaac Paul Conroy",
+    kind: "book",
+    verdict: "core",
+    copy: "PDF in your resources folder (07-album-as-form)",
+    why: "Four kinds of album form (standard album, extended suite, concept album, symphonic structure), reprise vs. recapitulation, and three levels of form in The Dark Side of the Moon (song, side, record). Read: introduction, the method sections of ch. 1, the Dark Side of the Moon and Wish You Were Here analyses, Topographic Oceans' global narrative, every chapter's conclusions and the final conclusions. Most single-track analyses not read.",
+    modules: [7],
+    url: "https://etheses.durham.ac.uk/id/eprint/15594/",
+  },
+  {
+    id: "smolko",
+    order: 49,
+    title: "Jethro Tull's Thick as a Brick: Geared toward the Exceptional rather than the Average (MA thesis, Georgia, 2011)",
+    author: "Tim Smolko",
+    kind: "book",
+    verdict: "core",
+    copy: "PDF in your resources folder (07-album-as-form)",
+    why: "A 43-minute single-track album taken apart: closed song forms alternating with open, through-composed passages, three kinds of repetition (local, reprise, thematic development), and motives that come back in new meters. Read: ch. 1, the lai section of ch. 2, ch. 5's form and repetition sections with Motives 1 and 2, and the conclusions; the packaging, lyrics, instrumentation and live-version sections not read.",
+    modules: [7],
+  },
 ];
 
 export const bookById = Object.fromEntries(books.map((b) => [b.id, b]));
@@ -1162,6 +1185,56 @@ export type FoundIdea = {
 };
 
 export const foundInReading: FoundIdea[] = [
+  {
+    idea: "Album form type picker: standard album, extended suite, concept album (thematic or narrative) or symphonic structure, as the first decision on the album planner",
+    source: "Conroy [ch. 1]",
+    module: 7,
+  },
+  {
+    idea: "Three-level album map: each track's own form, each side or half as one continuous piece, and the whole record (global key, bookends, overture, transitional episodes)",
+    source: "Conroy [ch. 3]",
+    module: 7,
+  },
+  {
+    idea: "Two kinds of segue to choose between: spinning out of one song into the next, or a clear timbral bridge (a radio, an engine, a room sound) between unrelated songs",
+    source: "Conroy [ch. 3, Wish You Were Here]",
+    module: 7,
+  },
+  {
+    idea: "Return material in its original key (or deliberately a semitone off), and plan the modulations that get it there",
+    source: "Conroy [ch. 5]",
+    module: 7,
+  },
+  {
+    idea: "The thematic solo: a solo that recaps motives from earlier tracks at a structural moment instead of free soloing",
+    source: "Conroy [ch. 4, Howe on \"Ritual\"]",
+    module: 7,
+  },
+  {
+    idea: "Split a cycle theme into parts that return separately across the record",
+    source: "Conroy [ch. 4, Topographic Oceans]",
+    module: 7,
+  },
+  {
+    idea: "Song and passage balance for long pieces: alternate closed song forms (stasis, like an aria) with short open through-composed passages (motion, like a recitative); stop the alternation near the end and bring back familiar material to signal it",
+    source: "Smolko [ch. 5]",
+    module: 7,
+  },
+  {
+    idea: "Motive across meters: the same riff returns in 5/4, 6/8, then 7/8 + 9/8, and the band trades 12/8, 6/8 and 4/4 readings of one pattern",
+    source: "Smolko [Motives 1–2]",
+    module: 7,
+  },
+  {
+    idea: "Lyrics-first long form (the lai): each stanza gets its own meter and music, only the last returns to the first",
+    source: "Smolko [ch. 2]",
+    module: 7,
+  },
+  {
+    idea: "Live long pieces: teaching an audience where to be quiet and where to move",
+    source: "Smolko [ch. 5, Anderson]",
+    module: 7,
+  },
   {
     idea: "A musical motto for trance sections: a short sound or riff taught early in a song or set that later signals \"sink in here\", tracked on the riff board",
     source: "Rouget [ch. 2, 7]",

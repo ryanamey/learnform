@@ -2,123 +2,240 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, FileText, GraduationCap, Home, LogOut, Map, Moon, NotebookPen, Sun, Waypoints } from "lucide-react";
+import {
+  BookOpen,
+  ChevronsUpDown,
+  FileText,
+  GraduationCap,
+  Home,
+  LogOut,
+  Map,
+  Moon,
+  NotebookPen,
+  Sun,
+  UserRound,
+  Waypoints,
+} from "lucide-react";
 import { useSyncExternalStore } from "react";
 
 import { signOut } from "@/lib/auth-client";
-import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarRail,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
 
-const items = [
+const study = [
   { href: "/", label: "Studio", icon: Home },
   { href: "/learn", label: "Learn", icon: GraduationCap },
   { href: "/motifs", label: "Motif bank", icon: Waypoints },
   { href: "/journal", label: "Journal", icon: NotebookPen },
+];
+const reference = [
   { href: "/library", label: "Library", icon: BookOpen },
   { href: "/roadmap", label: "Roadmap", icon: Map },
   { href: "/docs", label: "Docs", icon: FileText },
 ];
+const allItems = [...study, ...reference, { href: "/profile", label: "Profile" }];
 
 const themeListeners = new Set<() => void>();
 function subscribeTheme(cb: () => void) {
   themeListeners.add(cb);
   return () => themeListeners.delete(cb);
 }
-
-function ThemeToggle() {
-  const dark = useSyncExternalStore(
+function useDark() {
+  return useSyncExternalStore(
     subscribeTheme,
     () => document.documentElement.classList.contains("dark"),
     () => true
   );
+}
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle("dark");
+  themeListeners.forEach((l) => l());
+  try {
+    localStorage.setItem("lf-theme", isDark ? "dark" : "light");
+  } catch {}
+}
+
+function initials(name: string) {
+  const parts = name.replace(/@.*/, "").split(/[\s._-]+/).filter(Boolean);
+  return ((parts[0]?.[0] ?? "?") + (parts[1]?.[0] ?? "")).toUpperCase();
+}
+
+function useActive() {
+  const pathname = usePathname();
+  return (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+}
+
+function NavGroup({ label, items }: { label: string; items: typeof study }) {
+  const isActive = useActive();
+  const { setOpenMobile } = useSidebar();
   return (
-    <button
-      type="button"
-      onClick={() => {
-        const isDark = document.documentElement.classList.toggle("dark");
-        themeListeners.forEach((l) => l());
-        try {
-          localStorage.setItem("lf-theme", isDark ? "dark" : "light");
-        } catch {}
-      }}
-      className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
-      aria-label="Toggle theme"
-    >
-      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
-      <span className="md:inline hidden">Theme</span>
-    </button>
+    <SidebarGroup>
+      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {items.map(({ href, label, icon: Icon }) => (
+            <SidebarMenuItem key={href}>
+              <SidebarMenuButton asChild isActive={isActive(href)} tooltip={label}>
+                <Link href={href} onClick={() => setOpenMobile(false)}>
+                  <Icon className={isActive(href) ? "text-signal" : undefined} />
+                  <span>{label}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
   );
 }
 
-export function Nav({ name }: { name: string }) {
-  const pathname = usePathname();
+function UserMenu({ name, email }: { name: string; email: string }) {
   const router = useRouter();
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-
+  const dark = useDark();
+  const { isMobile, setOpenMobile } = useSidebar();
   return (
-    <>
-      {/* desktop sidebar */}
-      <aside className="sticky top-0 hidden h-dvh w-56 shrink-0 flex-col border-r bg-card/40 px-3 py-5 md:flex">
-        <Link href="/" className="mb-8 px-2">
-          <span className="font-serif text-xl tracking-tight">Learn Form</span>
-          <span className="mt-0.5 block text-xs text-muted-foreground">form, for writing</span>
-        </Link>
-        <nav className="flex flex-col gap-0.5" aria-label="Main">
-          {items.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                "flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors",
-                isActive(href)
-                  ? "bg-accent font-medium text-foreground"
-                  : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
-              )}
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Icon className={cn("size-4", isActive(href) && "text-signal")} />
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <div className="mt-auto flex flex-col gap-0.5 border-t pt-3">
-          <div className="truncate px-2 pb-1 text-xs text-muted-foreground">{name}</div>
-          <ThemeToggle />
-          <button
-            type="button"
-            className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
-            onClick={async () => {
-              await signOut();
-              router.push("/login");
-              router.refresh();
-            }}
+              <Avatar className="size-8 rounded-lg">
+                <AvatarFallback className="rounded-lg bg-signal text-signal-foreground text-xs font-medium">
+                  {initials(name || email)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">{name || "Account"}</span>
+                <span className="truncate text-xs text-muted-foreground">{email}</span>
+              </div>
+              <ChevronsUpDown className="ml-auto size-4" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            side={isMobile ? "top" : "right"}
+            align="end"
+            sideOffset={4}
           >
-            <LogOut className="size-4" /> Sign out
-          </button>
-        </div>
-      </aside>
-
-      {/* mobile top bar */}
-      <header className="sticky top-0 z-30 border-b bg-background/90 backdrop-blur md:hidden">
-        <div className="flex items-center justify-between px-4 py-2.5">
-          <Link href="/" className="font-serif text-lg">
-            Learn Form
-          </Link>
-          <ThemeToggle />
-        </div>
-        <nav className="flex gap-1 overflow-x-auto px-2 pb-2" aria-label="Main">
-          {items.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                "whitespace-nowrap rounded-md px-2.5 py-1 text-sm",
-                isActive(href) ? "bg-accent font-medium" : "text-muted-foreground"
-              )}
+            <DropdownMenuLabel className="font-normal">
+              <div className="grid text-sm leading-tight">
+                <span className="truncate font-medium">{name || "Account"}</span>
+                <span className="truncate text-xs text-muted-foreground">{email}</span>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href="/profile" onClick={() => setOpenMobile(false)}>
+                  <UserRound /> Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={(e) => {
+                  e.preventDefault();
+                  toggleTheme();
+                }}
+              >
+                {dark ? <Sun /> : <Moon />} {dark ? "Light theme" : "Dark theme"}
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onSelect={async () => {
+                await signOut();
+                router.push("/login");
+                router.refresh();
+              }}
             >
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </header>
-    </>
+              <LogOut /> Sign out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  );
+}
+
+export function AppSidebar({ name, email }: { name: string; email: string }) {
+  const { setOpenMobile } = useSidebar();
+  return (
+    <Sidebar collapsible="icon">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/" onClick={() => setOpenMobile(false)}>
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-signal font-serif text-base text-signal-foreground">
+                  F
+                </div>
+                <div className="grid flex-1 text-left leading-tight">
+                  <span className="truncate font-serif text-base">Learn Form</span>
+                  <span className="truncate text-xs text-muted-foreground">form, for writing</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavGroup label="Study" items={study} />
+        <NavGroup label="Reference" items={reference} />
+      </SidebarContent>
+      <SidebarFooter>
+        <UserMenu name={name} email={email} />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
+  );
+}
+
+/** Sticky bar above the content: menu button, current section, and theme toggle. */
+export function TopBar() {
+  const pathname = usePathname();
+  const dark = useDark();
+  const current =
+    allItems
+      .filter((i) => (i.href === "/" ? pathname === "/" : pathname.startsWith(i.href)))
+      .sort((a, b) => b.href.length - a.href.length)[0]?.label ?? "Learn Form";
+  return (
+    <header className="sticky top-0 z-30 flex h-12 shrink-0 items-center gap-2 border-b bg-background/90 px-3 backdrop-blur">
+      <SidebarTrigger className="-ml-1" />
+      <span className="h-4 w-px bg-border" aria-hidden />
+      <span className="truncate text-sm font-medium">{current}</span>
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className="ml-auto flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground"
+        aria-label="Toggle theme"
+      >
+        {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+      </button>
+    </header>
   );
 }

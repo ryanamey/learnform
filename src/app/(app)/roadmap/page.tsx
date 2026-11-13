@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { foundInReading, modules, rules, weeklyLoop } from "@/content/curriculum";
+import { buildPlan, foundInReading, modules, rules, weeklyLoop } from "@/content/curriculum";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Badge } from "@/components/ui/badge";
 
@@ -47,25 +47,47 @@ export default function RoadmapPage() {
       </ol>
 
       <section className="mt-12">
-        <h2 className="mb-1 font-serif text-2xl">Found in the reading, not built yet</h2>
+        <h2 className="mb-1 font-serif text-2xl">Build plan</h2>
         <p className="mb-4 text-sm text-muted-foreground">
-          Every source read ends with a sweep for ideas the app doesn&apos;t teach yet. They wait here, with where they came
-          from and where they&apos;ll go, until a page or section covers them.
+          Frozen after the reading round. Every idea found in the reading points to one step here; open a step to see
+          them. Changes go through the Decisions log.
         </p>
-        <ul className="space-y-2">
-          {foundInReading.map((f) => (
-            <li key={f.idea} className="rounded-lg border p-3 text-sm">
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="min-w-0 flex-1">{f.idea}</span>
-                <span className="shrink-0 font-mono text-xs text-muted-foreground">Module {f.module}</span>
-              </div>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {f.source}
-                {f.note ? ` · ${f.note}` : ""}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <ol className="space-y-3">
+          {buildPlan.map((t) => {
+            const ideas = foundInReading.filter((f) => f.target === t.id);
+            return (
+              <li key={t.id} className="rounded-xl border bg-card">
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none flex-col gap-1 p-4 [&::-webkit-details-marker]:hidden">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="font-mono text-xs text-signal">{t.phase}</span>
+                      <span className="font-serif text-lg">{t.name}</span>
+                      <Badge variant="outline">{t.kind}</Badge>
+                      <span className="ml-auto text-xs text-muted-foreground">
+                        {ideas.length} {ideas.length === 1 ? "idea" : "ideas"}
+                        <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span>
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{t.what}</p>
+                  </summary>
+                  {ideas.length > 0 && (
+                    <ul className="space-y-2 border-t px-4 py-3">
+                      {ideas.map((f) => (
+                        <li key={f.idea} className="text-sm">
+                          <span>{f.idea}</span>
+                          <span className="mt-0.5 block text-xs text-muted-foreground">
+                            {f.source} · Module {f.module}
+                            {f.note ? ` · ${f.note}` : ""}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </details>
+              </li>
+            );
+          })}
+        </ol>
       </section>
 
       <section className="mt-12">

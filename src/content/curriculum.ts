@@ -1175,369 +1175,554 @@ export const modules: Module[] = [
 /**
  * Ideas met while reading a source that the app doesn't teach yet.
  * Rule: every source read ends with a sweep of its ideas; anything new lands here
- * with where it came from and where it will go. Remove an entry when its page or section is built.
+ * with where it came from and the build-plan step it belongs to. Remove an entry when its page, section or tool is built.
  */
+export type BuildTargetId =
+  | "method"
+  | "form-planner"
+  | "boundary-checker"
+  | "riff-board"
+  | "meter-map"
+  | "listening-kit"
+  | "album-planner"
+  | "existing-pages"
+  | "m6-pages"
+  | "m7-pages"
+  | "band-studies"
+  | "later";
+
 export type FoundIdea = {
   idea: string;
   source: string;
   module: number;
+  /** where the idea goes in the frozen build plan */
+  target: BuildTargetId;
   note?: string;
 };
+
+export type BuildTarget = {
+  id: BuildTargetId;
+  phase: string;
+  name: string;
+  kind: "page" | "tool" | "pages" | "later";
+  what: string;
+};
+
+/**
+ * The frozen roadmap (2026-11-13): the order things get built in. Every backlog idea points at one target.
+ * Change it only with an entry in Decisions.
+ */
+export const buildPlan: BuildTarget[] = [
+  {
+    id: "method",
+    phase: "1 · Method",
+    name: "How to use this app",
+    kind: "page",
+    what: "One page for the band: the weekly loop in practice, how to analyse a track (a bank of questions, general first), how to hand a form plan to the band, and how a band talks while writing (rehearse the hard change, count repeats, cue with a fill).",
+  },
+  {
+    id: "form-planner",
+    phase: "2 · Tools",
+    name: "Form planner with lanes",
+    kind: "tool",
+    what: "Sections across the top, one lane per parameter underneath: the five tension levers weighted 3-3-2-2-1, a ladder lane for climbing hooks and peaks, a vocal-timbre lane, the focal parameter of each section group, meter thickness. Warns when levers oppose or a build changes only the meter, and checks two sets of landmarks against each other. Uses the band's chart letters, primes and section-group numerals.",
+  },
+  {
+    id: "boundary-checker",
+    phase: "2 · Tools",
+    name: "Boundary checker",
+    kind: "tool",
+    what: "For each seam in a plan, tick which cues change (title line, voices added, guitar rhythm, stop time, first chord, a rhythm-change callback) and see whether the boundary will be heard as strong, weak or ambiguous.",
+  },
+  {
+    id: "riff-board",
+    phase: "2 · Tools",
+    name: "Riff board: attack-point notation",
+    kind: "tool",
+    what: "Enter a riff as attack-point intervals plus pitches; find matching interval strings across sections; mark counter-meter spans and where they realign; see beat and bar lengths in milliseconds against the timing windows; find the riff's tonic (persistence, position, emphasis) and its harmonic palette; track a motive across meters and tag a musical motto.",
+  },
+  {
+    id: "meter-map",
+    phase: "2 · Tools",
+    name: "Metric map and profile",
+    kind: "tool",
+    what: "Krebs-style metrical maps for any track (dissonances down the side, lines over a bar grid), and a metric profile that tabulates the band's finished songs by dissonance type and place, for comparison with Tool.",
+  },
+  {
+    id: "listening-kit",
+    phase: "2 · Tools",
+    name: "Listening-test kit additions",
+    kind: "tool",
+    what: "A scramble test (cut a demo into 6-second chunks, reorder, see which joins listeners catch) and a listening-situation profile recorded with every test.",
+  },
+  {
+    id: "existing-pages",
+    phase: "3 · Pages",
+    name: "Fold into existing pages",
+    kind: "pages",
+    what: "Exercises and short sections added to pages that already exist: Schoenberg's and Caplin's variation, modulation and retransition techniques, hybrid phrases, the breakdown as a formal function, transitions sized by arithmetic, the drummer's layered meter, the retrospective prechorus and sentence-to-prechorus exercises, confusion-then-arrival, and more.",
+  },
+  {
+    id: "m6-pages",
+    phase: "3 · Pages",
+    name: "Module 6 pages",
+    kind: "pages",
+    what: "Persona, prosody and lyric form (lyric vs. anti-lyric, loose verse and tight chorus, recitative vs. aria), vocal performance as form. Waits for Moore's Song Means where it's cited.",
+  },
+  {
+    id: "album-planner",
+    phase: "3 · Pages",
+    name: "Album planner (with Module 7)",
+    kind: "tool",
+    what: "Built with Module 7: choose the album type first, then map three levels (track, side, record), place segues of both kinds, plan keys so reprises return home, track cycle themes split into parts, and set each track's form by its position.",
+  },
+  {
+    id: "m7-pages",
+    phase: "3 · Pages",
+    name: "Module 7 pages",
+    kind: "pages",
+    what: "The five planned pages: four ways to hold a record together; three levels of form; reprise, recapitulation and the motive across tracks; the single-track piece; sequencing and the live set.",
+  },
+  {
+    id: "band-studies",
+    phase: "4 · Band studies",
+    name: "Tool lab and band studies",
+    kind: "pages",
+    what: "Our own maps of Schism, The Grudge, The Patient, Pushit and 10,000 Days, then King Crimson, Meshuggah and the others, made with the tools above and checked against Biamonte, Osborn and Pieslak.",
+  },
+  {
+    id: "later",
+    phase: "Later",
+    name: "Parked",
+    kind: "later",
+    what: "Worth doing but needs audio analysis or a source we don't have yet: spectrogram reading, the band's timing fingerprint, the bass-under-a-fixed-riff lab, the hypermeter lab, chord interpolation (Moore).",
+  },
+];
 
 export const foundInReading: FoundIdea[] = [
   {
     idea: "Album form type picker: standard album, extended suite, concept album (thematic or narrative) or symphonic structure, as the first decision on the album planner",
     source: "Conroy [ch. 1]",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "Three-level album map: each track's own form, each side or half as one continuous piece, and the whole record (global key, bookends, overture, transitional episodes)",
     source: "Conroy [ch. 3]",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "Two kinds of segue to choose between: spinning out of one song into the next, or a clear timbral bridge (a radio, an engine, a room sound) between unrelated songs",
     source: "Conroy [ch. 3, Wish You Were Here]",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "Return material in its original key (or deliberately a semitone off), and plan the modulations that get it there",
     source: "Conroy [ch. 5]",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "The thematic solo: a solo that recaps motives from earlier tracks at a structural moment instead of free soloing",
     source: "Conroy [ch. 4, Howe on \"Ritual\"]",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Split a cycle theme into parts that return separately across the record",
     source: "Conroy [ch. 4, Topographic Oceans]",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "Song and passage balance for long pieces: alternate closed song forms (stasis, like an aria) with short open through-composed passages (motion, like a recitative); stop the alternation near the end and bring back familiar material to signal it",
     source: "Smolko [ch. 5]",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Motive across meters: the same riff returns in 5/4, 6/8, then 7/8 + 9/8, and the band trades 12/8, 6/8 and 4/4 readings of one pattern",
     source: "Smolko [Motives 1–2]",
     module: 7,
+    target: "riff-board",
   },
   {
     idea: "Lyrics-first long form (the lai): each stanza gets its own meter and music, only the last returns to the first",
     source: "Smolko [ch. 2]",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Live long pieces: teaching an audience where to be quiet and where to move",
     source: "Smolko [ch. 5, Anderson]",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "A musical motto for trance sections: a short sound or riff taught early in a song or set that later signals \"sink in here\", tracked on the riff board",
     source: "Rouget [ch. 2, 7]",
     module: 5,
+    target: "riff-board",
   },
   {
     idea: "A crescendo-by-proximity option for live sets: bring a sound physically closer (stage position, monitor or panning) instead of only louder",
     source: "Rouget [ch. 2]",
     module: 5,
+    target: "existing-pages",
   },
   {
     idea: "Confusion-then-arrival exercise: interrupt three expected downbeats or cadences with material coherent in itself, keep the flow, then give one unmistakable pulse, and test it on a listener",
     source: "Erickson [paper 10]",
     module: 5,
+    target: "existing-pages",
   },
   {
     idea: "A tension planner in the form planner: one lane per lever (loudness, register, density, tempo, harmony) weighted 3-3-2-2-1, a warning when levers oppose, and a flag on any build whose only change is a meter change",
     source: "Farbood 2012 [Exp. 1; model]",
     module: 3,
+    target: "form-planner",
   },
   {
     idea: "A scramble test: cut a demo into 6-second chunks, reorder them with smooth joins, and see whether bandmates or friends notice, and which joins give it away",
     source: "Lalitte & Bigand 2006",
     module: 5,
+    target: "listening-kit",
   },
   {
     idea: "Counter-meter spans on the riff board: mark where a counter-meter starts, how long it runs and where it realigns with the main meter (the \"Lazarus Heart\" model)",
     source: "Vuust & Witek 2014 [polyrhythm]",
     module: 2,
+    target: "riff-board",
   },
   {
     idea: "A callback gesture for leaving a trance section: a distinct rhythm change that ends the steady carrier and pulls attention back outward",
     source: "Hove et al. 2016 [discussion]",
     module: 5,
+    target: "boundary-checker",
   },
   {
     idea: "Sentence-to-prechorus exercise: write a verse as a sentence, then stretch its continuation until it splits off as a prechorus",
     source: "Summach 2011 [4]",
     module: 1,
+    target: "existing-pages",
   },
   {
     idea: "A vocal-timbre lane in the form planner, scored per section on Heidemann's scales (breathy–clear, regular–rough, constricted–open, face–chest, relaxed–anchored)",
     source: "Heidemann [4.7]",
     module: 6,
+    target: "form-planner",
   },
   {
     idea: "A form-chart convention for the band: letters for themes, primes for the same theme reorchestrated, Roman numerals for section groups — built into the form planner",
     source: "Osborn 2011 [5]",
     module: 0,
+    target: "form-planner",
   },
   {
     idea: "Focal-parameter plan: give each section group a different main parameter (melody, then rhythm, then timbre), as in Mew's \"Chinaberry Tree\"",
     source: "Osborn 2011 [15]",
     module: 4,
+    target: "form-planner",
   },
   {
     idea: "Terminally anti-climactic endings for an album's last track (a new, quieter closing section)",
     source: "Osborn 2010, Conclusions",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "A ladder planner: for each section, set hook repetitions, highest note, guitar technique and cymbal, and check that each parameter climbs to the intended peak",
     source: "Osborn 2013 pp. 9–16; 2010 Ch. 2",
     module: 3,
+    target: "form-planner",
   },
   {
     idea: "The retrospective prechorus as a writing exercise: a false chorus in one mode of a collection, the real chorus saved for the plainest mode",
     source: "Osborn 2010 Ch. 2",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "Bass reharmonisation under a fixed riff as a bridge device (Chancellor) — a lab that keeps the guitar riff and lets the bass move",
     source: "Osborn 2013 n. 70; 2010 Ch. 3",
     module: 4,
+    target: "later",
   },
 
   {
     idea: "A section-boundary checker: tick which cues change at each seam (title line, voices added, guitar rhythm, stop time, first chord) to see whether a boundary is obvious, subtle or ambiguous",
     source: "Stephenson ch. 6",
     module: 4,
+    target: "boundary-checker",
   },
   {
     idea: "The harmonic palettes of rock (major/Mixolydian, natural minor, chromatic minor) and changing palette by section, for the riff board's chord side",
     source: "Stephenson ch. 4",
     module: 1,
+    target: "riff-board",
   },
   {
     idea: "Key by the persistently initiating chord: in rock the chord that starts each unit is heard as home, even without cadences or a leading tone",
     source: "Stephenson ch. 2",
     module: 1,
+    target: "riff-board",
   },
 
   {
     idea: "A riff-notation tool: entering riffs as attack-point intervals plus pitches, and finding matching interval strings across sections (the Riff board could do this)",
     source: "Pieslak pp. 226–235 (after Yeston)",
     module: 0,
+    target: "riff-board",
   },
   {
     idea: "Hypermeter marked by other layers when the riff stops: a lead melody in long notes, a pitch change, the voice entering — a lab where the drums drop the frame and another layer picks it up",
     source: "Pieslak pp. 228–235 (after Lester)",
     module: 2,
+    target: "later",
   },
   {
     idea: "Transitions sized by arithmetic: a fill or dive whose length lets a misaligned layer finish its last statement",
     source: "Pieslak pp. 235–240",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "Formal dissonance: planning a long piece so one set of landmarks divides it in three and another in two",
     source: "Pieslak pp. 240–241",
     module: 4,
+    target: "form-planner",
     note: "A short note is on the Metric dissonance as a section marker page; Designing the whole could take it up as a planning option.",
   },
   {
     idea: "Quotation as an opening: another band's riff stated once, then dissolved into your own language",
     source: "Pieslak p. 241 (Anthrax, \"Time\")",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "Spectrograms as an analysis tool: reading kick-drum clusters and gaps to find where a riff really begins",
     source: "Lucas [15], [25]–[28], [39]–[41]",
     module: 0,
+    target: "later",
   },
   {
     idea: "The breakdown as a formal function (hardcore: halved tempo, near the end, lyric summary) with its own riff and cymbal conventions",
     source: "Garza note 9, [12]",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "A tempo planner for odd meters: enter the pulse and grouping, see the beat and bar lengths in milliseconds against London's windows (100 ms floor, 250 ms boundary, 600 ms attractor, 5–6 s ceiling)",
     source: "London ch. 2, 7",
     module: 2,
+    target: "riff-board",
   },
   {
     idea: "Thick and thin meter: adding and removing levels (subdivision, half-bar, hypermeter) as a form device; meter thickest at the big closes",
     source: "London ch. 6 (Beethoven's Fifth)",
     module: 4,
+    target: "form-planner",
   },
   {
     idea: "The band's feel as a recorded fingerprint: measure where each player sits against the grid in your own takes, and keep it consistent as part of the composition",
     source: "London ch. 9 (many meters hypothesis)",
     module: 5,
+    target: "later",
   },
   {
     idea: "Metrical maps as a standard analysis view: dissonances listed down the side, solid/dotted lines over a bar grid, compared across songs (an editable map tool in the app)",
     source: "Krebs ch. 4",
     module: 2,
+    target: "meter-map",
   },
   {
     idea: "Two or three layers of meter in one player: split-hand technique translated to the kit (one limb group per layer), and assigning layers across the band so each part carries only one",
     source: "Krebs ch. 7",
     module: 2,
+    target: "existing-pages",
   },
   {
     idea: "A metric profile of your own songs: tabulate each finished track by dissonance type and place (initiating, link, hemiola, dissonant middle, throughout; tight or loose chorus) and compare it with Tool's chart",
     source: "Biamonte §8",
     module: 2,
+    target: "meter-map",
   },
   {
     idea: "Metric modulation through a cadential hemiola: regroup the beat into threes before a section end so that the new beat becomes the next section's tempo (a built-in slow-down or speed-up)",
     source: "Biamonte §7.5",
     module: 2,
+    target: "existing-pages",
   },
   {
     idea: "Hypermetric dissonance as its own tool: three-bar phrases against an irregular intro, a bridge shortened to eleven bars by an elision, and the binary default that makes them noticeable",
     source: "Biamonte §5",
     module: 2,
+    target: "existing-pages",
   },
   {
     idea: "Character as a design starting point: the accompaniment pattern sets the character before the melody; character pairs for contrasting sections (lyrical–rhythmic, melodious–étude-like, grazioso–energico, melancholy–gay); a story, poem or film as the stimulus for a piece",
     source: "Schoenberg ch. X, XV",
     module: 3,
+    target: "existing-pages",
   },
   {
     idea: "A variation set built from a skeleton: strip the riff to its main notes, derive one 'motive of variation' per variation and keep it consistent; variations in different keys, tempos and characters; a set that builds to a series of climaxes",
     source: "Schoenberg ch. XVII",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "A modulating middle section from one pattern: pattern-and-sequence options from one opening (motive-forms reordered abac, abcc, aaab), an episode that settles somewhere distant, a 'return in the wrong key', dwelling on the wrong dominant",
     source: "Schoenberg ch. XVI",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "A retransition that forecasts the return: the main motive augmented or rhythmically changed until it turns out to be the theme's first notes; a long dominant pedal as the climax of the whole piece",
     source: "Schoenberg ch. XVIII",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "Combining a motive with itself instead of varying it (canon, inversion, two forms at once) as a second way to develop; imitation between instruments inside a development section",
     source: "Schoenberg ch. IX, XV",
     module: 3,
+    target: "existing-pages",
   },
   {
     idea: "After the return: episodes that neither modulate nor cadence, codettas that get shorter, a written-out slow-down, and an ending deliberately left open so the track runs into the next one",
     source: "Schoenberg ch. XVI",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Hybrid phrase types between sentence and period (antecedent + continuation, compound basic idea + continuation...) as a design spectrum for riff phrases: drive vs. repose",
     source: "Caplin ch. 4",
     module: 1,
+    target: "existing-pages",
   },
   {
     idea: "Two-part form without a return vs. a rounded form with one: why a riff that recurs across a long song is better framed in units that don't restate it themselves",
     source: "Caplin ch. 8, 17 (small binary, variation themes)",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "A long song as a variation set on one riff: ornament, then keep only the harmony, a mode shift, a slow variation, a fast final one; complexity rising across the set",
     source: "Caplin ch. 17",
     module: 4,
+    target: "existing-pages",
   },
   {
     idea: "Band roles borrowed from the concerto: who frames the piece, who carries the key changes, who gets the solo cadenza; the soloist gets ideas the band never played",
     source: "Caplin ch. 20",
     module: 3,
+    target: "existing-pages",
   },
   {
     idea: "Position in the album decides the form: forward-driving openers, lighter closers, simpler slow tracks, a track that ends on the dominant and runs into the next",
     source: "Caplin ch. 10, 17",
     module: 7,
+    target: "album-planner",
   },
   {
     idea: "Finding the tonic of a riff or loop: persistence (longest), laterality (starts or ends the pattern), emphasis (accent, timbre, density); two tonics in one song, one per section, with a moment of ambiguity as they swap",
     source: "Moore, Song Means ch. 3",
     module: 2,
+    target: "riff-board",
   },
   {
     idea: "Enriching a known chord pattern by interpolating chords (each chord preceded by its own fifth); melody-driven vs chord-driven harmony; a pattern withheld, approached by near-versions, then arriving as a goal",
     source: "Moore, Song Means ch. 3 (Jethro Tull, PJ Harvey)",
     module: 2,
+    target: "later",
   },
   {
     idea: "Bass character as a style choice: regular vs varied rhythm, static vs mobile pitch; a bass that ignores the harmony (pedal under moving guitar)",
     source: "Moore, Song Means ch. 3",
     module: 3,
+    target: "existing-pages",
   },
   {
     idea: "Loose verse, tight chorus: verse melodies with unresolved dissonant pitches against the harmony, chorus melodies that agree with it",
     source: "Moore ch. 3 (after Temperley 2007)",
     module: 6,
+    target: "m6-pages",
   },
   {
     idea: "A song that offers two endings for its story (a negative, then a positive outcome hinging on one decision)",
     source: "Moore ch. 6 (The Streets, 'Empty Cans')",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Lyric vs anti-lyric: rhyme-led, poem-like lines vs prose-like statement with striking words; full, near and deliberately missing rhymes; rhymes across parts of speech push the thought forward",
     source: "Analyzing Popular Music ch. 3 (Griffiths)",
     module: 6,
+    target: "m6-pages",
   },
   {
     idea: "Vocal performance as form: a palette of timbres (head, throat, nasal, rasp), rasp applied additively across a song, straight tone then late vibrato, rests inserted mid-phrase as halting speech, words giving way to vocables at the climax",
     source: "Analyzing Popular Music ch. 6 (Bowman)",
     module: 6,
+    target: "m6-pages",
   },
   {
     idea: "Timbre as a recurring marker (one distinctive sound tied to one idea and brought further forward each time); a continuum from sound design to music: ambient, atmospheric, minimalist",
     source: "Analyzing Popular Music ch. 4 (Stilwell)",
     module: 3,
+    target: "existing-pages",
   },
   {
     idea: "Same material, opposite meaning by setting (one quoted prayer in a gentle country song and in a Metallica nightmare); quotation of other records inside a track",
     source: "Analyzing Popular Music ch. 2 (Walser), ch. 8 (Moore)",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Idiolect vs style: a band can cross styles and keep one identity; history reworked in a living present (songs re-arranged over decades)",
     source: "Analyzing Popular Music ch. 8 (Moore)",
     module: 0,
+    target: "method",
   },
   {
     idea: "How bands talk while writing: rehearsing 'the hard bit' (the change between riffs), counting repeats before a change, cueing it with a fill, the limits of 'drum talk'",
     source: "Analyzing Popular Music ch. 11 (Stokes, after Cohen)",
     module: 0,
+    target: "method",
   },
   {
     idea: "A listening-situation profile for the listening test: when, who, how attentively, where, on what system, and for what task",
     source: "Analyzing Popular Music ch. 10 (Kennett)",
     module: 5,
+    target: "listening-kit",
   },
   {
     idea: "Song, performance and track: what all versions share vs. what one recording adds (instrumentation, speed, tone, production)",
     source: "Moore ch. 1",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "A bank of analysis questions, general first, discarding what doesn't apply: a checklist for every track you analyze",
     source: "Moore ch. 11 (questions for ch. 1–7 read; ch. 8–10 hidden in the preview)",
     module: 0,
+    target: "method",
     note: "For the Tool lab and the weekly Analyze step",
   },
   {
     idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",
     source: "Kramer ch. 3",
     module: 7,
+    target: "m7-pages",
   },
   {
     idea: "Recitative vs. aria as two vocal modes; text first, with the melody exaggerating the spoken contour but never contradicting it; open vowels on the peak notes",
     source: "Belkin ch. 3",
     module: 6,
+    target: "m6-pages",
     note: "Partly in The vocal line; the rest goes to Module 6",
   },
 ];

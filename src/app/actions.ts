@@ -2,10 +2,12 @@
 
 import { and, eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { db } from "@/db";
-import { conceptNotes, journal, motifs, progress } from "@/db/schema";
+import { conceptNotes, formPlans, journal, motifs, progress } from "@/db/schema";
+import { examplePlan, planDataSchema } from "@/lib/form-plan";
 import { conceptBySlug } from "@/content/curriculum";
 import { parseNotation } from "@/lib/music/notation";
 import { requireUser } from "@/lib/session";
@@ -179,4 +181,59 @@ export async function deleteJournal(id: string): Promise<ActionResult> {
   await db.delete(journal).where(and(eq(journal.id, id), eq(journal.userId, user.id)));
   revalidatePath("/journal");
   return { ok: true };
+}
+
+/* ---------------- form plans ---------------- */
+
+export async function createPlan(fromExample: boolean): Promise<void> {
+  const user = await requireUser();
+  const data = fromExample ? examplePlan() : planDataSchema.parse({});
+  const [row] = await db
+    .insert(formPlans)
+    .values({ userId: user.id, title: fromExample ? "Example: Low Tide" : "Untitled plan", data })
+    .returning({ id: formPlans.id });
+  revalidatePath("/plans");
+  redirect(`/plans/${row.id}`);
+}
+
+const planSaveSchema = z.object({
+  title: z.string().trim().min(1, "Give the plan a title").max(120),
+  song: z.string().trim().max(120),
+  data: planDataSchema,
+});
+
+export async function savePlan(id: string, input: unknown): Promise<ActionResult> {
+  const user = await requireUser();
+  const parsed = planSaveSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid plan" };
+  const res = await db
+    .update(formPlans)
+    .set({ ...parsed.data, updatedAt: sql`now()` })
+    .where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)))
+    .returning({ id: formPlans.id });
+  if (res.length === 0) return { ok: false, error: "Plan not found" };
+  revalidatePath("/plans");
+  return { ok: true };
+}
+
+export async function duplicatePlan(id: string): Promise<void> {
+  const user = await requireUser();
+  const [src] = await db
+    .select()
+    .from(formPlans)
+    .where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)));
+  if (!src) redirect("/plans");
+  const [row] = await db
+    .insert(formPlans)
+    .values({ userId: user.id, title: `${src.title} (copy)`.slice(0, 120), song: src.song, data: src.data })
+    .returning({ id: formPlans.id });
+  revalidatePath("/plans");
+  redirect(`/plans/${row.id}`);
+}
+
+export async function deletePlan(id: string): Promise<void> {
+  const user = await requireUser();
+  await db.delete(formPlans).where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)));
+  revalidatePath("/plans");
+  redirect("/plans");
 }

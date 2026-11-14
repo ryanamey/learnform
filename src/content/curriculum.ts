@@ -1237,7 +1237,7 @@ export const buildPlan: BuildTarget[] = [
     phase: "2 · Tools",
     name: "Form planner with lanes",
     kind: "tool",
-    what: "Sections across the top, one lane per parameter underneath: the five tension levers weighted 3-3-2-2-1, a ladder lane for climbing hooks and peaks, a vocal-timbre lane, the focal parameter of each section group, meter thickness. Warns when levers oppose or a build changes only the meter, and checks two sets of landmarks against each other. Uses the band's chart letters, primes and section-group numerals.",
+    what: "Built: Form plans in the sidebar. Sections across the top, one lane per parameter underneath: the five tension levers weighted 3-3-2-2-1, a ladder lane for climbing hooks and peaks, a vocal-timbre lane, the focal parameter of each section group, meter thickness. Warns when levers oppose or a build changes only the meter, and checks two sets of landmarks against each other. Uses the band's chart letters, primes and section-group numerals.",
   },
   {
     id: "boundary-checker",
@@ -1391,12 +1391,6 @@ export const foundInReading: FoundIdea[] = [
     target: "existing-pages",
   },
   {
-    idea: "A tension planner in the form planner: one lane per lever (loudness, register, density, tempo, harmony) weighted 3-3-2-2-1, a warning when levers oppose, and a flag on any build whose only change is a meter change",
-    source: "Farbood 2012 [Exp. 1; model]",
-    module: 3,
-    target: "form-planner",
-  },
-  {
     idea: "A scramble test: cut a demo into 6-second chunks, reorder them with smooth joins, and see whether bandmates or friends notice, and which joins give it away",
     source: "Lalitte & Bigand 2006",
     module: 5,
@@ -1421,34 +1415,10 @@ export const foundInReading: FoundIdea[] = [
     target: "existing-pages",
   },
   {
-    idea: "A vocal-timbre lane in the form planner, scored per section on Heidemann's scales (breathy–clear, regular–rough, constricted–open, face–chest, relaxed–anchored)",
-    source: "Heidemann [4.7]",
-    module: 6,
-    target: "form-planner",
-  },
-  {
-    idea: "A form-chart convention for the band: letters for themes, primes for the same theme reorchestrated, Roman numerals for section groups — built into the form planner",
-    source: "Osborn 2011 [5]",
-    module: 0,
-    target: "form-planner",
-  },
-  {
-    idea: "Focal-parameter plan: give each section group a different main parameter (melody, then rhythm, then timbre), as in Mew's \"Chinaberry Tree\"",
-    source: "Osborn 2011 [15]",
-    module: 4,
-    target: "form-planner",
-  },
-  {
     idea: "Terminally anti-climactic endings for an album's last track (a new, quieter closing section)",
     source: "Osborn 2010, Conclusions",
     module: 7,
     target: "m7-pages",
-  },
-  {
-    idea: "A ladder planner: for each section, set hook repetitions, highest note, guitar technique and cymbal, and check that each parameter climbs to the intended peak",
-    source: "Osborn 2013 pp. 9–16; 2010 Ch. 2",
-    module: 3,
-    target: "form-planner",
   },
   {
     idea: "The retrospective prechorus as a writing exercise: a false chorus in one mode of a collection, the real chorus saved for the plainest mode",
@@ -1501,13 +1471,6 @@ export const foundInReading: FoundIdea[] = [
     target: "existing-pages",
   },
   {
-    idea: "Formal dissonance: planning a long piece so one set of landmarks divides it in three and another in two",
-    source: "Pieslak pp. 240–241",
-    module: 4,
-    target: "form-planner",
-    note: "A short note is on the Metric dissonance as a section marker page; Designing the whole could take it up as a planning option.",
-  },
-  {
     idea: "Quotation as an opening: another band's riff stated once, then dissolved into your own language",
     source: "Pieslak p. 241 (Anthrax, \"Time\")",
     module: 4,
@@ -1530,12 +1493,6 @@ export const foundInReading: FoundIdea[] = [
     source: "London ch. 2, 7",
     module: 2,
     target: "riff-board",
-  },
-  {
-    idea: "Thick and thin meter: adding and removing levels (subdivision, half-bar, hypermeter) as a form device; meter thickest at the big closes",
-    source: "London ch. 6 (Beethoven's Fifth)",
-    module: 4,
-    target: "form-planner",
   },
   {
     idea: "The band's feel as a recorded fingerprint: measure where each player sits against the grid in your own takes, and keep it consistent as part of the composition",

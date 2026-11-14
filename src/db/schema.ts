@@ -2,6 +2,7 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgTable,
   primaryKey,
   text,
@@ -10,6 +11,8 @@ import {
   date,
   type AnyPgColumn,
 } from "drizzle-orm/pg-core";
+
+import type { PlanData } from "@/lib/form-plan";
 
 /* ------------------------------------------------------------------ */
 /* Better Auth core tables                                             */
@@ -155,3 +158,24 @@ export const journal = pgTable(
 
 export type Motif = typeof motifs.$inferSelect;
 export type JournalEntry = typeof journal.$inferSelect;
+
+/**
+ * Form plans: a song designed section by section before the material exists.
+ * The sections, lanes and focal parameters live in `data` (see src/lib/form-plan.ts).
+ */
+export const formPlans = pgTable(
+  "form_plans",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    title: text("title").notNull().default("Untitled plan"),
+    song: text("song").notNull().default(""),
+    data: jsonb("data").notNull().$type<PlanData>(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (t) => [index("form_plans_user_idx").on(t.userId)]
+);
+

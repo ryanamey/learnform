@@ -1,5 +1,13 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-14 · Build plan step 2a: the form planner
+
+**Decision:** *Form plans* (sidebar, under Study) is the first tool. A plan is a list of sections (group numeral, chart letter, name, bars × meter, job, riffs, notes, tempo override), drawn as lanes on one timeline: weighted tension, the five levers, the climb to the peak (hook repetitions, highest note, guitar technique, cymbal), the voice on Heidemann's five scales, meter thickness, and two landmark sets. A focal parameter is set per section group. Plans save automatically and copy as a Markdown table for the band.
+**Checks it runs:** levers pulling against each other (a warning, or a note when the section is a cue, contrast, release or transition); a build whose only change is the meter; a build with fewer than three levers rising, or only harmony; tension highest somewhere other than the marked peak; any rung of the ladder higher before the peak; a peak timbre already used; arrivals and endings with thinner meter than elsewhere; two groups with the same focal parameter; landmark sets that coincide. Each check links to the page it comes from.
+**Choices made:** levers are one value (0–10) per section, not curves inside a section; tension is their weighted mean; landmarks mark the start of a part. These keep the planner quick to fill in; a section that builds internally can be split in two.
+**Needs a database change:** a new table, `form_plans`. The migration is in `drizzle/0001_form_plans.sql` and has to be run on the production database before the deployed planner works.
+**Backlog:** The seven form-planner ideas are built and removed.
+
 ### 2026-11-14 · Build plan step 1: the method page
 
 **Decision:** *How to use this app* is the first page of Module 0, with a link from the Studio page until it's marked done. It ties the app's parts to the weekly loop, gives a short analysis checklist (eight questions adapted from Moore's longer bank in *Song Means*, of which chapters 1–7 have been seen), the steps for designing and handing over a form, how a band talks while writing (Cohen's rehearsal studies, via Stokes) and the band's idiolect (Moore on Jethro Tull).

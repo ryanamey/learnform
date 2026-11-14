@@ -105,11 +105,65 @@ export const sectionSchema = z.object({
 });
 export type Section = z.infer<typeof sectionSchema>;
 
+/* ---------------- seams (boundary checker) ---------------- */
+
+/** Cues you tick by hand, grouped by Stephenson's four kinds of boundary signal (ch. 6), plus a lead-in fill. */
+export const SEAM_CUES = [
+  { key: "title", kind: "Words", label: "Title line or returning lyric starts", weight: 2 },
+  { key: "voices", kind: "Instruments", label: "Backing voices added", weight: 1 },
+  { key: "instrument", kind: "Instruments", label: "An instrument enters or leaves", weight: 1 },
+  { key: "stoptime", kind: "Rhythm", label: "Stop time gives way to a groove (or the reverse)", weight: 2 },
+  { key: "guitar-pattern", kind: "Rhythm", label: "Guitar pattern changes", weight: 1 },
+  { key: "vocal-rhythm", kind: "Rhythm", label: "Vocal rhythm changes", weight: 1 },
+  { key: "callback", kind: "Rhythm", label: "A distinct callback rhythm", weight: 2 },
+  { key: "loop-break", kind: "Harmony", label: "The repeating pattern breaks", weight: 2 },
+  { key: "fill", kind: "Lead-in", label: "A fill or pickup leads in", weight: 1 },
+] as const;
+export type SeamCueKey = (typeof SEAM_CUES)[number]["key"];
+
+/** Devices that carry the music across a seam and hide it. */
+export const SEAM_HOLDS = [
+  { key: "enjambment", label: "The lyric runs on across the seam", weight: 2 },
+  { key: "pedal", label: "A held pedal note or cymbal pattern", weight: 1 },
+  { key: "groove", label: "The groove carries on", weight: 2 },
+  { key: "overlap", label: "Phrases overlap (the end is the next start)", weight: 2 },
+] as const;
+export type SeamHoldKey = (typeof SEAM_HOLDS)[number]["key"];
+
+export const SEAM_INTENTS = ["", "cut", "clear", "subtle", "blurred"] as const;
+export const SEAM_INTENT_HELP: Record<(typeof SEAM_INTENTS)[number], string> = {
+  "": "not set",
+  cut: "hard cut: unmistakable",
+  clear: "clearly a new section",
+  subtle: "noticed, but gently",
+  blurred: "hard to place, on purpose",
+};
+export const SEAM_KINDS = ["", "gradual", "turning", "interruption", "crosscut"] as const;
+export const SEAM_KIND_HELP: Record<(typeof SEAM_KINDS)[number], string> = {
+  "": "not set",
+  gradual: "gradual: change one thing at a time",
+  turning: "turning point: a build pivots into the new idea",
+  interruption: "interruption: a sudden cut",
+  crosscut: "cross-cutting: alternate A and B until one wins",
+};
+export const FIRST_CHORDS = ["", "I", "IV", "V", "vi", "other"] as const;
+
+export const seamSchema = z.object({
+  intent: z.enum(SEAM_INTENTS).default(""),
+  kind: z.enum(SEAM_KINDS).default(""),
+  cues: z.array(z.enum(SEAM_CUES.map((c) => c.key) as [SeamCueKey, ...SeamCueKey[]])).max(20).default([]),
+  holds: z.array(z.enum(SEAM_HOLDS.map((c) => c.key) as [SeamHoldKey, ...SeamHoldKey[]])).max(10).default([]),
+  firstChord: z.enum(FIRST_CHORDS).default(""),
+});
+export type Seam = z.infer<typeof seamSchema>;
+
 export const planDataSchema = z.object({
   bpm: z.number().min(20).max(400).default(100),
   sections: z.array(sectionSchema).max(80).default([]),
   /** focal parameter per section group, keyed by group number */
   focal: z.record(z.string(), z.enum(FOCAL)).default({}),
+  /** the seam before each section, keyed by that section's id */
+  seams: z.record(z.string(), seamSchema).default({}),
 });
 export type PlanData = z.infer<typeof planDataSchema>;
 
@@ -205,6 +259,170 @@ export function noteToMidi(n: string): number | null {
   const base = NOTE_INDEX[m[1].toUpperCase()];
   const acc = m[2] === "#" || m[2] === "♯" ? 1 : m[2] === "b" || m[2] === "♭" ? -1 : 0;
   return (Number(m[3]) + 1) * 12 + base + acc;
+}
+
+/* ---------------- seam analysis ---------------- */
+
+export type SeamStrength = "seamless" | "subtle" | "clear" | "obvious" | "ambiguous";
+export type SeamReading = {
+  /** index of the incoming section */
+  at: number;
+  auto: { label: string; weight: number; kind: string }[];
+  manual: { label: string; weight: number; kind: string }[];
+  holds: { label: string; weight: number }[];
+  breakScore: number;
+  holdScore: number;
+  strength: SeamStrength;
+  /** how many things differ between the two sections, for gradual transitions */
+  differences: number;
+  seam: Seam;
+};
+
+export function emptySeam(): Seam {
+  return seamSchema.parse({});
+}
+
+function effBpm(s: Section, plan: PlanData) {
+  return s.bpm ?? plan.bpm;
+}
+
+export function readSeam(plan: PlanData, i: number): SeamReading {
+  const a = plan.sections[i - 1];
+  const b = plan.sections[i];
+  const seam = plan.seams[b.id] ?? emptySeam();
+  const auto: { label: string; weight: number; kind: string }[] = [];
+  let differences = 0;
+
+  for (const l of LEVERS) {
+    const d = b.levers[l] - a.levers[l];
+    if (Math.abs(d) >= 2) differences++;
+    if (l === "harmony") continue;
+    if (Math.abs(d) >= 5) auto.push({ label: `${l} ${d > 0 ? "jumps up" : "drops"} ${Math.abs(d)}`, weight: 2, kind: "Energy" });
+    else if (Math.abs(d) >= 3) auto.push({ label: `${l} ${d > 0 ? "rises" : "falls"} ${Math.abs(d)}`, weight: 1, kind: "Energy" });
+  }
+  if (a.meter.replace(/\s/g, "") !== b.meter.replace(/\s/g, "")) {
+    auto.push({ label: `meter ${a.meter} → ${b.meter}`, weight: 1, kind: "Rhythm" });
+    differences++;
+  }
+  const ta = effBpm(a, plan);
+  const tb = effBpm(b, plan);
+  if (Math.abs(tb - ta) / ta >= 0.05) {
+    auto.push({ label: `tempo ${ta} → ${tb}`, weight: 1, kind: "Rhythm" });
+    differences++;
+  }
+  if (Math.abs(b.meterThickness - a.meterThickness) >= 2) {
+    auto.push({ label: `meter ${b.meterThickness > a.meterThickness ? "thickens" : "thins"}`, weight: 1, kind: "Rhythm" });
+    differences++;
+  }
+  if ((a.timbre === null) !== (b.timbre === null)) {
+    auto.push({ label: b.timbre ? "voice enters" : "voice drops out", weight: 1, kind: "Instruments" });
+    differences++;
+  } else if (a.timbre && b.timbre && TIMBRE_SCALES.some(({ key }) => Math.abs(a.timbre![key] - b.timbre![key]) >= 2)) {
+    auto.push({ label: "vocal timbre changes", weight: 1, kind: "Instruments" });
+    differences++;
+  }
+  if (a.group !== b.group) auto.push({ label: `new section group (${roman(b.group)})`, weight: 1, kind: "Structure" });
+  if (a.riffs.trim() && b.riffs.trim() && a.riffs.trim().toLowerCase() !== b.riffs.trim().toLowerCase()) differences++;
+
+  const manual: { label: string; weight: number; kind: string }[] = SEAM_CUES.filter((c) => seam.cues.includes(c.key)).map((c) => ({
+    label: c.label as string,
+    weight: c.weight as number,
+    kind: c.kind as string,
+  }));
+  if (seam.firstChord) manual.push({ label: `opens on ${seam.firstChord}`, weight: 1, kind: "Harmony" });
+  const holds: { label: string; weight: number }[] = SEAM_HOLDS.filter((h) => seam.holds.includes(h.key)).map((h) => ({ label: h.label as string, weight: h.weight as number }));
+
+  const breakScore = [...auto, ...manual].reduce((t, c) => t + c.weight, 0);
+  const holdScore = holds.reduce((t, c) => t + c.weight, 0);
+  const net = breakScore - holdScore;
+  const kinds = new Set([...auto, ...manual].map((c) => c.kind)).size;
+  const strength: SeamStrength =
+    breakScore >= 4 && holdScore >= 2
+      ? "ambiguous"
+      : net >= 6 && kinds >= 3
+        ? "obvious"
+        : net >= 3
+          ? "clear"
+          : breakScore >= 1 && net >= 0
+            ? "subtle"
+            : "seamless";
+  return { at: i, auto, manual, holds, breakScore, holdScore, strength, differences, seam };
+}
+
+export function readSeams(plan: PlanData): SeamReading[] {
+  return plan.sections.slice(1).map((_, k) => readSeam(plan, k + 1));
+}
+
+const INTENT_FITS: Record<string, SeamStrength[]> = {
+  cut: ["obvious"],
+  clear: ["clear", "obvious"],
+  subtle: ["subtle", "clear"],
+  blurred: ["ambiguous", "seamless", "subtle"],
+};
+
+function seamChecks(plan: PlanData, label: (i: number) => string): Check[] {
+  const out: Check[] = [];
+  const secs = plan.sections;
+  const R = readSeams(plan);
+  const page = "contrast-and-transition";
+  for (const r of R) {
+    const where = `Seam into ${label(r.at)}`;
+    const { intent, kind } = r.seam;
+    if (intent && !INTENT_FITS[intent].includes(r.strength)) {
+      const want = SEAM_INTENT_HELP[intent];
+      const fix =
+        r.strength === "ambiguous"
+          ? "Some cues change while others carry on; drop a hold or a cue to make it clear."
+          : ["seamless", "subtle"].includes(r.strength) && (intent === "cut" || intent === "clear")
+            ? "Add cues from different kinds (words, instruments, rhythm, harmony) at the same moment."
+            : "Remove a cue, or add a hold (a pedal, a groove that carries on, an overlap).";
+      out.push({ level: "warn", at: r.at, page, text: `${where} reads as ${r.strength}, but you want it ${want}. ${fix}` });
+    }
+    const b = secs[r.at];
+    if ((b.job === "arrive" || b.peak) && ["seamless", "subtle"].includes(r.strength) && intent !== "subtle" && intent !== "blurred")
+      out.push({ level: "warn", at: r.at, page, text: `${label(r.at)} is an arrival, but the seam before it is ${r.strength}. Arrivals usually need several cues at once.` });
+    if (kind === "gradual" && r.differences >= 3)
+      out.push({
+        level: "info",
+        at: r.at,
+        page,
+        text: `${where}: ${r.differences} things change at once. A gradual route changes one at a time, so give it a transition section with room for each step.`,
+      });
+    if (kind === "interruption" && !r.seam.cues.includes("fill"))
+      out.push({ level: "info", at: r.at, page, text: `${where} is an interruption with no lead-in. A tiny preparation (a pickup, a fill) keeps a cut from sounding random.` });
+    if (kind === "turning" && secs[r.at - 1].job !== "build")
+      out.push({ level: "info", at: r.at, page, text: `${where} is a turning point, but the section before it isn't a build. A turning point pivots on the peak of a build.` });
+  }
+
+  if (R.length >= 4) {
+    const hard = R.filter((r) => r.strength === "obvious");
+    if (hard.length / R.length > 0.5)
+      out.push({
+        level: "warn",
+        page,
+        text: `${hard.length} of ${R.length} seams are hard cuts. Abrupt changes work best when they're rare; too many make a piece sound like fragments.`,
+      });
+  }
+
+  const base = (l: string) => l.replace(/[′″'"‴]/g, "").trim().toUpperCase();
+  const seen = new Map<string, number>();
+  for (const r of R) {
+    const la = base(secs[r.at - 1].letter);
+    const lb = base(secs[r.at].letter);
+    if (!la || !lb || la === lb) continue;
+    const key = `${la}→${lb}`;
+    if (seen.has(key)) {
+      const prev = R.find((x) => x.at === seen.get(key))!;
+      if (r.breakScore <= prev.breakScore)
+        out.push({
+          level: "info",
+          at: r.at,
+          page,
+          text: `${key} happens again at ${label(r.at)} with no stronger cues than the first time. The same contrast loses force when it's repeated; change something.`,
+        });
+    } else seen.set(key, r.at);
+  }
+  return out;
 }
 
 /* ---------------- checks ---------------- */
@@ -342,6 +560,8 @@ export function checkPlan(plan: PlanData): Check[] {
     }
   }
 
+
+  out.push(...seamChecks(plan, label));
   return out;
 }
 
@@ -362,15 +582,25 @@ export function planToMarkdown(title: string, plan: PlanData): string {
     .filter(([, v]) => v)
     .map(([g, v]) => `- Group ${roman(Number(g))}: focus on ${v}`)
     .join("\n");
-  return head + table + (focal ? `\n\n${focal}\n` : "\n");
+  const seams = readSeams(plan)
+    .map((r) => {
+      const a = plan.sections[r.at - 1];
+      const b = plan.sections[r.at];
+      const cues = [...r.auto, ...r.manual].map((c) => c.label).join(", ") || "none";
+      const holds = r.holds.length ? `; carried by ${r.holds.map((h) => h.label.toLowerCase()).join(", ")}` : "";
+      return `- ${r.at} → ${r.at + 1} (${a.name || a.letter} → ${b.name || b.letter}): **${r.strength}**. Cues: ${cues}${holds}`;
+    })
+    .join("\n");
+  return head + table + (focal ? `\n\n${focal}\n` : "\n") + (seams ? `\n## Seams\n\n${seams}\n` : "");
 }
 
 /* ---------------- example ---------------- */
 
 export function examplePlan(): PlanData {
   const S = (p: Partial<Section>): Section => sectionSchema.parse({ id: newId(), ...p });
-  return {
+  const plan: PlanData = {
     bpm: 96,
+    seams: {},
     focal: { "1": "texture", "2": "rhythm", "3": "melody" },
     sections: [
       S({ name: "Intro", letter: "A", group: 1, bars: 8, meter: "4/4", job: "present", riffs: "Low Tide", levers: { loudness: 2, register: 3, density: 2, tempo: 4, harmony: 3 }, ladder: { hookReps: 0, highestNote: "", guitar: 1, cymbal: 0 }, meterThickness: 2, notes: "clean, guitar synth pad only", landmarkA: true }),
@@ -384,4 +614,16 @@ export function examplePlan(): PlanData {
       S({ name: "Outro", letter: "A", group: 3, bars: 8, meter: "4/4", job: "close", riffs: "Low Tide", levers: { loudness: 3, register: 3, density: 2, tempo: 4, harmony: 2 }, ladder: { hookReps: 0, highestNote: "", guitar: 1, cymbal: 1 }, meterThickness: 4, landmarkA: true }),
     ],
   };
+  const seam = (k: number, v: Partial<Seam>) => {
+    plan.seams[plan.sections[k].id] = seamSchema.parse(v);
+  };
+  seam(1, { intent: "clear", cues: ["guitar-pattern"] });
+  seam(2, { intent: "subtle", kind: "gradual", holds: ["groove"] });
+  seam(3, { intent: "cut", kind: "interruption", cues: ["stoptime", "fill"] });
+  seam(4, { intent: "clear", cues: ["instrument", "guitar-pattern"] });
+  seam(5, { intent: "clear", cues: ["title"] });
+  seam(6, { intent: "clear", cues: ["voices"] });
+  seam(7, { intent: "cut", kind: "turning", cues: ["title", "voices", "loop-break"] });
+  seam(8, { intent: "clear", holds: ["pedal"] });
+  return plan;
 }

@@ -32,15 +32,18 @@ import {
   formatTime,
   planToMarkdown,
   quartersPerBar,
+  readSeams,
   roman,
   timeline,
   type Check as PlanCheck,
   type PlanData,
+  type Seam,
   type Section,
 } from "@/lib/form-plan";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lanes, LEVER_COLOR } from "./lanes";
+import { SeamRow } from "./seam-row";
 
 const field = "h-9 min-w-0 rounded-md border bg-background px-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/50";
 
@@ -447,6 +450,7 @@ export function PlanEditor({
 
   const rows = useMemo(() => timeline(data), [data]);
   const checks = useMemo(() => checkPlan(data), [data]);
+  const seams = useMemo(() => readSeams(data), [data]);
   const total = rows.at(-1)?.end ?? 0;
   const groups = useMemo(() => [...new Set(data.sections.map((s) => s.group))].sort((a, b) => a - b), [data.sections]);
 
@@ -581,16 +585,25 @@ export function PlanEditor({
         </div>
       </header>
 
-      <Lanes rows={rows} selected={open} onSelect={jump} />
+      <Lanes rows={rows} seams={seams} selected={open} onSelect={jump} />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
         <section>
           <div className="mb-3 flex items-baseline justify-between gap-2">
             <h2 className="font-serif text-2xl">Sections</h2>
-            <span className="text-xs text-muted-foreground">group · chart letter · name · bars × meter · job</span>
+            <span className="text-xs text-muted-foreground">group · chart letter · name · bars × meter · job; open a seam to mark its cues</span>
           </div>
           <ol className="grid gap-3">
-            {data.sections.map((s, i) => (
+            {data.sections.map((s, i) => [
+              i > 0 && seams[i - 1] ? (
+                <SeamRow
+                  key={`seam-${s.id}`}
+                  reading={seams[i - 1]}
+                  fromLabel={String(i)}
+                  toLabel={String(i + 1)}
+                  onChange={(seam: Seam) => edit((d) => ({ ...d, seams: { ...d.seams, [s.id]: seam } }))}
+                />
+              ) : null,
               <SectionCard
                 key={s.id}
                 s={s}
@@ -609,12 +622,16 @@ export function PlanEditor({
                   if (open === i) setOpen(i + dir);
                 }}
                 remove={() => {
-                  edit((d) => ({ ...d, sections: d.sections.filter((_, k) => k !== i) }));
+                  edit((d) => {
+                    const rest = { ...d.seams };
+                    delete rest[s.id];
+                    return { ...d, seams: rest, sections: d.sections.filter((_, k) => k !== i) };
+                  });
                   setOpen(null);
                 }}
                 duplicate={() => edit((d) => ({ ...d, sections: [...d.sections.slice(0, i + 1), { ...blankSection(s), ...s, id: blankSection().id, peak: false }, ...d.sections.slice(i + 1)] }))}
-              />
-            ))}
+              />,
+            ])}
           </ol>
           <Button type="button" variant="outline" className="mt-3" onClick={addSection} disabled={data.sections.length >= 80}>
             <Plus /> Add section
@@ -670,6 +687,10 @@ export function PlanEditor({
               </li>
               <li>
                 <b>Chart letters</b>: a letter per theme, a prime (′) for the same theme rearranged; Roman numerals for section groups (Osborn).
+              </li>
+              <li>
+                <b>Seams</b> between sections are read from the lanes plus the cues you tick, after Stephenson; see{" "}
+                <Link href="/learn/contrast-and-transition" className="underline">Contrast and transition</Link>.
               </li>
               <li>
                 <b>Landmarks</b>: two sets that divide the piece differently create formal dissonance; see{" "}

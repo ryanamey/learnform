@@ -1244,7 +1244,7 @@ export const buildPlan: BuildTarget[] = [
     phase: "2 · Tools",
     name: "Boundary checker",
     kind: "tool",
-    what: "For each seam in a plan, tick which cues change (title line, voices added, guitar rhythm, stop time, first chord, a rhythm-change callback) and see whether the boundary will be heard as strong, weak or ambiguous.",
+    what: "Built: the seams between sections in every form plan. For each seam in a plan, tick which cues change (title line, voices added, guitar rhythm, stop time, first chord, a rhythm-change callback) and see whether the boundary will be heard as strong, weak or ambiguous.",
   },
   {
     id: "riff-board",
@@ -1403,12 +1403,6 @@ export const foundInReading: FoundIdea[] = [
     target: "riff-board",
   },
   {
-    idea: "A callback gesture for leaving a trance section: a distinct rhythm change that ends the steady carrier and pulls attention back outward",
-    source: "Hove et al. 2016 [discussion]",
-    module: 5,
-    target: "boundary-checker",
-  },
-  {
     idea: "Sentence-to-prechorus exercise: write a verse as a sentence, then stretch its continuation until it splits off as a prechorus",
     source: "Summach 2011 [4]",
     module: 1,
@@ -1433,12 +1427,6 @@ export const foundInReading: FoundIdea[] = [
     target: "later",
   },
 
-  {
-    idea: "A section-boundary checker: tick which cues change at each seam (title line, voices added, guitar rhythm, stop time, first chord) to see whether a boundary is obvious, subtle or ambiguous",
-    source: "Stephenson ch. 6",
-    module: 4,
-    target: "boundary-checker",
-  },
   {
     idea: "The harmonic palettes of rock (major/Mixolydian, natural minor, chromatic minor) and changing palette by section, for the riff board's chord side",
     source: "Stephenson ch. 4",

@@ -10,8 +10,10 @@ import {
   noteToMidi,
   roman,
   type Lever,
+  type SeamReading,
   type Timed,
 } from "@/lib/form-plan";
+import { STRENGTH_STYLE } from "./seam-row";
 
 export const LEVER_COLOR: Record<Lever, string> = {
   loudness: "var(--note-a)",
@@ -29,10 +31,12 @@ type Row = { key: string; label: string; sub?: string; h: number };
 
 export function Lanes({
   rows,
+  seams,
   selected,
   onSelect,
 }: {
   rows: Timed[];
+  seams: SeamReading[];
   selected: number | null;
   onSelect: (i: number) => void;
 }) {
@@ -138,7 +142,30 @@ export function Lanes({
               onClick={() => onSelect(i)}
               className="cursor-pointer"
             />
-            <line x1={x(s.start)} x2={x(s.start)} y1={0} y2={H - 18} stroke="var(--border)" />
+            {i === 0 ? (
+              <line x1={x(s.start)} x2={x(s.start)} y1={0} y2={H - 18} stroke="var(--border)" />
+            ) : (
+              <line
+                x1={x(s.start)}
+                x2={x(s.start)}
+                y1={0}
+                y2={H - 18}
+                stroke={
+                  seams[i - 1]?.strength === "obvious"
+                    ? "var(--signal)"
+                    : seams[i - 1]?.strength === "ambiguous"
+                      ? "var(--note-c)"
+                      : seams[i - 1]?.strength === "clear"
+                        ? "var(--note-b)"
+                        : "var(--border)"
+                }
+                strokeWidth={STRENGTH_STYLE[seams[i - 1]?.strength ?? "seamless"].width}
+                strokeDasharray={STRENGTH_STYLE[seams[i - 1]?.strength ?? "seamless"].dash}
+                opacity={0.7}
+              >
+                <title>{`Seam ${i} → ${i + 1}: ${seams[i - 1]?.strength ?? ""}`}</title>
+              </line>
+            )}
           </g>
         ))}
 
@@ -305,6 +332,11 @@ export function Lanes({
         </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--note-b)" }} /> toward the right word
+        </span>
+        <span className="flex items-center gap-1.5">
+          seams: <span className="inline-block h-3 w-0.5" style={{ background: "var(--note-b)" }} /> clear
+          <span className="inline-block h-3 w-1" style={{ background: "var(--signal)" }} /> obvious
+          <span className="inline-block h-3 w-0.5 border-l-2 border-dashed" style={{ borderColor: "var(--note-c)" }} /> ambiguous
         </span>
       </div>
     </div>

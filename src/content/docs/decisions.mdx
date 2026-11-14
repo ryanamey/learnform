@@ -1,5 +1,13 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-14 · Build plan step 2b: the boundary checker
+
+**Decision:** The boundary checker lives inside each form plan as a row between every two sections (a *seam*), not as a separate tool. Each seam combines cues read from the lanes (lever jumps of 3 or more, a meter, tempo or meter-thickness change, the voice entering, leaving or changing timbre, a new section group) with cues ticked by hand under Stephenson's four kinds (words, instruments, rhythm, harmony) plus a lead-in fill, and against devices that carry the music across (a lyric running on, a pedal, a groove that continues, overlapping phrases).
+**How a seam is read:** cues and holds are weighted 1 or 2. Strong cues and strong holds together read as *ambiguous*; otherwise the net decides between *seamless*, *subtle*, *clear* and *obvious*, and *obvious* also needs cues from three different kinds, after Stephenson's example of four cues arriving at once. These weights are our own calibration, tested on the example plan, not figures from the sources.
+**Checks:** a seam that doesn't match the strength you set; an arrival or peak behind a weak seam; a gradual transition with three or more differences at once; an interruption with no lead-in; a turning point not preceded by a build; more than half the seams as hard cuts (Belkin: abrupt changes work in inverse proportion to how often they're used); the same A→B contrast repeated with no stronger cues (Stephenson). The first-chord cue is optional, for tonal songs.
+**No database change:** seams are stored inside the plan; older plans open with empty seams.
+**Backlog:** The two boundary-checker ideas are built and removed.
+
 ### 2026-11-14 · Build plan step 2a: the form planner
 
 **Decision:** *Form plans* (sidebar, under Study) is the first tool. A plan is a list of sections (group numeral, chart letter, name, bars × meter, job, riffs, notes, tempo override), drawn as lanes on one timeline: weighted tension, the five levers, the climb to the peak (hook repetitions, highest note, guitar technique, cymbal), the voice on Heidemann's five scales, meter thickness, and two landmark sets. A focal parameter is set per section group. Plans save automatically and copy as a Markdown table for the band.

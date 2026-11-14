@@ -32,6 +32,16 @@ export default async function StudioPage() {
     <PageBody wide>
       <PageHeader eyebrow="Studio" title={firstName ? `Welcome back, ${firstName}.` : "Welcome back."}>
         Read a little, hear it, write something with it. One module at a time.
+        {progress["method"] !== "done" && (
+          <>
+            {" "}
+            New here? Start with{" "}
+            <Link href="/learn/method" className="text-signal underline underline-offset-4">
+              How to use this app
+            </Link>
+            .
+          </>
+        )}
       </PageHeader>
 
       <div className="grid gap-5 lg:grid-cols-3">

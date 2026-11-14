@@ -689,9 +689,21 @@ export const concepts: Concept[] = [
     ],
   },
   {
-    slug: "how-tool-writes",
+    slug: "method",
     module: 0,
     order: 1,
+    title: "How to use this app",
+    summary: "The weekly loop, how to analyse a track, how a song gets designed and handed over, and how a band talks while writing.",
+    minutes: 15,
+    sources: [
+      { book: "moore12", where: "ch. 11 questions (ch. 1–7 seen; ch. 8–10 not)", read: "partial" },
+      { book: "moore03", where: "ch. 8 (Moore, idiolect); ch. 11 (Stokes, after Cohen)", read: "read" },
+    ],
+  },
+  {
+    slug: "how-tool-writes",
+    module: 0,
+    order: 2,
     title: "How Tool builds a song",
     summary: "Jam, record everything, keep the jewels, name and count the riffs, simplify then rebuild, vocals last.",
     minutes: 20,
@@ -704,7 +716,7 @@ export const concepts: Concept[] = [
   {
     slug: "riff-board",
     module: 0,
-    order: 2,
+    order: 3,
     title: "The riff board and the form plan",
     summary: "A shared language for designing form before the material exists — and handing it to the band.",
     minutes: 25,
@@ -1218,7 +1230,7 @@ export const buildPlan: BuildTarget[] = [
     phase: "1 · Method",
     name: "How to use this app",
     kind: "page",
-    what: "One page for the band: the weekly loop in practice, how to analyse a track (a bank of questions, general first), how to hand a form plan to the band, and how a band talks while writing (rehearse the hard change, count repeats, cue with a fill).",
+    what: "Built: How to use this app (Module 0). The weekly loop in practice, how to analyse a track (a bank of questions, general first), how to hand a form plan to the band, how a band talks while writing, and the band's idiolect.",
   },
   {
     id: "form-planner",
@@ -1682,18 +1694,6 @@ export const foundInReading: FoundIdea[] = [
     target: "m7-pages",
   },
   {
-    idea: "Idiolect vs style: a band can cross styles and keep one identity; history reworked in a living present (songs re-arranged over decades)",
-    source: "Analyzing Popular Music ch. 8 (Moore)",
-    module: 0,
-    target: "method",
-  },
-  {
-    idea: "How bands talk while writing: rehearsing 'the hard bit' (the change between riffs), counting repeats before a change, cueing it with a fill, the limits of 'drum talk'",
-    source: "Analyzing Popular Music ch. 11 (Stokes, after Cohen)",
-    module: 0,
-    target: "method",
-  },
-  {
     idea: "A listening-situation profile for the listening test: when, who, how attentively, where, on what system, and for what task",
     source: "Analyzing Popular Music ch. 10 (Kennett)",
     module: 5,
@@ -1704,13 +1704,6 @@ export const foundInReading: FoundIdea[] = [
     source: "Moore ch. 1",
     module: 7,
     target: "m7-pages",
-  },
-  {
-    idea: "A bank of analysis questions, general first, discarding what doesn't apply: a checklist for every track you analyze",
-    source: "Moore ch. 11 (questions for ch. 1–7 read; ch. 8–10 hidden in the preview)",
-    module: 0,
-    target: "method",
-    note: "For the Tool lab and the weekly Analyze step",
   },
   {
     idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",

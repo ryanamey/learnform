@@ -1345,7 +1345,7 @@ export const buildPlan: BuildTarget[] = [
     phase: "2 · Tools",
     name: "Riff board: attack-point notation",
     kind: "tool",
-    what: "Enter a riff as attack-point intervals (or 2s and 3s) plus pitches; find matching interval strings across sections; mark counter-meter spans and where two loops realign; see beat and bar lengths in milliseconds against the timing windows; find the riff's tonic, mode and chord functions, and which chords stay clear under gain; track a motive across meters and tag a musical motto.",
+    what: "Built: Riff board in the sidebar. Every motif-bank riff read as a count (grid, attack points, a grouping of 2s and 3s, dots-and-lines columns, the other orders of the same numbers with click playback), against the meter (grouping dissonance, bars to realign), at its tempo (London's timing windows), at four speeds and under other pulses, against a second loop (where they line up), and as harmony (tonic by persistence, position and emphasis; modes that fit; palette; each chord's shape, degree, strong or weak function and how it fares under the chosen gain; the cadence; riff mode vs. vocal mode). It also finds the same motive in other riffs and records the entry offset, a motto tag and where the riff is used.",
   },
   {
     id: "meter-map",
@@ -1406,48 +1406,6 @@ export const buildPlan: BuildTarget[] = [
 ];
 
 export const foundInReading: FoundIdea[] = [
-  {
-    idea: "Write riffs as strings of 2s and 3s next to the time signature; show them as Prieto's dots-and-lines columns against a reference loop (bass, guitar or hi-hat), and offer the other orders of the same numbers as variations",
-    source: "Prieto [Level 3]",
-    module: 0,
-    target: "riff-board",
-  },
-  {
-    idea: "Cycle calculator: two loop lengths in, the realignment point out (the lowest common multiple), marked as a candidate landmark in the form plan",
-    source: "Prieto [Level 3, Multi-Meters]",
-    module: 2,
-    target: "riff-board",
-  },
-  {
-    idea: "Transform buttons for a riff: the same string at four speeds against the pulse, and the pattern held while the pulse under it changes (Prieto's meta transmutation)",
-    source: "Prieto [Level 3]",
-    module: 2,
-    target: "riff-board",
-  },
-  {
-    idea: "Tag each chord in a riff by shape (single note, power chord, fourth, minor-sixth dyad, major, minor, dominant 7th, quartal) and show whether it stays clear under gain (Lilja's vertical consonances) or turns rough",
-    source: "Lilja [ch. 4.5–4.6]",
-    module: 3,
-    target: "riff-board",
-  },
-  {
-    idea: "Label riff roots by modal degree and function (T, S, D, strong or weak), say whether the riff's cadence is plagal or authentic, and compare the riff's mode with the vocal's",
-    source: "Lilja [ch. 3.4, 5.2]",
-    module: 1,
-    target: "riff-board",
-  },
-  {
-    idea: "Tonic finder rule: the lowest sounding note is the root; check persistence, position in the cycle and where phrases end (finalis), which may not be the tonic",
-    source: "Lilja [ch. 4.4, 6.1]",
-    module: 1,
-    target: "riff-board",
-  },
-  {
-    idea: "Entry offset per part (Karnatic eduppu): on beat 1, after it (leaving a gap before the return) or as a pickup before it",
-    source: "Sriram [Taalam]",
-    module: 2,
-    target: "riff-board",
-  },
   {
     idea: "A weight lane in the form planner: gain level (clean, crunch, drive, high) and voicing per section; warn when full gain is reached in the first section, when a later build adds only gain, and when complex voicings meet high gain where the vocal needs room",
     source: "Herbst 2018; Lilja [ch. 4]",
@@ -1527,12 +1485,6 @@ export const foundInReading: FoundIdea[] = [
     target: "m7-pages",
   },
   {
-    idea: "Motive across meters: the same riff returns in 5/4, 6/8, then 7/8 + 9/8, and the band trades 12/8, 6/8 and 4/4 readings of one pattern",
-    source: "Smolko [Motives 1–2]",
-    module: 7,
-    target: "riff-board",
-  },
-  {
     idea: "Lyrics-first long form (the lai): each stanza gets its own meter and music, only the last returns to the first",
     source: "Smolko [ch. 2]",
     module: 7,
@@ -1599,25 +1551,7 @@ export const foundInReading: FoundIdea[] = [
     target: "later",
   },
 
-  {
-    idea: "The harmonic palettes of rock (major/Mixolydian, natural minor, chromatic minor) and changing palette by section, for the riff board's chord side",
-    source: "Stephenson ch. 4",
-    module: 1,
-    target: "riff-board",
-  },
-  {
-    idea: "Key by the persistently initiating chord: in rock the chord that starts each unit is heard as home, even without cadences or a leading tone",
-    source: "Stephenson ch. 2",
-    module: 1,
-    target: "riff-board",
-  },
 
-  {
-    idea: "A riff-notation tool: entering riffs as attack-point intervals plus pitches, and finding matching interval strings across sections (the Riff board could do this)",
-    source: "Pieslak pp. 226–235 (after Yeston)",
-    module: 0,
-    target: "riff-board",
-  },
   {
     idea: "Hypermeter marked by other layers when the riff stops: a lead melody in long notes, a pitch change, the voice entering — a lab where the drums drop the frame and another layer picks it up",
     source: "Pieslak pp. 228–235 (after Lester)",
@@ -1647,12 +1581,6 @@ export const foundInReading: FoundIdea[] = [
     source: "Garza note 9, [12]",
     module: 4,
     target: "existing-pages",
-  },
-  {
-    idea: "A tempo planner for odd meters: enter the pulse and grouping, see the beat and bar lengths in milliseconds against London's windows (100 ms floor, 250 ms boundary, 600 ms attractor, 5–6 s ceiling)",
-    source: "London ch. 2, 7",
-    module: 2,
-    target: "riff-board",
   },
   {
     idea: "The band's feel as a recorded fingerprint: measure where each player sits against the grid in your own takes, and keep it consistent as part of the composition",
@@ -1755,12 +1683,6 @@ export const foundInReading: FoundIdea[] = [
     source: "Caplin ch. 10, 17",
     module: 7,
     target: "album-planner",
-  },
-  {
-    idea: "Finding the tonic of a riff or loop: persistence (longest), laterality (starts or ends the pattern), emphasis (accent, timbre, density); two tonics in one song, one per section, with a moment of ambiguity as they swap",
-    source: "Moore, Song Means ch. 3",
-    module: 2,
-    target: "riff-board",
   },
   {
     idea: "Enriching a known chord pattern by interpolating chords (each chord preceded by its own fifth); melody-driven vs chord-driven harmony; a pattern withheld, approached by near-versions, then arriving as a goal",

@@ -13,6 +13,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import type { PlanData } from "@/lib/form-plan";
+import type { Board } from "@/lib/riff";
 
 /* ------------------------------------------------------------------ */
 /* Better Auth core tables                                             */
@@ -131,6 +132,8 @@ export const motifs = pgTable(
     similarity: integer("similarity"), // 1–5 distance from parent (Belkin's scale)
     transformation: text("transformation").notNull().default(""),
     epTrack: text("ep_track").notNull().default(""),
+    /** riff-board fields: meter, grouping, tonic, mode, entry offset… (see src/lib/riff.ts) */
+    board: jsonb("board").$type<Board>(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
   },

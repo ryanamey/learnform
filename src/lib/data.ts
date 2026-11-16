@@ -5,6 +5,7 @@ import { and, asc, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { conceptNotes, formPlans, journal, motifs, progress } from "@/db/schema";
 import { planDataSchema } from "@/lib/form-plan";
+import { readBoard } from "@/lib/riff";
 
 export async function getProgress(userId: string) {
   const rows = await db.select().from(progress).where(eq(progress.userId, userId));
@@ -44,4 +45,14 @@ export async function getPlan(userId: string, id: string) {
   if (!row) return null;
   const parsed = planDataSchema.safeParse(row.data);
   return { ...row, data: parsed.success ? parsed.data : planDataSchema.parse({}) };
+}
+
+export async function getMotif(userId: string, id: string) {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const [row] = await db
+    .select()
+    .from(motifs)
+    .where(and(eq(motifs.id, id), eq(motifs.userId, userId)));
+  if (!row) return null;
+  return { ...row, board: readBoard(row.board) };
 }

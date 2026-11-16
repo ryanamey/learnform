@@ -1,0 +1,1 @@
+ALTER TABLE "motifs" ADD COLUMN "board" jsonb;

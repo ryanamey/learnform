@@ -16,6 +16,7 @@ import {
   UserRound,
   Waypoints,
   Rows3,
+  AudioLines,
 } from "lucide-react";
 import { useSyncExternalStore } from "react";
 
@@ -50,6 +51,7 @@ const study = [
   { href: "/", label: "Studio", icon: Home },
   { href: "/learn", label: "Learn", icon: GraduationCap },
   { href: "/motifs", label: "Motif bank", icon: Waypoints },
+  { href: "/riffs", label: "Riff board", icon: AudioLines },
   { href: "/plans", label: "Form plans", icon: Rows3 },
   { href: "/journal", label: "Journal", icon: NotebookPen },
 ];

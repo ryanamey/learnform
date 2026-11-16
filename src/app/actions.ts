@@ -10,6 +10,7 @@ import { conceptNotes, formPlans, journal, motifs, progress } from "@/db/schema"
 import { examplePlan, planDataSchema } from "@/lib/form-plan";
 import { conceptBySlug } from "@/content/curriculum";
 import { parseNotation } from "@/lib/music/notation";
+import { boardSchema } from "@/lib/riff";
 import { requireUser } from "@/lib/session";
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
@@ -236,4 +237,20 @@ export async function deletePlan(id: string): Promise<void> {
   await db.delete(formPlans).where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)));
   revalidatePath("/plans");
   redirect("/plans");
+}
+
+/* ---------------- riff board ---------------- */
+
+export async function saveRiffBoard(id: string, input: unknown): Promise<ActionResult> {
+  const user = await requireUser();
+  const parsed = boardSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid riff board" };
+  const res = await db
+    .update(motifs)
+    .set({ board: parsed.data, updatedAt: sql`now()` })
+    .where(and(eq(motifs.id, id), eq(motifs.userId, user.id)))
+    .returning({ id: motifs.id });
+  if (res.length === 0) return { ok: false, error: "Riff not found" };
+  revalidatePath("/riffs");
+  return { ok: true };
 }

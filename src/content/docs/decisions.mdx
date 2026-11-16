@@ -1,5 +1,13 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-16 · Build plan step 2c: the riff board
+
+**Decision:** The riff board is a reading of the motif bank, not a second store of riffs. Each riff keeps its notes, tempo and family in the motif bank; the board adds a `board` field (meter, grouping, reference cycle, second loop, tonic, mode, vocal mode, gain, entry offset, motto, where it's used, notes). Opening a riff shows every analysis at once, worked out from its notation.
+**What it reads:** the grid and attack points; a guessed grouping of 2s and 3s (accents start groups, long gaps split evenly), which you can overwrite; Prieto's dots-and-lines columns, the other orders of the same numbers and their click tracks; how the grouping sits against the meter and after how many bars it comes back to beat 1; London's timing windows at the riff's tempo; the four speeds and the pulses that divide the riff; where it lines up with a second loop; the tonic (time on the bass, first and last note, accents and downbeats), the modes that fit, Stephenson's palette, each chord's shape, modal degree and Lilja's strong or weak function, the gain verdict and the cadence; a riff-vs-vocal mode comparison; other riffs sharing three or more rhythm or pitch intervals in a row.
+**Choices made:** the root of a chord is its lowest note (Lilja); the tonic weights are our own (half time on the bass, a fifth each for starting and for emphasis, a tenth for ending), checked on test riffs and always overridable; the gain verdicts are Lilja's categories shifted by gain (clean: everything clear; high gain: only power chords and single notes stay clear). Even streams of equal notes don't count as a shared rhythm.
+**Needs a database change:** one new column, `motifs.board`, in `drizzle/0002_riff_board.sql`. Run the migration on production before deploying.
+**Backlog:** the 13 riff-board ideas are built and removed.
+
 ### 2026-11-16 · Five new sources, three new pages, and private audio
 
 **Sources added:** Lilja's dissertation on metal harmony, Herbst's heaviness paper and Prieto's *Rhythmic Synchronicity* (all read in full; Lilja's history chapter read quickly), the Sriram Karnatic primer (read) and a Karnatic transcription book (reference only). They fill three of the gaps found when the roadmap was checked: harmony in riffs, heaviness as a form parameter, and the drummer's grouping technique.

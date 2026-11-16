@@ -1,0 +1,160 @@
+## Caplin's cadence
+
+Caplin's account of the cadence is the most exact in this course, and the most limited in scope: it describes Classical style (Haydn, Mozart, Beethoven) <Source book="caplin" where="Ch. 2–3" />. In it, a cadence is a **harmonic and syntactic** event: a **cadential progression** (pre-dominant, dominant in root position, tonic) under a melody that typically falls, hence the word, from the Latin *cadere*. There are only three basic kinds:
+
+| Cadence | Harmony | Melody ends on | Strength |
+|---|---|---|---|
+| **Perfect authentic (PAC)** | V–I, both in root position | the tonic note | strongest |
+| **Imperfect authentic (IAC)** | V–I | the third (or fifth) | weaker: the melody is open |
+| **Half cadence (HC)** | ends on V | — | weakest: harmony and melody open |
+
+He separates three things the word cadence can mean: the **cadential arrival** (the moment the final chord arrives), **cadential function** (the span that sets up the arrival) and the **cadential progression** (the chords, which can also appear where nothing ends). And he states that IV–I is not a genuine cadence in Classical style: the plagal cadence is, in his words, a myth, and IV–I after a real cadence is usually a codetta (see *Riff harmony*, where Lilja finds the opposite in metal).
+
+<KeyIdea>Caplin: in Classical style a cadence is a harmonic formula of three kinds (PAC, IAC, HC). How loud or full it is changes its impact, not how much it closes.</KeyIdea>
+
+## Syntactical and rhetorical strength
+
+Two cadences of the same type close the same amount, says Caplin, whatever happens around them <Source book="caplin" where="Ch. 3" />. Metrical position, dynamics, texture and register change only their **rhetorical** strength: how emphatic they sound. Their **syntactical** strength comes from the type alone. A quiet perfect authentic cadence closes more than a loud half cadence.
+
+## End is not stop
+
+Caplin's other key distinction <Source book="caplin" where="Ch. 3, 5" />:
+
+- **End versus stop.** A cadence is a formal end. A stop is the music ceasing to move. A cadence can happen while the accompaniment plays straight through it, and the music can stop where nothing has ended.
+- **Holding the dominant ends nothing.** A passage standing on the dominant after a half cadence has no cadence in it, however long it lasts.
+- **A sequence is not a cadence.** Its last link repeats an earlier unit and can't work as a closing unit; composers add a separate closing gesture after it.
+- **Resolution is not arrival.** The tonic that follows a long dominant usually *begins* the next section; the previous one ended when the dominant arrived.
+
+## Hear the cadence and two deviations
+
+Caplin lists three ways an expected authentic cadence can fail <Source book="caplin" where="Ch. 5" />. Below, the consequent of Mozart's Romanze as written, and two recompositions made by the app in Caplin's manner (he often rewrites a passage to show what the composer avoided).
+
+<ScorePlayer
+  label="Mozart as written: perfect authentic cadence"
+  parts={[
+    { name: "Violin 1", notation: "E5/8 r/8 E5/8 r/8 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 G5/16 r/16 G5/8 E5/16 r/16 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | C5/4 r/4", voice: "voice" },
+    { name: "Violin 2", notation: "C4/8 G3/8 C4/8 G3/8 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 G4/8 C5/16 r/16 C4/8 G4/16 r/16 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | E4/4 r/4", voice: "pad", gain: 0.5 },
+    { name: "Cello", notation: "r/2 | C3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 E3/4 E3/4 | F3/4 F3/4 G3/4 G2/4 | C3/4 r/4", voice: "bass", gain: 0.7 },
+  ]}
+  bpm={100}
+  time="2/2"
+  composer="W. A. Mozart (bars 4–8); recomposition by the app"
+  spans={[
+    { from: 8, to: 14, label: "cadential progression" },
+    { from: 14, to: 16, label: "PAC" },
+  ]}
+  caption="K. 525, ii, the consequent (bars 4–8): V to I in the bass, the melody falls to the tonic note on the downbeat of bar 8."
+/>
+
+- **Deceptive cadence:** the final tonic is replaced, usually by VI. The replacement still **groups backward**: it ends the phrase, though not as expected. Caplin advises speaking freely of deceptive *resolutions* but cautiously of deceptive *cadences*: V–VI happens in many places where nothing was about to end.
+
+<ScorePlayer
+  label="Recomposed: deceptive cadence, then one more time"
+  parts={[
+    { name: "Violin 1", notation: "E5/8 r/8 E5/8 r/8 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 G5/16 r/16 G5/8 E5/16 r/16 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | C5/2 r/2 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | C5/4 r/4", voice: "voice" },
+    { name: "Violin 2", notation: "C4/8 G3/8 C4/8 G3/8 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 G4/8 C5/16 r/16 C4/8 G4/16 r/16 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | E4/2 r/2 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | E4/4 r/4", voice: "pad", gain: 0.5 },
+    { name: "Cello", notation: "r/2 | C3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 E3/4 E3/4 | F3/4 F3/4 G3/4 G2/4 | A2/2 r/2 | F3/4 F3/4 G3/4 G2/4 | C3/4 r/4", voice: "bass", gain: 0.7 },
+  ]}
+  bpm={100}
+  time="2/2"
+  composer="W. A. Mozart (bars 4–8); recomposition by the app"
+  spans={[
+    { from: 8, to: 14, label: "cadential progression" },
+    { from: 14, to: 18, label: "deceptive (VI)" },
+    { from: 18, to: 24, label: "one more time → PAC" },
+  ]}
+  caption="The bass goes to A instead of C (VI instead of I). The arrival still groups backward as the end of the phrase; the cadential bar is repeated and this time reaches the tonic."
+/>
+
+- **Evaded cadence:** the moment of arrival **groups forward**; it becomes the start of something new, typically the phrase starting again. Caplin, following Janet Schmalfeldt, calls the restart the **"one more time"** technique.
+
+<ScorePlayer
+  label="Recomposed: evaded cadence"
+  parts={[
+    { name: "Violin 1", notation: "E5/8 r/8 E5/8 r/8 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 G5/16 r/16 G5/8 E5/16 r/16 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 G5/16 r/16 G5/8 E5/16 r/16 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | C5/4 r/4", voice: "voice" },
+    { name: "Violin 2", notation: "C4/8 G3/8 C4/8 G3/8 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 G4/8 C5/16 r/16 C4/8 G4/16 r/16 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 G4/8 C5/16 r/16 C4/8 G4/16 r/16 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | E4/4 r/4", voice: "pad", gain: 0.5 },
+    { name: "Cello", notation: "r/2 | C3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 E3/4 E3/4 | F3/4 F3/4 G3/4 G2/4 | E3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 E3/4 E3/4 | F3/4 F3/4 G3/4 G2/4 | C3/4 r/4", voice: "bass", gain: 0.7 },
+  ]}
+  bpm={100}
+  time="2/2"
+  composer="W. A. Mozart (bars 4–8); recomposition by the app"
+  spans={[
+    { from: 8, to: 14, label: "cadential progression" },
+    { from: 14, to: 18, label: "evaded: a new beginning" },
+    { from: 18, to: 28, label: "again → PAC" },
+  ]}
+  caption="Where the tonic should arrive, the melody starts the basic idea again over I6. The expected end becomes a beginning: it groups forward. The phrase is then played again to a real cadence."
+/>
+
+- **Abandoned cadence:** the cadential dominant itself fails, inverted or left out, so the progression never reaches its goal.
+
+After a deviation the music usually backs up and tries again, which is one of the main ways phrases get longer in Classical style.
+
+## Before the beginning, after the end
+
+Caplin adds **framing functions** around themes <Source book="caplin" where="Ch. 5" />:
+
+- A **thematic introduction**: a bar or two, often just the accompaniment pattern starting before the melody (he calls one example a vamp).
+- A **closing section** after an authentic cadence, made of **codettas**: short units circling the tonic note, often fragmenting, often leaning on the subdominant as a counterweight to the cadential dominant. He notes that the very last bars of a piece rarely contain cadences; they are codettas after a cadence that already happened.
+- **Standing on the dominant** after a half cadence: holding the open state, and its energy, before what comes next.
+
+He describes their energy with Wallace Berry's terms: introductions often have a **progressive** dynamic (building up), closing sections a **recessive** one (dissolving), though not always. *Cues and arrivals* takes up the build-up side.
+
+Boundary processes between phrases: **elision** (the end of one unit is also the start of the next), the **lead-in** (a short link that belongs to neither phrase and could be removed) and **melodic overlap** (a melody's last note falls on the next downbeat without that bar belonging to the first group).
+
+## Schoenberg's list is longer
+
+Schoenberg names more cadences than Caplin admits: endings on I, V or III, with full, half, Phrygian or plagal cadences, perfect or imperfect, "according to its function" <Source book="schoenberg" where="Ch. VIII" />. He also describes the cadence as harmonic delimitation together with liquidation (see *Natural and learned closure*).
+
+<Positions title="Cadence in the four books">
+  <Position book="caplin" where="Ch. 2–5">Three kinds only (PAC, IAC, HC); harmonic and syntactic; end versus stop; syntactical versus rhetorical strength; deviations: deceptive, evaded, abandoned.</Position>
+  <Position book="schoenberg" where="Ch. VII–VIII">Full, half, Phrygian, plagal; perfect or imperfect. Cadence equals harmonic delimitation plus liquidation of what demands continuation.</Position>
+  <Position book="belkin" where="Ch. 5">Prefers "punctuation" because the definition of cadence isn't agreed. Harmony alone never makes one; two or more dimensions must coordinate.</Position>
+  <Position book="snyder" where="Ch. 5">Cadences are syntactic closure: learned, style-specific, relatively arbitrary. His book deals with the natural kind instead.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-what-ends-a-phrase" />
+<SeminarLink slug="seminar-louder-ending" />
+<SeminarLink slug="seminar-rock-half-cadence" />
+
+<ListenerSide grade="weak">
+
+Caplin's theory describes the practice of one style from its scores; it makes no claims about what listeners perceive, and he says analysis should weigh reasonable alternatives rather than fix one reading. Snyder's view that cadences close because they are learned implies that how strongly a Classical cadence closes depends on how familiar the listener is with the style.
+
+</ListenerSide>
+
+## Listen
+
+<ListenFor artist="Mozart" track="Eine kleine Nachtmusik K. 525 Romanze">
+  Listen to the first sixteen bars. Mark each place where something closes. Which is a half cadence, which a perfect
+  authentic cadence? Are any of the other stops cadences at all?
+</ListenFor>
+
+<ListenFor artist="Tool" track="Lateralus">
+  Find a moment where the band seems about to land and then doesn't: the arrival is replaced, or turns into a new
+  beginning. Which of Caplin's deviations comes closest, if any?
+</ListenFor>
+
+## Practice
+
+<Exercise title="Recompose a cadence">
+
+1. Take a section ending from one of your songs that lands on its home chord.
+2. Write three alternatives in Caplin's terms: a deceptive version (land on another chord, then repeat and land properly), an evaded version (the landing becomes the start of the phrase again), and a version with a codetta added after the landing.
+3. Which one makes the section longer without making it feel padded?
+
+</Exercise>
+
+<GuitarPro title="The Mozart cadences on your instrument">
+
+1. Download the three Mozart players (MusicXML) and import them.
+2. Reduce each to two tracks: melody and bass line. Play them on guitar and bass.
+3. Transpose the deceptive and evaded versions to the key of one of your riffs and try them as section endings in rock instrumentation. Which survives the change of style?
+
+</GuitarPro>
+
+<ApplyIt>
+
+In one song, list every place where the band stops. For each, ask Caplin's question: is this an end or a stop? Where it's a stop, what, if anything, ended earlier?
+
+</ApplyIt>

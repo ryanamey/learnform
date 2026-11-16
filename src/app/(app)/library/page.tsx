@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { books, concepts, type BookVerdict } from "@/content/curriculum";
+import { books, concepts, courseByNumber, type BookVerdict } from "@/content/curriculum";
+import { docs } from "@/content/docs";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Badge } from "@/components/ui/badge";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = { title: "Library" };
 
 const GROUPS: { verdict: BookVerdict; title: string; note: string }[] = [
   { verdict: "core", title: "Core", note: "Read closely, in this order." },
-  { verdict: "selective", title: "Selective", note: "Specific chapters, when the module calls for them." },
+  { verdict: "selective", title: "Selective", note: "Specific chapters, when a course calls for them." },
   { verdict: "reference", title: "Reference", note: "Look things up; don't read cover to cover." },
   { verdict: "later", title: "Later / optional", note: "Low priority, or you don't have the full text yet." },
   { verdict: "drop", title: "Dropped", note: "Not worth the time for this goal." },
@@ -38,6 +39,9 @@ export default function LibraryPage() {
                 .filter((b) => b.verdict === g.verdict)
                 .map((b) => {
                   const uses = concepts.filter((c) => c.sources.some((s) => s.book === b.id));
+                  const used = [...new Set(uses.map((c) => c.course))];
+                  const courseNums = (used.length ? used : b.courses).sort((x, y) => x - y);
+                  const writer = docs.find((d) => d.slug === `writer-${b.id}`);
                   return (
                     <li key={b.id} className="rounded-xl border bg-card p-4">
                       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -54,9 +58,14 @@ export default function LibraryPage() {
                       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
                         <Badge variant="outline">{b.copy}</Badge>
                         {b.readFirst && <Badge variant="signal">Read: {b.readFirst}</Badge>}
-                        {b.modules.map((m) => (
+                        {writer && (
+                          <Link href={`/docs/${writer.slug}`}>
+                            <Badge variant="signal">Writer page</Badge>
+                          </Link>
+                        )}
+                        {courseNums.map((m) => (
                           <Badge key={m} variant="secondary">
-                            Module {m}
+                            Course {courseByNumber[m]?.roman}
                           </Badge>
                         ))}
                       </div>

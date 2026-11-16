@@ -1,11 +1,13 @@
 import type { MDXComponents } from "mdx/types";
 
 import { MotifPlayer } from "@/components/audio/motif-player";
+import { ScorePlayer } from "@/components/audio/score-player";
+import { FusionLab } from "@/components/audio/fusion-lab";
 import { ExampleList } from "@/components/audio/example-list";
 import { GroupingDemo } from "@/components/audio/grouping-demo";
 import { SentenceDemo } from "@/components/audio/sentence-demo";
 import { Mermaid } from "@/components/content/mermaid";
-import { Aside, ApplyIt, Exercise, KeyIdea, ListenFor, ListenerSide, Source, Steps } from "@/components/content/blocks";
+import { Aside, ApplyIt, Exercise, GuitarPro, KeyIdea, ListenFor, ListenerSide, Position, Positions, SeminarLink, Source, Steps } from "@/components/content/blocks";
 import { FrameCycleLab, MeterLab, TimeFeelLab } from "@/components/audio/meter-labs";
 import { LayersLab, SoundBoxLab } from "@/components/audio/layer-labs";
 import { ApproachLab, FunctionLab } from "@/components/audio/function-labs";
@@ -24,6 +26,8 @@ import { ClimaxShapes, CueLab, GrooveLab, ProcessLab, TensionLab } from "@/compo
 
 const components: MDXComponents = {
   MotifPlayer,
+  ScorePlayer,
+  FusionLab,
   ExampleList,
   GroupingDemo,
   SentenceDemo,
@@ -36,6 +40,10 @@ const components: MDXComponents = {
   Mermaid,
   ListenerSide,
   Steps,
+  Positions,
+  Position,
+  SeminarLink,
+  GuitarPro,
   MeterLab,
   FrameCycleLab,
   TimeFeelLab,

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, Clock } from "lucide-react";
 
-import { bookById, conceptBySlug, concepts } from "@/content/curriculum";
+import { bookById, conceptBySlug, concepts, courseByNumber } from "@/content/curriculum";
 import { conceptPages } from "@/content/concepts";
 import { getConceptNote, getProgress } from "@/lib/data";
 import { requireUser } from "@/lib/session";
@@ -33,20 +33,24 @@ export default async function ConceptPage({ params }: PageProps<"/learn/[slug]">
     getConceptNote(user.id, slug),
   ]);
 
-  const list = concepts.filter((c) => c.module === concept.module);
+  const list = concepts.filter((c) => c.course === concept.course).sort((a, b) => a.order - b.order);
+  const course = courseByNumber[concept.course];
+  const seminar = concept.kind === "seminar";
+  const lessons = list.filter((c) => c.kind !== "seminar");
   const i = list.findIndex((c) => c.slug === slug);
   const prev = list[i - 1];
   const next = list[i + 1];
 
   return (
     <PageBody>
-      <Link href="/learn" className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="size-4" /> All concepts
+      <Link href={`/learn#course-${concept.course}`} className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+        <ArrowLeft className="size-4" /> All courses
       </Link>
 
       <header className="mb-10">
         <div className="mb-2 font-mono text-xs uppercase tracking-widest text-signal">
-          Module 0{concept.module} · {concept.order} of {list.length}
+          {course.number === 0 ? "Start here" : `Course ${course.roman} · ${course.title}`} ·{" "}
+          {seminar ? "Seminar" : `Lesson ${concept.order} of ${lessons.length}`}
         </div>
         <h1 className="font-serif text-4xl tracking-tight md:text-5xl">{concept.title}</h1>
         {concept.draft && (
@@ -87,7 +91,12 @@ export default async function ConceptPage({ params }: PageProps<"/learn/[slug]">
       </article>
 
       <section className="mt-14 border-t pt-8">
-        <h2 className="mb-3 font-serif text-2xl">Your notes</h2>
+        <h2 className="mb-3 font-serif text-2xl">{seminar ? "Your decision" : "Your notes"}</h2>
+        {seminar && (
+          <p className="mb-3 text-sm text-muted-foreground">
+            Write which position you take for your band&apos;s music, and why. You can change it later.
+          </p>
+        )}
         <ConceptNotes slug={slug} initial={note} />
       </section>
 

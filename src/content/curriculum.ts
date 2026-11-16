@@ -1,5 +1,5 @@
 /**
- * The study map: books, modules, concepts and the year plan.
+ * The study map: books, courses, lessons and seminars, and the build plan.
  * Content lives in MDX (src/content/concepts); this file is the index.
  */
 
@@ -18,7 +18,8 @@ export type Book = {
   copy: string;
   why: string;
   readFirst?: string;
-  modules: number[];
+  /** courses that draw on it */
+  courses: number[];
   /** free / official link when available */
   url?: string;
 };
@@ -34,7 +35,7 @@ export const books: Book[] = [
     copy: "Full book — read in full (Nov 2026); see the Belkin chapter guide in Docs",
     why: "A composer's book, organized around what music does (presenting, connecting, contrasting) — the most practical book you own.",
     readFirst: "Ch. 1–3, then 5, 11–13, 16–18 (the large-form core)",
-    modules: [1, 3, 4],
+    courses: [1, 7, 9],
   },
   {
     id: "schoenberg",
@@ -43,10 +44,10 @@ export const books: Book[] = [
     author: "Arnold Schoenberg",
     kind: "book",
     verdict: "core",
-    copy: "Full book (scanned)",
+    copy: "Full book (scanned) — read in full (Nov 2026); see the Schoenberg writer page in Docs",
     why: "Where 'motive', 'developing variation', 'the sentence' and 'liquidation' come from. The later chapters (accompaniment, melody vs. theme, self-criticism, irregular phrases, transitions, elaboration, codas) are just as useful for long forms.",
     readFirst: "Ch. I–V and VIII, then IX, XI, XII, XIV, XVI, XVIII",
-    modules: [1, 3, 4],
+    courses: [1, 7, 9],
   },
   {
     id: "snyder",
@@ -55,10 +56,10 @@ export const books: Book[] = [
     author: "Bob Snyder",
     kind: "book",
     verdict: "core",
-    copy: "Full book",
+    copy: "Full book — read in full (Nov 2026); see the Snyder writer page in Docs",
     why: "Why listeners hold on to some things and lose others. Form in long, repetitive music is whatever memory can reconstruct.",
-    readFirst: "Ch. 1, 3, 4 now; 5 and 13 in Module 3",
-    modules: [1, 3],
+    readFirst: "Ch. 1, 3, 4, 10 now; 5 in Course II; 12–13 in Courses III and VII",
+    courses: [1, 7],
   },
   {
     id: "stephenson",
@@ -69,7 +70,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Full book; PDF in your resources folder",
     why: "The statistical norms of rock: where vocal phrases sit in the four-bar unit, open and misplaced cadences, why rock songs don't close (and why the fade-out fits), the cues that mark sections, and the four standard forms including compound binary. Read: ch. 1, 3, 6 in full; ch. 2, 4, 5, 7 for their main arguments.",
-    modules: [1, 4],
+    courses: [1, 9],
   },
   {
     id: "biamonte",
@@ -80,7 +81,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Article (Music Theory Online, 2014)",
     why: "The only corpus study that includes Tool (39 songs): Tool is the most metrically dissonant band studied, 16 of its songs are dissonant throughout, and its choruses are more often less stable than its verses. Also the clearest map of what metric dissonance does at the start, joins and ends of sections. Read in full; the example charts are on the journal's website.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "london",
@@ -92,7 +93,7 @@ export const books: Book[] = [
     copy: "1st ed. full + 2nd ed. excerpt (26 pp.)",
     why: "Entrainment and non-isochronous meter underpin every cycle-based design: the timing window for beats and bars, why odd meters are built from 2s and 3s, why rotations and tempos are different meters, and why a band's feel is part of the meter. The 1st edition is read; the 2nd (OUP 2012) revises the well-formedness rules and adds a neuroscience chapter.",
     readFirst: "Ch. 2, 7, 8, 9",
-    modules: [2, 5],
+    courses: [3, 12],
   },
   {
     id: "cohn",
@@ -103,7 +104,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Article",
     why: "A clear model of metric dissonance on several levels at once.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "larue",
@@ -115,7 +116,7 @@ export const books: Book[] = [
     copy: "Full book (scanned)",
     why: "The 'Growth' chapter: how movement and shape arise from all parameters together.",
     readFirst: "Ch. 6 The Growth Process",
-    modules: [3],
+    courses: [7],
   },
   {
     id: "huron",
@@ -126,7 +127,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Partial (68 pages: preface, ch. 1–2, start of ch. 3)",
     why: "Expectation theory behind telos, anti-telos and surprise: ITPRA, contrastive valence, and frisson, laughter and awe. Your copy is partial and has been read; the composition chapters (13–15: predictability, surprise, tension) need a full copy.",
-    modules: [3],
+    courses: [7],
   },
   {
     id: "covach",
@@ -137,7 +138,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Full essay collection",
     why: "For Covach's essay on Yes, 'Close to the Edge' and the boundaries of style.",
-    modules: [4],
+    courses: [9],
   },
   {
     id: "analysing-rock",
@@ -148,7 +149,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Article",
     why: "Probably a chapter of Allan Moore's Rock: The Primary Text (2nd ed.) — not yet confirmed. If so, get the whole book.",
-    modules: [4],
+    courses: [9],
   },
   {
     id: "meyer",
@@ -159,7 +160,7 @@ export const books: Book[] = [
     verdict: "later",
     copy: "Full book",
     why: "Huron and Nobile now cover implication and expectation more directly for this idiom.",
-    modules: [5],
+    courses: [12],
   },
   {
     id: "caplin",
@@ -168,9 +169,9 @@ export const books: Book[] = [
     author: "William E. Caplin",
     kind: "book",
     verdict: "core",
-    copy: "Full textbook (759 pp.); read: all theory sections; score-example lists and composition exercises skimmed",
+    copy: "Full textbook (759 pp.) — all chapters' prose read in full (Nov 2026); review lists and analysis-example captions skimmed; see the Caplin writer page in Docs",
     why: "The theory of formal functions: what makes music sound like a beginning, middle or end; tight-knit vs. loose; how cadences fail and succeed; introductions, codas and returns.",
-    modules: [1, 4],
+    courses: [1, 9],
   },
   {
     id: "gttm",
@@ -181,7 +182,7 @@ export const books: Book[] = [
     verdict: "reference",
     copy: "Full book",
     why: "Grouping and metrical chapters only; reductions give little payoff for riff-based writing.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "lerdahl-pitch",
@@ -192,7 +193,7 @@ export const books: Book[] = [
     verdict: "drop",
     copy: "Article",
     why: "Lowest yield for this goal: pitch-space syntax is not what drives Tool-type form.",
-    modules: [],
+    courses: [],
   },
   {
     id: "almen",
@@ -202,8 +203,8 @@ export const books: Book[] = [
     kind: "excerpt",
     verdict: "later",
     copy: "Table of contents only",
-    why: "Get the full book before Module 5 if narrative archetypes interest you.",
-    modules: [5],
+    why: "Get the full book before Course XII if narrative archetypes interest you.",
+    courses: [12],
   },
   {
     id: "rouget",
@@ -214,7 +215,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Full book",
     why: "Music socializes trance more than it triggers it: learned signals (the musical motto), maintenance by rhythm, the trance vs. ecstasy typology, and the case against 'drumming causes trance'.",
-    modules: [5, 7],
+    courses: [12, 13],
   },
   {
     id: "reich",
@@ -225,7 +226,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Excerpt (36 pp.)",
     why: "'Music as a Gradual Process': make the process audible. The most usable single rule for long builds.",
-    modules: [3, 5],
+    courses: [7, 12],
   },
   {
     id: "kramer",
@@ -237,7 +238,7 @@ export const books: Book[] = [
     copy: "Full book — read in full (Nov 2026; long analytic chapters skimmed for method)",
     why: "Linear vs nonlinear time; goal-directed, nondirected, multiply-directed, moment and vertical time; gestural time; accent and hypermeter; how duration and proportion are perceived.",
     readFirst: "Ch. 2, 6, 8, 11, then 4, 10, 12",
-    modules: [2, 4, 5],
+    courses: [3, 9, 12],
   },
   {
     id: "krebs",
@@ -249,7 +250,7 @@ export const books: Book[] = [
     copy: "Full book",
     why: "The grouping vs. displacement dissonance vocabulary Biamonte adapts for rock, plus what to do with it over a whole piece: preparing, tightening, submerging and resolving a dissonance, and tying it to form. Ch. 2, 4, 6 and 7 are the theory; the rest is Schumann analysis.",
     readFirst: "Ch. 2, 4, 6, 7 and the glossary",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "hasty",
@@ -260,7 +261,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Full book",
     why: "Meter as an unfolding process rather than a grid. Philosophy, not data — read after London.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "yust",
@@ -271,7 +272,7 @@ export const books: Book[] = [
     verdict: "reference",
     copy: "Full book",
     why: "Large-scale temporal structure in tonal music. Mine for composing ideas; don't expect listeners to hear most of it.",
-    modules: [4],
+    courses: [9],
   },
   {
     id: "magadini",
@@ -282,7 +283,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Full book",
     why: "Execution of polyrhythms for the drummer (and anyone playing against him).",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "greb",
@@ -293,7 +294,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Excerpt (51 pp.)",
     why: "A rhythmic-cell 'alphabet' — a shared vocabulary for remote form design between you and the drummer.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "erickson",
@@ -304,7 +305,7 @@ export const books: Book[] = [
     verdict: "later",
     copy: "Full book",
     why: "Craft reading only: utilization, the confusion technique and matching-then-leading as structural analogies. No evidence links them to composition.",
-    modules: [5],
+    courses: [12],
   },
   {
     id: "elman",
@@ -315,7 +316,7 @@ export const books: Book[] = [
     verdict: "later",
     copy: "Full book (scanned)",
     why: "Optional craft reading; fractionation (in, out, back deeper) is the one transferable idea.",
-    modules: [5],
+    courses: [12],
   },
   {
     id: "wier",
@@ -326,7 +327,7 @@ export const books: Book[] = [
     verdict: "drop",
     copy: "Full book",
     why: "Self-published, cites no studies. Skim for loop/attention vocabulary only; never cite.",
-    modules: [],
+    courses: [],
   },
   {
     id: "laitz",
@@ -337,7 +338,7 @@ export const books: Book[] = [
     verdict: "reference",
     copy: "Full textbook",
     why: "Tonal theory you already know. Teaching reference; little yield for riff-based form.",
-    modules: [],
+    courses: [],
   },
   {
     id: "tool-interviews",
@@ -348,7 +349,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free online",
     why: "The band's own account of how songs are built: jam, record, name and count riffs, simplify then rebuild, vocals last.",
-    modules: [0],
+    courses: [11],
     url: "https://www.loudersound.com/features/the-story-behind-tools-lateralus-a-real-moment-of-experiment-and-risk",
   },
   {
@@ -360,7 +361,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free online; PDF and examples in your resources folder",
     why: "Riffs of odd lengths cycling inside a rigid 4/4 frame and cut off at segment ends; riffs that seem to begin in the middle; four ways to handle a seam; how the band itself writes (groove first, counted in 4/4, learned in 4-, 8- and 16-bar chunks). Read in full.",
-    modules: [2],
+    courses: [3],
     url: "https://mtosmt.org/ojs/index.php/mto/article/view/231/20",
   },
   {
@@ -372,7 +373,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF in your resources folder",
     why: "Odd-meter riffs fitted to a square 4-bar hypermeter by lengthening or shortening one statement (tails), and why that isn't true metric dissonance; for riffs that stop looping, attack-point intervals, pattern recurrence and textural accents; transitions sized to finish a cycle; a two-part vs. three-part 'dissonant' large form. Read in full.",
-    modules: [2, 5],
+    courses: [3, 12],
     url: "https://doi.org/10.1525/mts.2007.29.2.219",
   },
   {
@@ -384,7 +385,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free online; PDF and examples in your resources folder",
     why: "Time feel comes from the kick–snare alternation; six riff types and four cymbal rates reinforce, clarify or contradict it, and contradictions can carry a song's narrative. Read in full.",
-    modules: [2],
+    courses: [3],
     url: "https://www.mtosmt.org/issues/mto.21.27.1/mto.21.27.1.garza.pdf",
   },
   {
@@ -396,7 +397,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF and nine audio examples in your resources folder",
     why: "The fuller theory behind the 2013 article: main vs. connective sections, the retrospective prechorus, section groups, four ending types, the detailed “Pushit” and “Hooker with a Penis” charts, and interviews with two bands about why they end with new material. Read: ch. 1 (all but its last few pages, skimmed), ch. 2, the Tool and other analyses of ch. 3, the end of ch. 4, the conclusions and the interviews; most of ch. 4 (which the 2011 article condenses) not read.",
-    modules: [3, 4],
+    courses: [7, 9],
     url: "https://digital.lib.washington.edu/researchworks/handle/1773/15910",
   },
   {
@@ -408,7 +409,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Author's PDF in your resources folder",
     why: "Forms whose peak is a single new section at the end, the climactic ladder, sectional vs. moment climax, four ways to end a song — with Tool's “Pushit” as the extended example. Read in full.",
-    modules: [3, 4],
+    courses: [7, 9],
     url: "https://kuscholarworks.ku.edu/bitstream/handle/1808/19147/OSBORN_paradigm2013_AFD.pdf",
   },
   {
@@ -420,7 +421,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF and examples in your resources folder",
     why: "Four kinds of form with no return: one-part or grouped, one theme or many — and what holds each together instead, with analyses from post-rock, math-metal, screamo and Radiohead. Read in full.",
-    modules: [4],
+    courses: [9],
     url: "https://www.mtosmt.org/issues/mto.11.17.3/mto.11.17.3.osborn.php",
   },
   {
@@ -432,7 +433,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Open access (MTO) — read in full (Nov 2026)",
     why: "The novelty layer (a fifth functional layer), ten timbral oppositions for spectrogram listening, blend vs. stand-out, and role changes between layers as narrative.",
-    modules: [3],
+    courses: [7],
     url: "https://www.mtosmt.org/issues/mto.20.26.3/mto.20.26.3.lavengood.php",
   },
   {
@@ -446,7 +447,7 @@ export const books: Book[] = [
     copy: "Full book — read in full (Nov 2026)",
     why: "Ten essays on analysing recorded popular music. For form: Bowman's song-length additive build (Otis Redding), Hawkins on long-form repetition in house, Moore on Jethro Tull's devices, Covach on rock form types and musical worlding, Griffiths on lyrics and verbal space.",
     readFirst: "Ch. 6 (Bowman), 8 (Moore), 9 (Covach), 5 (Hawkins), 3 (Griffiths)",
-    modules: [3, 4, 5, 6, 7],
+    courses: [4, 7, 9, 12, 13],
   },
   {
     id: "moore12",
@@ -458,7 +459,7 @@ export const books: Book[] = [
     copy: "Read in the Google Books preview: ch. 1–3 except hidden pages (26–27, 33–34, 40–41, 47–50, 55–56, 62–63, 69–70, 76–77, 83–84), ch. 6 pp. 174–176, ch. 11 pp. 331–334. Full book being sourced",
     why: "Texture as four functional layers, the sound-box, timbre; form, delivery, persona and friction in recorded song; a bank of analysis questions for any track.",
     readFirst: "Ch. 2 Shape, 3 Form, 7 Persona, 11 Questions",
-    modules: [0, 3, 6, 7],
+    courses: [4, 7, 11, 13],
   },
   {
     id: "heidemann",
@@ -469,7 +470,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF and examples in your resources folder",
     why: "Describe a voice by what the body seems to do: vocal folds, throat shape, where it buzzes, breath support — with Estill's twang/sob settings, registers, safer screams and growls, and Aretha Franklin's timbre changing across a song. Read in full.",
-    modules: [6],
+    courses: [4],
     url: "https://www.mtosmt.org/issues/mto.16.22.1/mto.16.22.1.heidemann.php",
   },
   {
@@ -481,7 +482,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF and examples in your resources folder",
     why: "Four textural cues and four climax types — a practical vocabulary for section changes and arrivals, with a 200-song corpus showing cues at section changes rising from about 28% to 61% since the 1990s. Read in full.",
-    modules: [3],
+    courses: [7],
     url: "https://www.mtosmt.org/issues/mto.25.31.1/mto.25.31.1.schwitzgebel.php",
   },
   {
@@ -493,7 +494,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Free online",
     why: "700 hit songs, 1955–89: the prechorus grew out of the sentence's continuation. A checklist of build devices: faster harmonic rhythm, shorter units, rising register, added layers, the pregnant pause.",
-    modules: [1, 3],
+    courses: [1, 7],
     url: "https://mtosmt.org/issues/mto.11.17.3/mto.11.17.3.summach.html",
   },
   {
@@ -505,7 +506,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free author PDF",
     why: "Felt tension follows loudness and pitch height most, then tempo and onset density; harmony least. Meter and syncopation alone barely move it. Trends create momentum.",
-    modules: [3, 5],
+    courses: [7, 12],
     url: "https://bpb-us-e1.wpmucdn.com/wp.nyu.edu/dist/f/11865/files/2020/08/Farbood_2012_Musical_Tension.pdf",
   },
   {
@@ -517,7 +518,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Not owned — free review online",
     why: "Repetition shifts attention to deeper levels and makes complex material sound intended.",
-    modules: [5],
+    courses: [12],
     url: "https://www.mtosmt.org/issues/mto.14.20.4/mto.14.20.4.albrecht.html",
   },
   {
@@ -529,7 +530,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free PDF",
     why: "Listeners barely notice scrambled section order or large-scale tonal closure — but scrambling still lowers liking in popular music.",
-    modules: [5],
+    courses: [12],
     url: "https://lead.ube.fr/wp-content/uploads/2023/09/000296-music-in-the-moment-revisiting-the-effect-of-large-scale-structures.pdf",
   },
   {
@@ -541,7 +542,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free (PMC)",
     why: "In drumming-induced trance, the repetitive drum signal is decoupled and attention turns inward; no brainwave driving; a rhythm change ends the trance (n = 15 practitioners).",
-    modules: [5],
+    courses: [12],
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4898667",
   },
   {
@@ -553,7 +554,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "Free author PDF",
     why: "Dopamine during music: the run-up to a chill and the chill itself involve distinct reward regions. Eight screened listeners.",
-    modules: [5],
+    courses: [12],
     url: "https://www.zlab.mcgill.ca/publications/docs/salimpoor_2011_nn.pdf",
   },
   {
@@ -565,7 +566,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Free online",
     why: "Meter as the brain's prediction model; syncopation works when it contradicts the meter without undermining it; holding a counter-meter costs effort; the groove inverted U.",
-    modules: [2, 5],
+    courses: [3, 12],
     url: "https://frontiersin.org/articles/10.3389/fpsyg.2014.01111/full",
   },
   {
@@ -577,7 +578,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF in your resources folder (07-album-as-form)",
     why: "Four kinds of album form (standard album, extended suite, concept album, symphonic structure), reprise vs. recapitulation, and three levels of form in The Dark Side of the Moon (song, side, record). Read: introduction, the method sections of ch. 1, the Dark Side of the Moon and Wish You Were Here analyses, Topographic Oceans' global narrative, every chapter's conclusions and the final conclusions. Most single-track analyses not read.",
-    modules: [7],
+    courses: [13],
     url: "https://etheses.durham.ac.uk/id/eprint/15594/",
   },
   {
@@ -589,7 +590,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF in your resources folder (07-album-as-form)",
     why: "A 43-minute single-track album taken apart: closed song forms alternating with open, through-composed passages, three kinds of repetition (local, reprise, thematic development), and motives that come back in new meters. Read: ch. 1, the lai section of ch. 2, ch. 5's form and repetition sections with Motives 1 and 2, and the conclusions; the packaging, lyrics, instrumentation and live-version sections not read.",
-    modules: [7],
+    courses: [13],
   },
   {
     id: "lilja",
@@ -600,7 +601,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF in your resources folder (02-rock-and-prog)",
     why: "Harmony in riffs: dyads as chords and the bass as root, modal degree labels, Tonic–Subdominant–Dominant functions with strong and weak forms (the Aeolian cadence as plagal), metal's grounds (Aeolian pendulum, Rising Sun, Saints line), plagal T–S–T frameworks across whole songs, and measurements of what distortion does to power chords, major and minor triads. Read: chs. 1 and 3–7 in full; ch. 2 (genre and history) read quickly. The musical examples are images, so the analyses were read from the prose.",
-    modules: [0, 1, 3],
+    courses: [1, 7, 11],
     url: "http://hdl.handle.net/10138/19430",
   },
   {
@@ -612,7 +613,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "PDF in your resources folder (02-rock-and-prog)",
     why: "Five chord structures at three gain levels, measured and rated by 171 listeners: gain and harmonic complexity both make a sound harsher, most of all together; the clean-to-drive step matters twice as much as drive-to-distortion; spectral fluctuation predicts harshness best; metal fans need structure plus gain before a sound gets heavy. Read in full.",
-    modules: [3, 5],
+    courses: [7, 12],
     url: "https://eprints.hud.ac.uk/id/eprint/33381/",
   },
   {
@@ -624,7 +625,7 @@ export const books: Book[] = [
     verdict: "core",
     copy: "Digital book on issuu (your access); reading notes and the 188 audio tracks in your resources folder (03-rhythm-and-meter); audio in the private store",
     why: "A clap-and-sing course in three levels: subdivisions and syncopated cells against clave, switching between duplet and triplet, then rhythmic numerology (rhythms as strings of 2s and 3s), one cell at four speeds, a pattern moved through subdivisions or under a changing pulse, cycles of two lengths and where they realign, and dots-and-lines charts with switches at the midpoint. Read in full; bio and discography skimmed.",
-    modules: [0, 2],
+    courses: [3, 11],
     url: "https://dafnisonmusic.com/rhythmic-synchronicity-digital-book",
   },
   {
@@ -636,7 +637,7 @@ export const books: Book[] = [
     verdict: "selective",
     copy: "PDF in your resources folder (03-rhythm-and-meter)",
     why: "A short introduction for Westerners: swaras and gamaka, the 72 melakartas and derived ragas, taala as a cycle of unequal limbs with five subdivisions (nadai) and three speeds, where a song enters the cycle (eduppu), the parts of a recital (varnam, krithi, aalapana, niraval, Ragam–Tanam–Pallavi) and modes by rotating the tonic (grahabedam). Read in full; the melakarta name tables skimmed. No tihai or grouping techniques: Reina is still needed for those.",
-    modules: [2],
+    courses: [3],
   },
   {
     id: "krishnaprasad",
@@ -648,7 +649,7 @@ export const books: Book[] = [
     verdict: "reference",
     copy: "PDF in your resources folder (06-reference)",
     why: "Krithis transcribed into staff notation, mostly in Aadi taala. Repertoire for reading Karnatic melody, not a rhythm method. Contents checked only.",
-    modules: [2],
+    courses: [3],
   },
 ];
 
@@ -656,7 +657,10 @@ export const bookById = Object.fromEntries(books.map((b) => [b.id, b]));
 
 export type Concept = {
   slug: string;
-  module: number;
+  /** course number (0 = start here, I = 1 …) */
+  course: number;
+  /** lessons teach; seminars set the writers side by side on a question for you to decide */
+  kind?: "lesson" | "seminar";
   order: number;
   title: string;
   summary: string;
@@ -668,51 +672,71 @@ export type Concept = {
 
 export const concepts: Concept[] = [
   {
-    slug: "motive",
-    module: 1,
+    slug: "time-levels",
+    course: 1,
     order: 1,
+    title: "Three time levels: sound, phrase, form",
+    summary: "Snyder's model: events fuse into sound, group into phrases in short-term memory, and are reconstructed as form from long-term memory. Hear the thresholds.",
+    minutes: 30,
+    sources: [
+      { book: "snyder", where: "Ch. 1 Overview; Ch. 2 Echoic memory; Ch. 10 Event fusion", read: "read" },
+      { book: "schoenberg", where: "Ch. I The Concept of Form; Ch. II", read: "read" },
+      { book: "caplin", where: "Ch. 1–2", read: "read" },
+      { book: "belkin", where: "Introduction; Ch. 2", read: "read" },
+    ],
+  },
+  {
+    slug: "motive",
+    course: 1,
+    order: 2,
     title: "What makes a motive",
     summary: "The smallest memorable unit — and why internal contrast is what makes it memorable.",
     minutes: 25,
     sources: [
       { book: "belkin", where: "Ch. 1, opening sections", read: "read" },
       { book: "schoenberg", where: "Ch. III The Motive; IX The Accompaniment; X Character and Mood", read: "read" },
-      { book: "snyder", where: "Ch. 1, memory levels", read: "read" },
+      { book: "snyder", where: "Ch. 1, 3, 10–13 (memory levels; primary and secondary parameters)", read: "read" },
+      { book: "caplin", where: "Ch. 2 (basic idea; characteristic and conventional)", read: "read" },
     ],
   },
   {
     slug: "similarity-scale",
-    module: 1,
-    order: 2,
+    course: 1,
+    order: 3,
     title: "Degrees of similarity",
     summary: "A 1–5 scale for how far a variant travels from its source — and where in a song each degree belongs.",
     minutes: 35,
     sources: [
       { book: "belkin", where: "Ch. 1, Motivic Variants; Degrees of Similarity", read: "read" },
       { book: "schoenberg", where: "Ch. III; V, VIII (variety and tempo); XIII, XV (rhythm and recognition)", read: "read" },
+      { book: "snyder", where: "Ch. 3–4 (parallelism); Ch. 13", read: "read" },
+      { book: "caplin", where: "Ch. 2–3 (kinds of repetition; contrasting idea)", read: "read" },
     ],
   },
   {
     slug: "developing-variation",
-    module: 1,
-    order: 3,
+    course: 1,
+    order: 4,
     title: "Developing variation",
     summary: "Variants that grow out of variants: how a whole piece can descend from one cell without repeating it.",
     minutes: 35,
     sources: [
       { book: "schoenberg", where: "Ch. III–V; XI Melody and Theme; XVI, XX (elaboration)", read: "read" },
-      { book: "belkin", where: "Ch. 1, Double motives; Motivic wandering; Ornamentation", read: "read" },
+      { book: "belkin", where: "Ch. 1, Double motives; Motivic wandering; Ornamentation; Ch. 11 note", read: "read" },
+      { book: "caplin", where: "Ch. 2 (fragmentation and derivation)", read: "read" },
+      { book: "snyder", where: "Ch. 6, 12–13 (pattern families; long-term memory)", read: "read" },
     ],
   },
   {
     slug: "phrase-and-memory",
-    module: 1,
-    order: 4,
+    course: 1,
+    order: 5,
     title: "Phrase, grouping and memory",
     summary: "Why phrases are the size they are: the 3–5 second window, chunking, and the forces that draw boundaries.",
     minutes: 40,
     sources: [
-      { book: "snyder", where: "Ch. 3 Grouping; Ch. 4 Short-term and working memory", read: "read" },
+      { book: "snyder", where: "Ch. 3 Grouping; Ch. 4 Short-term and working memory; Ch. 13; Appendix (Bach)", read: "read" },
+      { book: "caplin", where: "Ch. 2–3 (phrase as grouping; not every phrase ends with a cadence)", read: "read" },
       { book: "belkin", where: "Ch. 2, Structure of the phrase", read: "read" },
       { book: "schoenberg", where: "Ch. II, IV, V, XI, XII; XIV Irregular construction", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 57–60", read: "partial" },
@@ -720,27 +744,29 @@ export const concepts: Concept[] = [
   },
   {
     slug: "sentence-and-liquidation",
-    module: 1,
-    order: 5,
+    course: 1,
+    order: 6,
     title: "The sentence and liquidation",
-    summary: "Present, repeat, compress, dissolve, arrive — the most useful small-scale form for riff-based music.",
+    summary: "Schoenberg's sentence and period, in Caplin's terms, heard in Beethoven Op. 2/1 and Mozart's Romanze; liquidation, and what ends a phrase without a tonal cadence.",
     minutes: 40,
     sources: [
       { book: "schoenberg", where: "Ch. V, VIII; XII Self-criticism; XVI (sequence and liquidation); XVIII", read: "read" },
-      { book: "belkin", where: "Ch. 1, Neutral lines", read: "read" },
-      { book: "caplin", where: "Ch. 2 The Sentence; Ch. 3 The Period", read: "read" },
+      { book: "belkin", where: "Ch. 1, Neutral lines; Ch. 5–6 (punctuation, period)", read: "read" },
+      { book: "caplin", where: "Ch. 2 The Sentence; Ch. 3 The Period; Ch. 4 Hybrids", read: "read" },
+      { book: "snyder", where: "Ch. 5 Closure", read: "read" },
       { book: "summach", where: "sentence origins of the prechorus", read: "read" },
     ],
   },
   {
     slug: "words-as-motive",
-    module: 1,
-    order: 6,
+    course: 1,
+    order: 7,
     title: "The vocal line: words shape the motive",
     summary: "For singers: stress, speech contour and vowels decide your melody before you do; verbal space and where the words sit; where the phrase lands in the four-bar unit.",
     minutes: 30,
     sources: [
-      { book: "belkin", where: "Ch. 3 Singing", read: "read" },
+      { book: "belkin", where: "Ch. 3 Singing; Ch. 4", read: "read" },
+      { book: "snyder", where: "Ch. 4 notes, Ch. 5 (intonation units; falling closure)", read: "read" },
       { book: "moore03", where: "Ch. 3 (Griffiths): verbal space", read: "read" },
       { book: "moore12", where: "Ch. 3, pp. 64–66", read: "partial" },
       { book: "schoenberg", where: "Ch. XI (voice registers, singable melody)", read: "read" },
@@ -749,18 +775,81 @@ export const concepts: Concept[] = [
   },
   {
     slug: "riff-harmony",
-    module: 1,
-    order: 7,
+    course: 1,
+    order: 8,
     title: "Riff harmony: modes, functions and plagal form",
     summary: "Dyads and single bass notes as chords, modal labels, riff and vocal in different modes, Tonic–Subdominant–Dominant with strong and weak forms (why the Aeolian cadence is plagal), metal's grounds, and T–S–T frameworks across a whole song.",
     minutes: 40,
     sources: [
       { book: "lilja", where: "Ch. 1, 3.1–3.5, 4.4, 5, 6", read: "read" },
+      { book: "caplin", where: "Ch. 2 (the myth of the plagal cadence)", read: "read" },
+      { book: "schoenberg", where: "Ch. VIII (cadence types)", read: "read" },
+      { book: "belkin", where: "Ch. 5 (punctuation)", read: "read" },
+    ],
+  },
+  {
+    slug: "seminar-one-motive",
+    course: 1,
+    kind: "seminar",
+    order: 21,
+    title: "Does everything grow from one motive?",
+    summary: "Schoenberg's monomotivic ideal, Belkin's doubt, Caplin's functions that don't care where material comes from, and Snyder's memory test.",
+    minutes: 25,
+    sources: [
+      { book: "schoenberg", where: "Ch. III–IV, XX", read: "read" },
+      { book: "belkin", where: "Ch. 1; Ch. 11 and note", read: "read" },
+      { book: "caplin", where: "Ch. 2", read: "read" },
+      { book: "snyder", where: "Ch. 3, 6, 12–13", read: "read" },
+    ],
+  },
+  {
+    slug: "seminar-what-is-a-phrase",
+    course: 1,
+    kind: "seminar",
+    order: 22,
+    title: "What is a phrase?",
+    summary: "A breath, a four-bar grouping with a function, a clause sized by attention, one short-term memory full: four definitions and what each one lets you hear.",
+    minutes: 25,
+    sources: [
+      { book: "schoenberg", where: "Ch. II", read: "read" },
+      { book: "caplin", where: "Ch. 2–3", read: "read" },
+      { book: "belkin", where: "Ch. 2, 5", read: "read" },
+      { book: "snyder", where: "Ch. 3–5", read: "read" },
+    ],
+  },
+  {
+    slug: "seminar-motive-identity",
+    course: 1,
+    kind: "seminar",
+    order: 23,
+    title: "Which dimensions carry a motive's identity?",
+    summary: "Rhythm for Schoenberg, all dimensions for Belkin, primary versus secondary parameters for Snyder, the whole texture and its harmony for Caplin. Same words, different lists.",
+    minutes: 25,
+    sources: [
+      { book: "schoenberg", where: "Ch. III, V", read: "read" },
+      { book: "belkin", where: "Ch. 1, 4", read: "read" },
+      { book: "snyder", where: "Ch. 10–13", read: "read" },
+      { book: "caplin", where: "Ch. 2–3", read: "read" },
+    ],
+  },
+  {
+    slug: "seminar-sentence-and-period",
+    course: 1,
+    kind: "seminar",
+    order: 24,
+    title: "Sentence and period: whose definitions?",
+    summary: "Marx, Schoenberg, Caplin and Belkin draw the period differently; Caplin rejects the contrasting and double period; Schoenberg ranks the types and Caplin doesn't.",
+    minutes: 30,
+    sources: [
+      { book: "schoenberg", where: "Ch. V–VIII", read: "read" },
+      { book: "caplin", where: "Ch. 2–4, 6", read: "read" },
+      { book: "belkin", where: "Ch. 6", read: "read" },
+      { book: "snyder", where: "Ch. 5", read: "read" },
     ],
   },
   {
     slug: "method",
-    module: 0,
+    course: 0,
     order: 1,
     title: "How to use this app",
     summary: "The weekly loop, how to analyse a track, how a song gets designed and handed over, and how a band talks while writing.",
@@ -772,8 +861,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "how-tool-writes",
-    module: 0,
-    order: 2,
+    course: 11,
+    order: 1,
     title: "How Tool builds a song",
     summary: "Jam, record everything, keep the jewels, name and count the riffs, simplify then rebuild, vocals last.",
     minutes: 20,
@@ -785,8 +874,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "riff-board",
-    module: 0,
-    order: 3,
+    course: 11,
+    order: 2,
     title: "The riff board and the form plan",
     summary: "A shared language for designing form before the material exists — and handing it to the band.",
     minutes: 25,
@@ -798,7 +887,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "metric-dissonance",
-    module: 2,
+    course: 3,
     order: 1,
     title: "Grouping and displacement",
     summary: "The two ways layers of pulse can disagree, how strong a dissonance is, subliminal and indirect dissonance, odd meters as consonant, making changing meters legible, and the rock precedents for superimposed meters.",
@@ -812,7 +901,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "odd-meters",
-    module: 2,
+    course: 3,
     order: 2,
     title: "Odd meters: beats of two and three",
     summary: "Meter as the listener's entrainment; the timing window (100 ms to 5–6 s, beats strongest near 600 ms); tempo changes the meter; non-isochronous meters, maximal evenness, 2:3 beats, rotations and prime lengths; one meter at a time; your band's feel as part of the meter.",
@@ -821,7 +910,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "frame-and-cycle",
-    module: 2,
+    course: 3,
     order: 3,
     title: "Frame vs. cycle",
     summary: "A rigid frame, riffs of other lengths rotating inside it, cut off at the boundary: the frame is the form, the misalignment is the content.",
@@ -835,7 +924,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "dissonance-as-form",
-    module: 2,
+    course: 3,
     order: 4,
     title: "Metric dissonance as a section marker",
     summary: "Initiating fake-outs, linking bars, cadential hemiolas, loose sections vs. tight ones, the bridge as development — and Tool's corpus profile: dissonance as the norm, loose choruses.",
@@ -847,7 +936,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "metric-processes",
-    module: 2,
+    course: 3,
     order: 5,
     title: "Metrical processes: the meter has a plot",
     summary: "Metrical progressions and maps, C–D–C narratives, preparing a dissonance, tightening and loosening, augmentation, submerging, corrective accents and gradual resolution; meter tied to form and text; playing it as a band.",
@@ -856,7 +945,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "time-feel",
-    module: 2,
+    course: 3,
     order: 6,
     title: "Time feel and re-orchestration",
     summary: "Half, normal, double, quarter time and the compound feels; six riff types and four cymbal rates; agreement that clarifies and contradiction that makes dialogue (contained intensity, fast and slow at once, feel as narrative); the backbeat as consonance; the clave family; re-grooving.",
@@ -869,7 +958,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "accent-and-hypermeter",
-    module: 2,
+    course: 3,
     order: 7,
     title: "Accent and hypermeter",
     summary: "Stress, rhythmic and metric accent; hypermeasures that stretch, shrink and overlap; meter as a goal; cycles that end together; humans vs. sequencers.",
@@ -882,7 +971,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "grouping-numbers",
-    module: 2,
+    course: 3,
     order: 8,
     title: "Grouping numbers, speeds and cycles",
     summary: "Rhythms as strings of 2s and 3s, one cell at four speeds, pattern-fixed vs. pulse-fixed, where two loops realign, dots-and-lines charts for the drummer, and the Karnatic taala, nadai and eduppu. With Prieto's audio examples.",
@@ -894,7 +983,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "building-tension",
-    module: 3,
+    course: 7,
     order: 1,
     title: "Building tension: the four levers",
     summary: "Loudness, register, density, tempo — what listeners actually track — and the build devices that point forward.",
@@ -909,7 +998,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "cues-and-arrivals",
-    module: 3,
+    course: 2,
     order: 2,
     title: "Cues and arrivals",
     summary: "Acceleration, withholding, soar/swoop, upbeat: the small events that make a section change land.",
@@ -918,8 +1007,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "vocal-timbre",
-    module: 6,
-    order: 1,
+    course: 4,
+    order: 3,
     title: "Vocal timbre as a design parameter",
     summary: "Four questions for describing a vocal sound (folds, throat, where it buzzes, effort), Estill's settings, registers and safer extremes, and planning timbre across a song: a latent sound saved for the chorus or the climax.",
     minutes: 35,
@@ -930,8 +1019,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "climax-placement",
-    module: 3,
-    order: 3,
+    course: 7,
+    order: 2,
     title: "Where the climax goes",
     summary: "Telos chorus, stairstepper, release, terminal climax, cumulative build, a song-length additive build — choosing the shape of a song's energy.",
     minutes: 35,
@@ -946,8 +1035,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "layers-and-sound-box",
-    module: 3,
-    order: 4,
+    course: 4,
+    order: 1,
     title: "Layers and the sound-box",
     summary: "Texture as five jobs (beat, bass, melody, filler, novelty), sounds that blend vs. stand out, role changes as form, the mix as a space (the sound-box) with a lab, and a timbre checklist.",
     minutes: 40,
@@ -962,8 +1051,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "heaviness",
-    module: 3,
-    order: 5,
+    course: 4,
+    order: 2,
     title: "Heaviness: gain, voicing and density",
     summary: "Heaviness as four knobs (gain, voicing, density, structure), what distortion does to power chords and triads, which chords stay clear under gain, Herbst's listening test, and how to plan heaviness across a song.",
     minutes: 35,
@@ -974,7 +1063,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "formal-functions",
-    module: 4,
+    course: 9,
     order: 1,
     title: "Formal functions: beginning, middle, end",
     summary: "Every passage has a job in time: before-the-beginning, beginning, middle, end, after-the-end. Type vs. function, starting in the middle, hearing a passage differently afterwards, and analysing songs that fit no type.",
@@ -986,8 +1075,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "punctuation-degrees",
-    module: 4,
-    order: 2,
+    course: 2,
+    order: 1,
     title: "Degrees of punctuation",
     summary: "A 1–10 scale for how strongly a phrase or section ends, why most seams should say “yes, but…”, and how loops and question-and-answer periods close.",
     minutes: 30,
@@ -1001,8 +1090,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "contrast-and-transition",
-    module: 4,
-    order: 3,
+    course: 6,
+    order: 1,
     title: "Contrast and transition",
     summary: "Rate a contrast 1–10 by how many dimensions change, how much and how fast — then choose the route: cut, ladder, turning point or cross-cut. Plus same words in two settings, and the formal parenthesis.",
     minutes: 40,
@@ -1012,8 +1101,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "tight-and-loose",
-    module: 4,
-    order: 4,
+    course: 5,
+    order: 1,
     title: "Tight-knit and loose",
     summary: "Seven criteria for how stable a section feels, how transitions, later themes and development sections loosen, and the deceptive, evaded and abandoned landing that makes an arrival hard-won.",
     minutes: 40,
@@ -1021,8 +1110,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "beginnings",
-    module: 4,
-    order: 5,
+    course: 10,
+    order: 1,
     title: "Beginnings and introductions",
     summary: "Grab attention, state a character, leave a question open. What an intro must promise and what it must not do.",
     minutes: 25,
@@ -1035,8 +1124,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "exploring-and-anomalies",
-    module: 4,
-    order: 6,
+    course: 10,
+    order: 2,
     title: "Exploring: instability, interruption, anomaly",
     summary: "How known material is developed: unstable phrasing, interruptions, alternation — and the planted anomaly that pays off minutes later.",
     minutes: 35,
@@ -1044,8 +1133,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "riff-cycles-as-variations",
-    module: 4,
-    order: 7,
+    course: 8,
+    order: 1,
     title: "Riff cycles as variations",
     summary: "A repeated riff is a theme with variations: group the cycles, move the peak, displace or exchange gestures, and let the last group break the pattern.",
     minutes: 30,
@@ -1054,8 +1143,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "returning-and-ending",
-    module: 4,
-    order: 8,
+    course: 10,
+    order: 3,
     title: "Returning and ending",
     summary: "Returns that are never the same, the thwarted return, and the three endings: climactic, fade-out, rounding-off.",
     minutes: 35,
@@ -1071,8 +1160,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "form-in-memory",
-    module: 4,
-    order: 9,
+    course: 9,
+    order: 2,
     title: "How a form is remembered",
     summary: "Sections as multiparametric change, primary vs. secondary parameters, remembered time, hierarchy vs. lists, and music that defeats memory on purpose.",
     minutes: 40,
@@ -1080,8 +1169,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "kinds-of-time",
-    module: 4,
-    order: 10,
+    course: 7,
+    order: 3,
     title: "Kinds of musical time",
     summary: "Linear vs. nonlinear, and five kinds of time: goal-directed, nondirected, multiply-directed, moment and vertical — on different levels of one piece.",
     minutes: 35,
@@ -1092,8 +1181,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "gestural-time",
-    module: 4,
-    order: 11,
+    course: 7,
+    order: 4,
     title: "Gestural time: endings in the wrong place",
     summary: "Ending as process vs. profile, starting with an ending, three endings and a climax prepared from elsewhere, a problem stated at the start.",
     minutes: 30,
@@ -1101,8 +1190,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "moment-form",
-    module: 4,
-    order: 12,
+    course: 7,
+    order: 5,
     title: "Moment form and strata",
     summary: "Self-contained blocks, start/stop instead of begin/end, unprepared returns, proportions, expandable moments — and stratification, interlock, synthesis.",
     minutes: 40,
@@ -1111,8 +1200,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "time-and-proportion",
-    module: 4,
-    order: 13,
+    course: 7,
+    order: 6,
     title: "How long it feels: time, information, proportion",
     summary: "Information, meter and tempo as three clocks; why repeats shrink and goals stretch time; what golden sections can and can't do.",
     minutes: 35,
@@ -1123,8 +1212,8 @@ export const concepts: Concept[] = [
   },
   {
     slug: "form-design",
-    module: 4,
-    order: 14,
+    course: 11,
+    order: 3,
     title: "Designing the whole",
     summary: "Return × climax as a design space, through-composed types, forms for a song about change (arch, bolero, medley), the coordination principle, a sketching method and a plan checker.",
     minutes: 45,
@@ -1141,7 +1230,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "what-listeners-hear",
-    module: 5,
+    course: 12,
     order: 1,
     title: "What listeners actually hear",
     summary: "Large-scale plans are barely heard; landmarks, contrast and surface energy are. Design for the ear, scaffold for yourself.",
@@ -1156,7 +1245,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "repetition-and-process",
-    module: 5,
+    course: 12,
     order: 2,
     title: "Repetition, process and absorption",
     summary: "Why repetition deepens listening, how a carrier ostinato fades from attention, how audible gradual change holds the mind, and how dance tracks sustain one groove for ten minutes.",
@@ -1172,7 +1261,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "anticipation-and-groove",
-    module: 5,
+    course: 12,
     order: 3,
     title: "Anticipation, chills and groove",
     summary: "Reward before the peak, the groove inverted U, the anchor layer, and why odd meters must be learned.",
@@ -1186,7 +1275,7 @@ export const concepts: Concept[] = [
   },
   {
     slug: "trance-and-testing",
-    module: 5,
+    course: 12,
     order: 4,
     title: "Trance, ecstasy and the listening test",
     summary: "What music does and doesn't do in trance (Rouget), the trance–stillness axis, hypnosis ideas as labelled analogies, and how to test it all on real listeners.",
@@ -1202,81 +1291,134 @@ export const concepts: Concept[] = [
 
 export const conceptBySlug = Object.fromEntries(concepts.map((c) => [c.slug, c]));
 
-export type Module = {
+export type Course = {
   number: number;
+  /** I, II, III … ("0" for the start-here course) */
+  roman: string;
   title: string;
-  weeks: string;
   focus: string;
-  tool: string;
-  available: boolean;
+  /** the main readings behind it */
+  readings: string;
+  /** built = rewritten from the books read in full; open = earlier pages, waiting for that rewrite */
+  status: "built" | "open" | "coming";
 };
 
-export const modules: Module[] = [
+export const courses: Course[] = [
   {
     number: 0,
-    title: "Process & the riff board",
-    weeks: "Foundation · ongoing",
-    focus: "Jam, record, name and count riffs, assemble, vocals last; handing a form plan to the band",
-    tool: "Riff board",
-    available: true,
+    roman: "0",
+    title: "Start here",
+    focus: "How the university works: courses, seminars, writer pages, the weekly loop",
+    readings: "—",
+    status: "open",
   },
   {
     number: 1,
-    title: "Material & identity",
-    weeks: "Foundation",
-    focus: "Motive and the groove as motive, variation and how much a passage can take, melody vs. theme, the tendency of the smallest notes, phrase and memory, odd lengths, the sentence and liquidation, the vocal line, riff harmony (modes, functions, plagal form)",
-    tool: "Motif bank & family tree",
-    available: true,
+    roman: "I",
+    title: "Motive, phrase & memory",
+    focus: "The three time levels of listening, the motive and its degrees of similarity, developing variation, phrase and short-term memory, the sentence and the period, the vocal line, riff harmony",
+    readings: "Schoenberg ch. 1–6; Caplin ch. 1–4; Belkin ch. 1–3; Snyder ch. 1–4, 10–11",
+    status: "built",
   },
   {
     number: 2,
-    title: "Cycles, meter & time feel",
-    weeks: "Core",
-    focus: "Grouping and displacement, odd meters as beats of 2 and 3 and the timing window, rhythm vs. meter vs. hypermeter, subliminal dissonance, making changing meters legible, metrical processes and narratives, frame vs. cycle (cut-offs, tails and drift; riffs as attack-point streams), metric dissonance as section marker and Tool's metric profile, the backbeat and time feel, accent types and hypermeter (extension, contraction, overlap), grouping numbers, speeds and cycles (Prieto; Karnatic taala, nadai, eduppu), tihai cadences",
-    tool: "Meter lab",
-    available: true,
+    roman: "II",
+    title: "Punctuation & closure",
+    focus: "Cadence and its degrees, natural and learned closure, endings vs. stops, cues and arrivals",
+    readings: "Caplin ch. 3, 5; Belkin ch. 5; Snyder ch. 5, 13",
+    status: "open",
   },
   {
     number: 3,
-    title: "Energy, texture & climax",
-    weeks: "Core",
-    focus: "Functional layers and the novelty layer, sound-box, build devices, climax strategies, terminal and cumulative forms, heaviness (gain, voicing, density)",
-    tool: "Energy-curve editor",
-    available: true,
+    roman: "III",
+    title: "Rhythm, meter & groove",
+    focus: "Pulse and meter as schemas, metrical tension, odd and long meters, displacement and metric dissonance, polymeter and polyrhythm, time feel, hypermeter, grouping numbers",
+    readings: "Snyder ch. 12; London; Biamonte; Krebs; Belkin",
+    status: "open",
   },
   {
     number: 4,
-    title: "Large-scale architecture & time",
-    weeks: "Core · large scale",
-    focus: "Formal functions, punctuation, contrast and transition, tight-knit and loose, beginnings, exploring, riff cycles as variations, returning and ending, how a form is remembered, kinds of musical time, gestural time, moment form and strata, time and proportion, the whole design",
-    tool: "Form plan check",
-    available: true,
+    roman: "IV",
+    title: "Grouping, streams & texture",
+    focus: "How sounds group into streams, foreground and background, planes of tone, the sound-box, heaviness, vocal timbre",
+    readings: "Snyder ch. 3, 11; Belkin ch. 4, 20; Moore; Herbst; Heidemann",
+    status: "open",
   },
   {
     number: 5,
-    title: "The listener",
-    weeks: "Core",
-    focus: "Attention and repetition, tension curves, groove and entrainment, chills and anticipation, trance and absorption, persona and catharsis",
-    tool: "Listening-test kit",
-    available: true,
+    roman: "V",
+    title: "Presenting & small forms",
+    focus: "Grouping phrases into units: period, paragraph, one-part, binary and ternary forms; tight-knit and loose",
+    readings: "Belkin ch. 6–9; Caplin ch. 6–8; Schoenberg ch. 8–15",
+    status: "open",
   },
   {
     number: 6,
-    title: "Voice, words & persona",
-    weeks: "Advanced",
-    focus: "Vocal-timbre palette (built, Heidemann), persona, prosody and lyric form, the vocal entry as structure",
-    tool: "Form planner (vocal lane)",
-    available: true,
+    roman: "VI",
+    title: "Contrast, transition & sections",
+    focus: "Measuring contrast, connecting sections, what makes a section boundary, transitional sections",
+    readings: "Belkin ch. 11–12; Snyder ch. 13; Caplin (transition); Schoenberg",
+    status: "open",
   },
   {
     number: 7,
-    title: "The record as form",
-    weeks: "Advanced",
-    focus: "The album as one macro-form, motifs across tracks, sequencing",
-    tool: "Album planner",
-    available: false,
+    roman: "VII",
+    title: "Progression, climax & time",
+    focus: "Building tension, climax placement and hierarchy, linearity and its kinds, gestural time, moment form, felt vs. clock-time proportion",
+    readings: "Belkin ch. 13; Snyder ch. 13; Kramer; LaRue",
+    status: "open",
+  },
+  {
+    number: 8,
+    roman: "VIII",
+    title: "Cycle & variation forms",
+    focus: "Theme and variations, passacaglia and riff cycles, grouping variations, schemas of repetition",
+    readings: "Belkin ch. 10; Schoenberg (variations); Caplin; Snyder ch. 8",
+    status: "open",
+  },
+  {
+    number: 9,
+    roman: "IX",
+    title: "Large forms",
+    focus: "Formal functions, rondo, sonata and concerto forms, how a large form is remembered",
+    readings: "Caplin ch. 9–17; Belkin ch. 14, 19; Schoenberg (larger forms); Snyder ch. 13",
+    status: "open",
+  },
+  {
+    number: 10,
+    roman: "X",
+    title: "Beginnings, development, returns & endings",
+    focus: "Introductions and openings, exploring and interruption, the anomaly, returning, codas and endings",
+    readings: "Belkin ch. 15–18; Caplin (framing functions); Schoenberg",
+    status: "open",
+  },
+  {
+    number: 11,
+    roman: "XI",
+    title: "Composing process & personal voice",
+    focus: "How Tool writes, sketching and assembling, designing the whole, finding a personal voice",
+    readings: "Belkin conclusion and appendix A; Schoenberg (self-criticism); Tool interviews",
+    status: "open",
+  },
+  {
+    number: 12,
+    roman: "XII",
+    title: "The listener",
+    focus: "What listeners actually hear, repetition and absorption, anticipation and groove, trance and the listening test",
+    readings: "Snyder; Huron; Margulis; psychology sources",
+    status: "open",
+  },
+  {
+    number: 13,
+    roman: "XIII",
+    title: "Voice, words & the record as form",
+    focus: "Persona, prosody and lyric form; the album as one macro-form, motifs across tracks, sequencing",
+    readings: "Moore; Belkin ch. 3; Conroy; Osborn",
+    status: "coming",
   },
 ];
+
+export const courseByNumber: Record<number, Course> = Object.fromEntries(courses.map((c) => [c.number, c]));
 
 /**
  * Ideas met while reading a source that the app doesn't teach yet.
@@ -1284,23 +1426,26 @@ export const modules: Module[] = [
  * with where it came from and the build-plan step it belongs to. Remove an entry when its page, section or tool is built.
  */
 export type BuildTargetId =
-  | "method"
-  | "form-planner"
-  | "boundary-checker"
-  | "riff-board"
-  | "meter-map"
-  | "listening-kit"
-  | "album-planner"
-  | "existing-pages"
-  | "m6-pages"
-  | "m7-pages"
+  | "course-1"
+  | "course-2"
+  | "course-3"
+  | "course-4"
+  | "course-5"
+  | "course-6"
+  | "course-7"
+  | "course-8"
+  | "course-9"
+  | "course-10"
+  | "course-11"
+  | "course-12"
+  | "course-13"
   | "band-studies"
   | "later";
 
 export type FoundIdea = {
   idea: string;
   source: string;
-  module: number;
+  course: number;
   /** where the idea goes in the frozen build plan */
   target: BuildTargetId;
   note?: string;
@@ -1310,98 +1455,119 @@ export type BuildTarget = {
   id: BuildTargetId;
   phase: string;
   name: string;
-  kind: "page" | "tool" | "pages" | "later";
+  kind: "built" | "next" | "to do" | "coming" | "later";
   what: string;
 };
 
 /**
- * The frozen roadmap (2026-11-13): the order things get built in. Every backlog idea points at one target.
+ * The build plan: one step per course, in order. Every idea found in the reading points at one step.
  * Change it only with an entry in Decisions.
  */
 export const buildPlan: BuildTarget[] = [
   {
-    id: "method",
-    phase: "1 · Method",
-    name: "How to use this app",
-    kind: "page",
-    what: "Built: How to use this app (Module 0). The weekly loop in practice, how to analyse a track (a bank of questions, general first), how to hand a form plan to the band, how a band talks while writing, and the band's idiolect.",
+    id: "course-1",
+    phase: "Course I",
+    name: "Motive, phrase & memory",
+    kind: "built",
+    what: "Built in update 36 from the four books read in full: writer pages for Schoenberg, Caplin, Belkin and Snyder; a new lesson on the three time levels; the seven lessons rewritten so each writer speaks for himself; four seminars where they disagree; the books’ own examples (Beethoven, Bach) playable, with MusicXML downloads for Guitar Pro.",
   },
   {
-    id: "form-planner",
-    phase: "2 · Tools",
-    name: "Form planner with lanes",
-    kind: "tool",
-    what: "Built: Form plans in the sidebar. Sections across the top, one lane per parameter underneath: the five tension levers weighted 3-3-2-2-1, a ladder lane for climbing hooks and peaks, a vocal-timbre lane, the focal parameter of each section group, meter thickness. Warns when levers oppose or a build changes only the meter, and checks two sets of landmarks against each other. Uses the band's chart letters, primes and section-group numerals.",
+    id: "course-2",
+    phase: "Course II",
+    name: "Punctuation & closure",
+    kind: "next",
+    what: "Next. Rewrite the two lessons the same way; new lessons on natural vs. learned closure and on endings vs. stops; seminar: what is a cadence (Caplin, Belkin, Snyder).",
   },
   {
-    id: "boundary-checker",
-    phase: "2 · Tools",
-    name: "Boundary checker",
-    kind: "tool",
-    what: "Built: the seams between sections in every form plan. For each seam in a plan, tick which cues change (title line, voices added, guitar rhythm, stop time, first chord, a rhythm-change callback) and see whether the boundary will be heard as strong, weak or ambiguous.",
+    id: "course-3",
+    phase: "Course III",
+    name: "Rhythm, meter & groove",
+    kind: "to do",
+    what: "Rewrite the eight lessons; add Snyder ch. 12 (meter as schema, beat categories and feel, metrical tension, long meters and landmark sounds, free rhythm); seminar: repetition as motion or as stasis.",
   },
   {
-    id: "riff-board",
-    phase: "2 · Tools",
-    name: "Riff board: attack-point notation",
-    kind: "tool",
-    what: "Built: Riff board in the sidebar. Every motif-bank riff read as a count (grid, attack points, a grouping of 2s and 3s, dots-and-lines columns, the other orders of the same numbers with click playback), against the meter (grouping dissonance, bars to realign), at its tempo (London's timing windows), at four speeds and under other pulses, against a second loop (where they line up), and as harmony (tonic by persistence, position and emphasis; modes that fit; palette; each chord's shape, degree, strong or weak function and how it fares under the chosen gain; the cadence; riff mode vs. vocal mode). It also finds the same motive in other riffs and records the entry offset, a motto tag and where the riff is used.",
+    id: "course-4",
+    phase: "Course IV",
+    name: "Grouping, streams & texture",
+    kind: "to do",
+    what: "Rewrite the three lessons; new lessons on grouping and streaming (Snyder ch. 3, 11) and planes of tone (Belkin ch. 20).",
   },
   {
-    id: "meter-map",
-    phase: "2 · Tools",
-    name: "Metric map and profile",
-    kind: "tool",
-    what: "Krebs-style metrical maps for any track (dissonances down the side, lines over a bar grid), and a metric profile that tabulates the band's finished songs by dissonance type and place, for comparison with Tool.",
+    id: "course-5",
+    phase: "Course V",
+    name: "Presenting & small forms",
+    kind: "to do",
+    what: "New lessons from Belkin ch. 6–9 and Caplin ch. 6–8; seminar: binary, rounded binary and ternary — whose definitions.",
   },
   {
-    id: "listening-kit",
-    phase: "2 · Tools",
-    name: "Listening-test kit additions",
-    kind: "tool",
-    what: "A scramble test (cut a demo into 6-second chunks, reorder, see which joins listeners catch) and a listening-situation profile recorded with every test.",
+    id: "course-6",
+    phase: "Course VI",
+    name: "Contrast, transition & sections",
+    kind: "to do",
+    what: "Rewrite the lesson; new lessons on the contrast scale, the transition procedure and Snyder’s three-parameter boundaries; seminar: where a transition begins.",
   },
   {
-    id: "existing-pages",
-    phase: "3 · Pages",
-    name: "Fold into existing pages",
-    kind: "pages",
-    what: "Exercises and short sections added to pages that already exist: Schoenberg's and Caplin's variation, modulation and retransition techniques, hybrid phrases, the breakdown as a formal function, transitions sized by arithmetic, the drummer's layered meter, the retrospective prechorus and sentence-to-prechorus exercises, confusion-then-arrival, and more.",
+    id: "course-7",
+    phase: "Course VII",
+    name: "Progression, climax & time",
+    kind: "to do",
+    what: "Rewrite the six lessons; new lessons on climax hierarchy and linearity (directed, nondirected, multiply directed); seminars: must music be directional? clock-time vs. felt proportion.",
   },
   {
-    id: "m6-pages",
-    phase: "3 · Pages",
-    name: "Module 6 pages",
-    kind: "pages",
-    what: "Persona, prosody and lyric form (lyric vs. anti-lyric, loose verse and tight chorus, recitative vs. aria), vocal performance as form. Waits for Moore's Song Means where it's cited.",
+    id: "course-8",
+    phase: "Course VIII",
+    name: "Cycle & variation forms",
+    kind: "to do",
+    what: "Rewrite the lesson; new lessons from Belkin ch. 10 (grouping variations, continuous variations, joins).",
   },
   {
-    id: "album-planner",
-    phase: "3 · Pages",
-    name: "Album planner (with Module 7)",
-    kind: "tool",
-    what: "Built with Module 7: choose the album type first, then map three levels (track, side, record), place segues of both kinds, plan keys so reprises return home, track cycle themes split into parts, and set each track's form by its position.",
+    id: "course-9",
+    phase: "Course IX",
+    name: "Large forms",
+    kind: "to do",
+    what: "Rewrite the two lessons; new lessons on rondo, sonata and concerto; seminars: sonata theory (Caplin vs. Hepokoski & Darcy vs. Belkin); can listeners hear large-scale tonal form?",
   },
   {
-    id: "m7-pages",
-    phase: "3 · Pages",
-    name: "Module 7 pages",
-    kind: "pages",
-    what: "The five planned pages: four ways to hold a record together; three levels of form; reprise, recapitulation and the motive across tracks; the single-track piece; sequencing and the live set.",
+    id: "course-10",
+    phase: "Course X",
+    name: "Beginnings, development, returns & endings",
+    kind: "to do",
+    what: "Rewrite the three lessons; add Belkin ch. 15–18 and Caplin’s framing functions; seminar: what a coda is for.",
+  },
+  {
+    id: "course-11",
+    phase: "Course XI",
+    name: "Composing process & personal voice",
+    kind: "to do",
+    what: "Rewrite the three lessons; new lesson on sketching (Belkin appendix A) and personal voice.",
+  },
+  {
+    id: "course-12",
+    phase: "Course XII",
+    name: "The listener",
+    kind: "to do",
+    what: "Rewrite the four lessons against Snyder; seminar: who is the “experienced listener”?",
+  },
+  {
+    id: "course-13",
+    phase: "Course XIII",
+    name: "Voice, words & the record as form",
+    kind: "coming",
+    what: "Pages on persona, prosody and lyric form, and on the album as one form.",
   },
   {
     id: "band-studies",
-    phase: "4 · Band studies",
-    name: "Tool lab and band studies",
-    kind: "pages",
-    what: "Our own maps of Schism, The Grudge, The Patient, Pushit and 10,000 Days, then King Crimson, Meshuggah and the others, made with the tools above and checked against Biamonte, Osborn and Pieslak.",
+    phase: "Later",
+    name: "Band studies",
+    kind: "later",
+    what: "Our own maps of Schism, The Grudge, The Patient, Pushit and 10,000 Days, then King Crimson, Meshuggah and the others, checked against Biamonte, Osborn and Pieslak.",
   },
   {
     id: "later",
     phase: "Later",
     name: "Parked",
     kind: "later",
-    what: "Worth doing but needs audio analysis or a source we don't have yet: spectrogram reading, the band's timing fingerprint, the bass-under-a-fixed-riff lab, the hypermeter lab, chord interpolation (Moore).",
+    what: "Needs audio analysis or a source we don’t have yet: spectrogram reading, the band’s timing fingerprint, the bass-under-a-fixed-riff lab, chord interpolation (Moore).",
   },
 ];
 
@@ -1409,145 +1575,145 @@ export const foundInReading: FoundIdea[] = [
   {
     idea: "A weight lane in the form planner: gain level (clean, crunch, drive, high) and voicing per section; warn when full gain is reached in the first section, when a later build adds only gain, and when complex voicings meet high gain where the vocal needs room",
     source: "Herbst 2018; Lilja [ch. 4]",
-    module: 3,
-    target: "form-planner",
+    course: 4,
+    target: "course-4",
   },
   {
     idea: "A tonal-region lane: each section's tonal centre and its function against the song's tonic (T, S, D), so the plan shows the song's T–S–T shape",
     source: "Lilja [ch. 6.2–6.3]",
-    module: 4,
-    target: "form-planner",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "A gain × voicing test template: the same riff as power chords and triads at clean, crunch and high gain, rated heavy and clear",
     source: "Herbst 2018",
-    module: 5,
-    target: "listening-kit",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "Pallavi and anupallavi as low-register theme and high-register contrast; sangathi as composed variations of one line, simple to complex; the aalapana's register arc (middle, high, low, middle) as an intro shape",
     source: "Sriram [Elements of a Recital]",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Melodic closure in metal: sections end on the minor third, on 5̂ or on another finalis rather than 2̂–1̂; add to the returning-and-ending page",
     source: "Lilja [ch. 6.1]",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Tihai and mukthay cadences, gati bhedam and jathi bhedam for the drummer: needs Reina's book",
     source: "Gap noted while reading Sriram and Prieto",
-    module: 2,
+    course: 3,
     target: "later",
   },
   {
     idea: "Album form type picker: standard album, extended suite, concept album (thematic or narrative) or symphonic structure, as the first decision on the album planner",
     source: "Conroy [ch. 1]",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Three-level album map: each track's own form, each side or half as one continuous piece, and the whole record (global key, bookends, overture, transitional episodes)",
     source: "Conroy [ch. 3]",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Two kinds of segue to choose between: spinning out of one song into the next, or a clear timbral bridge (a radio, an engine, a room sound) between unrelated songs",
     source: "Conroy [ch. 3, Wish You Were Here]",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Return material in its original key (or deliberately a semitone off), and plan the modulations that get it there",
     source: "Conroy [ch. 5]",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "The thematic solo: a solo that recaps motives from earlier tracks at a structural moment instead of free soloing",
     source: "Conroy [ch. 4, Howe on \"Ritual\"]",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Split a cycle theme into parts that return separately across the record",
     source: "Conroy [ch. 4, Topographic Oceans]",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Song and passage balance for long pieces: alternate closed song forms (stasis, like an aria) with short open through-composed passages (motion, like a recitative); stop the alternation near the end and bring back familiar material to signal it",
     source: "Smolko [ch. 5]",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Lyrics-first long form (the lai): each stanza gets its own meter and music, only the last returns to the first",
     source: "Smolko [ch. 2]",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Live long pieces: teaching an audience where to be quiet and where to move",
     source: "Smolko [ch. 5, Anderson]",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "A musical motto for trance sections: a short sound or riff taught early in a song or set that later signals \"sink in here\", tracked on the riff board",
     source: "Rouget [ch. 2, 7]",
-    module: 5,
-    target: "riff-board",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "A crescendo-by-proximity option for live sets: bring a sound physically closer (stage position, monitor or panning) instead of only louder",
     source: "Rouget [ch. 2]",
-    module: 5,
-    target: "existing-pages",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "Confusion-then-arrival exercise: interrupt three expected downbeats or cadences with material coherent in itself, keep the flow, then give one unmistakable pulse, and test it on a listener",
     source: "Erickson [paper 10]",
-    module: 5,
-    target: "existing-pages",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "A scramble test: cut a demo into 6-second chunks, reorder them with smooth joins, and see whether bandmates or friends notice, and which joins give it away",
     source: "Lalitte & Bigand 2006",
-    module: 5,
-    target: "listening-kit",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "Counter-meter spans on the riff board: mark where a counter-meter starts, how long it runs and where it realigns with the main meter (the \"Lazarus Heart\" model)",
     source: "Vuust & Witek 2014 [polyrhythm]",
-    module: 2,
-    target: "riff-board",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "Sentence-to-prechorus exercise: write a verse as a sentence, then stretch its continuation until it splits off as a prechorus",
     source: "Summach 2011 [4]",
-    module: 1,
-    target: "existing-pages",
+    course: 1,
+    target: "course-1",
   },
   {
     idea: "Terminally anti-climactic endings for an album's last track (a new, quieter closing section)",
     source: "Osborn 2010, Conclusions",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "The retrospective prechorus as a writing exercise: a false chorus in one mode of a collection, the real chorus saved for the plainest mode",
     source: "Osborn 2010 Ch. 2",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Bass reharmonisation under a fixed riff as a bridge device (Chancellor) — a lab that keeps the guitar riff and lets the bass move",
     source: "Osborn 2013 n. 70; 2010 Ch. 3",
-    module: 4,
+    course: 9,
     target: "later",
   },
 
@@ -1555,214 +1721,214 @@ export const foundInReading: FoundIdea[] = [
   {
     idea: "Hypermeter marked by other layers when the riff stops: a lead melody in long notes, a pitch change, the voice entering — a lab where the drums drop the frame and another layer picks it up",
     source: "Pieslak pp. 228–235 (after Lester)",
-    module: 2,
+    course: 3,
     target: "later",
   },
   {
     idea: "Transitions sized by arithmetic: a fill or dive whose length lets a misaligned layer finish its last statement",
     source: "Pieslak pp. 235–240",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Quotation as an opening: another band's riff stated once, then dissolved into your own language",
     source: "Pieslak p. 241 (Anthrax, \"Time\")",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Spectrograms as an analysis tool: reading kick-drum clusters and gaps to find where a riff really begins",
     source: "Lucas [15], [25]–[28], [39]–[41]",
-    module: 0,
+    course: 11,
     target: "later",
   },
   {
     idea: "The breakdown as a formal function (hardcore: halved tempo, near the end, lyric summary) with its own riff and cymbal conventions",
     source: "Garza note 9, [12]",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "The band's feel as a recorded fingerprint: measure where each player sits against the grid in your own takes, and keep it consistent as part of the composition",
     source: "London ch. 9 (many meters hypothesis)",
-    module: 5,
+    course: 12,
     target: "later",
   },
   {
     idea: "Metrical maps as a standard analysis view: dissonances listed down the side, solid/dotted lines over a bar grid, compared across songs (an editable map tool in the app)",
     source: "Krebs ch. 4",
-    module: 2,
-    target: "meter-map",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "Two or three layers of meter in one player: split-hand technique translated to the kit (one limb group per layer), and assigning layers across the band so each part carries only one",
     source: "Krebs ch. 7",
-    module: 2,
-    target: "existing-pages",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "A metric profile of your own songs: tabulate each finished track by dissonance type and place (initiating, link, hemiola, dissonant middle, throughout; tight or loose chorus) and compare it with Tool's chart",
     source: "Biamonte §8",
-    module: 2,
-    target: "meter-map",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "Metric modulation through a cadential hemiola: regroup the beat into threes before a section end so that the new beat becomes the next section's tempo (a built-in slow-down or speed-up)",
     source: "Biamonte §7.5",
-    module: 2,
-    target: "existing-pages",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "Hypermetric dissonance as its own tool: three-bar phrases against an irregular intro, a bridge shortened to eleven bars by an elision, and the binary default that makes them noticeable",
     source: "Biamonte §5",
-    module: 2,
-    target: "existing-pages",
+    course: 3,
+    target: "course-3",
   },
   {
     idea: "Character as a design starting point: the accompaniment pattern sets the character before the melody; character pairs for contrasting sections (lyrical–rhythmic, melodious–étude-like, grazioso–energico, melancholy–gay); a story, poem or film as the stimulus for a piece",
     source: "Schoenberg ch. X, XV",
-    module: 3,
-    target: "existing-pages",
+    course: 7,
+    target: "course-7",
   },
   {
     idea: "A variation set built from a skeleton: strip the riff to its main notes, derive one 'motive of variation' per variation and keep it consistent; variations in different keys, tempos and characters; a set that builds to a series of climaxes",
     source: "Schoenberg ch. XVII",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "A modulating middle section from one pattern: pattern-and-sequence options from one opening (motive-forms reordered abac, abcc, aaab), an episode that settles somewhere distant, a 'return in the wrong key', dwelling on the wrong dominant",
     source: "Schoenberg ch. XVI",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "A retransition that forecasts the return: the main motive augmented or rhythmically changed until it turns out to be the theme's first notes; a long dominant pedal as the climax of the whole piece",
     source: "Schoenberg ch. XVIII",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Combining a motive with itself instead of varying it (canon, inversion, two forms at once) as a second way to develop; imitation between instruments inside a development section",
     source: "Schoenberg ch. IX, XV",
-    module: 3,
-    target: "existing-pages",
+    course: 7,
+    target: "course-7",
   },
   {
     idea: "After the return: episodes that neither modulate nor cadence, codettas that get shorter, a written-out slow-down, and an ending deliberately left open so the track runs into the next one",
     source: "Schoenberg ch. XVI",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Hybrid phrase types between sentence and period (antecedent + continuation, compound basic idea + continuation...) as a design spectrum for riff phrases: drive vs. repose",
     source: "Caplin ch. 4",
-    module: 1,
-    target: "existing-pages",
+    course: 1,
+    target: "course-1",
   },
   {
     idea: "Two-part form without a return vs. a rounded form with one: why a riff that recurs across a long song is better framed in units that don't restate it themselves",
     source: "Caplin ch. 8, 17 (small binary, variation themes)",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "A long song as a variation set on one riff: ornament, then keep only the harmony, a mode shift, a slow variation, a fast final one; complexity rising across the set",
     source: "Caplin ch. 17",
-    module: 4,
-    target: "existing-pages",
+    course: 9,
+    target: "course-9",
   },
   {
     idea: "Band roles borrowed from the concerto: who frames the piece, who carries the key changes, who gets the solo cadenza; the soloist gets ideas the band never played",
     source: "Caplin ch. 20",
-    module: 3,
-    target: "existing-pages",
+    course: 7,
+    target: "course-7",
   },
   {
     idea: "Position in the album decides the form: forward-driving openers, lighter closers, simpler slow tracks, a track that ends on the dominant and runs into the next",
     source: "Caplin ch. 10, 17",
-    module: 7,
-    target: "album-planner",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Enriching a known chord pattern by interpolating chords (each chord preceded by its own fifth); melody-driven vs chord-driven harmony; a pattern withheld, approached by near-versions, then arriving as a goal",
     source: "Moore, Song Means ch. 3 (Jethro Tull, PJ Harvey)",
-    module: 2,
+    course: 3,
     target: "later",
   },
   {
     idea: "Bass character as a style choice: regular vs varied rhythm, static vs mobile pitch; a bass that ignores the harmony (pedal under moving guitar)",
     source: "Moore, Song Means ch. 3",
-    module: 3,
-    target: "existing-pages",
+    course: 7,
+    target: "course-7",
   },
   {
     idea: "Loose verse, tight chorus: verse melodies with unresolved dissonant pitches against the harmony, chorus melodies that agree with it",
     source: "Moore ch. 3 (after Temperley 2007)",
-    module: 6,
-    target: "m6-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "A song that offers two endings for its story (a negative, then a positive outcome hinging on one decision)",
     source: "Moore ch. 6 (The Streets, 'Empty Cans')",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Lyric vs anti-lyric: rhyme-led, poem-like lines vs prose-like statement with striking words; full, near and deliberately missing rhymes; rhymes across parts of speech push the thought forward",
     source: "Analyzing Popular Music ch. 3 (Griffiths)",
-    module: 6,
-    target: "m6-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Vocal performance as form: a palette of timbres (head, throat, nasal, rasp), rasp applied additively across a song, straight tone then late vibrato, rests inserted mid-phrase as halting speech, words giving way to vocables at the climax",
     source: "Analyzing Popular Music ch. 6 (Bowman)",
-    module: 6,
-    target: "m6-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Timbre as a recurring marker (one distinctive sound tied to one idea and brought further forward each time); a continuum from sound design to music: ambient, atmospheric, minimalist",
     source: "Analyzing Popular Music ch. 4 (Stilwell)",
-    module: 3,
-    target: "existing-pages",
+    course: 7,
+    target: "course-7",
   },
   {
     idea: "Same material, opposite meaning by setting (one quoted prayer in a gentle country song and in a Metallica nightmare); quotation of other records inside a track",
     source: "Analyzing Popular Music ch. 2 (Walser), ch. 8 (Moore)",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "A listening-situation profile for the listening test: when, who, how attentively, where, on what system, and for what task",
     source: "Analyzing Popular Music ch. 10 (Kennett)",
-    module: 5,
-    target: "listening-kit",
+    course: 12,
+    target: "course-12",
   },
   {
     idea: "Song, performance and track: what all versions share vs. what one recording adds (instrumentation, speed, tone, production)",
     source: "Moore ch. 1",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "The record as an artwork, not a document: splices and edits as form, continuities that never happened live, denser music because the listener can replay",
     source: "Kramer ch. 3",
-    module: 7,
-    target: "m7-pages",
+    course: 13,
+    target: "course-13",
   },
   {
     idea: "Recitative vs. aria as two vocal modes; text first, with the melody exaggerating the spoken contour but never contradicting it; open vowels on the peak notes",
     source: "Belkin ch. 3",
-    module: 6,
-    target: "m6-pages",
-    note: "Partly in The vocal line; the rest goes to Module 6",
+    course: 13,
+    target: "course-13",
+    note: "Partly in The vocal line; the rest goes to Course XIII",
   },
 ];
 
 export const weeklyLoop = [
   { step: "Read", time: "1–2 h", detail: "One short section, from the concept page's sources." },
   { step: "Analyze", time: "1–2 h", detail: "One piece, one map. Only what the concept asks you to hear." },
-  { step: "Write", time: "2–3 h", detail: "A 1–3 minute sketch in your own sound. It goes in the motif bank." },
+  { step: "Write", time: "2–3 h", detail: "A 1–3 minute sketch in your own sound, saved in your Guitar Pro folder." },
   { step: "Reflect", time: "15 min", detail: "Five lines in the journal: what worked, what bored you." },
 ];
 

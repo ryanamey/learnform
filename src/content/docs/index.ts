@@ -4,7 +4,7 @@ export type DocMeta = {
   slug: string;
   title: string;
   summary: string;
-  group: "Blueprint" | "Sources" | "Band";
+  group: "Blueprint" | "Writers" | "Sources" | "Band";
   updated: string;
 };
 
@@ -28,7 +28,35 @@ export const docs: DocMeta[] = [
     title: "Decision log",
     summary: "Why things are in, out, or ordered the way they are. Newest first.",
     group: "Blueprint",
-    updated: "2026-11-10",
+    updated: "2026-11-16",
+  },
+  {
+    slug: "writer-schoenberg",
+    title: "Schoenberg",
+    summary: "Fundamentals of Musical Composition: his question, toolkit, where he agrees and differs with the other writers, and where the app uses him.",
+    group: "Writers",
+    updated: "2026-11-16",
+  },
+  {
+    slug: "writer-caplin",
+    title: "Caplin",
+    summary: "Analyzing Classical Form: formal functions, his toolkit and method, where he agrees and differs, and where the app uses him.",
+    group: "Writers",
+    updated: "2026-11-16",
+  },
+  {
+    slug: "writer-belkin",
+    title: "Belkin",
+    summary: "Musical Composition: Craft and Art: what music must do, his scales and principles, where he agrees and differs, and where the app uses him.",
+    group: "Writers",
+    updated: "2026-11-16",
+  },
+  {
+    slug: "writer-snyder",
+    title: "Snyder",
+    summary: "Music and Memory: the three time levels, his toolkit, where he agrees and differs, and where the app uses him.",
+    group: "Writers",
+    updated: "2026-11-16",
   },
   {
     slug: "belkin-guide",
@@ -49,7 +77,7 @@ export const docs: DocMeta[] = [
     title: "Analyzing Popular Music guide",
     summary: "Moore (ed.), Analyzing Popular Music (2003), read in full — each essay's ideas, what they mean for a band writing long songs, and where the app uses them.",
     group: "Sources",
-    updated: "2026-11-10",
+    updated: "2026-11-16",
   },
   {
     slug: "sources",
@@ -78,6 +106,10 @@ export const docPages: Record<string, () => Promise<{ default: ComponentType }>>
   blueprint: () => import("./blueprint.mdx"),
   coverage: () => import("./coverage.mdx"),
   decisions: () => import("./decisions.mdx"),
+  "writer-schoenberg": () => import("./writer-schoenberg.mdx"),
+  "writer-caplin": () => import("./writer-caplin.mdx"),
+  "writer-belkin": () => import("./writer-belkin.mdx"),
+  "writer-snyder": () => import("./writer-snyder.mdx"),
   "belkin-guide": () => import("./belkin-guide.mdx"),
   "kramer-guide": () => import("./kramer-guide.mdx"),
   "apm-guide": () => import("./apm-guide.mdx"),

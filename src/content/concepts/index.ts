@@ -2,7 +2,12 @@ import type { ComponentType } from "react";
 
 // One entry per MDX page. Add a line here when you add a concept.
 export const conceptPages: Record<string, () => Promise<{ default: ComponentType }>> = {
+  "time-levels": () => import("./time-levels.mdx"),
   motive: () => import("./motive.mdx"),
+  "seminar-one-motive": () => import("./seminar-one-motive.mdx"),
+  "seminar-what-is-a-phrase": () => import("./seminar-what-is-a-phrase.mdx"),
+  "seminar-motive-identity": () => import("./seminar-motive-identity.mdx"),
+  "seminar-sentence-and-period": () => import("./seminar-sentence-and-period.mdx"),
   "similarity-scale": () => import("./similarity-scale.mdx"),
   "developing-variation": () => import("./developing-variation.mdx"),
   "phrase-and-memory": () => import("./phrase-and-memory.mdx"),

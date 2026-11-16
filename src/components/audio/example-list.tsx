@@ -160,7 +160,7 @@ export function ExampleList({ set, quiz: quizDefault = false, ab = false, showLy
       </ul>
       {hasRatings && (
         <p className="mt-3 text-xs text-muted-foreground">
-          Ratings use Belkin&apos;s 1–5 similarity scale. They are my suggestions for this motif — trust your ear when it
+          Ratings use Belkin&apos;s 1–5 similarity scale. They apply Belkin&apos;s examples to this motif; they are not ratings from the book. Trust your ear when it
           disagrees, and note why.
         </p>
       )}

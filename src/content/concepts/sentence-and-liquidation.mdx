@@ -1,4 +1,4 @@
-## The most useful small form you'll learn
+## Two ways to build a theme
 
 Schoenberg describes two standard ways to build a complete theme, the **period** and the **sentence**, and calls the sentence the higher form, because it starts developing almost immediately <Source book="schoenberg" where="Ch. V, VIII" />. Its basic scheme (8 bars in the practice form) is:
 
@@ -13,9 +13,35 @@ Caplin's later terms, *presentation*, *continuation* and *cadential function*, d
 - **The continuation has four signs, not one**: shorter units, faster chord changes, busier surface rhythm, sequence. They can stand in for each other. A continuation that keeps the two-bar units can still sound like a middle if the chords change twice as fast. See *Formal functions*.
 - **Why the presentation doesn't end**: repeating a beginning strengthens the sense of beginning. Only a contrasting idea with closing support can end anything.
 
-Caplin also contrasts the two types' character, quoting Erwin Ratz: the period has "repose in itself", while the sentence has a "forward-striving" character, which is why it suits openings of dynamic pieces <Source book="caplin" where="Ch. 3, Ch. 10" />.
+<KeyIdea>Schoenberg's sentence in Caplin's terms: present an idea, repeat it, fragment it, liquidate it, cadence.</KeyIdea>
 
-<KeyIdea>Present it, repeat it, break it, dissolve it, land. That one gesture drives most riff sections that feel inevitable.</KeyIdea>
+## Hear the model
+
+The example both writers use is the opening of Beethoven's first piano sonata. Caplin calls it perhaps the most exemplary sentence, and notes that Schoenberg and his students always illustrated the type with it <Source book="caplin" where="Ch. 2" />.
+
+<ScorePlayer
+  label="Beethoven, Piano Sonata Op. 2 No. 1, i, bars 1–8"
+  parts={[
+    { name: "Right hand", notation: "C4/4 | F4/4 Ab4/4 C5/4 F5/4 | Ab5/4. G5/16t F5/16t E5/16t F5/4 r/4 | G4/4 C5/4 E5/4 G5/4 | Bb5/4. Ab5/16t G5/16t F5/16t G5/4 r/4 | Ab5/4.! G5/16t F5/16t E5/16t F5/4 r/4 | Bb5/4.! Ab5/16t G5/16t F5/16t G5/4 r/4 | [C5,F5,Ab5]/2! Bb5/8 Ab5/8 G5/8 F5/8 | F5/4 E5/4 r/2", voice: "voice" },
+    { name: "Left hand", notation: "r/4 | r/1 | r/4 [F3,Ab3,C4]/4 [F3,Ab3,C4]/4 [F3,Ab3,C4]/4 | [E3,G3,Bb3,C4]/4 r/4 r/2 | r/4 [E3,G3,Bb3,C4]/4 [E3,G3,Bb3,C4]/4 [E3,G3,Bb3,C4]/4 | r/4 [F3,Ab3,C4]/4 [F3,Ab3,C4]/4 [F3,Ab3,C4]/4 | r/4 [G3,Bb3,C4,E4]/4 [G3,Bb3,C4,E4]/4 [G3,Bb3,C4,E4]/4 | r/4 [Ab3,C4,F4]/4 r/4 [Bb3,Db4,G4]/4 | r/4 [C4,E4]/4 r/2", voice: "pad", gain: 0.6 },
+  ]}
+  bpm={144}
+  time="2/2"
+  fifths={-4}
+  composer="Ludwig van Beethoven"
+  source="Caplin Ex. 2.1; Schoenberg's model sentence"
+  spans={[
+    { from: 0, to: 9, label: "basic idea" },
+    { from: 9, to: 17, label: "repetition on V" },
+    { from: 17, to: 25, label: "fragmentation" },
+    { from: 25, to: 33, label: "cadential idea → HC" },
+  ]}
+  caption="Grace notes left out; the fermata on the last chord is not played. Toggle 'melody only' to hear the right hand alone."
+/>
+
+Caplin's reading: a rising arpeggio (motive *a*) and a triplet turn (motive *b*) make the two-bar basic idea, stated on the tonic and answered on the dominant (statement–response). In bars 5–6 the units shrink to one bar, the harmony changes faster and the surface concentrates on motive *b*; *a* survives only as a grace note. Bars 7–8 bring the cadential idea to a half cadence.
+
+The same scheme on motif M, in rock instrumentation:
 
 <SentenceDemo />
 
@@ -25,7 +51,7 @@ Schoenberg's definition: liquidation gradually eliminates the motive's character
 
 Belkin links this to **neutral lines**: scale fragments, simple figures, clichés <Source book="belkin" where="Ch. 1, Neutral lines" />. A cliché is familiar, so it releases attention. That's why it works at endings, and also why music needs occasional neutral passages to breathe. Wall-to-wall motivic density is exhausting.
 
-In the demo, listen to bars 7–8. The stutter that defined M is gone, the tritone is gone, there's just a falling line, and then a power-chord hit. The *removal* of character is what makes the arrival feel final.
+In the M demo, listen to bars 7–8: the stutter and the tritone are gone, leaving a falling line and a power-chord hit. That is liquidation in Schoenberg's sense: the characteristic features are removed before the arrival. Caplin adds a detail: liquidation is strictly any elimination of characteristic motives, immediate when the continuation is new material, more audible when it's gradual <Source book="caplin" where="Ch. 2" />.
 
 ## Sequences create obligations
 
@@ -36,15 +62,54 @@ Two more devices from his analyses:
 - **Chain-like construction.** The end of one motive-form is the start of the next, so the links overlap and nothing stops between them (Beethoven op. 10/3) <Source book="schoenberg" where="Ch. V" />.
 - **Dovetailing.** When Mozart extends a four-bar unit to five or six, he often brings in the next unit a bar early to compensate, so the extension costs no time <Source book="schoenberg" where="Ch. XVIII" />.
 
-## Why this matters more in rock than in Classical music
+## The period
 
-In tonal music, cadences do much of the work of ending. Modal, riff-based music has weaker cadences, so the other tools have to carry the job:
+The period postpones the repetition. Schoenberg: the first phrase is followed by more remote motive-forms, and only the second half returns to the beginning; the practice form is 4 + 4 bars with a caesura in bar 4 <Source book="schoenberg" where="Ch. VI–VII" />. Caplin's terms: an **antecedent** (basic idea + contrasting idea, ending with a weak cadence, usually a half cadence) and a **consequent** (the basic idea returns, and the contrasting idea now closes with a stronger cadence) <Source book="caplin" where="Ch. 3" />. His model is the Romanze of Mozart's *Eine kleine Nachtmusik*.
 
-- **Fragmentation** builds the energy that a harmonic progression would otherwise provide.
-- **Liquidation** creates the sense of ending that a V–I would otherwise provide.
-- **Arrival** can be texture, register, a held chord, a drop to silence, or the band entering together.
+<ScorePlayer
+  label="Mozart, Eine kleine Nachtmusik K. 525, ii (Romanze), bars 1–8"
+  parts={[
+    { name: "Violin 1", notation: "E5/8 r/8 E5/8 r/8 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 C6/4 B5/8 | A5/8 A5/4 G5/8 G5/8 F5/16 r/16 F5/8 E5/16 r/16 | G5/8. E5/16 D5/8 r/8 E5/8 r/8 E5/8 r/8 | E5/4. G5/8 F5/8 D5/8 F5/8 A5/8 | G5/8. E5/16 G5/8 r/8 C6/8 G5/16 r/16 G5/8 E5/16 r/16 | D5/8 A5/8 F5/8 E5/16 D5/16 C5/4 E5/16 D5/16 C5/16 D5/16 | C5/4 r/4", voice: "voice" },
+    { name: "Violin 2", notation: "C4/8 r/8 C4/8 r/8 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 A4/8 A4/4 G4/8 | F4/8 F4/4 E4/8 E4/8 D4/16 r/16 D4/8 C4/16 r/16 | E4/8. C4/16 B3/8 r/8 C4/8 G3/8 C4/8 G3/8 | C4/8 G3/8 C4/8 E4/8 D4/8 B3/8 D4/8 F4/8 | E4/8. C4/16 E4/8 r/8 G4/8 C5/16 r/16 C4/8 G4/16 r/16 | A4/8 C5/8 A4/8 G4/16 F4/16 E4/4 G4/16 F4/16 E4/16 F4/16 | E4/4 r/4", voice: "pad", gain: 0.5 },
+    { name: "Cello", notation: "r/2 | C3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 r/4 C3/4 | r/4 C3/4 G2/4 C3/4 | G3/4 G2/4 r/2 | C3/4 C3/4 C3/4 C3/4 | C3/4 C3/4 E3/4 E3/4 | F3/4 F3/4 G3/4 G2/4 | C3/4 r/4", voice: "bass", gain: 0.7 },
+  ]}
+  bpm={100}
+  time="2/2"
+  composer="Wolfgang Amadeus Mozart"
+  source="Caplin Ex. 3.1"
+  spans={[
+    { from: 0, to: 10, label: "basic idea" },
+    { from: 10, to: 16, label: "contrasting idea → HC" },
+    { from: 16, to: 26, label: "basic idea returns" },
+    { from: 26, to: 32, label: "contrasting idea → PAC" },
+  ]}
+  caption="Viola omitted. Antecedent ends on a half cadence in bar 4; the consequent starts again and closes with a perfect authentic cadence in bar 8."
+/>
 
-The scheme stretches to any scale. Caplin counts in **real** bars, not notated ones: in a slow piece one notated bar can hold two real bars, and in a fast one two notated bars can make one <Source book="caplin" where="Ch. 2, Finer Points" />. For a band that switches between half-time and double-time feels, that's the right way to count a sentence: by the units the listener feels. The "basic idea" might be a 7/8 riff cycle of 10 seconds, the repetition a transposed or reharmonized cycle, and the continuation a section where the riff is chopped into its first few notes and sequenced up across a minute. It still works if the *functions* are clear: present, repeat, compress, dissolve, arrive.
+Caplin points out that you can't tell from the basic idea whether a sentence or a period is coming: the next two bars decide. And he gives the two types different characters, citing Erwin Ratz: the period has repose in itself, the sentence strives forward <Source book="caplin" where="Ch. 3" />. Schoenberg ranks them; Caplin describes them without a ranking. That difference, and several disputes about what counts as a period, are laid out in the seminar.
+
+<Positions title="Sentence and period: the writers' definitions">
+  <Position book="schoenberg" where="Ch. V–VIII">Identified the sentence. Ranks it higher than the period because it develops at once. Restricts "period" to cases where the second half begins like the first. Says only a small percentage of classical themes are periods.</Position>
+  <Position book="caplin" where="Ch. 2–4">Follows Schoenberg's definitions, without the ranking. Rejects the textbook "contrasting period" (he calls those themes hybrids) and the "double period" (he speaks of a compound period). Adds hybrid themes: antecedent + continuation, and others.</Position>
+  <Position book="belkin" where="Ch. 6">Defines the period more broadly: two phrases as question and answer, sharing material, the first cadence less conclusive. Also uses the paragraph (more than two phrases) and the double period. The sentence is not one of the categories in that chapter.</Position>
+  <Position book="snyder" where="Ch. 5, 13">No theory of theme types. Explains why two-part shapes work: an incomplete closure followed by a more complete one, and repetition at the point of arrival.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-sentence-and-period" />
+
+## Without a tonal cadence
+
+Classical sentences end with a harmonic cadence. Music that doesn't use the V–I formula raises the question of what ends a phrase instead, and the writers answer differently:
+
+- **Caplin** keeps the cadence harmonic: a formal **end** is not the same as a **stop**, and music can stop (a rest, a break) without a cadence, or cadence while the motion continues <Source book="caplin" where="Ch. 3" />.
+- **Belkin** prefers the word punctuation: it needs at least two dimensions working together, and outside tonal harmony rhythm, register and texture can do it <Source book="belkin" where="Ch. 5" />.
+- **Snyder** separates **natural** closure (falling intensity, longer durations, a pause, return; found across cultures) from **syntactic** closure (learned formulas such as cadences) <Source book="snyder" where="Ch. 5" />.
+
+Course II (*Punctuation*, *Cues and arrivals*) takes this up in full.
+
+## At other time scales
+
+The scheme can be stretched. Caplin counts in **real** bars, not notated ones: in a slow piece one notated bar can hold two real bars, and in a fast one two notated bars can make one <Source book="caplin" where="Ch. 2, Finer Points" />. Caplin also says that whether real bars match notated bars is a matter of interpretation. For a band that moves between half-time and double-time feels, this raises a question to test: does a sentence still read as one when its "basic idea" is a long riff cycle and its continuation spreads over a minute? Snyder's memory limits (*Three time levels*) suggest where the scheme stops fitting in one short-term memory and starts to be remembered instead.
 
 Pop history shows the sentence growing exactly this way. Summach found that in the early 1960s the sentence became the most common verse shape in hit songs, and that songwriters kept stretching its continuation until it split off as a section of its own: the **prechorus** <Source book="summach" where="sentence origins" />. A verse, prechorus and chorus can be heard as a sentence's presentation, continuation and arrival spread across a whole strophe. The page *Building tension* has the details.
 
@@ -59,7 +124,7 @@ His test is worth stealing: **try removing bars**. If the music still makes sens
 
 <ListenerSide grade="moderate">
 
-Liquidation works by draining distinctiveness, so attention is freed for what comes next. That matches the prediction view (Vuust & Witek, Module 5): as a pattern becomes fully predictable, it stops demanding attention. Belkin's point that clichés help endings is the same effect. Whether the sentence shape itself is perceived as a unit by rock listeners hasn't been tested; treat it as a strong compositional tool, not a perceptual law.
+Liquidation drains distinctiveness. Snyder's account of habituation says that what is fully predictable leaves the focus of attention, and the prediction view (Vuust & Witek, Course XII) says the same. Belkin's point that clichés help endings is in line with both, from practice. Whether rock listeners perceive the sentence shape itself as a unit has not been tested in the sources here.
 
 </ListenerSide>
 
@@ -99,6 +164,15 @@ From his chapter of advice for self-criticism <Source book="schoenberg" where="C
 6. **Make many sketches** and join the best parts. He calls methodical variation no substitute for invention, but good training, like an athlete's.
 
 </Exercise>
+
+<GuitarPro title="Recompose the models">
+
+1. Download the Beethoven and the Mozart (MusicXML) and import them.
+2. Beethoven: rewrite bars 5–8 so they repeat the basic idea a third time instead of fragmenting. Then rewrite them so bar 8 ends on the tonic. Listen to all three versions. Caplin uses this kind of recomposition to show why a composer avoided the "normal" option.
+3. Mozart: swap the two cadences (end bar 4 on the tonic, bar 8 on the dominant). What happens to the sense of question and answer?
+4. Write one 8-bar sentence and one 8-bar period on a riff of yours, in the same file. Mark the functions in text markers.
+
+</GuitarPro>
 
 <ApplyIt>
 

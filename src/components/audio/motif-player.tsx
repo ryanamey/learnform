@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Pause, Play, Repeat, Code2 } from "lucide-react";
+import { Pause, Play, Repeat, Code2, Download } from "lucide-react";
 
 import { parseNotation } from "@/lib/music/notation";
+import { downloadMusicXML } from "@/lib/music/musicxml";
 import type { VoiceName } from "@/lib/music/engine";
 import { Button } from "@/components/ui/button";
 import { PianoRoll } from "./piano-roll";
@@ -20,6 +21,8 @@ type Props = {
   showLyrics?: boolean;
   className?: string;
   compact?: boolean;
+  /** time signature for the MusicXML download (default 4/4) */
+  time?: string;
 };
 
 export function MotifPlayer({
@@ -32,6 +35,7 @@ export function MotifPlayer({
   showLyrics,
   className,
   compact,
+  time = "4/4",
 }: Props) {
   const parsed = useMemo(() => {
     try {
@@ -86,6 +90,15 @@ export function MotifPlayer({
           onClick={() => setShowCode((s) => !s)}
         >
           <Code2 />
+        </Button>
+        <Button
+          size="icon"
+          variant="ghost"
+          aria-label="Download MusicXML for Guitar Pro"
+          title="Download MusicXML (opens in Guitar Pro: File › Import › MusicXML)"
+          onClick={() => downloadMusicXML([{ name: label ?? "Example", notation, voice }], { title: label ?? "Example", bpm, time })}
+        >
+          <Download />
         </Button>
       </div>
       <PianoRoll

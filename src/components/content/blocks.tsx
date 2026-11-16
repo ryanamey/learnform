@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { BookOpen, Headphones, Lightbulb, PenLine, Disc3, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { BookOpen, Headphones, Lightbulb, PenLine, Disc3, ExternalLink, MessagesSquare, Download } from "lucide-react";
 
-import { bookById } from "@/content/curriculum";
+import { bookById, conceptBySlug } from "@/content/curriculum";
 import { cn } from "@/lib/utils";
 
 /** Reference to one of your books. */
@@ -147,3 +148,64 @@ export function Steps({ title, children }: { title?: string; children: ReactNode
 
 /** @deprecated kept so older content still renders; use ApplyIt. */
 export const EPTask = ApplyIt;
+
+/** Where the writers stand on one question: each speaks for himself, no verdict. */
+export function Positions({ title, children }: { title?: string; children: ReactNode }) {
+  return (
+    <div className="not-prose my-6 rounded-xl border bg-card p-5">
+      <div className="mb-3 text-sm font-semibold">{title ?? "Where the writers stand"}</div>
+      <div className="grid gap-3 sm:grid-cols-2">{children}</div>
+    </div>
+  );
+}
+
+export function Position({ book, where, children }: { book: string; where?: string; children: ReactNode }) {
+  const b = bookById[book];
+  return (
+    <div className="rounded-lg border bg-muted/30 p-3">
+      <div className="mb-1 flex flex-wrap items-baseline gap-x-2">
+        <span className="text-sm font-medium">{b ? b.author : book}</span>
+        {where && <span className="text-xs text-muted-foreground">{where}</span>}
+      </div>
+      <div className="text-sm leading-6 text-foreground/85 [&_li]:my-1 [&_p]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** Pointer to a seminar page where a disagreement is laid out for you to decide. */
+export function SeminarLink({ slug, children }: { slug: string; children?: ReactNode }) {
+  const c = conceptBySlug[slug];
+  return (
+    <Link
+      href={`/learn/${slug}`}
+      className="not-prose my-4 flex items-start gap-3 rounded-xl border border-note-b/40 bg-note-b/5 p-4 hover:bg-note-b/10"
+    >
+      <MessagesSquare className="mt-0.5 size-5 shrink-0 text-note-b" />
+      <div>
+        <div className="text-sm font-medium">Seminar: {c ? c.title : slug}</div>
+        <div className="text-sm text-muted-foreground">{children ?? (c ? c.summary : "")}</div>
+      </div>
+    </Link>
+  );
+}
+
+/** A Guitar Pro exercise: the material downloads as MusicXML from the player above it. */
+export function GuitarPro({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="not-prose my-6 rounded-xl border border-dashed border-note-c/60 p-5">
+      <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
+        <Download className="size-4 text-note-c" />
+        Guitar Pro · {title}
+      </div>
+      <div className="text-sm leading-6 text-foreground/85 [&_li]:my-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-5">
+        {children}
+      </div>
+      <p className="mt-3 text-xs text-muted-foreground">
+        Use the MusicXML button on the player, then in Guitar Pro: File → Import → MusicXML. Save your version in your
+        Guitar Pro folder under the lesson name.
+      </p>
+    </div>
+  );
+}

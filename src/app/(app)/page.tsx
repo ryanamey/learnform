@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Circle, CircleDot, Lock } from "lucide-react";
 
-import { concepts, modules, rules, weeklyLoop } from "@/content/curriculum";
+import { concepts, courses, rules, weeklyLoop } from "@/content/curriculum";
 import { getJournal, getProgress } from "@/lib/data";
 import { requireUser } from "@/lib/session";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
@@ -13,21 +13,21 @@ export default async function StudioPage() {
   const user = await requireUser();
   const [progress, journal] = await Promise.all([getProgress(user.id), getJournal(user.id)]);
 
-  const order = [1, 0, 2, 3, 5, 6, 4, 7];
-  const openModules = order.filter((n) => modules.find((m) => m.number === n)?.available);
+  const openCourses = courses.filter((m) => m.status !== "coming").map((m) => m.number);
   const currentModule =
-    openModules.find((n) => concepts.some((c) => c.module === n && progress[c.slug] !== "done")) ?? openModules[0];
-  const m1 = concepts.filter((c) => c.module === currentModule);
+    openCourses.find((n) => concepts.some((c) => c.course === n && progress[c.slug] !== "done")) ?? openCourses[0];
+  const current = courses.find((m) => m.number === currentModule);
+  const m1 = concepts.filter((c) => c.course === currentModule).sort((a, b) => a.order - b.order);
   const done = m1.filter((c) => progress[c.slug] === "done").length;
   const next = m1.find((c) => progress[c.slug] !== "done");
-  const currentTitle = modules.find((m) => m.number === currentModule)?.title ?? "";
+  const currentLabel = current ? (current.number === 0 ? "Start here" : `Course ${current.roman} · ${current.title}`) : "";
   const firstName = (user.name || "").split(" ")[0];
   const lastEntry = journal[0];
 
   return (
     <PageBody wide>
       <PageHeader eyebrow="Studio" title={firstName ? `Welcome back, ${firstName}.` : "Welcome back."}>
-        Read a little, hear it, write something with it. One module at a time.
+        Read a little, hear it, write something with it. One course at a time.
         {progress["method"] !== "done" && (
           <>
             {" "}
@@ -44,10 +44,10 @@ export default async function StudioPage() {
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardDescription>
-              Module {currentModule} · {currentTitle}
+              {currentLabel}
             </CardDescription>
             <CardTitle className="font-serif text-2xl font-normal">
-              {next ? next.title : `Module ${currentModule} complete`}
+              {next ? next.title : "Course complete"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -124,20 +124,20 @@ export default async function StudioPage() {
 
       <section className="mt-10 grid gap-5 lg:grid-cols-2">
         <div>
-          <h2 className="mb-4 font-serif text-xl">The year</h2>
+          <h2 className="mb-4 font-serif text-xl">The courses</h2>
           <ol className="space-y-2">
-            {modules.map((m) => (
-              <li key={m.number} className="flex items-start gap-3 rounded-lg border p-3">
-                <span className="mt-0.5 font-mono text-xs text-muted-foreground">0{m.number}</span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 text-sm font-medium">
-                    {m.title}
-                    {!m.available && <Lock className="size-3 text-muted-foreground" />}
+            {courses.map((m) => (
+              <li key={m.number}>
+                <Link href={`/learn#course-${m.number}`} className="flex items-start gap-3 rounded-lg border p-3 hover:bg-accent/40">
+                  <span className="mt-0.5 w-8 font-mono text-xs text-muted-foreground">{m.roman}</span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 text-sm font-medium">
+                      {m.title}
+                      {m.status === "coming" && <Lock className="size-3 text-muted-foreground" />}
+                      {m.status === "built" && <span className="text-xs font-normal text-signal">built</span>}
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {m.weeks}
-                  </div>
-                </div>
+                </Link>
               </li>
             ))}
           </ol>

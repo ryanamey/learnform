@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-import { buildPlan, foundInReading, modules, rules, weeklyLoop } from "@/content/curriculum";
+import Link from "next/link";
+
+import { buildPlan, courseByNumber, courses, foundInReading, rules, weeklyLoop } from "@/content/curriculum";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Badge } from "@/components/ui/badge";
 
@@ -22,24 +24,34 @@ const listening = [
 export default function RoadmapPage() {
   return (
     <PageBody>
-      <PageHeader eyebrow="Roadmap" title="Twelve months, writing every week">
-        Concepts first, then a tool that uses them.
+      <PageHeader eyebrow="Roadmap" title="A university of form">
+        Thirteen courses, built one at a time from the books read in full. Each course has lessons where every writer
+        speaks for himself, seminars where they disagree, and the books&apos; own examples to hear. The map stays open:
+        new subjects found in the reading are added below.
       </PageHeader>
 
       <ol className="relative space-y-4 border-l pl-6">
-        {modules.map((m) => (
+        {courses.map((m) => (
           <li key={m.number} className="relative">
             <span
-              className={`absolute -left-[31px] top-1.5 size-3 rounded-full border-2 ${m.available ? "border-signal bg-signal" : "border-border bg-background"}`}
+              className={`absolute -left-[31px] top-1.5 size-3 rounded-full border-2 ${m.status === "built" ? "border-signal bg-signal" : m.status === "open" ? "border-signal bg-background" : "border-border bg-background"}`}
             />
             <div className="rounded-xl border bg-card p-4">
               <div className="flex flex-wrap items-baseline gap-x-3">
-                <span className="font-mono text-xs text-muted-foreground">0{m.number}</span>
-                <span className="font-serif text-lg">{m.title}</span>
-                <span className="text-sm text-muted-foreground">{m.weeks}</span>
-                {m.available ? <Badge variant="signal">open</Badge> : <Badge variant="outline">coming</Badge>}
+                <span className="font-mono text-xs text-muted-foreground">{m.number === 0 ? "START" : m.roman}</span>
+                <Link href={`/learn#course-${m.number}`} className="font-serif text-lg hover:text-signal">
+                  {m.title}
+                </Link>
+                {m.status === "built" ? (
+                  <Badge variant="signal">built</Badge>
+                ) : m.status === "open" ? (
+                  <Badge variant="secondary">earlier pages</Badge>
+                ) : (
+                  <Badge variant="outline">coming</Badge>
+                )}
               </div>
-              <p className="mt-2 text-sm">{m.focus}</p>
+              <p className="mt-2 text-sm">{m.focus}.</p>
+              {m.number > 0 && <p className="mt-1 text-xs text-muted-foreground">Readings: {m.readings}</p>}
             </div>
           </li>
         ))}
@@ -48,8 +60,8 @@ export default function RoadmapPage() {
       <section className="mt-12">
         <h2 className="mb-1 font-serif text-2xl">Build plan</h2>
         <p className="mb-4 text-sm text-muted-foreground">
-          Frozen after the reading round. Every idea found in the reading points to one step here; open a step to see
-          them. Changes go through the Decisions log.
+          One step per course, in order. Every idea found in the reading points to the course it belongs to; open a step
+          to see them. Changes go through the Decisions log.
         </p>
         <ol className="space-y-3">
           {buildPlan.map((t) => {
@@ -75,7 +87,7 @@ export default function RoadmapPage() {
                         <li key={f.idea} className="text-sm">
                           <span>{f.idea}</span>
                           <span className="mt-0.5 block text-xs text-muted-foreground">
-                            {f.source} · Module {f.module}
+                            {f.source} · Course {courseByNumber[f.course]?.roman}
                             {f.note ? ` · ${f.note}` : ""}
                           </span>
                         </li>

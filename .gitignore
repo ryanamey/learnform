@@ -20,6 +20,9 @@
 # production
 /build
 
+# local media (audio lives in the private Blob store)
+/media/
+
 # misc
 .DS_Store
 *.pem

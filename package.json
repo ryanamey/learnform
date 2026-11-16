@@ -11,7 +11,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "media:upload": "node scripts/upload-media.mjs"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
@@ -20,6 +21,7 @@
     "@neondatabase/serverless": "^1.2.0",
     "@next/mdx": "^16.4.6",
     "@types/mdx": "^2.0.14",
+    "@vercel/blob": "^2.9.0",
     "better-auth": "^1.7.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

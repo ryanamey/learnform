@@ -1,19 +1,14 @@
 import {
   boolean,
   index,
-  integer,
-  jsonb,
   pgTable,
   primaryKey,
   text,
   timestamp,
   uuid,
   date,
-  type AnyPgColumn,
 } from "drizzle-orm/pg-core";
 
-import type { PlanData } from "@/lib/form-plan";
-import type { Board } from "@/lib/riff";
 
 /* ------------------------------------------------------------------ */
 /* Better Auth core tables                                             */
@@ -109,36 +104,6 @@ export const conceptNotes = pgTable(
   (t) => [primaryKey({ columns: [t.userId, t.conceptSlug] })]
 );
 
-/**
- * Motif bank: riffs, vocal hooks and rhythmic cells, written in the
- * simple text notation (see src/lib/music/notation.ts) so they can be played back.
- * parentId builds the motif family tree.
- */
-export const motifs = pgTable(
-  "motifs",
-  {
-    id: uuid("id").primaryKey().defaultRandom(),
-    userId: text("user_id")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    name: text("name").notNull(),
-    notation: text("notation").notNull(),
-    bpm: integer("bpm").notNull().default(100),
-    kind: text("kind").notNull().default("riff"), // riff | vocal | rhythm | chord
-    description: text("description").notNull().default(""),
-    parentId: uuid("parent_id").references((): AnyPgColumn => motifs.id, {
-      onDelete: "set null",
-    }),
-    similarity: integer("similarity"), // 1–5 distance from parent (Belkin's scale)
-    transformation: text("transformation").notNull().default(""),
-    epTrack: text("ep_track").notNull().default(""),
-    /** riff-board fields: meter, grouping, tonic, mode, entry offset… (see src/lib/riff.ts) */
-    board: jsonb("board").$type<Board>(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at").notNull().defaultNow(),
-  },
-  (t) => [index("motifs_user_idx").on(t.userId), index("motifs_parent_idx").on(t.parentId)]
-);
 
 /** Weekly reflection: the 5-line journal from the roadmap's weekly loop. */
 export const journal = pgTable(
@@ -159,26 +124,6 @@ export const journal = pgTable(
   (t) => [index("journal_user_idx").on(t.userId)]
 );
 
-export type Motif = typeof motifs.$inferSelect;
 export type JournalEntry = typeof journal.$inferSelect;
 
-/**
- * Form plans: a song designed section by section before the material exists.
- * The sections, lanes and focal parameters live in `data` (see src/lib/form-plan.ts).
- */
-export const formPlans = pgTable(
-  "form_plans",
-  {
-    id: uuid("id").primaryKey().defaultRandom(),
-    userId: text("user_id")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    title: text("title").notNull().default("Untitled plan"),
-    song: text("song").notNull().default(""),
-    data: jsonb("data").notNull().$type<PlanData>(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at").notNull().defaultNow(),
-  },
-  (t) => [index("form_plans_user_idx").on(t.userId)]
-);
 

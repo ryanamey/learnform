@@ -60,7 +60,7 @@ export default async function LearnPage() {
                 </ol>
               ) : (
                 <p className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground">
-                  {m.focus}. Builds the <span className="text-foreground">{m.tool}</span>.
+                  {m.focus}.
                 </p>
               )}
             </section>

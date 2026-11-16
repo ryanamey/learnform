@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Circle, CircleDot, Lock } from "lucide-react";
 
 import { concepts, modules, rules, weeklyLoop } from "@/content/curriculum";
-import { getJournal, getMotifs, getProgress } from "@/lib/data";
+import { getJournal, getProgress } from "@/lib/data";
 import { requireUser } from "@/lib/session";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Button } from "@/components/ui/button";
@@ -11,11 +11,7 @@ import { Progress } from "@/components/ui/progress";
 
 export default async function StudioPage() {
   const user = await requireUser();
-  const [progress, motifs, journal] = await Promise.all([
-    getProgress(user.id),
-    getMotifs(user.id),
-    getJournal(user.id),
-  ]);
+  const [progress, journal] = await Promise.all([getProgress(user.id), getJournal(user.id)]);
 
   const order = [1, 0, 2, 3, 5, 6, 4, 7];
   const openModules = order.filter((n) => modules.find((m) => m.number === n)?.available);
@@ -94,22 +90,6 @@ export default async function StudioPage() {
         <div className="flex flex-col gap-5">
           <Card>
             <CardHeader>
-              <CardDescription>Motif bank</CardDescription>
-              <CardTitle className="font-serif text-3xl font-normal">{motifs.length}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-3 text-sm text-muted-foreground">
-                {motifs.length === 0
-                  ? "Nothing yet. Every sketch you write goes here."
-                  : `${motifs.filter((m) => m.parentId).length} of them are variants of other motifs.`}
-              </p>
-              <Button asChild variant="outline" size="sm">
-                <Link href="/motifs">Open the bank</Link>
-              </Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
               <CardDescription>Journal</CardDescription>
               <CardTitle className="text-base">
                 {lastEntry ? `Last entry: week of ${lastEntry.weekOf}` : "No entries yet"}
@@ -155,7 +135,7 @@ export default async function StudioPage() {
                     {!m.available && <Lock className="size-3 text-muted-foreground" />}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    {m.weeks} · tool: {m.tool}
+                    {m.weeks}
                   </div>
                 </div>
               </li>

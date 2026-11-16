@@ -2,15 +2,11 @@
 
 import { and, eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { db } from "@/db";
-import { conceptNotes, formPlans, journal, motifs, progress } from "@/db/schema";
-import { examplePlan, planDataSchema } from "@/lib/form-plan";
+import { conceptNotes, journal, progress } from "@/db/schema";
 import { conceptBySlug } from "@/content/curriculum";
-import { parseNotation } from "@/lib/music/notation";
-import { boardSchema } from "@/lib/riff";
 import { requireUser } from "@/lib/session";
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
@@ -48,98 +44,6 @@ export async function saveConceptNote(slug: string, content: string): Promise<Ac
       target: [conceptNotes.userId, conceptNotes.conceptSlug],
       set: { content, updatedAt: sql`now()` },
     });
-  return { ok: true };
-}
-
-/* ---------------- motifs ---------------- */
-
-const motifSchema = z.object({
-  name: z.string().trim().min(1, "Give it a name").max(120),
-  notation: z
-    .string()
-    .trim()
-    .min(1, "Write some notes")
-    .max(4000)
-    .refine((s) => {
-      try {
-        return parseNotation(s).events.length > 0;
-      } catch {
-        return false;
-      }
-    }, "The notation doesn't parse — check the format guide"),
-  bpm: z.coerce.number().int().min(30).max(300),
-  kind: z.enum(["riff", "vocal", "rhythm", "chord"]),
-  description: z.string().max(4000).default(""),
-  parentId: z
-    .string()
-    .uuid()
-    .or(z.literal(""))
-    .transform((v) => (v === "" ? null : v)),
-  similarity: z
-    .string()
-    .or(z.literal(""))
-    .transform((v) => (v === "" ? null : Number(v)))
-    .refine((v) => v === null || (Number.isInteger(v) && v >= 1 && v <= 5), "Similarity is 1–5"),
-  transformation: z.string().max(500).default(""),
-  epTrack: z.string().max(200).default(""),
-});
-
-export type MotifFormState = { ok?: boolean; error?: string; savedId?: string } | undefined;
-
-function readMotifForm(fd: FormData) {
-  return motifSchema.safeParse({
-    name: fd.get("name") ?? "",
-    notation: fd.get("notation") ?? "",
-    bpm: fd.get("bpm") ?? "100",
-    kind: fd.get("kind") ?? "riff",
-    description: fd.get("description") ?? "",
-    parentId: fd.get("parentId") ?? "",
-    similarity: fd.get("similarity") ?? "",
-    transformation: fd.get("transformation") ?? "",
-    epTrack: fd.get("epTrack") ?? "",
-  });
-}
-
-export async function saveMotif(_prev: MotifFormState, fd: FormData): Promise<MotifFormState> {
-  const user = await requireUser();
-  const parsed = readMotifForm(fd);
-  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
-  const id = (fd.get("id") as string) || null;
-  const v = parsed.data;
-
-  if (v.parentId) {
-    const [parent] = await db
-      .select({ id: motifs.id })
-      .from(motifs)
-      .where(and(eq(motifs.id, v.parentId), eq(motifs.userId, user.id)));
-    if (!parent) return { error: "Parent motif not found" };
-    if (id && v.parentId === id) return { error: "A motif can't be its own parent" };
-  }
-
-  if (id) {
-    const res = await db
-      .update(motifs)
-      .set({ ...v, updatedAt: sql`now()` })
-      .where(and(eq(motifs.id, id), eq(motifs.userId, user.id)))
-      .returning({ id: motifs.id });
-    if (res.length === 0) return { error: "Motif not found" };
-    revalidatePath("/motifs");
-    return { ok: true, savedId: id };
-  }
-  const [row] = await db
-    .insert(motifs)
-    .values({ ...v, userId: user.id })
-    .returning({ id: motifs.id });
-  revalidatePath("/motifs");
-  revalidatePath("/");
-  return { ok: true, savedId: row.id };
-}
-
-export async function deleteMotif(id: string): Promise<ActionResult> {
-  const user = await requireUser();
-  await db.delete(motifs).where(and(eq(motifs.id, id), eq(motifs.userId, user.id)));
-  revalidatePath("/motifs");
-  revalidatePath("/");
   return { ok: true };
 }
 
@@ -182,118 +86,4 @@ export async function deleteJournal(id: string): Promise<ActionResult> {
   await db.delete(journal).where(and(eq(journal.id, id), eq(journal.userId, user.id)));
   revalidatePath("/journal");
   return { ok: true };
-}
-
-/* ---------------- form plans ---------------- */
-
-export async function createPlan(fromExample: boolean): Promise<void> {
-  const user = await requireUser();
-  const data = fromExample ? examplePlan() : planDataSchema.parse({});
-  const [row] = await db
-    .insert(formPlans)
-    .values({ userId: user.id, title: fromExample ? "Example: Low Tide" : "Untitled plan", data })
-    .returning({ id: formPlans.id });
-  revalidatePath("/plans");
-  redirect(`/plans/${row.id}`);
-}
-
-const planSaveSchema = z.object({
-  title: z.string().trim().min(1, "Give the plan a title").max(120),
-  song: z.string().trim().max(120),
-  data: planDataSchema,
-});
-
-export async function savePlan(id: string, input: unknown): Promise<ActionResult> {
-  const user = await requireUser();
-  const parsed = planSaveSchema.safeParse(input);
-  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid plan" };
-  const res = await db
-    .update(formPlans)
-    .set({ ...parsed.data, updatedAt: sql`now()` })
-    .where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)))
-    .returning({ id: formPlans.id });
-  if (res.length === 0) return { ok: false, error: "Plan not found" };
-  revalidatePath("/plans");
-  return { ok: true };
-}
-
-export async function duplicatePlan(id: string): Promise<void> {
-  const user = await requireUser();
-  const [src] = await db
-    .select()
-    .from(formPlans)
-    .where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)));
-  if (!src) redirect("/plans");
-  const [row] = await db
-    .insert(formPlans)
-    .values({ userId: user.id, title: `${src.title} (copy)`.slice(0, 120), song: src.song, data: src.data })
-    .returning({ id: formPlans.id });
-  revalidatePath("/plans");
-  redirect(`/plans/${row.id}`);
-}
-
-export async function deletePlan(id: string): Promise<void> {
-  const user = await requireUser();
-  await db.delete(formPlans).where(and(eq(formPlans.id, id), eq(formPlans.userId, user.id)));
-  revalidatePath("/plans");
-  redirect("/plans");
-}
-
-/* ---------------- riff board ---------------- */
-
-export async function saveRiffBoard(id: string, input: unknown): Promise<ActionResult> {
-  const user = await requireUser();
-  const parsed = boardSchema.safeParse(input);
-  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid riff board" };
-  const res = await db
-    .update(motifs)
-    .set({ board: parsed.data, updatedAt: sql`now()` })
-    .where(and(eq(motifs.id, id), eq(motifs.userId, user.id)))
-    .returning({ id: motifs.id });
-  if (res.length === 0) return { ok: false, error: "Riff not found" };
-  revalidatePath("/riffs");
-  return { ok: true };
-}
-
-/* ---------------- Guitar Pro import (MusicXML) ---------------- */
-
-const importSchema = z.object({
-  name: z.string().trim().min(1, "Give it a name").max(120),
-  notation: z
-    .string()
-    .trim()
-    .min(1, "Nothing to import in those bars")
-    .max(4000, "Too long for one riff: import fewer bars")
-    .refine((s) => {
-      try {
-        return parseNotation(s).events.length > 0;
-      } catch {
-        return false;
-      }
-    }, "The imported notes couldn't be read"),
-  bpm: z.number().int().min(30).max(300),
-  meter: z.string().max(24).default(""),
-  description: z.string().max(4000).default(""),
-});
-
-export async function importRiff(input: unknown): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
-  const user = await requireUser();
-  const parsed = importSchema.safeParse(input);
-  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid import" };
-  const v = parsed.data;
-  const [row] = await db
-    .insert(motifs)
-    .values({
-      userId: user.id,
-      name: v.name,
-      notation: v.notation,
-      bpm: v.bpm,
-      kind: "riff",
-      description: v.description,
-      board: boardSchema.parse({ meter: v.meter }),
-    })
-    .returning({ id: motifs.id });
-  revalidatePath("/riffs");
-  revalidatePath("/motifs");
-  return { ok: true, id: row.id };
 }

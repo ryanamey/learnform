@@ -40,7 +40,6 @@ export default function RoadmapPage() {
                 {m.available ? <Badge variant="signal">open</Badge> : <Badge variant="outline">coming</Badge>}
               </div>
               <p className="mt-2 text-sm">{m.focus}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Tool: {m.tool}</p>
             </div>
           </li>
         ))}

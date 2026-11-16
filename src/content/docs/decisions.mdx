@@ -1,5 +1,12 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-16 · The app is a school, not a toolbox
+
+**Decision:** The motif bank, the riff board (with its Guitar Pro import) and the form planner are removed, with their database tables (`drizzle/0003_remove_tools.sql`). The band already writes, counts and arranges in Guitar Pro; what the app is for is teaching form. Lessons that pointed at the tools now point at the band's own Guitar Pro files.
+**What stays:** the Learn section with progress and notes, the journal, and the reference sections (Library, Roadmap, Docs). The Prieto audio examples stay, since a lesson plays them.
+**What comes next:** the Learn section is rebuilt as a "university of form": every source read in full where the file allows, each writer taught in their own logic, disagreements between writers set side by side without a verdict, and the books' examples made audible where the music is public domain. The Roadmap will be reorganised only after Ali has reviewed the proposed hierarchy.
+**Would change it:** Ali asking for a tool again.
+
 ### 2026-11-16 · Riffs come in from Guitar Pro
 
 **Decision:** The band writes in Guitar Pro, so the riff board imports MusicXML exported from it (File → Export → MusicXML; plain or compressed .mxl) instead of asking for riffs to be typed twice. You pick a track and a range of bars; the riff arrives with its notes at sounding pitch (the guitar's octave transposition applied), chords, rests, accents, dead notes, ties, the time signature and the tempo, and opens on the riff board.

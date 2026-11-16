@@ -43,6 +43,52 @@ A long note inside an odd meter raises a question: where does the beat inside it
 
 In West African music such as Gahu, the bell pattern 3-3-4-4-2 can be heard with its downbeat in five different places, and listeners do re-hear it during a long performance (a "gestalt flip"). London points out that the people who hear it differently still share the bar length and beat pattern, so they can still clap and dance together. For a band, a long repeated riff in an odd grouping can be heard starting in more than one place. That can be the design (a riff that shifts its apparent 1 as the band changes) or a problem (the audience is on a different 1 from the drummer). The cue that settles it is whatever marks the cycle: the kick, a chord change, the vocal.
 
+### Which rotations get used, and two kinds of evenness
+
+In 12 pulses, London compares two five-beat meters that both appear across many traditions <Source book="london" where="Ch. 8" />. One is the **bell pattern** 2-2-3-2-3 of much West African music. The other is **2-2-2-3-3**, used in Akan songs and in the opening of Bernstein's "America". Only some rotations of the bell pattern are common (2-2-3-2-3 and 2-3-2-2-3). In the ones used, the long beats sit consistently at the start or the end of each half-bar; 2-3-2-3-2, where they don't, is missing from his sources. The two meters are even in opposite ways. The bell pattern spreads its beats as evenly as possible, but its half-bars (7+5) are unequal. "America" clumps its long beats together, but splits the bar into two equal halves (6+6). So London revises his rule: **the meter as a whole should be as even as possible**, not every level. Complex meters admit some ambiguity, which is why "America" is often written as alternating 6/8 and 3/4.
+
+<ScorePlayer
+  label="Bell pattern 2-2-3-2-3"
+  parts={[
+    { name: "Bell", notation: "C4/8! r/8 C4/8! r/8 C4/8! r/8 r/8 C4/8! r/8 C4/8! r/8 r/8 | C4/8! r/8 C4/8! r/8 C4/8! r/8 r/8 C4/8! r/8 C4/8! r/8 r/8", voice: "kit" },
+    { name: "Pulse", notation: "F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 | F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8", voice: "kit", gain: 0.4 },
+  ]}
+  bpm={140}
+  time="12/8"
+  caption="Five uneven beats, as even as 12 pulses allow; the half-bars are 7 + 5."
+/>
+
+<ScorePlayer
+  label="2-2-2-3-3 (as in 'America')"
+  parts={[
+    { name: "Bell", notation: "C4/8! r/8 C4/8! r/8 C4/8! r/8 C4/8! r/8 r/8 C4/8! r/8 r/8 | C4/8! r/8 C4/8! r/8 C4/8! r/8 C4/8! r/8 r/8 C4/8! r/8 r/8", voice: "kit" },
+    { name: "Pulse", notation: "F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 | F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8 F#4/8", voice: "kit", gain: 0.4 },
+  ]}
+  bpm={140}
+  time="12/8"
+  caption="The long beats are clumped, but the bar splits into two equal halves (6 + 6): heard as 6/8 then 3/4."
+/>
+
+He adds that **players and listeners don't always use the same meter**. A 3-3-2 bass line in Latin jazz is often read in 4/4 as a syncopation, while it can be heard as three uneven beats with no syncopation at all.
+
+## Three other views
+
+**Lerdahl & Jackendoff** treat meters like these as real meters with their own rules <Source book="gttm" where="Ch. 4" />. Following Martin Singer's study of Macedonian and Bulgarian dance music, they describe the tactus as made of quick (Q, 2) and slow (S, 3) units, as in the *rachenitsa*'s QQS (2+2+3). Not every combination occurs: QSS (2+3+3) never does, and the meters fall into families. In their framework, a tradition is defined by its rules for which strings are allowed. They also describe Stravinsky's changing meters as a third idiom, strong beats 2 or 3 apart with no fixed pattern, and predict that **syncopation is harder to produce there**: without a rigid pattern, strong beats are simply heard wherever the local cues put them.
+
+**Hasty** makes a distinction of kind <Source book="hasty" where="Ch. 9" />. Triple meter is **mediated unequal**: its third beat defers the next beginning, so three can still behave like one measure. Fives, sevens and 3+3+2 are **pure unequal**: at moderate tempos five pulses group themselves as 2+3 or 3+2 rather than as a single "quintuple". He puts it as a pair: triple is lilting, quintuple limping. And he draws a practical consequence: such meters are *less flexible* than 3/4 or 4/4. To be felt, a 5/4 can't depart far from an explicit presentation of its grouped beats. A 3/4 or 4/4, once established, survives much more departure.
+
+**Yust** declines to call these patterns meters at all <Source book="yust" where="Ch. 1, note 5" />. He distinguishes genuinely uneven *beat subdivisions*, found in some drumming traditions and learned by enculturation (Polak, London), from irregular *groupings of a common fast pulse* like 3+3+2. These he prefers to treat as **basic rhythms**, "rhythmic topoi" in Agawu's term, sitting on an even meter.
+
+<Positions title="Are odd groupings meters?">
+  <Position book="london" where="Ch. 7–8">Yes: non-isochronous meters on an even pulse, constrained by maximal evenness and tempo; rotations are distinct meters.</Position>
+  <Position book="gttm" where="Ch. 4">Yes: idiom-specific well-formedness rules (Singer's Q and S); in changing-meter idioms syncopation is harder.</Position>
+  <Position book="hasty" where="Ch. 9">Yes, but "pure unequal": felt as 2+3 or 3+2, and less flexible than equal or triple meters.</Position>
+  <Position book="yust" where="Ch. 1">Rather rhythmic topoi on an even meter, except where the beat subdivision itself is uneven.</Position>
+  <Position book="snyder" where="Ch. 12">Groups longer than about four beats are heard as compounds; 5 as 3+2 or 2+3.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-odd-cycles" />
+
 ## One meter at a time
 
 London disagrees with the idea, common in theory and in this app's sources, that listeners hear two meters at once <Source book="london" where="Ch. 3, 5" />. In experiments with polyrhythms, listeners either fuse the parts into one composite pattern and find a meter for that, or follow one part and hear the other against it. So on any one hearing, a 3-against-4 is one meter with a figure set against it, never two meters. Two consequences:
@@ -62,7 +108,7 @@ London draws three consequences:
 - **Tempo changes need practice in steps.** Patterns don't scale evenly with tempo, because notes cross the thresholds above; that's why players practise at gradually increasing tempos.
 - **Complex isn't the same as hard.** A rich meter is easy to follow when the texture states each level, and a simple one at an extreme tempo can be hard. Difficulty comes from how the figure sits against the meter, not from the meter alone.
 
-Snyder's account of beat categories (*Meter as a schema*) reaches a similar place: feel is systematic deviation inside a beat category, and it carries the music's life while escaping notation.
+Snyder's account of beat categories (*What is meter? Four answers*) reaches a similar place: feel is systematic deviation inside a beat category, and it carries the music's life while escaping notation.
 
 <ListenerSide grade="strong">
 
@@ -92,6 +138,16 @@ The timing limits (the 100 ms floor, the 200–2000 ms beat range, the preferenc
 3. London predicts the third will feel uneven ("herky-jerky"). Does it? Which would you build a section on?
 
 </GuitarPro>
+
+<Exercise title="Greb's words">
+
+Benny Greb teaches odd groupings over a steady sixteenth-note grid with spoken words: 3 = "ra-di-o", 5 = "u-ni-ver-si-ty", 7 = "lis-ten to the ra-di-o" <Source book="greb" where="Ch. 2" />.
+
+1. Over a 4/4 groove with the backbeat kept, accent groups of 3, then 5, then 7 sixteenths in the hi-hat or ghost notes, saying the word.
+2. Start each grouping on a different sixteenth (his "positions").
+3. Then turn one of them into a riff for the whole band.
+
+</Exercise>
 
 <ApplyIt>
 

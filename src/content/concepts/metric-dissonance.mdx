@@ -40,6 +40,44 @@ Krebs names a case that bears on odd-meter writing: **subliminal dissonance**: e
 
 The shorter cousin is **indirect dissonance**: when one grouping simply follows another, the listener carries the old one on for a few pulses, so even a plain switch from 4 to 7 produces a brief clash at the join. A direct dissonance therefore never has a hard edge either; it fades through an indirect stage on both sides.
 
+## Pure and mixed lengths: Cohn
+
+Richard Cohn formalised Krebs's grouping dissonance in an article on the minuet of Mozart's G-minor Symphony, K. 550 <Source book="cohn" where="§II" />. His idea is simple to use. Take a span of pulses and ask in how many ways it can be divided evenly, level by level, by 2s and 3s:
+
+- A **pure** span has only one way. 8 (2×2×2), 16, 9 (3×3) and 27 are pure: once you know the length, you know the meter.
+- A **mixed** span has more than one. 6 is 2×3 or 3×2, so it can be three groups of two or two groups of three. 12 can be 3×2×2, 2×3×2 or 2×2×3; 18 can be divided three ways. Mixed spans have, in his words, a potential for instability that pure ones lack.
+
+Sounding two divisions of a mixed span at once is a **hemiola**: 6 heard as 3+3 and as 2+2+2. With 18 pulses there is a stronger case. When the conflict happens at two levels at once (2 against 3 inside each group of 6, *and* 6 against 9 across the whole span), Cohn calls it a **double hemiola**. In K. 550, the canon in bars 28–33 is exactly this: the bass groups the bar-beats in threes, each violin in twos, and the bars themselves in conflict too.
+
+<ScorePlayer
+  label="Hemiola: one mixed span of 6, two divisions"
+  parts={[
+    { name: "Guitar", notation: "[E2,B2]/4! [E2,B2]/8 [G2,D3]/4! [G2,D3]/8 | [A2,E3]/4! [A2,E3]/8 [G2,D3]/4! [G2,D3]/8 | [E2,B2]/4! [E2,B2]/8 [G2,D3]/4! [G2,D3]/8 | [A2,E3]/4! [A2,E3]/8 [B2,F#3]/4! [B2,F#3]/8", voice: "drive" },
+    { name: "Drums", notation: "C2/4 D3/4 C2/4 | D3/4 C2/4 D3/4 | C2/4 D3/4 C2/4 | D3/4 C2/4 D3/4", voice: "kit", gain: 0.6 },
+  ]}
+  time="6/8"
+  bpm={80}
+  caption="Guitar: two groups of three eighths per bar. Drums: three groups of two. Same span, both divisions at once."
+/>
+
+Cohn also showed something about how these conflicts are *used*. In K. 550, a six-beat span of conflict is regularly followed by three beats of agreement, so dissonance and resolution come in a 2:1 proportion. Mixed spans are resolved by **accretion**: adding a unit turns 6 into a pure 9, or 6 bars into a pure 8. For a writer the practical point is this: bars of 6, 12 and 24 pulses, and sections of 6 or 12 bars, invite reinterpretation, while 8, 16, 9 and 27 hold still.
+
+<KeyIdea>Cohn: lengths with only one prime factor (8, 16, 9, 27) can be heard one way; lengths with several (6, 12, 18, 24) can be heard several ways, and that is where hemiola and double hemiola live.</KeyIdea>
+
+## Three kinds of syncopation: Yust
+
+Yust adds a distinction that the dissonance labels don't make <Source book="yust" where="Ch. 8.1" />:
+
+- **Contrapuntal syncopation**: one part is displaced while the rest of the texture keeps the meter. A chain of 7–6 suspensions in an inner voice is the classic case; in a band, a guitar pushed an eighth ahead over a steady kit and bass.
+- **Tonal syncopation**: the harmony is displaced from the beat (the chord arrives early or late) even where the rhythm itself could be straightened by shifting it.
+- **Structural syncopation**: the whole texture is displaced, with only a few downbeats left to keep the meter. His example is the opening of Mozart's D-minor Piano Concerto, K. 466. Without those downbeats in the bass, he says, it would not be syncopated at all, just written in the wrong place.
+
+He defines syncopation as an **operation**, a displacement of a regular rhythm, rather than as "accenting weak beats". The regular version helps: in K. 466 the meaning of each note (a passing note, an arrival) only makes sense against the rhythm it was displaced from.
+
+## An old idea
+
+Krebs traces both kinds of conflict back to the nineteenth century <Source book="krebs" where="Ch. 1" />. François-Joseph Fétis proposed two "mutations": shifting a rhythm against the barline, and superimposing a new grouping until the ambiguity prepares an actual change of meter, so that "the listener will not notice the moment of transition". Berlioz wrote of rhythmic dissonances, consonances and modulations. Riemann argued that syncopation is a lasting conflict between the meter and a shifted layer, not a series of displaced downbeats. Krebs also shows how Schumann revised his music by adding dissonance to passages first written plainly <Source book="krebs" where="Ch. 5" />. He did it in three ways: inserting a dissonant passage, adding a new part against the old one, or sliding an existing part off the beat.
+
 ## Rhythm, meter and hypermeter behave differently
 
 Biamonte changes one thing in Krebs's model for rock <Source book="biamonte" where="§1–2" />. Krebs counts every regular layer as part of the meter. In rock, the drums and rhythm guitar spell out the bar so clearly that she keeps **rhythm** and **meter** apart, and distinguishes three levels:
@@ -99,6 +137,19 @@ One distinction from Pieslak's work on Meshuggah is worth keeping apart from Kre
 London argues that listeners hold only one meter at a time and hear the other layer as tension against it, never as a second meter (see *Odd meters*). Vuust & Witek describe meter as the brain's *prediction model*. Rhythms that **contradict the meter without undermining it** create engaging tension. Rhythms that overwhelm it make listeners lose the beat. A 3-against-4 cross-rhythm can flip between two readings, like the vase-and-faces image. Trained musicians can hold the counter-meter, but with effort. Keep one layer clear, and the dissonance will feel intended rather than lost.
 
 </ListenerSide>
+
+## Where the writers stand
+
+<Positions title="Is metric dissonance two meters?">
+  <Position book="krebs" where="Ch. 1–2">Meter is all the layers; grouping and displacement dissonance are conflicts between them, and a primary metrical consonance stays as the reference.</Position>
+  <Position book="cohn" where="§II–IV">Formalises Krebs: pure and mixed spans, hemiola and double hemiola; asks whether two hearings can be held at once or alternate like a rabbit/duck figure.</Position>
+  <Position book="biamonte" where="§1–2">Keeps rhythm and meter apart for rock: rhythmic, metric and hypermetric dissonance.</Position>
+  <Position book="london" where="Ch. 3, 5">One meter at a time; the other layer is tension against it.</Position>
+  <Position book="yust" where="Ch. 8">Several rhythmic structures (each part and the whole texture), one meter; syncopation is a displacement of a regular rhythm.</Position>
+  <Position book="hasty" where="Ch. 11, 14">There is no conflict of meter and rhythm, only competing projections.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-dissonance-conflict" />
 
 ## Listen
 

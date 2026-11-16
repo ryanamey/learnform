@@ -50,6 +50,36 @@ Pieslak's reading of Meshuggah's 21-minute *I* takes the idea one level up <Sour
 
 Her other corpora suggest something for any band: the metric profile changes with the players. Trio guitarists who combine lead and rhythm roles (Hendrix, Alex Lifeson) tend toward more rhythmic and metric dissonance. Hendrix's metric dissonance dropped when a more straight-ahead drummer replaced a freer one. Radiohead is surprisingly consonant at the bar level because they put their dissonance into rhythm rather than meter. Across all the bands, metric dissonance increases over time.
 
+## Hypermetrical shifts as section markers: Yust
+
+Yust finds the same job done at the level of hypermeter in Haydn's symphonies <Source book="yust" where="Ch. 6.3" />. A section change is very often marked by a shift in the hypermeter:
+
+- **Metrical deletion**: the new section begins before the old four-bar unit is complete. It is felt as an interruption, and typically marks the move from main theme to transition.
+- **Hypermetrical pause**: the last phrase of a section is stretched by a fraction of a unit, like a written-out ritardando. It marks a fresh beginning, and is part of what Hepokoski and Darcy call the medial caesura before a second theme.
+- **Smoothing in the reprise**: the same joins are made regular in the recapitulation, so the themes flow on without the bold outlines that separated them the first time.
+
+He insists the shift is made by **parallelism**, the repeated idea of the new section, not by a change of dynamics or texture. In Symphony 100 a sudden tutti in the last bar of the main theme doesn't reset the hypermeter. And a shift can mark a new function even where there is no break at all: in Symphony 103, half a bar is deleted at the point where the music turns into a second theme, in an exposition with no pause before it.
+
+<ScorePlayer
+  label="Deletion: the new section arrives in bar 4"
+  parts={[
+    { name: "Guitar", notation: "A2/8 A2/8 C3/8 A2/8 D3/4 C3/4 | A2/8 A2/8 C3/8 A2/8 E3/4 D3/4 | A2/8 A2/8 C3/8 A2/8 D3/4 C3/4 | [F2,C3]/2! [G2,D3]/2! | [A2,E3]/2! [G2,D3]/2 | [F2,C3]/2! [G2,D3]/2! | [A2,E3]/1", voice: "drive" },
+    { name: "Drums", notation: "[C2,C4]/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | [C2,C4]/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | [C2,C4]/1", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={112}
+  caption="Three bars of riff, then the chorus chords and the crash arrive where bar 4 would be: the strong beat comes too soon."
+/>
+
+<ScorePlayer
+  label="Pause: the riff is stretched before the new section"
+  parts={[
+    { name: "Guitar", notation: "A2/8 A2/8 C3/8 A2/8 D3/4 C3/4 | A2/8 A2/8 C3/8 A2/8 E3/4 D3/4 | A2/8 A2/8 C3/8 A2/8 D3/4 C3/4 | A2/8 A2/8 C3/8 A2/8 E3/2 | E3/2 r/2 | [F2,C3]/2! [G2,D3]/2! | [A2,E3]/1", voice: "drive" },
+    { name: "Drums", notation: "[C2,C4]/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | C2/4 r/4 r/4 D3/8 D3/8 | [C2,C4]/4 [D3,F#4]/4 C2/4 [D3,F#4]/4 | [C2,C4]/1", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={112}
+  caption="An extra, thinned-out bar before the chorus: a written-out breath."
+/>
+
 ## How to use it
 
 <Steps>
@@ -87,7 +117,10 @@ Biamonte also notes a production habit: when metric dissonance occurs, the conso
 
 </Exercise>
 
-<Positions title="Meter and form in the four books">
+<Positions title="Meter and form">
+  <Position book="biamonte" where="whole article">Metric dissonance has formal functions: initiating, hemiola at cadences, links, and large-scale roles.</Position>
+  <Position book="yust" where="Ch. 6">Hypermetrical deletion and pause mark section boundaries; parallelism, not dynamics, resets hypermeter; reprises smooth the joins.</Position>
+  <Position book="london" where="Ch. 6">Thick, secure meter goes with formal closure.</Position>
   <Position book="caplin" where="Ch. 5">A hemiola inside a theme expands a function: it stretches a basic idea or a cadence. Form is defined by harmony and grouping functions, not by meter.</Position>
   <Position book="snyder" where="Ch. 12–13">Metrical tension, like other tension, rises and falls; sections are separated by change in several parameters, and meter can be one of them.</Position>
   <Position book="belkin" where="Ch. 16">Later sections can afford unstable phrase structure and counterpoint against square phrasing; openings want clarity.</Position>

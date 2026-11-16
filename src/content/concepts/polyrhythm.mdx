@@ -1,0 +1,115 @@
+## Two pulse rates at once
+
+So far this course has mostly dealt with layers built from **one** fast pulse: a riff in groups of three sixteenths against a backbeat in groups of four. A **polyrhythm** in the narrower sense is different: two layers that divide the same span into *different numbers of equal parts*, so that they share no fast pulse at the surface. Three against two, five against four and seven against four are the usual names.
+
+Snyder draws the line clearly <Source book="snyder" where="Ch. 12" />. In **polymeter**, parts share a pulse but group it differently, and they realign over a longer span; the tension is mild. In **polyrhythm**, the parts run on different basic pulses, and that undercuts the downbeat of both. He compares tempo ratios to pitch intervals: simple ratios (2:3, 3:4) realign quickly and sound relatively stable, while complex ones (like 15:16) keep the tension longest.
+
+Krebs's labels cover the simple cases: 3 against 2 is a grouping dissonance (G3/2) on a shared micropulse of 6 <Source book="krebs" where="Ch. 2" />. Past a certain complexity the shared micropulse is too fast to hear (a 7:4 needs 28 parts per bar), and the two layers really behave as two rates.
+
+## Hear the ratios
+
+The bass drum keeps four beats; the guitar divides the same bar into 3, 5 and 7.
+
+<ScorePlayer
+  label="3 against 4"
+  parts={[
+    { name: "Guitar", notation: "E3/3! G3/3 A3/3 | E3/3! G3/3 A3/3 | E3/3! G3/3 A3/3 | E3/3! G3/3 A3/3", voice: "guitar" },
+    { name: "Drums", notation: "C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={90}
+  caption="Half-note triplets against quarters. (The MusicXML download rounds tuplets; notate them in Guitar Pro.)"
+/>
+
+<ScorePlayer
+  label="5 against 4"
+  parts={[
+    { name: "Guitar", notation: "E3/5! G3/5 A3/5 B3/5 D4/5 | E3/5! G3/5 A3/5 B3/5 D4/5 | E3/5! G3/5 A3/5 B3/5 D4/5 | E3/5! G3/5 A3/5 B3/5 D4/5", voice: "guitar" },
+    { name: "Drums", notation: "C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={90}
+  caption="Five equal notes per bar against four beats; they meet only on the downbeat."
+/>
+
+<ScorePlayer
+  label="7 against 4"
+  parts={[
+    { name: "Guitar", notation: "E3/7! G3/7 A3/7 B3/7 D4/7 B3/7 A3/7 | E3/7! G3/7 A3/7 B3/7 D4/7 B3/7 A3/7 | E3/7! G3/7 A3/7 B3/7 D4/7 B3/7 A3/7 | E3/7! G3/7 A3/7 B3/7 D4/7 B3/7 A3/7", voice: "guitar" },
+    { name: "Drums", notation: "C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={90}
+  caption="Seven against four: the upper layer starts to feel like its own tempo."
+/>
+
+## What the listener does with it
+
+London's experiments point one way <Source book="london" where="Ch. 3, 5" />. Listeners don't hold two meters. They either fuse the parts into one composite pattern and find a meter for that, or they follow one part and hear the other as a figure against it. In practice the band decides which by what it makes loud and steady.
+
+The speed limits from *Levels, tactus and speed limits* apply to each layer. At 90 bpm, the 7:4 notes are about 380 ms apart, comfortably countable. At 140 bpm a 13:4 would put them about 130 ms apart, close to the 100 ms floor, where they stop being notes you count and become a texture.
+
+## Magadini's method
+
+Peter Magadini, a drummer who studied with the North Indian tabla master Mahapurush Misra, wrote the standard practical method <Source book="magadini" where="How to use; §1–11" />. It works for any instrument, or none:
+
+- The order: 3:2 (= 6:4), 3:4 (half-note triplets, then quarter-note triplets, 9:4), 5:4, then 7:4, 11:4 and 13:4, then solos combining them.
+- **The basic pulse must stay absolutely steady**: a metronome first, then the drummer's feet (hi-hat and bass drum). It must be felt even where it isn't written.
+- **Count one rhythm aloud while playing the other, then reverse.** For 5:4 and 7:4, he insists on learning to count four while playing five or seven.
+- For 3:4 in eighths: "Do not count 6"; count 1-and-2-and-3-and with accents.
+- Memorise the sound of the two layers together, first on one surface, then on two surfaces an octave apart; vary the tempo.
+- Melodic players should make scale patterns and melodic ideas on the counter-rhythm.
+- His last section proposes time signatures that show both layers at once (6 over 4, 7 over 4), with barlines only where the layers meet.
+
+Magadini credits African drumming and Indian classical music with bringing polyrhythm into Western practice. His book, he says, suggests their ideas rather than imitating them <Source book="magadini" where="More about polyrhythms" />.
+
+<KeyIdea>Polymeter shares a pulse and realigns; polyrhythm runs on different pulses. Listeners follow one layer and feel the other against it, so decide which layer is the meter.</KeyIdea>
+
+## Where the writers stand
+
+<Positions title="Polyrhythm">
+  <Position book="snyder" where="Ch. 12">Polymeter shares a pulse and gives mild tension; polyrhythm undercuts both downbeats; simple ratios are more stable.</Position>
+  <Position book="london" where="Ch. 3, 5">Listeners fuse the layers or follow one; there are never two meters at once.</Position>
+  <Position book="krebs" where="Ch. 2">Simple polyrhythms are grouping dissonances on a micropulse (G3/2).</Position>
+  <Position book="magadini" where="§1–11">A practical discipline: steady pulse, count one layer while playing the other, then swap.</Position>
+  <Position book="hasty" where="Ch. 15">In very dense layered textures, projective cues can cancel out; the music can sound pulsed but without definite measure.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-dissonance-conflict" />
+
+<ListenerSide grade="moderate">
+
+That listeners fuse or select layers in polyrhythms is supported by tapping studies; how this works for 7:4 and beyond, in a loud band texture, is less studied.
+
+</ListenerSide>
+
+## Listen
+
+<ListenFor artist="Meshuggah" track="Bleed">
+  Which layer keeps the meter? Is the guitar layer a different rate or a different grouping of the same pulse?
+</ListenFor>
+
+<ListenFor artist="King Crimson" track="Frame by Frame">
+  The guitars drift against each other. Is it polymeter (same pulse, different lengths) or polyrhythm?
+</ListenFor>
+
+## Practice
+
+<Exercise title="Magadini's swap">
+
+1. With a metronome on quarter notes, clap 3 against it for a minute, counting the quarters aloud.
+2. Swap: clap the quarters while counting the triplets.
+3. Do the same for 5:4 and 7:4, slowly. Record where your counting breaks down.
+
+</Exercise>
+
+<GuitarPro title="A polyrhythm as a section">
+
+1. Over a 4/4 drum groove, write a guitar figure in quintuplets (5 per bar) for four bars.
+2. Write a second version where the drums switch to the five and the guitar keeps four.
+3. Which version still feels like your song's meter?
+
+</GuitarPro>
+
+<ApplyIt>
+
+If you use a polyrhythm in a song, name the layer that is the meter and make sure the listener can always hear it (a kick, a hi-hat foot, a bass note).
+
+</ApplyIt>

@@ -1,0 +1,105 @@
+## A meter is a stack of levels
+
+Every writer in this course treats meter as more than one level of beats. London says a meter needs a beat plus at least one other level, usually a subdivision below and a bar above <Source book="london" where="Ch. 1" />. Lerdahl & Jackendoff count typically five or six levels in a piece, from the smallest notes up to groups of bars <Source book="gttm" where="Ch. 2" />. This lesson is about which levels are there, which one you feel most, and what happens when levels come and go.
+
+## The tactus
+
+Of all the levels, one is felt most strongly: the one where the conductor beats, the listener taps a foot and a dancer shifts weight. Lerdahl & Jackendoff call it the **tactus**, after the Renaissance term <Source book="gttm" where="Ch. 2, 4" />. On their account:
+
+- The tactus is the most regular level. Moving away from it in either direction, metrical perception fades and more freedom is tolerated. At small levels, triplets and duplets mix easily; at very small levels (a cascade of 32nds) metrical distinctions stop mattering; levels above one or two bars are often irregular, if they are there at all.
+- The tactus is tied to **harmonic rhythm**: roughly one functional harmony per tactus beat. A piece with the same note values but slower harmonic change is heard with a slower tactus.
+- Very fast ornaments (grace notes, trills, a quintuplet flourish) are **extrametrical**: they don't get a place in the meter at all.
+
+## The speed window
+
+London collects the research on how fast or slow each level can be <Source book="london" where="Ch. 2" />. The fastest countable notes are about 100 ms apart. Beats run from about 200–250 ms to 2 seconds and are felt most easily around 600 ms (100 bpm). A whole measure can't be much longer than five or six seconds and still be heard as one. The full table is in *Odd meters*. Two consequences for a band:
+
+- **The same riff at a different tempo can be a different meter.** London calls these *tempo-metrical types* <Source book="london" where="Ch. 5" />. At a fast tempo your eighths may become the beat; at a slow one, the quarters may split.
+- **Counting at the wrong level changes the tempo.** Players counting at a higher level than the music tend to speed up, and at a lower level to slow down <Source book="london" where="Ch. 2" />.
+
+## Thick and thin meters
+
+London's analysis of the first movement of Beethoven's Fifth shows that a meter's beat and bar can stay the same while the other levels come and go <Source book="london" where="Ch. 6" />. He calls the full state **thick** and the bare one **thin**. In that movement, the subdivision under the beat (four eighths per half-note beat) is almost always present, and its rare absences are significant. The levels above the beat (two-, four- and eight-beat groups) appear, are undermined, and disappear. The meter is thickest at the ends of the exposition, recapitulation and coda. At the most tense point of the development, subdivision vanishes and only a bare pulse is left; London says that in some sense there is no meter there.
+
+Hear the same two-bar riff as a thin meter and as a thick one:
+
+<ScorePlayer
+  label="Thin: beat only"
+  parts={[
+    { name: "Guitar", notation: "E2/4 G2/4 A2/4 G2/4 | E2/4 D2/4 E2/2 | E2/4 G2/4 A2/4 G2/4 | E2/4 D2/4 E2/2", voice: "drive" },
+    { name: "Drums", notation: "C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4 | C2/4 C2/4 C2/4 C2/4", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={96}
+  caption="Only the quarter-note level is articulated: a pulse with little sense of bar or subdivision."
+/>
+
+<ScorePlayer
+  label="Thick: subdivision, beat, bar and two-bar levels"
+  parts={[
+    { name: "Guitar", notation: "E2/8 E2/8 G2/8 E2/8 A2/8 E2/8 G2/8 E2/8 | E2/8 E2/8 D2/8 E2/8 E2/4 r/4 | E2/8 E2/8 G2/8 E2/8 A2/8 E2/8 G2/8 E2/8 | E2/8 E2/8 D2/8 E2/8 E2/4 r/4", voice: "drive" },
+    { name: "Drums", notation: "[C2,C4]/8 F#4/8 [D3,F#4]/8 F#4/8 C2/8 F#4/8 [D3,F#4]/8 F#4/8 | C2/8 F#4/8 [D3,F#4]/8 F#4/8 C2/8 F#4/8 [D3,F#4]/8 F#4/8 | C2/8 F#4/8 [D3,F#4]/8 F#4/8 C2/8 F#4/8 [D3,F#4]/8 F#4/8 | C2/8 F#4/8 [D3,F#4]/8 F#4/8 C2/8 D3/8 D3/8 D3/8", voice: "kit", gain: 0.6 },
+  ]}
+  bpm={96}
+  caption="Eighths in the hi-hat, backbeat, a crash every four bars and a fill at the end: every level is marked."
+/>
+
+<KeyIdea>London: meter can thicken and thin while the beat stays. Adding and removing levels is a way of shaping tension over a whole piece.</KeyIdea>
+
+## Metricality: speech mode and dance mode
+
+Yust gives the same idea a name <Source book="yust" where="Ch. 1" />. **Metricality** is how fully a passage articulates the levels of its meter, through chains of equal durations. A rhythm can be perfectly in time and still have low metricality, if it uses only some levels and skips others (dotted rhythms that avoid the eighth level, for example). His examples are slow movements by Haydn and C. P. E. Bach. The main theme is sparse, with metricality building up gradually through the transition. The second theme suddenly articulates every level from the bar down to the sixteenth, "like the sun from behind the clouds", a contrast of character with very little harmonic change. In the recapitulation both composers cut the transition, so full metricality arrives at once. Yust links this to Kofi Agawu's polarity of **speech mode and dance mode**.
+
+<KeyIdea>Yust: metricality is a compositional variable. Sparse levels give a speech-like section; full levels give a dance-like one.</KeyIdea>
+
+## Where the writers stand
+
+<Positions title="Levels of meter">
+  <Position book="gttm" where="Ch. 2, 4">Five or six levels; the tactus is central and most regular; regularity is required only at the tactus and nearby levels; large levels fade into grouping.</Position>
+  <Position book="london" where="Ch. 1–2, 6">A meter needs at least two levels; speed limits decide which levels are possible; levels thicken and thin within a piece.</Position>
+  <Position book="yust" where="Ch. 1">Metricality, the degree to which levels are articulated, is a contrast device between sections.</Position>
+  <Position book="snyder" where="Ch. 12">How fast a piece feels depends on its fastest subdivisions, not on its pulse.</Position>
+  <Position book="hasty" where="Ch. 9–10">Levels are not a grid of pulses: experienced players don't need to subdivide, and counting every subdivision can deaden a performance.</Position>
+</Positions>
+
+<SeminarLink slug="seminar-where-is-the-meter" />
+
+<ListenerSide grade="strong">
+
+The speed limits London gathers are well supported by tapping and synchronisation studies. Thick and thin meters and metricality are analysts' descriptions; they rest on the same entrainment research but haven't themselves been tested as listener judgements.
+
+</ListenerSide>
+
+## Listen
+
+<ListenFor artist="Tool" track="Schism">
+  Follow the subdivision under the beat. Where does it disappear, and what does the song feel like when only the beat is left?
+</ListenFor>
+
+<ListenFor artist="King Crimson" track="Red">
+  Count the levels you can hear in the opening riff, then in the middle section. Which one is thicker?
+</ListenFor>
+
+## Practice
+
+<Exercise title="Thin it, thicken it">
+
+1. Take a riff of yours and decide its tactus.
+2. Play it with only the tactus marked (bass drum on each beat, nothing else).
+3. Add one level at a time: subdivision, backbeat, a bar-level crash, a two- or four-bar fill.
+4. Mark where each version could sit in a song (intro, breakdown, chorus).
+
+</Exercise>
+
+<GuitarPro title="Metricality as contrast">
+
+1. Write an eight-bar verse that avoids one level (for example, only dotted rhythms, so the eighth level is never chained).
+2. Write a chorus on the same chords that articulates every level.
+3. Play them back to back. Is the contrast enough to mark the section change without changing the harmony?
+
+</GuitarPro>
+
+<ApplyIt>
+
+Pick the most tense passage in one of your songs. Is the meter there thick or thin? Would removing a level (London's Beethoven) make it more tense?
+
+</ApplyIt>

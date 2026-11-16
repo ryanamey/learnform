@@ -1,4 +1,15 @@
-## Meter is something the listener builds
+## Four answers to one question
+
+What is meter? The writers of this course give four different answers. This lesson sets them side by side. It doesn't choose between them; the seminars do the arguing.
+
+| Answer | Writers | In one line |
+|---|---|---|
+| A schema the listener infers and holds | Snyder, London | Meter is an expectation, an attention habit locked on to periodic events |
+| Rules a listener unconsciously applies | Lerdahl & Jackendoff | Beats are points in a hierarchy of strong and weak, chosen by preference rules |
+| A process that happens while we listen | Hasty | Each duration that ends offers itself as a model for the next ("projection") |
+| One of several timespan hierarchies | Yust | Meter is a regular hierarchy of spans; the rhythm actually played is a separate structure that can disagree with it |
+
+## Answer 1: a schema the listener holds (Snyder, London)
 
 Snyder's chapter on rhythm starts from the listener <Source book="snyder" where="Ch. 12" />. A **pulse** is a series of equal beats inferred from equally spaced events; once inferred, it is felt to continue even after the sounds stop, and rhythms are reproduced and judged far more accurately against it. **Meter** begins when the beats of a pulse are differentiated in a regular pattern of strong and weak. Like the pulse, meter is inferred and then persists: it takes a long discrepancy to dislodge it. People even group identical, evenly spaced clicks into twos or threes on their own.
 
@@ -106,16 +117,73 @@ Hear the difference landmarks make on an 11-beat cycle:
 
 **Polymeter** (a common pulse, parts in different meters that realign over a longer span) gives mild tension. **Polyrhythm**, in Snyder's sense (parts on different basic pulses), undercuts the downbeat of both parts; he compares tempo ratios to pitch intervals, small ratios realigning quickly and large ones like 15:16 holding tension longest. And **free rhythm**, without a pulse, is less stable than metrical music; in North Indian classical music an unmetred opening section is resolved by the metred body that follows.
 
-## Meter in the four books
+London says much the same in the language of psychology <Source book="london" where="Intro, Ch. 1" />: meter is **entrainment**, our attention locking on to a periodic series the way we lock on to footsteps. It needs a beat plus at least one other level, and it works only inside a window of speeds (next lesson).
+
+## Answer 2: rules for strong and weak (Lerdahl & Jackendoff)
+
+GTTM separates two things that ordinary talk mixes up <Source book="gttm" where="Ch. 2" />. **Grouping** is how we cut the music into units: motives, phrases, sections. **Meter** is a regular pattern of strong and weak **beats**, and beats are points without duration (the conductor's ictus, a metronome click). What lies between beats is a **time-span**. A beat that is strong at one level is also a beat at the next level up; in classical tonal music, levels relate by 2 or 3.
+
+The listener picks a meter with **preference rules** <Source book="gttm" where="Ch. 4" />: put strong beats where notes begin, where they are stressed or long, where the harmony changes (the strongest cue), where the bass is stable, and parallel music gets parallel meter. When the cues agree, the meter is clear. When they disagree, it is ambiguous. Once a meter is clear, it is given up only against strong evidence, and syncopation is contrary evidence that isn't strong enough to win.
+
+<KeyIdea>Lerdahl & Jackendoff: meter is a hierarchy of beats (points), inferred by preference rules and kept apart from grouping.</KeyIdea>
+
+## Answer 3: a process (Hasty)
+
+Hasty asks you to stop thinking of a grid <Source book="hasty" where="Ch. 6–7" />. When a sound begins, a duration begins. When a new event begins, the first duration is complete, and its length becomes a **projected potential**: an expectation that the new duration will be the same. That is **projection**. If the next beginning arrives where the first duration predicts, the projection is realised. If it arrives earlier or later, we feel *too soon* or *too late*, and we may reinterpret what we heard. In place of strong and weak, he uses **beginning** and **continuation**.
+
+His test: stop the music exactly where the next unit should begin, and feel whether the silence has a definite length <Source book="hasty" where="Ch. 12" />. Try it on the three versions below. The two-bar riff is the same each time; only the moment the next one begins changes.
+
+<ScorePlayer
+  label="On time"
+  parts={[
+    { name: "Guitar", notation: "E2/8 E2/8 G2/8 E2/8 A2/4 G2/4 | E2/2 r/2 | E2/8 E2/8 G2/8 E2/8 A2/4 G2/4 | E2/2 r/2", voice: "drive" },
+  ]}
+  bpm={110}
+  caption="The second statement begins where the first predicts."
+/>
+
+<ScorePlayer
+  label="Too soon"
+  parts={[
+    { name: "Guitar", notation: "E2/8 E2/8 G2/8 E2/8 A2/4 G2/4 | E2/2 r/4 E2/8 E2/8 | G2/8 E2/8 A2/4 G2/4 E2/4 | r/1", voice: "drive" },
+  ]}
+  bpm={110}
+  caption="The second statement enters a beat early: an interruption."
+/>
+
+<ScorePlayer
+  label="Too late"
+  parts={[
+    { name: "Guitar", notation: "E2/8 E2/8 G2/8 E2/8 A2/4 G2/4 | E2/2 r/2 | r/4 E2/8 E2/8 G2/8 E2/8 A2/4 | G2/4 E2/2 r/4", voice: "drive" },
+  ]}
+  bpm={110}
+  caption="The second statement enters a beat late: a held breath, then a reinterpretation."
+/>
+
+Hasty doesn't treat meter as a habit that runs on by itself: each repetition is made anew. For him there is no "conflict of meter and rhythm", only projections that are confirmed, denied or reinterpreted <Source book="hasty" where="Ch. 11, 14" />.
+
+<KeyIdea>Hasty: meter is projection. A finished duration becomes the model for the next, and what we feel is the next beginning arriving on time, early or late.</KeyIdea>
+
+## Answer 4: one timespan hierarchy among several (Yust)
+
+Yust keeps the idea of a regular hierarchy but builds it from **timespans**, not points: a bar contains two half-bars, each contains two beats <Source book="yust" where="Ch. 1" />. Some timepoints of the meter may be silent; they exist in the listener's attention, peaks of an internal oscillation. The rhythm actually played has its own **rhythmic structure**, which usually matches the meter but can disagree with it. Syncopation is exactly where it disagrees. He borrows Hasty's projection to explain how we infer the structure, but, unlike Hasty, he keeps meter as a real psychological thing with **inertia**: once established, it persists against some contrary evidence. And he makes rhythm one of three independent structures, with tonality and form. A passage gets its energy where the three don't line up, for example an important chord on a weak beat.
+
+<KeyIdea>Yust: meter is a regular hierarchy of timespans held by the listener; the rhythm, the harmony and the form each make their own hierarchy, and they can disagree.</KeyIdea>
+
+## Where the writers stand
 
 <Positions title="Where the writers stand on meter">
   <Position book="snyder" where="Ch. 12">Meter is a schema the listener infers and maintains; tension comes from groups that disagree with it. Long cycles need strict repetition and landmark sounds.</Position>
   <Position book="caplin" where="Ch. 2, 5">Counts real bars, not notated ones, and says which is which is a matter of interpretation. Treats hemiola inside a theme as a way of expanding a function, not as a separate layer of form.</Position>
   <Position book="schoenberg" where="Ch. II, III, XIV">Phrases don't coincide with barlines. Changing the metre within a piece is a rare variation device. Some composers change meter constantly so that barlines follow phrases; irregular lengths need a reason.</Position>
+  <Position book="london" where="Intro, Ch. 1–2">Meter is entrainment: an attention habit, a beat plus at least one more level, inside a window of speeds.</Position>
+  <Position book="gttm" where="Ch. 2, 4">Meter is a hierarchy of beats (points), separate from grouping, chosen by preference rules and kept against weak contrary evidence.</Position>
+  <Position book="hasty" where="Ch. 6–7, 9">Meter is projection: beginning and continuation, not strong and weak; it is not a habit and doesn't conflict with rhythm.</Position>
+  <Position book="yust" where="Ch. 1">Meter is a regular timespan hierarchy with inertia; the played rhythm has its own structure that can disagree with it.</Position>
   <Position book="belkin" where="Ch. 2, 16">Rhythm is always part of punctuation; later in a piece, counterpoint against square phrasing and unstable phrase structure keep the listener alert.</Position>
 </Positions>
 
-The rock and metal writers of this course (Krebs, Biamonte, London, Pieslak, Lucas, Garza, Kramer, Prieto) build on these foundations in different directions; the seminars set them side by side.
+The rock and metal writers of this course (Krebs, Biamonte, Pieslak, Lucas, Garza, Kramer, Prieto) build on these answers in different directions; the seminars set them side by side.
 
 <SeminarLink slug="seminar-where-is-the-meter" />
 <SeminarLink slug="seminar-odd-cycles" />

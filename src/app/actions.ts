@@ -254,3 +254,46 @@ export async function saveRiffBoard(id: string, input: unknown): Promise<ActionR
   revalidatePath("/riffs");
   return { ok: true };
 }
+
+/* ---------------- Guitar Pro import (MusicXML) ---------------- */
+
+const importSchema = z.object({
+  name: z.string().trim().min(1, "Give it a name").max(120),
+  notation: z
+    .string()
+    .trim()
+    .min(1, "Nothing to import in those bars")
+    .max(4000, "Too long for one riff: import fewer bars")
+    .refine((s) => {
+      try {
+        return parseNotation(s).events.length > 0;
+      } catch {
+        return false;
+      }
+    }, "The imported notes couldn't be read"),
+  bpm: z.number().int().min(30).max(300),
+  meter: z.string().max(24).default(""),
+  description: z.string().max(4000).default(""),
+});
+
+export async function importRiff(input: unknown): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  const user = await requireUser();
+  const parsed = importSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid import" };
+  const v = parsed.data;
+  const [row] = await db
+    .insert(motifs)
+    .values({
+      userId: user.id,
+      name: v.name,
+      notation: v.notation,
+      bpm: v.bpm,
+      kind: "riff",
+      description: v.description,
+      board: boardSchema.parse({ meter: v.meter }),
+    })
+    .returning({ id: motifs.id });
+  revalidatePath("/riffs");
+  revalidatePath("/motifs");
+  return { ok: true, id: row.id };
+}

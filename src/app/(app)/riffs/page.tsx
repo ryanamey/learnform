@@ -6,6 +6,7 @@ import { getMotifs } from "@/lib/data";
 import { requireUser } from "@/lib/session";
 import { PageBody, PageHeader } from "@/components/shell/page-header";
 import { Button } from "@/components/ui/button";
+import { GuitarProImport } from "./guitar-pro-import";
 import { riffSummary } from "./summary";
 
 export const metadata: Metadata = { title: "Riff board" };
@@ -31,10 +32,14 @@ export default async function RiffsPage() {
         chord functions, and which chords stay clear under gain.
       </PageHeader>
 
+      <div className="mb-6">
+        <GuitarProImport />
+      </div>
+
       {motifs.length === 0 ? (
         <div className="rounded-xl border border-dashed p-10 text-center text-sm text-muted-foreground">
-          No riffs yet. Write one in the motif bank (the notation is like <code>E2/8! E2/8 G2/8 A2/4</code>) and it
-          appears here.
+          No riffs yet. Import one from Guitar Pro, or write one in the motif bank (the notation is like{" "}
+          <code>E2/8! E2/8 G2/8 A2/4</code>) and it appears here.
         </div>
       ) : (
         <ul className="grid gap-3 md:grid-cols-2">

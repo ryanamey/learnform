@@ -127,16 +127,23 @@ export function splitEven(n: number): number[] {
 
 /** A first guess at the riff's grouping: accents start groups (else every attack); 1s merge into neighbours. */
 export function suggestGrouping(r: Rhythm): number[] {
-  const starts = (r.accents.length >= 2 ? r.accents : r.onsets).slice().sort((a, b) => a - b);
+  const byAccent = r.accents.length >= 2 ? spans(r.accents, r.total) : null;
+  // accents only lead when they make beat-sized groups; otherwise every attack starts a group
+  const raw = byAccent && Math.max(...byAccent) <= 6 ? byAccent : spans(r.onsets, r.total);
+  return raw.flatMap(splitEven);
+}
+
+function spans(points: number[], total: number): number[] {
+  const starts = points.slice().sort((a, b) => a - b);
   const first = starts[0];
-  const lens = starts.map((s, i) => (i + 1 < starts.length ? starts[i + 1] : r.total + first) - s);
+  const lens = starts.map((s, i) => (i + 1 < starts.length ? starts[i + 1] : total + first) - s);
   const merged: number[] = [];
   for (const l of lens) {
     if (l === 1 && merged.length) merged[merged.length - 1] += 1;
     else merged.push(l);
   }
   if (merged[0] === 1 && merged.length > 1) merged.splice(0, 2, 1 + merged[1]);
-  return merged.flatMap(splitEven);
+  return merged;
 }
 
 export const groupingText = (g: number[]) => g.join("-");

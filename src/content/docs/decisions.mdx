@@ -1,5 +1,11 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-16 · Riffs come in from Guitar Pro
+
+**Decision:** The band writes in Guitar Pro, so the riff board imports MusicXML exported from it (File → Export → MusicXML; plain or compressed .mxl) instead of asking for riffs to be typed twice. You pick a track and a range of bars; the riff arrives with its notes at sounding pitch (the guitar's octave transposition applied), chords, rests, accents, dead notes, ties, the time signature and the tempo, and opens on the riff board.
+**What's left out:** grace notes, every voice but the first, bends, slides and other techniques. A note whose length the notation can't write in one value keeps its attack and the rest becomes rests. Native .gp files aren't read directly; the app says to export MusicXML instead.
+**Also changed:** the grouping guess now starts groups at accents only when they make beat-sized groups (six units or fewer); otherwise every attack starts a group. Imported riffs rarely have accents marked the way the band hears them, so the grouping field is still the place to correct it.
+
 ### 2026-11-16 · Build plan step 2c: the riff board
 
 **Decision:** The riff board is a reading of the motif bank, not a second store of riffs. Each riff keeps its notes, tempo and family in the motif bank; the board adds a `board` field (meter, grouping, reference cycle, second loop, tonic, mode, vocal mode, gain, entry offset, motto, where it's used, notes). Opening a riff shows every analysis at once, worked out from its notation.

@@ -1,5 +1,13 @@
 Each entry records a decision, why it was made, and what would change it. Newest first.
 
+### 2026-11-16 · Five new sources, three new pages, and private audio
+
+**Sources added:** Lilja's dissertation on metal harmony, Herbst's heaviness paper and Prieto's *Rhythmic Synchronicity* (all read in full; Lilja's history chapter read quickly), the Sriram Karnatic primer (read) and a Karnatic transcription book (reference only). They fill three of the gaps found when the roadmap was checked: harmony in riffs, heaviness as a form parameter, and the drummer's grouping technique.
+**Pages built:** *Riff harmony* (Module 1, Lilja), *Grouping numbers, speeds and cycles* (Module 2, Prieto and Sriram, with Prieto's audio examples on the page) and *Heaviness* (Module 3, Herbst and Lilja). They're new pages rather than fold-ins because each source brought a whole topic the app didn't cover.
+**Audio:** Prieto's 188 tracks live in a private Vercel Blob store and are streamed only to signed-in users through `/api/media/prieto/N`. They are never committed to git (the `media` folder is ignored), so the repo stays small and the paid tracks aren't public.
+**Backlog:** 13 new ideas, most for the riff board (number strings and dots-and-lines charts, cycle realignment, chord types under gain, modal function labels) and two for the form planner (a gain and voicing lane, a tonal-region lane).
+**Still missing:** Reina's *Applying Karnatic Rhythmical Techniques to Western Music*, for the tihai and mukthay cadences and Karnatic grouping changes. Prieto covers grouping and cycles but not cadences.
+
 ### 2026-11-14 · Build plan step 2b: the boundary checker
 
 **Decision:** The boundary checker lives inside each form plan as a row between every two sections (a *seam*), not as a separate tool. Each seam combines cues read from the lanes (lever jumps of 3 or more, a meter, tempo or meter-thickness change, the voice entering, leaving or changing timbre, a new section group) with cues ticked by hand under Stephenson's four kinds (words, instruments, rhythm, harmony) plus a lead-in fill, and against devices that carry the music across (a lyric running on, a pedal, a groove that continues, overlapping phrases).

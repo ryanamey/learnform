@@ -13,6 +13,7 @@ import { AccompanimentMotiveLab, SmallestNotesLab } from "@/components/audio/mot
 import { BackbeatLab, LegibleMeterLab } from "@/components/audio/backbeat-labs";
 import { MetricProcessLab } from "@/components/audio/process-labs";
 import { NiMeterLab } from "@/components/audio/odd-meter-labs";
+import { PrietoExample } from "@/components/audio/prieto-example";
 import { TailLab } from "@/components/audio/tail-labs";
 import { PhraseRhythmLab } from "@/components/audio/phrase-rhythm-labs";
 import { LadderLab } from "@/components/audio/ladder-labs";
@@ -65,6 +66,7 @@ const components: MDXComponents = {
   LegibleMeterLab,
   MetricProcessLab,
   NiMeterLab,
+  PrietoExample,
   TailLab,
   PhraseRhythmLab,
   LadderLab,

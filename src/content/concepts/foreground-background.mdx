@@ -1,0 +1,154 @@
+## One stream at a time
+
+When several parts sound together, the ear sorts them into **streams**: lines that seem to come from one source. Snyder summarises what research says about the limits <Source book="snyder" where="Ch. 11" />: we can perceive four or more streams at once, but we can **attend closely to only one at a time**. Everything else is still heard, but as context.
+
+So every texture has a foreground and a background, whether the band plans it or not. This lesson is about planning it. (How sounds become separate streams in the first place, by register, speed and timbre, is the subject of a later lesson, *Streams*, which waits for Bregman's book.)
+
+## What pushes a part into the background
+
+Snyder's answer is **repetition** <Source book="snyder" where="Ch. 2, 11, 13" />. A pattern that repeats exactly gives the listener nothing new, so attention lets it go. He calls this **habituation**: the pattern is still processed, but outside the focus of awareness. Two consequences:
+
+- Of two streams, **the less repetitive one comes forward**. If they sit in different registers, the more repetitive one is heard as accompaniment.
+- This is why accompaniments are usually repetitive, and why a riff that has repeated long enough becomes a backdrop even when it's loud.
+
+Hear the same riff in both roles. First it is the foreground: nothing else is moving.
+
+<ScorePlayer
+  label="Riff as foreground"
+  parts={[
+    { name: "Guitar", notation: "A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8", voice: "drive", gain: 0.7 },
+    { name: "Drums", notation: "C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4", voice: "kit", gain: 0.5 },
+  ]}
+  bpm={100}
+  caption="The riff is the only thing that changes from beat to beat, so it holds attention."
+/>
+
+Now a slow melody enters above it. The riff hasn't changed a note, but after a bar or two it slips behind:
+
+<ScorePlayer
+  label="Riff as background"
+  parts={[
+    { name: "Voice", notation: "A4/2 C5/4 B4/4 | A4/2. r/4 | G4/2 B4/4 A4/4 | E4/2. r/4", voice: "voice" },
+    { name: "Guitar", notation: "A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8 | A2/8 A2/8 C3/8 A2/8 D3/8 A2/8 E3/8 D3/8", voice: "drive", gain: 0.5 },
+    { name: "Drums", notation: "C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4 | C2/4 F#4/4 [D3,F#4]/4 F#4/4", voice: "kit", gain: 0.5 },
+  ]}
+  bpm={100}
+  caption="The melody is new information; the riff, already heard four times, becomes context."
+/>
+
+## What makes a good background
+
+Belkin describes the same thing from the composer's side, under the name **enriching**: giving the listener more than one perceptual plane <Source book="belkin" where="Ch. 20, Enriching" />. He finds two common kinds of background plane:
+
+- **Movement**: repeated notes, scales, arpeggios, trills. The texture stays alive, the way the natural world is never still. His example is the *Ride of the Valkyries*, where woodwind trills and string arpeggios rush behind the leaping theme.
+- **Resonance**: sustained sound, like a piano's pedal or soft held chords in the orchestra. The world seems to reverberate behind the foreground and gives a sense of depth. In Ravel's *Daphnis* sunrise, muted string harmonics and horns give the rippling harps a sheen.
+
+His rule for both: **the background must not compete**. It should differ from the foreground in **timbre, register, speed and rhythmic motive**, and on its own it should be fairly uninteresting.
+
+Hear the two kinds under the same melody, and then a background that breaks the rule:
+
+<ScorePlayer
+  label="Resonance background"
+  parts={[
+    { name: "Voice", notation: "A4/2 C5/4 B4/4 | A4/2. r/4 | G4/2 B4/4 A4/4 | E4/2. r/4", voice: "voice" },
+    { name: "Pad", notation: "[A2,E3,C4]/1 | [A2,E3,C4]/1 | [G2,D3,B3]/1 | [E2,B2,G#3]/1", voice: "pad", gain: 0.45 },
+  ]}
+  bpm={100}
+  caption="Held chords, lower and softer than the voice: depth without motion."
+/>
+
+<ScorePlayer
+  label="Movement background"
+  parts={[
+    { name: "Voice", notation: "A4/2 C5/4 B4/4 | A4/2. r/4 | G4/2 B4/4 A4/4 | E4/2. r/4", voice: "voice" },
+    { name: "Guitar", notation: "A2/8 E3/8 A3/8 E3/8 A2/8 E3/8 A3/8 E3/8 | A2/8 E3/8 A3/8 E3/8 A2/8 E3/8 A3/8 E3/8 | G2/8 D3/8 G3/8 D3/8 G2/8 D3/8 G3/8 D3/8 | E2/8 B2/8 E3/8 B2/8 E2/8 B2/8 E3/8 B2/8", voice: "guitar", gain: 0.45 },
+  ]}
+  bpm={100}
+  caption="Fast, low, repetitive arpeggios: alive, but different from the voice in every way Belkin lists."
+/>
+
+<ScorePlayer
+  label="A background that competes"
+  parts={[
+    { name: "Voice", notation: "A4/2 C5/4 B4/4 | A4/2. r/4 | G4/2 B4/4 A4/4 | E4/2. r/4", voice: "voice" },
+    { name: "Guitar", notation: "E4/4 D4/4 E4/4 G4/4 | C5/4 B4/4 G4/2 | B4/4 A4/4 G4/4 D4/4 | B4/2 G#4/2", voice: "guitar", gain: 0.7 },
+  ]}
+  bpm={100}
+  caption="Same register, similar speed, its own tune: two foregrounds, and the ear keeps switching between them."
+/>
+
+The last example isn't wrong in itself. Two lines of equal interest are **counterpoint**, which is a different texture with its own rules (a later lesson). What doesn't work is a line meant as background that behaves like a foreground.
+
+## The voice is almost never background
+
+Belkin adds a warning for songs <Source book="belkin" where="Ch. 3 Singing; Ch. 4 Playing" />. Words demand attention, so a voice heard behind the instruments doesn't sound like a background; it sounds like a voice that isn't loud enough. When a choir accompanies, it sings neutral syllables. And when voice and accompaniment need equal power, opera alternates them: the orchestra plays in the singer's gaps, so the voice can sound with full force.
+
+For a band this gives two clear options. Either the vocal is the foreground and everything else is planned as background around it, or the vocal becomes texture by giving up words (sustained vowels, a wordless line doubled with the guitar synth).
+
+## Schoenberg: the motive of the accompaniment
+
+Schoenberg gives the accompaniment rules of its own <Source book="schoenberg" where="Ch. IX" />:
+
+- An accompaniment has a **motive**, organised like a theme but treated by rhythmic repetition and harmonic adaptation. It gives the passage a unifying **motus** (motion).
+- That motive must be able to be **modified, liquidated or abandoned** as the theme requires. Near cadences it is often thinned out; a climb to a climax needs a richer accompaniment.
+- **Omissibility**: unaccompanied passages give contrast and transparency. "Pauses never sound bad," he writes.
+- The **bass is a secondary melody**: it takes part in every change of harmony, stays in one register and is continuous, because the ear pays it much attention.
+
+He lists types of accompaniment worth having in a band's vocabulary: chorale-like (block chords), broken chords, repeated chords, sustained notes, afterbeats and syncopations, **complementary rhythm** (one part fills the gaps of another to keep the motion going), a bass with its own pattern, and an ostinato under a varied texture.
+
+<KeyIdea>Repetition sends a part to the background (Snyder); a good background differs from the foreground in timbre, register, speed and rhythm (Belkin); and the accompaniment has its own motive that can be changed, thinned or dropped as the form requires (Schoenberg).</KeyIdea>
+
+## Where the writers stand
+
+<Positions title="Foreground and background">
+  <Position book="snyder" where="Ch. 2, 11, 13">One stream at a time gets close attention; repetition and habituation push a stream into the background.</Position>
+  <Position book="belkin" where="Ch. 20">Backgrounds are planned planes of movement or resonance; they must differ from the foreground and be uninteresting alone. The voice is almost never background.</Position>
+  <Position book="schoenberg" where="Ch. IX">The accompaniment has its own motive and motion, which the theme can modify, liquidate or abandon; unaccompanied passages are a resource.</Position>
+  <Position book="analysing-rock" where="whole article">In rock, the background planes are mostly the filler layer, and the filler is what listeners use to identify a style.</Position>
+</Positions>
+
+The three agree closely. Snyder explains *why* from perception, Belkin gives the craft rule, and Schoenberg treats the background as something that develops with the form.
+
+<ListenerSide grade="strong">
+
+The limit on close attention and habituation to repeated stimuli are well established in perception research (Snyder draws on Bregman, Baars and others). That the more repetitive of two streams is heard as accompaniment is Snyder's application of these findings to music; it agrees with common experience but was not separately tested in his sources.
+
+</ListenerSide>
+
+## Listen
+
+<ListenFor artist="Tool" track="Schism">
+  In the opening, the bass carries the main figure alone. When the guitar and vocal enter, which part moves to the background, and how quickly?
+</ListenFor>
+
+<ListenFor artist="King Crimson" track="Larks' Tongues in Aspic, Part One">
+  Find a passage where one instrument plays a repeated figure for a long time. When does it stop being the thing you listen to?
+</ListenFor>
+
+<ListenFor artist="Pink Floyd" track="Shine On You Crazy Diamond (Parts I–V)">
+  Separate the planes of resonance (held keyboard sounds) from the foreground guitar. Is there a movement plane as well?
+</ListenFor>
+
+## Practice
+
+<Exercise title="Swap the planes">
+
+1. Take a section of one of your songs with a riff and a vocal.
+2. Play it with the riff as foreground (no vocal), then with the vocal over it. Note how many bars it takes for the riff to recede.
+3. Change the riff in one of Belkin's four ways (timbre, register, speed, rhythmic motive) so that it recedes faster. Which change works best?
+
+</Exercise>
+
+<GuitarPro title="Three backgrounds for one melody">
+
+1. Write an 8-bar melody for voice or guitar synth.
+2. Write three backgrounds for it: one of resonance (held chords), one of movement (arpeggio or repeated notes), and one complementary rhythm that only plays in the melody's gaps.
+3. Check each background against the four differences: timbre, register, speed, rhythmic motive.
+
+</GuitarPro>
+
+<ApplyIt>
+
+For each section of your next song, write down what is foreground and what is background, and which background plane it is (movement or resonance). Mark one place where the accompaniment drops out entirely, and one place where its motive changes because the form demands it.
+
+</ApplyIt>
